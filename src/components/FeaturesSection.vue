@@ -1,5 +1,5 @@
 <template>
-  <section class="features">
+  <section id="institutional-otc" class="features">
     <div class="features__container">
       <h2 v-reveal class="features__title">{{ $t('features.title') }}</h2>
       
@@ -71,37 +71,13 @@
                 </div>
               </button>
             </div>
-            <div class="features__nav">
-              <!-- <div class="features__divider"></div> -->
-              <div class="features__nav-content">
-                <span class="features__counter">1/4</span>
-                <div class="features__indicators">
-                  <button
-                    v-for="(_, index) in totalSlides"
-                    :key="index"
-                    class="features__indicator"
-                    :class="{ 'features__indicator--active': currentSlide === index }"
-                    @click="goToSlide(index)"
-                  />
-                </div>
-                <div class="features__arrows">
-                  <button 
-                    class="features__arrow" 
-                    :class="{ 'features__arrow--disabled': currentSlide === 0 }"
-                    @click="prevSlide"
-                  >
-                    <img src="../assets/images/arrow-right.svg" alt="Prev" class="features__arrow-icon--prev" />
-                  </button>
-                  <button 
-                    class="features__arrow"
-                    :class="{ 'features__arrow--disabled': currentSlide === totalSlides - 1 }"
-                    @click="nextSlide"
-                  >
-                    <img src="../assets/images/arrow-right.svg" alt="Next" />
-                  </button>
-                </div>
-              </div>
-            </div>
+            <FeatureNav
+              :current-slide="currentSlide"
+              :total-slides="totalSlides"
+              @prev="prevSlide"
+              @next="nextSlide"
+              @go-to-slide="goToSlide"
+            />
           </div>
         </div>
 
@@ -142,37 +118,13 @@
               <h3 class="features__subtitle">{{ $t('features.slide2.title') }}</h3>
               <p class="features__description">{{ $t('features.slide2.description') }}</p>
             </div>
-            <div class="features__nav">
-              <!-- <div class="features__divider"></div> -->
-              <div class="features__nav-content">
-                <span class="features__counter">2/4</span>
-                <div class="features__indicators">
-                  <button
-                    v-for="(_, index) in totalSlides"
-                    :key="index"
-                    class="features__indicator"
-                    :class="{ 'features__indicator--active': currentSlide === index }"
-                    @click="goToSlide(index)"
-                  />
-                </div>
-                <div class="features__arrows">
-                  <button 
-                    class="features__arrow" 
-                    :class="{ 'features__arrow--disabled': currentSlide === 0 }"
-                    @click="prevSlide"
-                  >
-                    <img src="../assets/images/arrow-right.svg" alt="Prev" class="features__arrow-icon--prev" />
-                  </button>
-                  <button 
-                    class="features__arrow"
-                    :class="{ 'features__arrow--disabled': currentSlide === totalSlides - 1 }"
-                    @click="nextSlide"
-                  >
-                    <img src="../assets/images/arrow-right.svg" alt="Next" />
-                  </button>
-                </div>
-              </div>
-            </div>
+            <FeatureNav
+              :current-slide="currentSlide"
+              :total-slides="totalSlides"
+              @prev="prevSlide"
+              @next="nextSlide"
+              @go-to-slide="goToSlide"
+            />
           </div>
         </div>
 
@@ -229,37 +181,13 @@
                 </div>
               </button>
             </div>
-            <div class="features__nav">
-              <!-- <div class="features__divider"></div> -->
-              <div class="features__nav-content">
-                <span class="features__counter">3/4</span>
-                <div class="features__indicators">
-                  <button
-                    v-for="(_, index) in totalSlides"
-                    :key="index"
-                    class="features__indicator"
-                    :class="{ 'features__indicator--active': currentSlide === index }"
-                    @click="goToSlide(index)"
-                  />
-                </div>
-                <div class="features__arrows">
-                  <button 
-                    class="features__arrow" 
-                    :class="{ 'features__arrow--disabled': currentSlide === 0 }"
-                    @click="prevSlide"
-                  >
-                    <img src="../assets/images/arrow-right.svg" alt="Prev" class="features__arrow-icon--prev" />
-                  </button>
-                  <button 
-                    class="features__arrow"
-                    :class="{ 'features__arrow--disabled': currentSlide === totalSlides - 1 }"
-                    @click="nextSlide"
-                  >
-                    <img src="../assets/images/arrow-right.svg" alt="Next" />
-                  </button>
-                </div>
-              </div>
-            </div>
+            <FeatureNav
+              :current-slide="currentSlide"
+              :total-slides="totalSlides"
+              @prev="prevSlide"
+              @next="nextSlide"
+              @go-to-slide="goToSlide"
+            />
           </div>
         </div>
 
@@ -294,37 +222,13 @@
                 </div>
               </button>
             </div>
-            <div class="features__nav">
-              <!-- <div class="features__divider"></div> -->
-              <div class="features__nav-content">
-                <span class="features__counter">4/4</span>
-                <div class="features__indicators">
-                  <button
-                    v-for="(_, index) in totalSlides"
-                    :key="index"
-                    class="features__indicator"
-                    :class="{ 'features__indicator--active': currentSlide === index }"
-                    @click="goToSlide(index)"
-                  />
-                </div>
-                <div class="features__arrows">
-                  <button 
-                    class="features__arrow" 
-                    :class="{ 'features__arrow--disabled': currentSlide === 0 }"
-                    @click="prevSlide"
-                  >
-                    <img src="../assets/images/arrow-right.svg" alt="Prev" class="features__arrow-icon--prev" />
-                  </button>
-                  <button 
-                    class="features__arrow"
-                    :class="{ 'features__arrow--disabled': currentSlide === totalSlides - 1 }"
-                    @click="nextSlide"
-                  >
-                    <img src="../assets/images/arrow-right.svg" alt="Next" />
-                  </button>
-                </div>
-              </div>
-            </div>
+            <FeatureNav
+              :current-slide="currentSlide"
+              :total-slides="totalSlides"
+              @prev="prevSlide"
+              @next="nextSlide"
+              @go-to-slide="goToSlide"
+            />
           </div>
         </div>
       </div>
@@ -334,6 +238,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import FeatureNav from './FeatureNav.vue'
 
 const currentSlide = ref(0)
 const totalSlides = 4

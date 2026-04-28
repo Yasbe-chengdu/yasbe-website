@@ -1,0 +1,123 @@
+.features__nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: auto;
+  row-gap: 24px;
+}
+
+.features__nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.features__counter {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 26px;
+  letter-spacing: 0.2px;
+  color: var(--color-text-primary);
+}
+
+.features__indicators {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.features__indicator {
+  width: 120px;
+  height: 2px;
+  background: rgba(1, 1, 1, 0.1);
+  border-radius: 1px;
+  transition: all 0.2s ease;
+}
+
+.features__indicator--active {
+  background: var(--color-text-primary);
+}
+
+.features__arrows {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.features__arrow {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-text-primary);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: all 0.2s ease;
+}
+
+.features__arrow:hover:not(.features__arrow--disabled) {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.features__arrow--disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.features__arrow img {
+  width: 20px;
+  height: 20px;
+}
+
+.features__arrow-icon--prev {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 1199px) {
+  .features__nav-content {
+    flex-wrap: wrap;
+    gap: 18px 20px;
+  }
+
+  .features__indicators {
+    position: static;
+    width: 100%;
+    order: 3;
+    transform: none;
+  }
+
+  .features__indicator {
+    flex: 1 1 0;
+    width: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .features__nav-content {
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .features__counter {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .features__indicators {
+    position: static;
+    width: 100%;
+    order: 3;
+    transform: none;
+  }
+
+  .features__indicator {
+    flex: 1 1 0;
+    width: auto;
+  }
+}
