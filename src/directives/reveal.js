@@ -67,9 +67,6 @@ function mountObserver(el, binding) {
     return
   }
 
-  // Force the browser to paint the initial hidden state before observing,
-  // otherwise elements already in the viewport get revealed in the same
-  // frame and the transition is never visible.
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       const observer = new IntersectionObserver(

@@ -225,12 +225,14 @@
     top: 52px;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: auto;
+    max-height: calc(100vh - 52px);
+    max-height: calc(100dvh - 52px);
     background: var(--color-white);
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 32px var(--content-padding);
+    padding: 28px var(--content-padding) max(28px, env(safe-area-inset-bottom));
     margin-left: 0;
     gap: 24px;
     opacity: 0;
@@ -242,10 +244,12 @@
       visibility 0.25s ease,
       transform 0.25s ease;
     overflow-y: auto;
+    overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
   }
 
   .navbar__menu--open {
+    display: flex;
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -303,6 +307,18 @@
 
   .navbar__auth {
     width: 100%;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .navbar__btn {
+    min-height: 44px;
+  }
+
+  .navbar__btn--text {
+    flex: 1;
+    text-align: center;
+    border: 1px solid rgba(1, 1, 1, 0.1);
   }
 
   .navbar__btn--primary {

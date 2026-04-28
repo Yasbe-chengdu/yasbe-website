@@ -8,9 +8,9 @@
 
       <div class="navbar__menu" :class="{ 'navbar__menu--open': isMenuOpen }">
         <div class="navbar__links">
-          <a href="#global-payment" class="navbar__link">{{ $t('nav.links.globalPayment') }}</a>
-          <a href="#institutional-otc" class="navbar__link">{{ $t('nav.links.otc') }}</a>
-          <a href="#contact" class="navbar__link">{{ $t('nav.links.contact') }}</a>
+          <a href="#global-payment" class="navbar__link" @click="closeMenu">{{ $t('nav.links.globalPayment') }}</a>
+          <a href="#institutional-otc" class="navbar__link" @click="closeMenu">{{ $t('nav.links.otc') }}</a>
+          <a href="#contact" class="navbar__link" @click="closeMenu">{{ $t('nav.links.contact') }}</a>
         </div>
 
         <div class="navbar__actions">
@@ -48,7 +48,13 @@
         </div>
       </div>
 
-      <button type="button" class="navbar__toggle" @click="toggleMenu">
+      <button
+        type="button"
+        class="navbar__toggle"
+        :aria-expanded="isMenuOpen"
+        aria-label="Toggle navigation"
+        @click="toggleMenu"
+      >
         <span></span>
         <span></span>
         <span></span>
@@ -92,6 +98,11 @@ const handleEscape = (event) => {
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
   document.body.style.overflow = isMenuOpen.value ? 'hidden' : ''
+}
+
+const closeMenu = () => {
+  isMenuOpen.value = false
+  document.body.style.overflow = ''
 }
 
 const toggleLanguageMenu = () => {
