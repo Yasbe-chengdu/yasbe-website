@@ -68,35 +68,42 @@
 
 @media (max-width: 767px) {
   .stats {
-    padding: 48px var(--content-padding);
+    padding: 44px var(--content-padding);
   }
 
   .stats__container {
-    gap: 32px;
+    gap: 28px;
   }
 
   .stats__description {
-    font-size: 17px;
-    line-height: 28px;
+    font-size: 16px;
+    line-height: 26px;
   }
 
   .stats__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 28px 20px;
+    gap: 12px;
   }
 
   .stats__item {
     flex: none;
+    min-height: 116px;
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px solid rgba(1, 1, 1, 0.07);
+    border-radius: 18px;
+    background: #f8f8fa;
   }
 
   .stats__number {
-    font-size: clamp(36px, 10vw, 48px);
+    font-size: clamp(30px, 9vw, 42px);
     line-height: 1.15;
   }
 
   .stats__label {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--color-text-secondary);
   }
 }

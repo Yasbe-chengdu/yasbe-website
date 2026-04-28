@@ -43,3 +43,13 @@ button {
   border: none;
   background: none;
 }
+
+section {
+  scroll-margin-top: 76px;
+}
+
+@media (max-width: 767px) {
+  section {
+    scroll-margin-top: 64px;
+  }
+}

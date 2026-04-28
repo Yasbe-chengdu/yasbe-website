@@ -270,19 +270,20 @@
 
 @media (max-width: 767px) {
     .products {
-        padding: 48px var(--content-padding);
+        padding: 44px var(--content-padding);
     }
 
     .products__title {
-        font-size: clamp(24px, 7vw, 28px);
-        line-height: 1.35;
+        font-size: clamp(26px, 7.5vw, 32px);
+        line-height: 1.2;
         margin-bottom: 24px;
     }
 
     .products__card {
-        padding: 24px 20px;
-        gap: 16px;
-        border-radius: 20px;
+        min-height: 430px;
+        padding: 22px 18px 0;
+        gap: 18px;
+        border-radius: 18px;
     }
 
     .products__content {
@@ -301,7 +302,10 @@
     }
 
     .products__device {
-        display: none;
+        display: flex;
+        padding: 0;
+        min-height: 160px;
+        overflow: hidden;
     }
 
     .products__nav {
@@ -314,6 +318,23 @@
     }
 
     .macbook {
+        display: block;
+        width: min(112vw, 420px);
+        margin: 0;
+        transform: translateY(8px);
+    }
+
+    .macbook__lid {
+        border-radius: 16px 16px 2px 2px;
+    }
+
+    .macbook__screen {
+        padding: 12px 10px 10px;
+    }
+
+    .macbook__label,
+    .macbook__bottom,
+    .macbook__shadow {
         display: none;
     }
 }

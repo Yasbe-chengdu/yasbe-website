@@ -172,7 +172,7 @@
 
 @media (max-width: 767px) {
   .world-map {
-    padding: 40px var(--content-padding);
+    padding: 44px var(--content-padding);
   }
 
   .world-map__content {
@@ -181,8 +181,8 @@
   }
 
   .world-map__title {
-    font-size: clamp(24px, 7vw, 28px);
-    line-height: 1.35;
+    font-size: clamp(26px, 7.5vw, 32px);
+    line-height: 1.2;
   }
 
   .world-map__description {
@@ -193,10 +193,13 @@
   .world-map__cta {
     padding: 10px 20px;
     font-size: 15px;
+    min-height: 48px;
   }
 
   .world-map__visual {
-    height: min(64vw, 260px);
+    height: min(68vw, 280px);
+    overflow: hidden;
+    box-shadow: 0 18px 44px rgba(15, 23, 42, 0.1);
   }
 
   .world-map__map {
