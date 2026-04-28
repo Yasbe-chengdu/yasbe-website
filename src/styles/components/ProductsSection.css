@@ -1,0 +1,319 @@
+.products {
+    background: var(--color-bg-gray);
+    padding: 40px var(--content-padding) 60px;
+    overflow: hidden;
+}
+
+.products__container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.products__title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 62px;
+    letter-spacing: 0.48px;
+    color: var(--color-text-primary);
+    margin-bottom: 32px;
+}
+
+.products__slider {
+    overflow: hidden;
+    width: 100%;
+}
+
+.products__track {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 0;
+}
+
+.products__slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+}
+
+.products__card {
+    border-radius: var(--radius-md);
+    padding: 40px 0 2px 40px;
+    display: flex;
+    gap: 40px;
+    height: 100%;
+    overflow: hidden;
+    transition:
+        transform 0.32s var(--motion-ease-emphasis),
+        box-shadow 0.32s var(--motion-ease-emphasis);
+}
+
+.products__card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 28px 44px rgba(15, 23, 42, 0.1);
+}
+
+.products__card--dark {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.products__card--dark .products__card-title,
+.products__card--dark .products__card-text {
+    color: var(--color-white);
+}
+
+.products__card--light {
+    background: var(--color-white);
+}
+
+.products__content {
+    flex: 0 0 422px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.products__card-title {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 47px;
+    letter-spacing: 0.36px;
+}
+
+.products__card-text {
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.16px;
+    opacity: 0.8;
+}
+
+.products__device {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 39px;
+    padding-left: 39px;
+}
+
+.macbook {
+    position: relative;
+    width: 617px;
+    margin-left: 35px;
+}
+
+.macbook__lid {
+    border: 2px solid #4a5568;
+    border-radius: 21px 21px 3px 3px;
+    background: #1a202c;
+    padding: 2px 2px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.macbook__screen {
+    background: #000;
+    border-radius: 17px 17px 0 0;
+    padding: 21px 18px 17px 16px;
+    align-self: stretch;
+}
+
+.macbook__screen img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.macbook__label {
+    font-size: 10px;
+    font-weight: 500;
+    color: #a0aec0;
+    margin-top: 1px;
+    line-height: 9px;
+}
+
+.macbook__bottom {
+    position: absolute;
+    right: -71px;
+    bottom: -11px;
+    width: 762px;
+    height: 14px;
+}
+
+.macbook__shadow {
+    width: 684px;
+    height: 8px;
+    background: #000;
+    border-radius: 50%;
+    filter: blur(17px);
+    margin-top: 11px;
+}
+
+.products__nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.products__arrow {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.products__arrow:hover {
+    background: var(--color-primary);
+}
+
+.products__arrow--prev img {
+    width: 24px;
+    height: 24px;
+    transform: rotate(180deg);
+}
+
+.products__arrow--next img {
+    width: 24px;
+    height: 24px;
+}
+
+.products__arrows {
+    display: flex;
+    gap: 8px;
+}
+
+.products__dots {
+    display: flex;
+    gap: 8px;
+}
+
+.products__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(1, 1, 1, 0.2);
+    transition: all 0.2s ease;
+}
+
+.products__dot--active {
+    background: var(--color-primary);
+    width: 24px;
+    border-radius: 4px;
+}
+
+@media (max-width: 1199px) {
+    .products__card {
+        flex-direction: column;
+        padding: 32px;
+    }
+
+    .products__content {
+        flex: 1;
+    }
+
+    .products__device {
+        padding: 0;
+    }
+
+    .macbook {
+        width: 100%;
+        max-width: 500px;
+        margin-left: 0;
+    }
+
+    .macbook__bottom {
+        display: none;
+    }
+
+    .macbook__shadow {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .products__title {
+        font-size: 36px;
+        line-height: 48px;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+    .products {
+        padding: 72px var(--content-padding) 64px;
+    }
+
+    .products__card {
+        gap: 28px;
+        padding: 28px;
+    }
+
+    .products__content {
+        max-width: 100%;
+    }
+
+    .products__card-text {
+        max-width: 40rem;
+    }
+
+    .products__device {
+        width: 100%;
+    }
+
+    .macbook {
+        max-width: 580px;
+    }
+}
+
+@media (max-width: 767px) {
+    .products {
+        padding: 48px var(--content-padding);
+    }
+
+    .products__title {
+        font-size: clamp(24px, 7vw, 28px);
+        line-height: 1.35;
+        margin-bottom: 24px;
+    }
+
+    .products__card {
+        padding: 24px 20px;
+        gap: 16px;
+        border-radius: 20px;
+    }
+
+    .products__content {
+        gap: 10px;
+        flex: none;
+    }
+
+    .products__card-title {
+        font-size: 22px;
+        line-height: 30px;
+    }
+
+    .products__card-text {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .products__device {
+        display: none;
+    }
+
+    .products__nav {
+        justify-content: space-between;
+        margin-top: 16px;
+    }
+
+    .products__arrows {
+        margin-left: auto;
+    }
+
+    .macbook {
+        display: none;
+    }
+}
