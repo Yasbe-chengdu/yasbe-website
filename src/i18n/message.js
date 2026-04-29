@@ -17,17 +17,17 @@ export const messages = {
     hero: {
       titleLight: 'Connect You with the',
       titleBold: 'World Economy',
-      subtitle: 'Fast, secure global payments with access to top-tier investments.',
+      subtitle: 'Access international payments, FX, and digital assets on next-generation PayFi infrastructure.',
       cta: 'Try For Free',
     },
     stats: {
       description:
-        'Stablecoins move money at the speed of the internet, overcoming traditional banking inefficiencies.',
+        'Powering global money movement 24/7\n\nYASBe is a unified PayFi infrastructure, enabling individuals and businesses of all sizes to access, store, send, and manage Fiat and Stablecoins',
       labels: {
-        supportedChains: 'Supported Chains',
-        integratedProjects: 'Integrated Projects',
-        marketShare: 'Yieldcoin Market Share',
-        tvl: 'TVL',
+        supportedChains: 'Currencies & Payment Methods',
+        integratedProjects: 'Digital Assets & Blockchains',
+        marketShare: 'Jurisdictions',
+        tvl: 'Global Settlement',
       },
     },
     globalPayments: {
@@ -37,11 +37,11 @@ export const messages = {
       cards: {
         trust: {
           title: 'A Legacy You Can Trust',
-          text: 'Built on SWIFT and a vast network of correspondent banks, traditional payment rails ensure secure and reliable transactions, where redundancy drives resilience.',
+          text: 'Built on SWIFT and a vast network of correspondent banks, traditional payment rails ensure secure and reliable transactions—where redundancy drives resilience.',
         },
         stablecoin: {
           title: 'Stablecoin-Powered Global Transfers',
-          text: 'Using stablecoins and blockchain, we overcome legacy inefficiencies, delivering faster, lower-cost payments across borders.',
+          text: 'Using stablecoins and blockchain, we overcome legacy inefficiencies—delivering faster, lower-cost payments across borders.',
         },
       },
     },
@@ -163,15 +163,16 @@ export const messages = {
     hero: {
       titleLight: '连接你与',
       titleBold: '世界经济',
-      subtitle: '安全高效的全球支付能力，连接优质投资机会。',
+      subtitle: '基于下一代 PayFi 基础设施，接入国际支付、外汇与数字资产。',
       cta: '免费试用',
     },
     stats: {
-      description: '稳定币以互联网的速度转移资金，突破传统银行体系的效率限制。',
+      description:
+        '为全球资金流动提供 24/7 支撑\n\nYASBe 是统一的 PayFi 基础设施，帮助个人与各类规模的企业接入、存储、发送和管理法币与稳定币',
       labels: {
-        supportedChains: '支持链数',
-        integratedProjects: '已集成项目',
-        marketShare: 'Yieldcoin 市场份额',
+        supportedChains: '币种与支付方式',
+        integratedProjects: '数字资产与区块链',
+        marketShare: '司法管辖区',
         tvl: 'TVL',
       },
     },
@@ -299,15 +300,16 @@ export const messages = {
     hero: {
       titleLight: '連結你與',
       titleBold: '世界經濟',
-      subtitle: '安全高效的全球支付能力，串接優質投資機會。',
+      subtitle: '基於下一代 PayFi 基礎設施，接入國際支付、外匯與數位資產。',
       cta: '免費試用',
     },
     stats: {
-      description: '穩定幣以網際網路的速度轉移資金，突破傳統銀行體系的效率限制。',
+      description:
+        '為全球資金流動提供 24/7 支撐\n\nYASBe 是統一的 PayFi 基礎設施，協助個人與各類規模的企業接入、儲存、發送和管理法幣與穩定幣',
       labels: {
-        supportedChains: '支援鏈數',
-        integratedProjects: '已整合專案',
-        marketShare: 'Yieldcoin 市場佔有率',
+        supportedChains: '幣種與支付方式',
+        integratedProjects: '數位資產與區塊鏈',
+        marketShare: '司法管轄區',
         tvl: 'TVL',
       },
     },
@@ -435,15 +437,16 @@ export const messages = {
     hero: {
       titleLight: 'あなたを',
       titleBold: '世界経済へつなぐ',
-      subtitle: '高速かつ安全なグローバル決済で、一流の投資機会へアクセス。',
+      subtitle: '次世代 PayFi インフラ上で、国際決済、FX、デジタル資産へアクセス。',
       cta: '無料で試す',
     },
     stats: {
-      description: 'ステーブルコインは、従来の銀行の非効率を越えて、インターネットの速度で資金を動かします。',
+      description:
+        '24時間365日のグローバルな資金移動を支える\n\nYASBe は統合型 PayFi インフラとして、個人からあらゆる規模の企業まで、法定通貨とステーブルコインへのアクセス、保管、送金、管理を可能にします',
       labels: {
-        supportedChains: '対応チェーン',
-        integratedProjects: '統合済みプロジェクト',
-        marketShare: 'Yieldcoin 市場シェア',
+        supportedChains: '通貨＆決済方法',
+        integratedProjects: 'デジタル資産＆ブロックチェーン',
+        marketShare: '管轄区域',
         tvl: 'TVL',
       },
     },
@@ -576,15 +579,16 @@ export const messages = {
     hero: {
       titleLight: '당신을',
       titleBold: '세계 경제와 연결합니다',
-      subtitle: '빠르고 안전한 글로벌 결제로 최상위 투자 기회에 접근하세요.',
+      subtitle: '차세대 PayFi 인프라에서 국제 결제, FX, 디지털 자산에 접근하세요.',
       cta: '무료로 시작하기',
     },
     stats: {
-      description: '스테이블코인은 전통 금융의 비효율을 넘어 인터넷 속도로 자금을 이동시킵니다.',
+      description:
+        '24시간 365일 글로벌 자금 이동을 지원합니다\n\nYASBe는 통합 PayFi 인프라로, 개인과 모든 규모의 기업이 법정화폐와 스테이블코인에 접근하고 보관, 송금, 관리할 수 있도록 지원합니다',
       labels: {
-        supportedChains: '지원 체인',
-        integratedProjects: '통합 프로젝트',
-        marketShare: 'Yieldcoin 시장 점유율',
+        supportedChains: '통화 및 결제 방식',
+        integratedProjects: '디지털 자산 및 블록체인',
+        marketShare: '관할 구역',
         tvl: 'TVL',
       },
     },
@@ -717,15 +721,16 @@ export const messages = {
     hero: {
       titleLight: 'Te conectamos con la',
       titleBold: 'economía mundial',
-      subtitle: 'Pagos globales rápidos y seguros con acceso a oportunidades de inversión de primer nivel.',
+      subtitle: 'Accede a pagos internacionales, FX y activos digitales sobre infraestructura PayFi de próxima generación.',
       cta: 'Probar gratis',
     },
     stats: {
-      description: 'Las stablecoins mueven dinero a la velocidad de internet y superan las ineficiencias de la banca tradicional.',
+      description:
+        'Impulsando el movimiento global de dinero 24/7\n\nYASBe es una infraestructura PayFi unificada que permite a personas y empresas de todos los tamaños acceder, almacenar, enviar y gestionar monedas fiat y stablecoins',
       labels: {
-        supportedChains: 'Cadenas compatibles',
-        integratedProjects: 'Proyectos integrados',
-        marketShare: 'Cuota de mercado de Yieldcoin',
+        supportedChains: 'Monedas y métodos de pago',
+        integratedProjects: 'Activos digitales y blockchains',
+        marketShare: 'Jurisdicciones',
         tvl: 'TVL',
       },
     },
@@ -858,16 +863,16 @@ export const messages = {
     hero: {
       titleLight: 'Nous vous connectons à',
       titleBold: "l'économie mondiale",
-      subtitle: 'Des paiements mondiaux rapides et sécurisés avec un accès à des opportunités d’investissement de premier plan.',
+      subtitle: 'Accédez aux paiements internationaux, au FX et aux actifs numériques sur une infrastructure PayFi de nouvelle génération.',
       cta: 'Essayer gratuitement',
     },
     stats: {
       description:
-        "Les stablecoins déplacent l'argent à la vitesse d'internet et dépassent les inefficacités du système bancaire traditionnel.",
+        'Alimenter les mouvements d’argent mondiaux 24/7\n\nYASBe est une infrastructure PayFi unifiée qui permet aux particuliers et aux entreprises de toutes tailles d’accéder aux monnaies fiat et aux stablecoins, de les stocker, de les envoyer et de les gérer.',
       labels: {
-        supportedChains: 'Chaînes prises en charge',
-        integratedProjects: 'Projets intégrés',
-        marketShare: 'Part de marché de Yieldcoin',
+        supportedChains: 'Devises et méthodes de paiement',
+        integratedProjects: 'Actifs numériques et blockchains',
+        marketShare: 'Juridictions',
         tvl: 'TVL',
       },
     },

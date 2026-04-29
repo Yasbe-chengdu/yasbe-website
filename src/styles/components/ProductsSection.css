@@ -16,6 +16,7 @@
     letter-spacing: 0.48px;
     color: var(--color-text-primary);
     margin-bottom: 32px;
+    max-width: 500px;
 }
 
 .products__slider {
@@ -169,6 +170,14 @@
 
 .products__arrow:hover {
     background: var(--color-primary);
+}
+
+.products__arrow img {
+    transition: filter 0.2s ease;
+}
+
+.products__arrow:hover img {
+    filter: brightness(0) invert(1);
 }
 
 .products__arrow--prev img {

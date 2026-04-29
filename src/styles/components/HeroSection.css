@@ -166,8 +166,8 @@
 .hero__content {
     position: relative;
     z-index: 10;
-    max-width: 640px;
-    padding: 60px 0;
+    max-width: 740px;
+    padding: 30px 0;
 }
 
 .hero__text {
@@ -202,7 +202,7 @@
     line-height: 32px;
     letter-spacing: 0.2px;
     color: #1a1a1a;
-    max-width: 400px;
+    max-width: 450px;
 }
 
 .hero__line,
@@ -238,7 +238,7 @@
     background: var(--color-primary);
     color: var(--color-white);
     border-radius: var(--radius-full);
-    padding: 12px 24px;
+    padding: 5px 5px 5px 16px;
     font-size: 16px;
     letter-spacing: 0.16px;
     transition: transform 0.2s ease;
@@ -407,7 +407,7 @@
 @media (max-width: 767px) {
     .hero {
         min-height: auto;
-        padding: 88px 0 32px;
+        padding: 88px 0 0;
     }
 
     .hero__container {
@@ -501,6 +501,6 @@
     .hero__cta {
         margin: 0;
         font-size: 15px;
-        padding: 10px 18px;
+        padding: 6px 4px 6px 18px;
     }
 }

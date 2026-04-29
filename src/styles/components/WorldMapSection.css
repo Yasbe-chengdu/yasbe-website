@@ -1,6 +1,6 @@
 .world-map {
   background: var(--color-bg-gray);
-  padding: 60px var(--content-padding);
+  padding: 60px var(--content-padding) 0;
   overflow: hidden;
 }
 
@@ -13,7 +13,6 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 60px;
 }
 
 .world-map__title {
@@ -47,7 +46,7 @@
   background: var(--color-primary);
   color: var(--color-white);
   border-radius: var(--radius-full);
-  padding: 12px 24px;
+  padding: 6px 3px 6px 12px;
   font-size: 16px;
   letter-spacing: 0.16px;
   transition: transform 0.2s ease;
@@ -145,7 +144,6 @@
 
   .world-map__content {
     gap: 28px;
-    margin-bottom: 40px;
   }
 
   .world-map__right {
@@ -177,7 +175,6 @@
 
   .world-map__content {
     gap: 20px;
-    margin-bottom: 24px;
   }
 
   .world-map__title {

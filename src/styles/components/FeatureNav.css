@@ -62,7 +62,11 @@
 
 .features__arrow:hover:not(.features__arrow--disabled) {
   background: var(--color-primary);
-  border-color: var(--color-primary);
+  border-color: #fff;
+}
+
+.features__arrow:hover:not(.features__arrow--disabled) img {
+  filter: brightness(0) invert(1);
 }
 
 .features__arrow--disabled {
@@ -73,6 +77,7 @@
 .features__arrow img {
   width: 20px;
   height: 20px;
+  transition: filter 0.2s ease;
 }
 
 .features__arrow-icon--prev {
