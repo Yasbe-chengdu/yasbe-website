@@ -109,8 +109,8 @@ const toggleLanguageMenu = () => {
   isLanguageMenuOpen.value = !isLanguageMenuOpen.value
 }
 
-const selectLanguage = (languageCode) => {
-  setAppLocale(languageCode)
+const selectLanguage = async (languageCode) => {
+  await setAppLocale(languageCode)
   isLanguageMenuOpen.value = false
 }
 

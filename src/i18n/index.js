@@ -1,5 +1,5 @@
 import { createI18n } from 'vue-i18n'
-import { messages } from './message'
+import enMessages from './locales/en.js'
 
 const STORAGE_KEY = 'yasbe-locale'
 
@@ -16,6 +16,16 @@ export const localeOptions = [
 const supportedLocaleCodes = new Set(localeOptions.map((option) => option.code))
 
 const defaultLocale = 'en'
+const loadedLocaleCodes = new Set([defaultLocale])
+const localeLoaders = {
+    en: () => Promise.resolve({ default: enMessages }),
+    'zh-CN': () => import('./locales/zh-CN.js'),
+    'zh-TW': () => import('./locales/zh-TW.js'),
+    ja: () => import('./locales/ja.js'),
+    ko: () => import('./locales/ko.js'),
+    es: () => import('./locales/es.js'),
+    fr: () => import('./locales/fr.js'),
+}
 
 function getInitialLocale() {
     if (typeof window === 'undefined') {
@@ -38,16 +48,34 @@ export const i18n = createI18n({
     globalInjection: true,
     locale: getInitialLocale(),
     fallbackLocale: defaultLocale,
-    messages,
+    messages: {
+        [defaultLocale]: enMessages,
+    },
 })
 
-applyDocumentLanguage(i18n.global.locale.value)
+export async function loadLocaleMessages(locale) {
+    if (!supportedLocaleCodes.has(locale) || loadedLocaleCodes.has(locale)) {
+        return
+    }
 
-export function setAppLocale(locale) {
+    const module = await localeLoaders[locale]()
+    i18n.global.setLocaleMessage(locale, module.default)
+    loadedLocaleCodes.add(locale)
+}
+
+export async function setupI18n() {
+    const locale = getInitialLocale()
+    await loadLocaleMessages(locale)
+    i18n.global.locale.value = locale
+    applyDocumentLanguage(locale)
+}
+
+export async function setAppLocale(locale) {
     if (!supportedLocaleCodes.has(locale)) {
         return
     }
 
+    await loadLocaleMessages(locale)
     i18n.global.locale.value = locale
     applyDocumentLanguage(locale)
 
@@ -55,4 +83,3 @@ export function setAppLocale(locale) {
         window.localStorage.setItem(STORAGE_KEY, locale)
     }
 }
-
