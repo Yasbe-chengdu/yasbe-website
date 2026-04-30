@@ -5,66 +5,21 @@
 
             <div v-reveal="{ delay: 80, distance: 40 }" class="products__slider">
                 <div class="products__track" :style="trackStyle">
-                    <!-- Product 1: Global Payment -->
-                    <div class="products__slide">
-                        <div class="products__card products__card--dark">
+                    <div v-for="slide in productSlides" :key="slide.key" class="products__slide">
+                        <div :class="['products__card', slide.cardClass]">
                             <div class="products__content">
-                                <h3 class="products__card-title">{{ $t('products.slide1.title') }}</h3>
-                                <p class="products__card-text">{{ $t('products.slide1.text') }}</p>
+                                <h3 class="products__card-title">{{ $t(`products.${slide.key}.title`) }}</h3>
+                                <p class="products__card-text">{{ $t(`products.${slide.key}.text`) }}</p>
                             </div>
                             <div class="products__device">
                                 <div class="macbook motion-float-medium">
                                     <div class="macbook__lid">
                                         <div class="macbook__screen">
-                                            <img src="../assets/images/dashboard.png" alt="Dashboard" />
+                                            <img :src="dashboardImage" alt="Dashboard" />
                                         </div>
                                         <span class="macbook__label">Macbook Air</span>
                                     </div>
-                                    <img src="../assets/images/macbook-base-1.svg" alt="" class="macbook__bottom" />
-                                </div>
-                                <div class="macbook__shadow"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 2: Traditional & Crypto -->
-                    <div class="products__slide">
-                        <div class="products__card products__card--light">
-                            <div class="products__content">
-                                <h3 class="products__card-title">{{ $t('products.slide2.title') }}</h3>
-                                <p class="products__card-text">{{ $t('products.slide2.text') }}</p>
-                            </div>
-                            <div class="products__device">
-                                <div class="macbook motion-float-medium">
-                                    <div class="macbook__lid">
-                                        <div class="macbook__screen">
-                                            <img src="../assets/images/dashboard.png" alt="Dashboard" />
-                                        </div>
-                                        <span class="macbook__label">Macbook Air</span>
-                                    </div>
-                                    <img src="../assets/images/macbook-base-2.svg" alt="" class="macbook__bottom" />
-                                </div>
-                                <div class="macbook__shadow"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 3: Investment -->
-                    <div class="products__slide">
-                        <div class="products__card products__card--light">
-                            <div class="products__content">
-                                <h3 class="products__card-title">{{ $t('products.slide3.title') }}</h3>
-                                <p class="products__card-text">{{ $t('products.slide3.text') }}</p>
-                            </div>
-                            <div class="products__device">
-                                <div class="macbook motion-float-medium">
-                                    <div class="macbook__lid">
-                                        <div class="macbook__screen">
-                                            <img src="../assets/images/dashboard.png" alt="Dashboard" />
-                                        </div>
-                                        <span class="macbook__label">Macbook Air</span>
-                                    </div>
-                                    <img src="../assets/images/macbook-base-3.svg" alt="" class="macbook__bottom" />
+                                    <img :src="slide.baseImage" alt="" class="macbook__bottom" />
                                 </div>
                                 <div class="macbook__shadow"></div>
                             </div>
@@ -89,9 +44,31 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+import dashboardImage from '../assets/images/dashboard.png'
+import macbookBase1 from '../assets/images/macbook-base-1.svg'
+import macbookBase2 from '../assets/images/macbook-base-2.svg'
+import macbookBase3 from '../assets/images/macbook-base-3.svg'
+
+const productSlides = [
+    {
+        key: 'slide1',
+        cardClass: 'products__card--dark',
+        baseImage: macbookBase1,
+    },
+    {
+        key: 'slide2',
+        cardClass: 'products__card--light',
+        baseImage: macbookBase2,
+    },
+    {
+        key: 'slide3',
+        cardClass: 'products__card--light',
+        baseImage: macbookBase3,
+    },
+]
 
 const currentSlide = ref(0)
-const totalSlides = 3
+const totalSlides = productSlides.length
 
 const trackStyle = computed(() => ({
     transform: `translateX(-${currentSlide.value * 100}%)`,

@@ -1,4 +1,5 @@
 const observerStore = new WeakMap()
+const observerGroups = new Map()
 
 function getRevealOffset(origin, distance) {
   const amount = `${distance}px`
@@ -29,6 +30,23 @@ function getConfig(binding) {
   }
 }
 
+function getObserverKey(config) {
+  return `${config.threshold}|${config.rootMargin}`
+}
+
+function getConfigSignature(config) {
+  return [
+    config.delay,
+    config.duration,
+    config.distance,
+    config.origin,
+    config.threshold,
+    config.rootMargin,
+    config.once,
+    config.scale,
+  ].join('|')
+}
+
 function applyRevealStyles(el, binding) {
   const config = getConfig(binding)
   const offset = getRevealOffset(config.origin, config.distance)
@@ -55,8 +73,76 @@ function reduceMotionPreferred() {
   )
 }
 
-function mountObserver(el, binding) {
-  const config = applyRevealStyles(el, binding)
+function cleanupObserver(el) {
+  const record = observerStore.get(el)
+
+  if (!record) {
+    return
+  }
+
+  record.frameIds?.forEach((frameId) => cancelAnimationFrame(frameId))
+
+  if (record.observerKey) {
+    const group = observerGroups.get(record.observerKey)
+
+    if (group) {
+      group.observer.unobserve(el)
+      group.elements.delete(el)
+
+      if (group.elements.size === 0) {
+        group.observer.disconnect()
+        observerGroups.delete(record.observerKey)
+      }
+    }
+  }
+
+  observerStore.delete(el)
+}
+
+function getObserverGroup(config) {
+  const observerKey = getObserverKey(config)
+  const existingGroup = observerGroups.get(observerKey)
+
+  if (existingGroup) {
+    return { observerKey, group: existingGroup }
+  }
+
+  const group = {
+    elements: new Map(),
+    observer: new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return
+          }
+
+          const elementConfig = group.elements.get(entry.target)
+
+          if (!elementConfig) {
+            return
+          }
+
+          revealElement(entry.target)
+
+          if (elementConfig.once) {
+            cleanupObserver(entry.target)
+          }
+        })
+      },
+      {
+        threshold: config.threshold,
+        rootMargin: config.rootMargin,
+      },
+    ),
+  }
+
+  observerGroups.set(observerKey, group)
+
+  return { observerKey, group }
+}
+
+function mountObserver(el, binding, config = getConfig(binding)) {
+  applyRevealStyles(el, binding)
 
   if (
     typeof window === 'undefined' ||
@@ -67,34 +153,27 @@ function mountObserver(el, binding) {
     return
   }
 
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) {
-              return
-            }
+  const configSignature = getConfigSignature(config)
+  const frameIds = []
+  const firstFrameId = requestAnimationFrame(() => {
+    const secondFrameId = requestAnimationFrame(() => {
+      const record = observerStore.get(el)
 
-            revealElement(el)
+      if (!record || record.frameIds !== frameIds) {
+        return
+      }
 
-            if (config.once) {
-              observer.unobserve(el)
-              observer.disconnect()
-              observerStore.delete(el)
-            }
-          })
-        },
-        {
-          threshold: config.threshold,
-          rootMargin: config.rootMargin,
-        },
-      )
-
-      observer.observe(el)
-      observerStore.set(el, observer)
+      const { observerKey, group } = getObserverGroup(config)
+      group.elements.set(el, config)
+      group.observer.observe(el)
+      observerStore.set(el, { configSignature, observerKey })
     })
+
+    frameIds.push(secondFrameId)
   })
+
+  frameIds.push(firstFrameId)
+  observerStore.set(el, { configSignature, frameIds })
 }
 
 export const revealDirective = {
@@ -102,19 +181,19 @@ export const revealDirective = {
     mountObserver(el, binding)
   },
   updated(el, binding) {
-    if (binding.value === binding.oldValue) {
+    const config = getConfig(binding)
+    const configSignature = getConfigSignature(config)
+    const record = observerStore.get(el)
+
+    if (record?.configSignature === configSignature) {
       return
     }
 
-    const previousObserver = observerStore.get(el)
-    previousObserver?.disconnect()
-    observerStore.delete(el)
+    cleanupObserver(el)
 
-    mountObserver(el, binding)
+    mountObserver(el, binding, config)
   },
   unmounted(el) {
-    const observer = observerStore.get(el)
-    observer?.disconnect()
-    observerStore.delete(el)
+    cleanupObserver(el)
   },
 }

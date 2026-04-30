@@ -14,14 +14,16 @@
 </template>
 
 <script setup>
+import { defineAsyncComponent } from 'vue'
 import Navbar from '../components/Navbar.vue'
 import HeroSection from '../components/HeroSection.vue'
-import StatsSection from '../components/StatsSection.vue'
-import GlobalPaymentsSection from '../components/GlobalPaymentsSection.vue'
-import WorldMapSection from '../components/WorldMapSection.vue'
-import FeaturesSection from '../components/FeaturesSection.vue'
-import ProductsSection from '../components/ProductsSection.vue'
-import Footer from '../components/Footer.vue'
+
+const StatsSection = defineAsyncComponent(() => import('../components/StatsSection.vue'))
+const GlobalPaymentsSection = defineAsyncComponent(() => import('../components/GlobalPaymentsSection.vue'))
+const WorldMapSection = defineAsyncComponent(() => import('../components/WorldMapSection.vue'))
+const FeaturesSection = defineAsyncComponent(() => import('../components/FeaturesSection.vue'))
+const ProductsSection = defineAsyncComponent(() => import('../components/ProductsSection.vue'))
+const Footer = defineAsyncComponent(() => import('../components/Footer.vue'))
 </script>
 
 <style scoped src="../styles/views/HomeView.css"></style>
