@@ -34,12 +34,12 @@
 }
 
 .navbar__logo {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
 }
 
 .navbar__name {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.14px;
   color: var(--color-text-primary);
@@ -60,7 +60,7 @@
 }
 
 .navbar__link {
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 0.14px;
   color: var(--color-text-primary);
   transition: opacity 0.2s ease;

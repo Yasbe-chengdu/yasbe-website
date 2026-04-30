@@ -85,7 +85,7 @@
 }
 
 .world-map__visual:hover {
-  transform: translateY(-6px);
+  /* transform: translateY(-6px); */
 }
 
 .world-map__map {
@@ -196,7 +196,6 @@
   .world-map__visual {
     height: min(68vw, 280px);
     overflow: hidden;
-    box-shadow: 0 18px 44px rgba(15, 23, 42, 0.1);
   }
 
   .world-map__map {

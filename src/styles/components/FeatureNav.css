@@ -60,16 +60,17 @@
   transition: all 0.2s ease;
 }
 
-.features__arrow:hover:not(.features__arrow--disabled) {
+.features__arrow:hover:not(.features__arrow--disabled):not(:disabled) {
   background: var(--color-primary);
   border-color: #fff;
 }
 
-.features__arrow:hover:not(.features__arrow--disabled) img {
+.features__arrow:hover:not(.features__arrow--disabled):not(:disabled) img {
   filter: brightness(0) invert(1);
 }
 
-.features__arrow--disabled {
+.features__arrow--disabled,
+.features__arrow:disabled {
   opacity: 0.2;
   cursor: not-allowed;
 }
