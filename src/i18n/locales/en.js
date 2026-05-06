@@ -83,15 +83,15 @@ export default {
     "title": "Everything You Need, in One Place",
     "slide1": {
       "title": "Global Payment",
-      "text": "Built with redundancy at every layer, YASBe ensures reliable transactions across multiple payment rails. Your payments are processed efficiently, and your partners receive the right amount, every time, fast, secure, and trusted."
+      "text": "Built with redundancy at every layer, YASBe ensures reliable transactions across multiple payment rails. Your payments are processed efficiently, and your partners receive the right amount, every time — fast, secure, and trusted."
     },
     "slide2": {
       "title": "Traditional & Crypto Markets",
       "text": "Bridge traditional finance and cryptocurrency markets with our comprehensive trading platform. Execute trades across multiple asset classes with institutional-grade security and compliance."
     },
     "slide3": {
-      "title": "Investment Opportunities",
-      "text": "Access top-tier investment opportunities across traditional and digital assets. Our platform provides institutional-grade access to diversified portfolios and exclusive deals."
+      "title": "Institutional OTC",
+      "text": "Access institutional-grade over-the-counter trading services with deep liquidity and competitive pricing. Our OTC desk provides personalized service for large volume transactions with minimal market impact"
     }
   },
   "footer": {

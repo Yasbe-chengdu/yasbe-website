@@ -37,7 +37,7 @@
 
 .products__card {
     border-radius: var(--radius-md);
-    padding: 40px 0 2px 40px;
+    padding: 40px 0 0px 40px;
     display: flex;
     gap: 40px;
     height: 100%;
@@ -83,16 +83,25 @@
     font-size: 16px;
     line-height: 22px;
     letter-spacing: 0.16px;
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
 .products__device {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-right: 39px;
+    align-items: end;
     padding-left: 39px;
+    padding-top: 40px;
+    box-sizing: border-box;
+}
+
+.products__device > img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 480px;
+    object-fit: contain;
 }
 
 .macbook {
@@ -272,6 +281,10 @@
         width: 100%;
     }
 
+    .products__device > img {
+        max-height: 360px;
+    }
+
     .macbook {
         max-width: 580px;
     }
@@ -315,6 +328,10 @@
         padding: 0;
         min-height: 160px;
         overflow: hidden;
+    }
+
+    .products__device > img {
+        max-height: 220px;
     }
 
     .products__nav {

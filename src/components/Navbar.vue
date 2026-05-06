@@ -2,8 +2,7 @@
   <nav class="navbar" :class="{ 'navbar--scrolled': isScrolled, 'navbar--menu-open': isMenuOpen }">
     <div class="navbar__container">
       <div class="navbar__brand">
-        <img src="../assets/images/logo.png" alt="YASBe Logo" class="navbar__logo" />
-        <span class="navbar__name">YASBe</span>
+        <img src="../assets/images/logo.svg" alt="YASBe Logo" class="navbar__logo" />
       </div>
 
       <div class="navbar__menu" :class="{ 'navbar__menu--open': isMenuOpen }">

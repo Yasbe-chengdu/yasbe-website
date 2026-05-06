@@ -5,14 +5,14 @@
 
             <div v-reveal="{ delay: 80, distance: 40 }" class="products__slider">
                 <div class="products__track" :style="trackStyle">
-                    <div v-for="slide in productSlides" :key="slide.key" class="products__slide">
+                    <div v-for="(slide, index) in productSlides" :key="slide.key" class="products__slide">
                         <div :class="['products__card', slide.cardClass]">
                             <div class="products__content">
                                 <h3 class="products__card-title">{{ $t(`products.${slide.key}.title`) }}</h3>
                                 <p class="products__card-text">{{ $t(`products.${slide.key}.text`) }}</p>
                             </div>
                             <div class="products__device">
-                                <div class="macbook motion-float-medium">
+                                <!-- <div class="macbook motion-float-medium">
                                     <div class="macbook__lid">
                                         <div class="macbook__screen">
                                             <img :src="dashboardImage" alt="Dashboard" />
@@ -21,7 +21,8 @@
                                     </div>
                                     <img :src="slide.baseImage" alt="" class="macbook__bottom" />
                                 </div>
-                                <div class="macbook__shadow"></div>
+                                <div class="macbook__shadow"></div> -->
+                                <img :src="slide.baseImage" alt="">
                             </div>
                         </div>
                     </div>
@@ -44,15 +45,18 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import dashboardImage from '../assets/images/dashboard.png'
-import macbookBase1 from '../assets/images/macbook-base-1.svg'
-import macbookBase2 from '../assets/images/macbook-base-2.svg'
-import macbookBase3 from '../assets/images/macbook-base-3.svg'
+import macbookBase1 from '../assets/images/btm-banner1.png'
+import macbookBase2 from '../assets/images/btm-banner2.png'
+import macbookBase3 from '../assets/images/btm-banner3.png'
+
+const getimg = (index) => {
+    return require('../assets/images/btm-banner' + index + '.png')
+}
 
 const productSlides = [
     {
         key: 'slide1',
-        cardClass: 'products__card--dark',
+        cardClass: 'products__card--light',
         baseImage: macbookBase1,
     },
     {
