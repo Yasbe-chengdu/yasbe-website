@@ -226,7 +226,7 @@
   border-radius: 32px;
   background: linear-gradient(180deg, rgba(253, 253, 253, 0.02) 0%, rgba(253, 253, 253, 0.05) 100%);
   outline: 1.5px solid rgba(226, 226, 226, 0.88);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(8px);
   /* overflow: hidden; */
 }
 
@@ -237,7 +237,7 @@
   width: 474px;
   height: 474px;
   transform: rotate(-90deg);
-  filter: blur(74px);
+  filter: blur(36px);
   opacity: 0.5;
 }
 
@@ -251,7 +251,7 @@
   border-radius: 32px;
   outline: 1.5px solid rgba(226, 226, 226, 0.88);
   outline-offset: -1.5px;
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(8px);
   padding: 34px 16px 16px;
   display: flex;
   flex-direction: column;
@@ -522,7 +522,7 @@
   outline: 2px solid;
   outline-color: rgba(226, 226, 226, 0.5);
   outline-offset: -2px;
-  backdrop-filter: blur(21.5px);
+  backdrop-filter: blur(8px);
   transition: transform 0.2s ease;
 }
 

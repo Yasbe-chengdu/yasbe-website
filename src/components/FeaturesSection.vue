@@ -15,10 +15,16 @@
                     <div class="exchange-card__user"></div>
                   </div>
                   <div class="exchange-card__arrow exchange-card__arrow--up">
-                    <img src="../assets/images/decor-arrow-up.svg" alt="" />
+                    <img src="../assets/images/decor-arrow-up.svg" alt="" loading="lazy" decoding="async" />
                   </div>
                   <div class="exchange-card__main">
-                    <img src="../assets/images/glow-exchange.png" alt="" class="exchange-card__glow motion-glow" />
+                    <img
+                      src="../assets/images/glow-exchange.png"
+                      alt=""
+                      class="exchange-card__glow motion-glow"
+                      loading="lazy"
+                      decoding="async"
+                    />
                     <div class="exchange-card__content">
                       <p class="exchange-card__update">{{ $t('features.slide1.update') }}</p>
                       <div class="exchange-card__inputs">
@@ -185,7 +191,7 @@
                   </div>
                 </div>
               </template>
-              <img v-else :src="slide.image" :alt="slide.imageAlt" />
+              <img v-else :src="slide.image" :alt="slide.imageAlt" loading="lazy" decoding="async" />
             </div>
 
             <div class="features__info">
@@ -206,7 +212,7 @@
                 <button v-if="slide.hasCta" type="button" class="features__cta">
                   <span>{{ $t(`features.${slide.key}.cta`) }}</span>
                   <div class="features__cta-icon">
-                    <img src="../assets/images/icon-arrow-right-dark.svg" alt="Arrow" />
+                    <img src="../assets/images/icon-arrow-right-dark.svg" alt="Arrow" loading="lazy" decoding="async" />
                   </div>
                 </button>
               </div>

@@ -48,6 +48,16 @@ section {
   scroll-margin-top: 76px;
 }
 
+.stats,
+.global-payments,
+.world-map,
+.features,
+.products,
+.footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 760px;
+}
+
 @media (max-width: 767px) {
   section {
     scroll-margin-top: 64px;

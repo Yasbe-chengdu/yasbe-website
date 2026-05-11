@@ -15,14 +15,14 @@
                                 <!-- <div class="macbook motion-float-medium">
                                     <div class="macbook__lid">
                                         <div class="macbook__screen">
-                                            <img :src="dashboardImage" alt="Dashboard" />
+                                            <img :src="dashboardImage" alt="Dashboard" loading="lazy" decoding="async" />
                                         </div>
                                         <span class="macbook__label">Macbook Air</span>
                                     </div>
-                                    <img :src="slide.baseImage" alt="" class="macbook__bottom" />
+                                    <img :src="slide.baseImage" alt="" class="macbook__bottom" loading="lazy" decoding="async" />
                                 </div>
                                 <div class="macbook__shadow"></div> -->
-                                <img :src="slide.baseImage" alt="">
+                                <img :src="slide.baseImage" alt="" loading="lazy" decoding="async">
                             </div>
                         </div>
                     </div>

@@ -3,19 +3,19 @@
     <div class="footer__container">
       <div class="footer__main">
         <div v-reveal class="footer__brand">
-          <img src="../assets/images/logo-footer.png" alt="YASBe Logo" class="footer__logo" />
+          <img src="../assets/images/logo-footer.png" alt="YASBe Logo" class="footer__logo" loading="lazy" decoding="async" />
           <div class="footer__socials">
             <a href="#" class="footer__social">
-              <img src="../assets/images/social-twitter.svg" alt="Twitter" />
+              <img src="../assets/images/social-twitter.svg" alt="Twitter" loading="lazy" decoding="async" />
             </a>
             <a href="#" class="footer__social">
-              <img src="../assets/images/social-linkedin.svg" alt="LinkedIn" />
+              <img src="../assets/images/social-linkedin.svg" alt="LinkedIn" loading="lazy" decoding="async" />
             </a>
             <a href="#" class="footer__social">
-              <img src="../assets/images/social-discord.svg" alt="Discord" />
+              <img src="../assets/images/social-discord.svg" alt="Discord" loading="lazy" decoding="async" />
             </a>
             <a href="#" class="footer__social">
-              <img src="../assets/images/social-telegram.svg" alt="Telegram" />
+              <img src="../assets/images/social-telegram.svg" alt="Telegram" loading="lazy" decoding="async" />
             </a>
           </div>
           <p class="footer__copyright">{{ $t('footer.copyright') }}</p>

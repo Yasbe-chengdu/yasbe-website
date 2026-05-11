@@ -7,8 +7,30 @@ const heroVideoRef = ref(null)
 const heroMinHeight = ref(null)
 
 let resizeObserver
+let visibilityObserver
 let rafId = 0
 let settlePasses = 0
+
+const pauseHeroVideo = () => {
+    heroVideoRef.value?.pause()
+}
+
+const playHeroVideo = () => {
+    if (document.hidden) {
+        return
+    }
+
+    heroVideoRef.value?.play().catch(() => {})
+}
+
+const handleVisibilityChange = () => {
+    if (document.hidden) {
+        pauseHeroVideo()
+        return
+    }
+
+    playHeroVideo()
+}
 
 const scheduleHeroHeightUpdate = (resetSettlePasses = true) => {
     if (resetSettlePasses) {
@@ -61,9 +83,24 @@ onMounted(async () => {
     await nextTick()
 
     resizeObserver = new ResizeObserver(() => scheduleHeroHeightUpdate())
+    visibilityObserver = new IntersectionObserver(
+        ([entry]) => {
+            if (entry.isIntersecting) {
+                playHeroVideo()
+                return
+            }
+
+            pauseHeroVideo()
+        },
+        {
+            rootMargin: '80px 0px',
+            threshold: 0.05,
+        },
+    )
 
     if (heroRef.value) {
         resizeObserver.observe(heroRef.value)
+        visibilityObserver.observe(heroRef.value)
     }
 
     if (heroVideoRef.value) {
@@ -71,6 +108,7 @@ onMounted(async () => {
     }
 
     window.addEventListener('resize', scheduleHeroHeightUpdate)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
     scheduleHeroHeightUpdate()
 })
 
@@ -80,7 +118,9 @@ onBeforeUnmount(() => {
     }
 
     resizeObserver?.disconnect()
+    visibilityObserver?.disconnect()
     window.removeEventListener('resize', scheduleHeroHeightUpdate)
+    document.removeEventListener('visibilitychange', handleVisibilityChange)
 })
 </script>
 
@@ -88,14 +128,14 @@ onBeforeUnmount(() => {
     <section ref="heroRef" class="hero" :style="heroMinHeight ? { minHeight: heroMinHeight } : null">
         <div class="hero__container">
             <div class="hero__visual hero__visual--intro">
-                <div class="hero-container motion-float-slow">
+                <div class="hero-container">
                     <video
                         ref="heroVideoRef"
                         autoplay
                         muted
                         loop
                         playsinline
-                        preload="auto"
+                        preload="metadata"
                         :poster="heroPoster"
                         class="hero-video"
                         @loadedmetadata="scheduleHeroHeightUpdate"
