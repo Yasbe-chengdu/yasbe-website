@@ -1,0 +1,699 @@
+.yasbe-card-page {
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: var(--color-white);
+  color: #010101;
+}
+
+.yasbe-card-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 800px;
+}
+
+.yasbe-card-hero__pattern {
+  position: absolute;
+  inset: 0;
+  background: url("../../assets/images/yasbe-card-hero-pattern.png") center top / cover no-repeat;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.yasbe-card-hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  min-height: 800px;
+  margin: 0 auto;
+  padding: 122px var(--content-padding) 0;
+}
+
+.yasbe-card-hero__copy {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  max-width: 953px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.yasbe-card-hero__title {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  color: #010101;
+  font-size: clamp(52px, 4.45vw, 64px);
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: 0;
+}
+
+.yasbe-card-hero__title span,
+.yasbe-card-hero__title strong {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.yasbe-card-hero__title strong {
+  font-weight: 800;
+}
+
+.yasbe-card-hero__subtitle {
+  max-width: 576px;
+  margin: 12px auto 0;
+  color: #010101;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2;
+  letter-spacing: 0.16px;
+}
+
+.yasbe-card-cta {
+  display: inline-flex;
+  min-width: 170px;
+  height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 16px;
+  padding: 6px 6px 6px 24px;
+  border-radius: var(--radius-full);
+  background: #010101;
+  color: var(--color-white);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+  transition:
+    transform 0.2s var(--motion-ease-emphasis),
+    background 0.2s ease;
+}
+
+.yasbe-card-cta:hover {
+  background: #1d1d1f;
+  transform: translateY(-2px);
+}
+
+.yasbe-card-cta__icon {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-white);
+}
+
+.yasbe-card-cta__icon img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.yasbe-card-hero__visual-anchor {
+  position: absolute;
+  left: 50%;
+  top: 261px;
+  width: min(842px, 68vw);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.yasbe-card-hero__visual {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.yasbe-card-payments {
+  overflow: hidden;
+  border-bottom-right-radius: 48px;
+  border-bottom-left-radius: 48px;
+  background: #1d1d1f;
+  color: var(--color-white);
+}
+
+.yasbe-card-payments__inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 64px var(--content-padding) 84px;
+}
+
+.yasbe-card-section-header {
+  display: grid;
+  grid-template-columns: minmax(0, 546px) minmax(0, 564px);
+  align-items: center;
+  justify-content: space-between;
+  gap: 72px;
+}
+
+.yasbe-card-section-header h2,
+.yasbe-card-heading {
+  margin: 0;
+  font-size: clamp(40px, 3.33vw, 48px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.48px;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.yasbe-card-section-header p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 16px;
+  line-height: 1.18;
+  text-align: right;
+  letter-spacing: 0.16px;
+}
+
+.yasbe-card-payment-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.yasbe-card-payment-card {
+  display: flex;
+  min-width: 0;
+  min-height: 230px;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 32px;
+  border-radius: 16px;
+  background: var(--color-white);
+  color: #1d1d1f;
+}
+
+.yasbe-card-payment-card__icons {
+  width: auto;
+  height: 48px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.yasbe-card-payment-card h3,
+.yasbe-card-benefit h3,
+.yasbe-card-security-item h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.24px;
+}
+
+.yasbe-card-payment-card p,
+.yasbe-card-benefit p {
+  margin: 8px 0 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: 0.16px;
+}
+
+.yasbe-card-repayment {
+  background: var(--color-white);
+}
+
+.yasbe-card-teams {
+  background: #f5f5f7;
+}
+
+.yasbe-card-repayment__inner,
+.yasbe-card-teams__inner,
+.yasbe-card-why__inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 64px var(--content-padding);
+}
+
+.yasbe-card-heading--center {
+  text-align: center;
+}
+
+.yasbe-card-repayment__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 788px));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.yasbe-card-repayment-panel {
+  min-width: 0;
+  min-height: 606px;
+  padding: 32px;
+  border-radius: 16px;
+  background: #f5f5f7;
+}
+
+.yasbe-card-bill h3,
+.yasbe-card-methods h3 {
+  margin: 0;
+  color: #1d1d1f;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: 0.32px;
+}
+
+.yasbe-card-bill__box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 24px;
+  border-radius: 10px;
+  background: var(--color-white);
+}
+
+.yasbe-card-bill__box div {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  color: #1d1d1f;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+}
+
+.yasbe-card-bill__box strong {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.yasbe-card-methods {
+  margin-top: 24px;
+}
+
+.yasbe-card-method {
+  margin-top: 16px;
+  border: 1px solid transparent;
+  padding: 24px;
+  border-radius: 10px;
+  background: var(--color-white);
+}
+
+.yasbe-card-method + .yasbe-card-method {
+  margin-top: 16px;
+}
+
+.yasbe-card-method--selected {
+  border-color: #ffca00;
+}
+
+.yasbe-card-method__top {
+  display: flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.yasbe-card-method__name {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+}
+
+.yasbe-card-method__name img {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.yasbe-card-method__name strong {
+  color: #1d1d1f;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: 0.32px;
+}
+
+.yasbe-card-method__chevron {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.yasbe-card-method p {
+  margin: 16px 0 0;
+  color: #1d1d1f;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+}
+
+.yasbe-card-benefits {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.yasbe-card-benefit {
+  display: flex;
+  min-width: 0;
+  min-height: 291px;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: 32px;
+  border-radius: 24px;
+  background:
+    radial-gradient(80% 90% at 55% 100%, rgba(95, 95, 98, 0.72) 0%, rgba(54, 54, 56, 0.74) 46%, rgba(29, 29, 31, 0) 100%),
+    #1d1d1f;
+  color: var(--color-white);
+  box-shadow: 0 10px 28px rgba(29, 29, 31, 0.25);
+}
+
+.yasbe-card-benefit__icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 24px;
+  object-fit: contain;
+}
+
+.yasbe-card-benefit p {
+  max-width: 524px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+}
+
+.yasbe-card-teams__image-wrap {
+  overflow: hidden;
+  width: min(100%, 1440px);
+  margin: 48px auto 0;
+  border: 16px solid rgba(29, 29, 31, 0.12);
+  border-radius: 16px;
+  background: rgba(29, 29, 31, 0.12);
+  box-sizing: border-box;
+}
+
+.yasbe-card-teams__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.yasbe-card-teams__text {
+  max-width: 1216px;
+  margin: 48px auto 0;
+  color: rgba(29, 29, 31, 0.6);
+  font-size: 16px;
+  line-height: 1.18;
+  text-align: center;
+  letter-spacing: 0.16px;
+}
+
+.yasbe-card-why {
+  background: var(--color-white);
+}
+
+.yasbe-card-why__inner {
+  padding-top: 73px;
+  padding-bottom: 73px;
+}
+
+.yasbe-card-why__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 592px) minmax(0, 592px);
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.yasbe-card-security-visual {
+  overflow: hidden;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #1c1c1c 0%, #514515 100%);
+}
+
+.yasbe-card-security-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 551px;
+  object-fit: cover;
+}
+
+.yasbe-card-security-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.yasbe-card-security-item {
+  display: flex;
+  min-width: 0;
+  min-height: 109px;
+  align-items: center;
+  overflow: hidden;
+  padding: 32px;
+  border-radius: 16px;
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.yasbe-card-security-item--featured {
+  min-height: 176px;
+  flex-direction: column;
+  align-items: flex-start;
+  background:
+    radial-gradient(57% 68% at 53% 90%, #636365 0%, #404042 48%, #2f2f31 74%, #1d1d1f 100%),
+    #1d1d1f;
+  color: var(--color-white);
+  box-shadow: 0 10px 28px rgba(29, 29, 31, 0.25);
+}
+
+.yasbe-card-security-item__title {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.yasbe-card-security-item__title img {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.yasbe-card-security-item p {
+  max-width: 528px;
+  margin: 32px 0 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+}
+
+@media (max-width: 1199px) {
+  .yasbe-card-section-header,
+  .yasbe-card-repayment__grid,
+  .yasbe-card-why__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .yasbe-card-section-header p {
+    max-width: 720px;
+    text-align: left;
+  }
+
+  .yasbe-card-hero__visual-anchor {
+    width: min(842px, 78vw);
+  }
+}
+
+@media (max-width: 991px) {
+  .yasbe-card-hero {
+    min-height: 760px;
+  }
+
+  .yasbe-card-hero__inner {
+    min-height: 760px;
+    padding-top: 112px;
+  }
+
+  .yasbe-card-hero__title {
+    font-size: clamp(42px, 7vw, 56px);
+  }
+
+  .yasbe-card-hero__visual-anchor {
+    top: 340px;
+    width: min(760px, 94vw);
+  }
+
+  .yasbe-card-payment-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .yasbe-card-repayment-panel {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .yasbe-card-hero {
+    min-height: 690px;
+  }
+
+  .yasbe-card-hero__inner {
+    min-height: 690px;
+    padding-top: 96px;
+  }
+
+  .yasbe-card-hero__title {
+    font-size: clamp(32px, 9.4vw, 40px);
+    line-height: 1.12;
+  }
+
+  .yasbe-card-hero__title span,
+  .yasbe-card-hero__title strong,
+  .yasbe-card-section-header h2,
+  .yasbe-card-heading,
+  .yasbe-card-payment-card h3,
+  .yasbe-card-payment-card p,
+  .yasbe-card-benefit h3,
+  .yasbe-card-benefit p,
+  .yasbe-card-method__name strong,
+  .yasbe-card-method p,
+  .yasbe-card-security-item h3,
+  .yasbe-card-security-item p {
+    overflow-wrap: anywhere;
+  }
+
+  .yasbe-card-hero__subtitle {
+    max-width: 320px;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .yasbe-card-hero__visual-anchor {
+    top: 330px;
+    width: 112vw;
+  }
+
+  .yasbe-card-payments {
+    border-bottom-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+  }
+
+  .yasbe-card-payments__inner,
+  .yasbe-card-repayment__inner,
+  .yasbe-card-teams__inner,
+  .yasbe-card-why__inner {
+    padding: 48px var(--content-padding);
+  }
+
+  .yasbe-card-section-header {
+    gap: 18px;
+  }
+
+  .yasbe-card-section-header h2,
+  .yasbe-card-heading {
+    font-size: clamp(28px, 8vw, 34px);
+    letter-spacing: 0.3px;
+  }
+
+  .yasbe-card-payment-card,
+  .yasbe-card-benefit,
+  .yasbe-card-security-item,
+  .yasbe-card-repayment-panel {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 16px;
+    padding: 22px;
+  }
+
+  .yasbe-card-payment-cards,
+  .yasbe-card-repayment__grid,
+  .yasbe-card-benefits,
+  .yasbe-card-why__grid,
+  .yasbe-card-security-list {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .yasbe-card-payment-card {
+    min-height: 210px;
+  }
+
+  .yasbe-card-bill h3,
+  .yasbe-card-methods h3,
+  .yasbe-card-method__name strong {
+    font-size: 24px;
+  }
+
+  .yasbe-card-bill__box div,
+  .yasbe-card-method p,
+  .yasbe-card-benefit p,
+  .yasbe-card-security-item p {
+    font-size: 16px;
+  }
+
+  .yasbe-card-bill__box div {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .yasbe-card-benefit {
+    min-height: auto;
+  }
+
+  .yasbe-card-teams__image-wrap {
+    margin-top: 32px;
+    border-width: 10px;
+  }
+
+  .yasbe-card-security-visual img {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .yasbe-card-hero {
+    min-height: 650px;
+  }
+
+  .yasbe-card-hero__inner {
+    min-height: 650px;
+  }
+
+  .yasbe-card-hero__visual-anchor {
+    top: 350px;
+    width: 126vw;
+  }
+
+  .yasbe-card-cta {
+    min-width: 154px;
+    height: 42px;
+    font-size: 17px;
+  }
+
+  .yasbe-card-payment-card__icons {
+    max-width: 100%;
+    height: 38px;
+  }
+
+  .yasbe-card-method {
+    width: 100%;
+    max-width: 100%;
+    padding: 18px;
+  }
+
+  .yasbe-card-method__top {
+    align-items: flex-start;
+  }
+}

@@ -229,7 +229,7 @@
 }
 
 .hero__cta {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
     position: relative;
@@ -242,6 +242,7 @@
     font-size: 16px;
     letter-spacing: 0.16px;
     transition: transform 0.2s ease;
+    text-decoration: none;
 }
 
 .hero__cta--intro {

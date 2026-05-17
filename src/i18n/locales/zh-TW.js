@@ -5,6 +5,12 @@ export default {
       "otc": "機構 OTC",
       "contact": "聯絡我們"
     },
+    "globalPaymentSubnav": {
+      "virtualAccount": "虛擬帳戶",
+      "globalCollectionPayout": "全球收款與付款",
+      "stablecoinCheckout": "穩定幣收單",
+      "yasbeCard": "YASBe 卡"
+    },
     "auth": {
       "signUp": "註冊",
       "login": "登入"
@@ -94,6 +100,278 @@ export default {
       "text": "掌握傳統資產與數位資產中的優質投資機會。平台提供機構級的多元投資組合與專屬機會准入。"
     }
   },
+  "contactPage": {
+    "hero": {
+      "titleLine1": "我們的專家已準備好",
+      "titleLine2": "助力你的業務成長！",
+      "subtitle": "我們的專家已準備好協助你推動業務成長！"
+    },
+    "overview": {
+      "solution": {
+        "title": "方案概覽",
+        "text": "了解我們的產品和服務如何支援你的業務。"
+      },
+      "qa": {
+        "title": "問答交流",
+        "text": "與專家交流，了解我們的解決方案如何支援你的業務。"
+      },
+      "consultation": {
+        "title": "互動諮詢",
+        "text": "我們將了解你的目標，並分享洞察協助成長。"
+      }
+    },
+    "form": {
+      "titleLine1": "讓我們一起",
+      "titleLine2": "推動業務成長",
+      "subtitle": "告訴我們你的目標，我們將協助你透過更智慧的資金方案釋放新成長。",
+      "submit": "提交",
+      "fields": {
+        "fullName": {
+          "label": "姓名",
+          "placeholder": "請輸入你的姓名"
+        },
+        "companyName": {
+          "label": "公司名稱",
+          "placeholder": "請輸入公司名稱"
+        },
+        "companyWebsite": {
+          "label": "公司網站",
+          "placeholder": "請輸入公司網站"
+        },
+        "businessEmail": {
+          "label": "商務信箱",
+          "placeholder": "請輸入商務信箱"
+        },
+        "messenger": {
+          "label": "WhatsApp 或 Telegram",
+          "placeholder": "請輸入聯絡方式"
+        },
+        "message": {
+          "label": "留言",
+          "placeholder": "請輸入你的留言"
+        }
+      }
+    }
+  },
+  "yasbeCard": {
+    "cta": {
+      "tryForFree": "免費試用"
+    },
+    "hero": {
+      "titleLine1": "用加密資產支付日常",
+      "titleLine2": "與企業支出",
+      "subtitle": "隨時隨地，將你的加密資產轉化為真實世界的支付能力。"
+    },
+    "media": {
+      "heroAlt": "帶有貨幣圖示的 YASBe 企業卡",
+      "teamAlt": "全球團隊舉杯慶祝",
+      "securityAlt": "手機上的 YASBe 卡安全控制"
+    },
+    "payments": {
+      "title": "面向全球業務的統一支付",
+      "subtitle": "我們連接傳統支付與現代支付，協助你的企業跨境順暢交易。依託全球網路，你可以更有信心地擴展業務。",
+      "crypto": {
+        "title": "輕鬆使用加密資產支付",
+        "text": "使用 BTC、ETH、USDC、USDT 等加密資產，輕鬆完成區塊鏈支付。"
+      },
+      "chain": {
+        "title": "透過主流區塊鏈入金",
+        "text": "支援 Bitcoin、Ethereum、Solana、BSC、Polygon、Tron 等主流區塊鏈入金。"
+      }
+    },
+    "repayment": {
+      "title": "全球收款與付款覆蓋",
+      "makeTitle": "還款",
+      "outstandingBalance": "未結餘額",
+      "minimumPayment": "最低還款額",
+      "methodTitle": "選擇支付方式",
+      "methods": {
+        "bank": {
+          "title": "銀行轉帳",
+          "text": "從你的銀行帳戶轉帳，或使用 YASBe 帳戶餘額"
+        },
+        "stablecoin": {
+          "title": "穩定幣",
+          "text": "使用你在 YASBe 的穩定幣餘額"
+        }
+      },
+      "benefits": {
+        "flexible": {
+          "title": "靈活還款選項",
+          "text": "靈活帳單還款：可使用法幣或數位貨幣支付每月 YASBe Card 帳單。"
+        },
+        "settle": {
+          "title": "按你的方式結算企業支出",
+          "text": "無論你偏好傳統貨幣，還是希望運用數位資產持倉，企業卡都讓你自由選擇結算方式與時間。"
+        }
+      }
+    },
+    "teams": {
+      "title": "適合任何規模全球團隊的企業卡",
+      "text": "為滿足全球企業需求而設計，我們的企業卡無需銀行帳戶或複雜條件，即可提供無縫接入。"
+    },
+    "why": {
+      "title": "為什麼選擇 YASBe 企業卡",
+      "monitoring": {
+        "title": "交易監控",
+        "text": "使用進階交易監控工具，保護你的數位資產還款與抵押資產。"
+      },
+      "fraud": {
+        "title": "詐欺防護"
+      },
+      "blocking": {
+        "title": "交易攔截"
+      },
+      "freeze": {
+        "title": "凍結卡片"
+      }
+    }
+  },
+  "stablecoinCheckout": {
+    "cta": {
+      "tryForFree": "免費試用",
+      "findOutMore": "了解更多"
+    },
+    "hero": {
+      "title": "接受穩定幣支付，",
+      "titleStrong": "解鎖全球成長",
+      "subtitle": "透過無縫穩定幣結算，實現更快、更無邊界的交易體驗。"
+    },
+    "media": {
+      "heroAlt": "手機和支付終端上的穩定幣收銀台",
+      "paymentAlt": "顧客使用手機在收銀台付款"
+    },
+    "legacy": {
+      "banking": {
+        "title": "突破傳統銀行限制",
+        "text": "傳統銀行依賴固定營業時間，拖慢全球交易。我們的解決方案移除這些障礙，讓你的業務更快流轉。"
+      },
+      "stableValue": {
+        "title": "以穩定價值實現更快支付",
+        "text": "穩定幣支援 24/7 即時支付，同時保留傳統貨幣的可靠性，讓跨境轉帳更快速、更高效。"
+      }
+    },
+    "impact": {
+      "titleLine1": "即時接入，",
+      "titleLine2": "立即產生影響",
+      "business": "對企業而言，收益立刻可見。資金可即時到帳，擺脫傳統銀行轉帳延遲，並更快投入業務成長。",
+      "buyers": "對從紐約到柏林的國際買家而言，商品可更快交付，無需等待付款清算。"
+    },
+    "global": {
+      "title": "面向全球接受穩定幣支付",
+      "subtitle": "啟用穩定幣支付，觸達全球客戶、降低摩擦，並從現有收銀台直接以法幣即時結算。",
+      "features": {
+        "support": "機構級交易體驗，提供 24/7 支援",
+        "pricing": "以極具競爭力的價格完成現貨交付",
+        "ecosystem": "確保生態合規、可持續、健康地成長"
+      }
+    },
+    "solution": {
+      "title": "YASBe 解決方案",
+      "legacyTitle": "傳統問題",
+      "legacyText": "企業需要花費大量時間對接合作夥伴，才能在新市場管理法幣結算。傳統銀行時間和系統會造成延遲與摩擦，影響快速資金流轉。",
+      "yasbeTitle": "YASBe 解決方案",
+      "yasbeText": "我們的平台與穩定幣結算能力，讓企業快速接入全球基礎設施。透過繞開傳統瓶頸，資金幾乎可以即時流動，不再等待數日。"
+    },
+    "why": {
+      "titleLine1": "為什麼選擇 YASBe",
+      "titleLine2": "穩定幣收銀台",
+      "features": {
+        "offRamps": {
+          "title": "一站式法幣出金",
+          "text": "轉入你自己的實名銀行帳戶，或第三方銀行帳戶"
+        },
+        "secure": {
+          "title": "透明且安全的支付",
+          "text": "區塊鏈支付提供可追蹤性，並支援基於 KYT 的交易監控。"
+        },
+        "borders": {
+          "title": "無邊界開展業務",
+          "text": "接受來自世界各地的支付，消除跨境交易障礙"
+        },
+        "confidence": {
+          "title": "更有信心地經營",
+          "text": "穩定幣具備低波動和穩定價值，讓你和客戶都更安心。"
+        }
+      }
+    }
+  },
+  "institutionalOtc": {
+    "hero": {
+      "titleLight": "機構",
+      "titleBold": "場外交易",
+      "subtitle": "賦能下一代投資者",
+      "cta": "免費試用"
+    },
+    "benefits": {
+      "support": "機構級交易體驗，提供 24/7 支援",
+      "pricing": "以極具競爭力的價格完成現貨交付",
+      "ecosystem": "確保生態合規、可持續、健康地成長"
+    },
+    "trade": {
+      "title": "機構級 OTC 交易",
+      "description": "我們與傳統機構及成熟的數位資產交易者合作，助力其開啟數位資產之旅。客戶可享受從初步諮詢、開戶到交易執行的全流程白手套客製服務。",
+      "onboarding": {
+        "title": "開戶",
+        "text": "專屬 KYC/KYB 指導，配合全天候線上聊天支援，確保快速順暢的開戶流程。"
+      },
+      "tradeStep": {
+        "title": "交易",
+        "text": "透過安全聊天進行 OTC 交易，直接與我們的交易台確認資產、規模和價格。"
+      },
+      "execution": {
+        "title": "執行",
+        "text": "7×24 小時執行，彈性結算至您的銀行、交易所或外部錢包，通常在 24 小時內完成。"
+      }
+    },
+    "liquidity": {
+      "title": "我們提供深度流動性，具備可靠的出入金能力，並以最具競爭力的價格成交"
+    },
+    "locations": {
+      "title": "全球辦公地點",
+      "london": "倫敦，英國",
+      "singapore": "新加坡",
+      "newYork": "紐約，美國"
+    },
+    "faq": {
+      "title": "有疑問？",
+      "subtitle": "了解 OTC、入金、出金，以及我們的交易台如何助您更聰明地交易",
+      "q1": {
+        "question": "什麼是 OTC、入金和出金？",
+        "a1Strong": "場外交易 (OTC)",
+        "a1Text": "是一種私密且靈活的加密貨幣買賣方式，無需依賴公開交易所。與公開交易所上交易可見且受市場波動影響不同，OTC 交易為買賣雙方提供了一個私密、直接的管道。",
+        "a2Text": "入金是指使用法定貨幣（如美元、歐元）購買加密貨幣或數位資產（如 USDT、BTC）。出金是指將加密貨幣或數位資產（如 USDT、BTC）出售為法定貨幣（如美元、歐元）。"
+      },
+      "q2": {
+        "question": "為什麼使用 OTC 交易台交易加密貨幣？",
+        "a1Text": "OTC 交易台有助於大額或時效性強的交易以更高隱私、更深流動性、個人化定價和更小的市場衝擊執行，而非在公開交易所直接下單。"
+      },
+      "q3": {
+        "question": "我們支援哪些 OTC 交易貨幣？",
+        "a1Text": "我們支援主要法定貨幣和領先的數位資產，包括常用穩定幣和加密資產。最終可用性取決於交易規模、地區、結算通道和合規審查。"
+      },
+      "q4": {
+        "question": "為什麼選擇我們進行 OTC 加密貨幣交易？",
+        "a1Text": "YASBe 整合了機構服務、可靠的出入金結算、有競爭力的定價、合規工作流程和 24/7 支援，讓交易對手方可以在法幣和數位資產之間自信地轉換。"
+      }
+    },
+    "notices": {
+      "title": "面向全球接受穩定幣支付",
+      "subtitle": "啟用穩定幣支付，觸達全球客戶、降低摩擦，並從現有收銀台直接以法幣即時結算。",
+      "compliance": {
+        "title": "合規要求",
+        "text": "OTC 交易的資格受適用的 KYC/KYB 及 AML/CFT 法律法規約束。"
+      },
+      "prefunding": {
+        "title": "需預先注資",
+        "text": "所有交易必須以加密貨幣（出金）或法定貨幣（入金）預先注資。YASBe 不提供信用額度或保證金交易。"
+      },
+      "custody": {
+        "title": "不託管資產",
+        "text": "YASBe 不代表交易對手方保管任何加密貨幣或數位資產"
+      }
+    }
+  },
   "footer": {
     "copyright": "Copyright © YASBe 2026. 保留所有權利",
     "company": {
@@ -124,11 +402,93 @@ export default {
       "legal": "法律與合規"
     }
   },
+  "virtualAccount": {
+    "cta": {
+      "tryForFree": "免費試用",
+      "findOutMore": "了解更多"
+    },
+    "hero": {
+      "titleLine1": "簡化資金管理",
+      "titleLine2": "使用虛擬帳戶",
+      "subtitle": "一個帳戶，無限可能，實現無縫交易。"
+    },
+    "global": {
+      "title": "簡化您的全球交易",
+      "subtitle": "我們的虛擬帳戶讓您以自己的名義無縫管理資金。隨著支援幣種不斷增加，YASBe 提供"
+    },
+    "network": {
+      "gbpAlt": "英國支付通道：Faster Payments、CHAPS 和 Bacs",
+      "usdAlt": "美國支付通道：SWIFT、Fedwire 和 ACH",
+      "eurAlt": "歐洲支付通道：SWIFT 和 SEPA"
+    },
+    "branded": {
+      "title": "品牌帳戶，實現無縫交易",
+      "subtitle": "虛擬帳戶以貴公司名義開立，支援第一方和第三方收款與付款。",
+      "flowAlt": "YASBe 實名帳戶在零售客戶、個人、企業客戶與合作夥伴之間的資金流向",
+      "payin": "第一方或第三方付款至您名下的專用虛擬帳戶",
+      "payout": "第一方或第三方從您名下的帳戶向業務夥伴付款或支付費用"
+    },
+    "dashboard": {
+      "title": "一站式滿足您的全部需求",
+      "alt": "MacBook Air 上顯示的 YASBe 帳戶儀表板"
+    },
+    "benefits": {
+      "title": "虛擬帳戶的優勢",
+      "efficiency": {
+        "title": "提升效率",
+        "text": "簡化財務營運，簡化報表"
+      },
+      "control": {
+        "title": "增強管控",
+        "text": "追蹤特定專案和預算的資金"
+      },
+      "risk": {
+        "title": "降低風險",
+        "text": "追蹤特定專案和預算的資金"
+      },
+      "cashflow": {
+        "title": "改善現金流",
+        "text": "追蹤特定專案和預算的資金"
+      }
+    }
+  },
   "about": {
     "eyebrow": "關於路由",
     "title": "這是一個示例次級頁面。",
     "descriptionPrefix": "目前路由使用",
     "descriptionMiddle": "，適合一般前端網站結構。若之後要新增更多頁面，可繼續擴展",
     "descriptionSuffix": "。"
+  },
+  "globalCollectionPayout": {
+    "cta": {
+      "tryForFree": "免費試用"
+    },
+    "hero": {
+      "titleLine1": "擴展您的覆蓋範圍",
+      "titleLine2": "享受包容性支付服務",
+      "subtitle": "接入本地和全球支付通道，無縫拓展各個市場。"
+    },
+    "coverage": {
+      "title": "全球收款與付款覆蓋",
+      "subtitle": "我們的虛擬帳戶讓您以自己的名義無縫管理資金。隨著支援幣種不斷增加，YASBe 提供"
+    },
+    "dashboard": {
+      "title": "一站式滿足您的所有需求",
+      "alt": "YASBe 支付管理儀表板"
+    },
+    "caption": {
+      "title": "面向全球業務的統一支付",
+      "text": "我們連接傳統支付與現代支付，協助您的企業跨境順暢交易。依託全球網路，您可以更有信心地擴展業務。"
+    },
+    "businessCards": {
+      "card1": {
+        "title": "無國界開展業務",
+        "text": "無需擔心跨境支付的繁瑣，輕鬆走向全球。我們的統一平台讓您在全球範圍內收付款，快速、簡單且成本高效。"
+      },
+      "card2": {
+        "title": "釋放全球潛力",
+        "text": "輕鬆向供應商付款或全球收款。開拓新市場，簡化財務運營，提升效率。"
+      }
+    }
   }
 }

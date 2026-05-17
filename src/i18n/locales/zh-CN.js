@@ -5,6 +5,12 @@ export default {
       "otc": "机构 OTC",
       "contact": "联系我们"
     },
+    "globalPaymentSubnav": {
+      "virtualAccount": "虚拟账户",
+      "globalCollectionPayout": "全球收款与付款",
+      "stablecoinCheckout": "稳定币结账",
+      "yasbeCard": "YASBe 卡"
+    },
     "auth": {
       "signUp": "注册",
       "login": "登录"
@@ -94,6 +100,278 @@ export default {
       "text": "利用机构级别的场外交易服务，尽享深度流动性与极具竞争力的定价优势。我们的场外交易部门为大额交易提供个性化服务，同时对市场影响极小。"
     }
   },
+  "contactPage": {
+    "hero": {
+      "titleLine1": "我们的专家已准备好",
+      "titleLine2": "助力你的业务增长！",
+      "subtitle": "我们的专家已准备好帮助你推动业务增长！"
+    },
+    "overview": {
+      "solution": {
+        "title": "方案概览",
+        "text": "了解我们的产品和服务如何支持你的业务。"
+      },
+      "qa": {
+        "title": "问答交流",
+        "text": "与专家沟通，了解我们的解决方案如何支持你的业务。"
+      },
+      "consultation": {
+        "title": "互动咨询",
+        "text": "我们将了解你的目标，并分享洞察助力增长。"
+      }
+    },
+    "form": {
+      "titleLine1": "让我们一起",
+      "titleLine2": "推动业务增长",
+      "subtitle": "告诉我们你的目标，我们将帮助你通过更智能的资金方案释放新增长。",
+      "submit": "提交",
+      "fields": {
+        "fullName": {
+          "label": "姓名",
+          "placeholder": "请输入你的姓名"
+        },
+        "companyName": {
+          "label": "公司名称",
+          "placeholder": "请输入公司名称"
+        },
+        "companyWebsite": {
+          "label": "公司网站",
+          "placeholder": "请输入公司网站"
+        },
+        "businessEmail": {
+          "label": "商务邮箱",
+          "placeholder": "请输入商务邮箱"
+        },
+        "messenger": {
+          "label": "WhatsApp 或 Telegram",
+          "placeholder": "请输入联系方式"
+        },
+        "message": {
+          "label": "留言",
+          "placeholder": "请输入你的留言"
+        }
+      }
+    }
+  },
+  "yasbeCard": {
+    "cta": {
+      "tryForFree": "免费试用"
+    },
+    "hero": {
+      "titleLine1": "用加密资产支付日常",
+      "titleLine2": "与企业开支",
+      "subtitle": "随时随地，将你的加密资产转化为真实世界的支付能力。"
+    },
+    "media": {
+      "heroAlt": "带有货币图标的 YASBe 企业卡",
+      "teamAlt": "全球团队举杯庆祝",
+      "securityAlt": "手机上的 YASBe 卡安全控制"
+    },
+    "payments": {
+      "title": "面向全球业务的统一支付",
+      "subtitle": "我们连接传统支付与现代支付，帮助你的企业跨境顺畅交易。依托全球网络，你可以更有信心地扩展业务。",
+      "crypto": {
+        "title": "轻松使用加密资产支付",
+        "text": "使用 BTC、ETH、USDC、USDT 等加密资产，轻松完成区块链支付。"
+      },
+      "chain": {
+        "title": "通过主流区块链入金",
+        "text": "支持 Bitcoin、Ethereum、Solana、BSC、Polygon、Tron 等主流区块链入金。"
+      }
+    },
+    "repayment": {
+      "title": "全球收款与付款覆盖",
+      "makeTitle": "还款",
+      "outstandingBalance": "未结余额",
+      "minimumPayment": "最低还款额",
+      "methodTitle": "选择支付方式",
+      "methods": {
+        "bank": {
+          "title": "银行转账",
+          "text": "从你的银行账户转账，或使用 YASBe 账户余额"
+        },
+        "stablecoin": {
+          "title": "稳定币",
+          "text": "使用你在 YASBe 的稳定币余额"
+        }
+      },
+      "benefits": {
+        "flexible": {
+          "title": "灵活还款选项",
+          "text": "灵活账单还款：可使用法币或数字货币支付每月 YASBe Card 账单。"
+        },
+        "settle": {
+          "title": "按你的方式结算企业开支",
+          "text": "无论你偏好传统货币，还是希望利用数字资产持仓，企业卡都让你自由选择结算方式与时间。"
+        }
+      }
+    },
+    "teams": {
+      "title": "适合任何规模全球团队的企业卡",
+      "text": "为满足全球企业需求而设计，我们的企业卡无需银行账户或复杂条件，即可提供无缝接入。"
+    },
+    "why": {
+      "title": "为什么选择 YASBe 企业卡",
+      "monitoring": {
+        "title": "交易监控",
+        "text": "使用高级交易监控工具，保护你的数字资产还款与抵押资产。"
+      },
+      "fraud": {
+        "title": "欺诈防护"
+      },
+      "blocking": {
+        "title": "交易拦截"
+      },
+      "freeze": {
+        "title": "冻结卡片"
+      }
+    }
+  },
+  "stablecoinCheckout": {
+    "cta": {
+      "tryForFree": "免费试用",
+      "findOutMore": "了解更多"
+    },
+    "hero": {
+      "title": "接受稳定币支付，",
+      "titleStrong": "解锁全球增长",
+      "subtitle": "通过无缝稳定币结算，实现更快、更无边界的交易体验。"
+    },
+    "media": {
+      "heroAlt": "手机和支付终端上的稳定币收银台",
+      "paymentAlt": "顾客使用手机在收银台付款"
+    },
+    "legacy": {
+      "banking": {
+        "title": "突破传统银行限制",
+        "text": "传统银行依赖固定营业时间，拖慢全球交易。我们的解决方案移除这些障碍，让你的业务更快流转。"
+      },
+      "stableValue": {
+        "title": "以稳定价值实现更快支付",
+        "text": "稳定币支持 24/7 即时支付，同时保留传统货币的可靠性，让跨境转账更快速、更高效。"
+      }
+    },
+    "impact": {
+      "titleLine1": "即时接入，",
+      "titleLine2": "立即产生影响",
+      "business": "对企业而言，收益立刻可见。资金可即时到账，摆脱传统银行转账延迟，并更快投入业务增长。",
+      "buyers": "对从纽约到柏林的国际买家而言，商品可更快交付，无需等待付款清算。"
+    },
+    "global": {
+      "title": "面向全球接受稳定币支付",
+      "subtitle": "启用稳定币支付，触达全球客户、降低摩擦，并从现有收银台直接以法币即时结算。",
+      "features": {
+        "support": "机构级交易体验，提供 24/7 支持",
+        "pricing": "以极具竞争力的价格完成现货交付",
+        "ecosystem": "确保生态合规、可持续、健康地增长"
+      }
+    },
+    "solution": {
+      "title": "YASBe 解决方案",
+      "legacyTitle": "传统问题",
+      "legacyText": "企业需要花费大量时间对接合作伙伴，才能在新市场管理法币结算。传统银行时间和系统会造成延迟与摩擦，影响快速资金流转。",
+      "yasbeTitle": "YASBe 解决方案",
+      "yasbeText": "我们的平台与稳定币结算能力，让企业快速接入全球基础设施。通过绕开传统瓶颈，资金几乎可以即时流动，不再等待数日。"
+    },
+    "why": {
+      "titleLine1": "为什么选择 YASBe",
+      "titleLine2": "稳定币收银台",
+      "features": {
+        "offRamps": {
+          "title": "一站式法币出金",
+          "text": "转入你自己的实名银行账户，或第三方银行账户"
+        },
+        "secure": {
+          "title": "透明且安全的支付",
+          "text": "区块链支付提供可追踪性，并支持基于 KYT 的交易监控。"
+        },
+        "borders": {
+          "title": "无边界开展业务",
+          "text": "接受来自世界各地的支付，消除跨境交易障碍"
+        },
+        "confidence": {
+          "title": "更有信心地经营",
+          "text": "稳定币具备低波动和稳定价值，让你和客户都更安心。"
+        }
+      }
+    }
+  },
+  "institutionalOtc": {
+    "hero": {
+      "titleLight": "机构",
+      "titleBold": "场外交易",
+      "subtitle": "赋能下一代投资者",
+      "cta": "免费试用"
+    },
+    "benefits": {
+      "support": "机构级交易体验，提供 24/7 支持",
+      "pricing": "以极具竞争力的价格完成现货交付",
+      "ecosystem": "确保生态合规、可持续、健康地增长"
+    },
+    "trade": {
+      "title": "机构级 OTC 交易",
+      "description": "我们与传统机构及成熟的数字资产交易者合作，助力其开启数字资产之旅。客户可享受从初步咨询、开户到交易执行的全流程白手套定制服务。",
+      "onboarding": {
+        "title": "开户",
+        "text": "专属 KYC/KYB 指导，配合全天候在线聊天支持，确保快速顺畅的开户流程。"
+      },
+      "tradeStep": {
+        "title": "交易",
+        "text": "通过安全聊天进行 OTC 交易，直接与我们的交易台确认资产、规模和价格。"
+      },
+      "execution": {
+        "title": "执行",
+        "text": "7×24 小时执行，灵活结算至您的银行、交易所或外部钱包，通常在 24 小时内完成。"
+      }
+    },
+    "liquidity": {
+      "title": "我们提供深度流动性，具备可靠的出入金能力，并以最具竞争力的价格成交"
+    },
+    "locations": {
+      "title": "全球办公地点",
+      "london": "伦敦，英国",
+      "singapore": "新加坡",
+      "newYork": "纽约，美国"
+    },
+    "faq": {
+      "title": "有疑问？",
+      "subtitle": "了解 OTC、入金、出金，以及我们的交易台如何助您更聪明地交易",
+      "q1": {
+        "question": "什么是 OTC、入金和出金？",
+        "a1Strong": "场外交易 (OTC)",
+        "a1Text": "是一种私密且灵活的加密货币买卖方式，无需依赖公开交易所。与公开交易所上交易可见且受市场波动影响不同，OTC 交易为买卖双方提供了一个私密、直接的渠道。",
+        "a2Text": "入金是指使用法定货币（如美元、欧元）购买加密货币或数字资产（如 USDT、BTC）。出金是指将加密货币或数字资产（如 USDT、BTC）出售为法定货币（如美元、欧元）。"
+      },
+      "q2": {
+        "question": "为什么使用 OTC 交易台交易加密货币？",
+        "a1Text": "OTC 交易台有助于大额或时效性强的交易以更高隐私、更深流动性、个性化定价和更小的市场冲击执行，而非在公开交易所直接下单。"
+      },
+      "q3": {
+        "question": "我们支持哪些 OTC 交易货币？",
+        "a1Text": "我们支持主要法定货币和领先的数字资产，包括常用稳定币和加密资产。最终可用性取决于交易规模、地区、结算通道和合规审查。"
+      },
+      "q4": {
+        "question": "为什么选择我们进行 OTC 加密货币交易？",
+        "a1Text": "YASBe 整合了机构服务、可靠的出入金结算、有竞争力的定价、合规工作流程和 24/7 支持，让交易对手方可以在法币和数字资产之间自信地转换。"
+      }
+    },
+    "notices": {
+      "title": "面向全球接受稳定币支付",
+      "subtitle": "启用稳定币支付，触达全球客户、降低摩擦，并从现有收银台直接以法币即时结算。",
+      "compliance": {
+        "title": "合规要求",
+        "text": "OTC 交易的资格受适用的 KYC/KYB 及 AML/CFT 法律法规约束。"
+      },
+      "prefunding": {
+        "title": "需预先注资",
+        "text": "所有交易必须以加密货币（出金）或法定货币（入金）预先注资。YASBe 不提供信用额度或保证金交易。"
+      },
+      "custody": {
+        "title": "不托管资产",
+        "text": "YASBe 不代表交易对手方保管任何加密货币或数字资产"
+      }
+    }
+  },
   "footer": {
     "copyright": "Copyright © YASBe 2026. 保留所有权利",
     "company": {
@@ -124,11 +402,93 @@ export default {
       "legal": "法律与合规"
     }
   },
+  "virtualAccount": {
+    "cta": {
+      "tryForFree": "免费试用",
+      "findOutMore": "了解更多"
+    },
+    "hero": {
+      "titleLine1": "简化资金管理",
+      "titleLine2": "使用虚拟账户",
+      "subtitle": "一个账户，无限可能，实现无缝交易。"
+    },
+    "global": {
+      "title": "简化您的全球交易",
+      "subtitle": "我们的虚拟账户让您以自己的名义无缝管理资金。随着支持币种不断增加，YASBe 提供"
+    },
+    "network": {
+      "gbpAlt": "英国支付通道：Faster Payments、CHAPS 和 Bacs",
+      "usdAlt": "美国支付通道：SWIFT、Fedwire 和 ACH",
+      "eurAlt": "欧洲支付通道：SWIFT 和 SEPA"
+    },
+    "branded": {
+      "title": "品牌账户，实现无缝交易",
+      "subtitle": "虚拟账户以贵公司名义开立，支持第一方和第三方收款与付款。",
+      "flowAlt": "YASBe 实名账户在零售客户、个人、企业客户与合作伙伴之间的资金流向",
+      "payin": "第一方或第三方付款至您名下的专用虚拟账户",
+      "payout": "第一方或第三方从您名下的账户向业务伙伴付款或支付费用"
+    },
+    "dashboard": {
+      "title": "一站式满足您的全部需求",
+      "alt": "MacBook Air 上显示的 YASBe 账户仪表板"
+    },
+    "benefits": {
+      "title": "虚拟账户的优势",
+      "efficiency": {
+        "title": "提升效率",
+        "text": "简化财务运营，简化报表"
+      },
+      "control": {
+        "title": "增强管控",
+        "text": "追踪特定项目和预算的资金"
+      },
+      "risk": {
+        "title": "降低风险",
+        "text": "追踪特定项目和预算的资金"
+      },
+      "cashflow": {
+        "title": "改善现金流",
+        "text": "追踪特定项目和预算的资金"
+      }
+    }
+  },
   "about": {
     "eyebrow": "关于路由",
     "title": "这是一个示例子页面。",
     "descriptionPrefix": "当前路由使用",
     "descriptionMiddle": "，适合常规前端站点结构。后续如果你要增加更多页面，可以继续扩展",
     "descriptionSuffix": "。"
+  },
+  "globalCollectionPayout": {
+    "cta": {
+      "tryForFree": "免费试用"
+    },
+    "hero": {
+      "titleLine1": "扩展您的覆盖范围",
+      "titleLine2": "享受包容性支付服务",
+      "subtitle": "接入本地和全球支付通道，无缝拓展各个市场。"
+    },
+    "coverage": {
+      "title": "全球收款与付款覆盖",
+      "subtitle": "我们的虚拟账户让您以自己的名义无缝管理资金。随着支持币种不断增加，YASBe 提供"
+    },
+    "dashboard": {
+      "title": "一站式满足您的全部需求",
+      "alt": "YASBe 支付管理仪表板"
+    },
+    "caption": {
+      "title": "面向全球业务的统一支付",
+      "text": "我们连接传统支付与现代支付，帮助您的企业跨境顺畅交易。依托全球网络，您可以更有信心地扩展业务。"
+    },
+    "businessCards": {
+      "card1": {
+        "title": "无国界开展业务",
+        "text": "无需担心跨境支付的繁琐，轻松走向全球。我们的统一平台让您在全球范围内收付款，快速、简单且成本高效。"
+      },
+      "card2": {
+        "title": "释放全球潜力",
+        "text": "轻松向供应商付款或全球收款。开拓新市场，简化财务运营，提升效率。"
+      }
+    }
   }
 }

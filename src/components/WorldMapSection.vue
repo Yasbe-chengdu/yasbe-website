@@ -6,12 +6,12 @@
                 </h2>
                 <div v-reveal="{ delay: 100, origin: 'right', distance: 32 }" class="world-map__right">
                     <p class="world-map__description">{{ $t('worldMap.description') }}</p>
-                    <button type="button" class="world-map__cta">
+                    <a href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="world-map__cta">
                         <span>{{ $t('worldMap.cta') }}</span>
                         <div class="world-map__cta-icon">
                             <img src="../assets/images/icon-arrow-right-white.svg" alt="Arrow" />
                         </div>
-                    </button>
+                    </a>
                 </div>
             </div>
             <div v-reveal="{ distance: 44 }" class="world-map__visual">

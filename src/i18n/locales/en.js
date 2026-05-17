@@ -5,6 +5,12 @@ export default {
       "otc": "Institutional OTC",
       "contact": "Contact"
     },
+    "globalPaymentSubnav": {
+      "virtualAccount": "Virtual Account",
+      "globalCollectionPayout": "Global Collection & Payout",
+      "stablecoinCheckout": "Stablecoin Checkout",
+      "yasbeCard": "YASBe Card"
+    },
     "auth": {
       "signUp": "Sign Up",
       "login": "Login"
@@ -94,6 +100,278 @@ export default {
       "text": "Access institutional-grade over-the-counter trading services with deep liquidity and competitive pricing. Our OTC desk provides personalized service for large volume transactions with minimal market impact"
     }
   },
+  "contactPage": {
+    "hero": {
+      "titleLine1": "Our Experts are Ready to",
+      "titleLine2": "Help Grow Your Business!",
+      "subtitle": "Our experts are ready to help you grow your business!"
+    },
+    "overview": {
+      "solution": {
+        "title": "Solution Overview",
+        "text": "Learn how our products and services can support your business."
+      },
+      "qa": {
+        "title": "Q&A Session",
+        "text": "Talk to an expert to see how our solutions can support your business."
+      },
+      "consultation": {
+        "title": "Interactive Consultation",
+        "text": "We'll explore your goals and share insights to help you grow."
+      }
+    },
+    "form": {
+      "titleLine1": "Let's Grow Your",
+      "titleLine2": "Business Together",
+      "subtitle": "Tell us about your goals—we'll help you unlock new growth through smarter funding.",
+      "submit": "Submit",
+      "fields": {
+        "fullName": {
+          "label": "Full Name",
+          "placeholder": "Enter your full name"
+        },
+        "companyName": {
+          "label": "Company Name",
+          "placeholder": "Enter your company name"
+        },
+        "companyWebsite": {
+          "label": "Company Website",
+          "placeholder": "Enter your company website"
+        },
+        "businessEmail": {
+          "label": "Business Email",
+          "placeholder": "Enter your business email"
+        },
+        "messenger": {
+          "label": "WhatsApp or Telegram",
+          "placeholder": "Enter your contact"
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Enter your message"
+        }
+      }
+    }
+  },
+  "yasbeCard": {
+    "cta": {
+      "tryForFree": "Try For Free"
+    },
+    "hero": {
+      "titleLine1": "Spend Crypto for Your Daily",
+      "titleLine2": "and Corporate Expenses",
+      "subtitle": "Turn your crypto into real-world spending power, anywhere."
+    },
+    "media": {
+      "heroAlt": "YASBe corporate card with currency coins",
+      "teamAlt": "A global team celebrating with drinks",
+      "securityAlt": "YASBe card security controls on a phone"
+    },
+    "payments": {
+      "title": "Unified Payments for Global Business",
+      "subtitle": "We bridge the gap between traditional and modern payments, enabling your business to transact effortlessly across borders. With our global network, you can scale confidently and thrive worldwide.",
+      "crypto": {
+        "title": "Pay with Crypto Easily",
+        "text": "Easily make blockchain payments using your crypto, including BTC, ETH, USDC, USDT, and more."
+      },
+      "chain": {
+        "title": "Deposit via Top Blockchains",
+        "text": "Deposit via top blockchains like Bitcoin, Ethereum, Solana, BSC, Polygon, Tron, and more."
+      }
+    },
+    "repayment": {
+      "title": "Global Collection and Payout Coverage",
+      "makeTitle": "Make a Repayment",
+      "outstandingBalance": "Outstanding Balance",
+      "minimumPayment": "Minimum Payment",
+      "methodTitle": "Select Payment Method",
+      "methods": {
+        "bank": {
+          "title": "Bank Transfer",
+          "text": "Transfer from your bank account or use your balance with YASBe"
+        },
+        "stablecoin": {
+          "title": "Stablecoin",
+          "text": "Use your Stablecoin balance with YASBe"
+        }
+      },
+      "benefits": {
+        "flexible": {
+          "title": "Flexible Repayment Options",
+          "text": "Flexible Balance Repayment: Pay your monthly YASBe Card bill using either fiat or digital currencies."
+        },
+        "settle": {
+          "title": "Settle Corporate Expenses Your Way",
+          "text": "Whether you prefer traditional currency or want to leverage your digital asset holdings, our corporate card gives you the freedom to choose how and when to settle your balance."
+        }
+      }
+    },
+    "teams": {
+      "title": "The Corporate Card for Global Teams of Any Size",
+      "text": "Designed to meet the needs of businesses everywhere, our corporate card offers seamless access with no bank account or complex requirements."
+    },
+    "why": {
+      "title": "Why YASBe Corporate Card",
+      "monitoring": {
+        "title": "Transaction Monitoring",
+        "text": "Utilize advanced transaction monitoring tools to protect your digital asset repayments and collateral."
+      },
+      "fraud": {
+        "title": "Fraud Prevention"
+      },
+      "blocking": {
+        "title": "Transaction blocking"
+      },
+      "freeze": {
+        "title": "Freeze cards"
+      }
+    }
+  },
+  "stablecoinCheckout": {
+    "cta": {
+      "tryForFree": "Try For Free",
+      "findOutMore": "Find Out More"
+    },
+    "hero": {
+      "title": "Accept Stablecoin Payments and",
+      "titleStrong": "Unlock Global Expansion",
+      "subtitle": "Enable faster, borderless transactions with seamless Stablecoin settlement."
+    },
+    "media": {
+      "heroAlt": "Stablecoin checkout on phone and payment terminal",
+      "paymentAlt": "Customer paying at checkout with a phone"
+    },
+    "legacy": {
+      "banking": {
+        "title": "Breaking Free from Legacy Banking Limits",
+        "text": "Traditional banking runs on fixed schedules that slow global transactions. Our solution removes those barriers so your business can move faster."
+      },
+      "stableValue": {
+        "title": "Faster Payments with Stable Value",
+        "text": "Stablecoins enable instant, 24/7 payments with the reliability of traditional currencies, making cross-border transfers faster and more efficient."
+      }
+    },
+    "impact": {
+      "titleLine1": "Instant Access,",
+      "titleLine2": "Immediate Impact",
+      "business": "For businesses, the benefits are immediate. They can access funds instantly, removing the delays of traditional bank transfers and reinvesting in their growth without waiting.",
+      "buyers": "For international buyers, from New York to Berlin, products are delivered faster, without the wait for payment clearance."
+    },
+    "global": {
+      "title": "Accept stablecoin payments globally",
+      "subtitle": "Enable stablecoin payments to reach global customers, reduce friction, and settle instantly in fiat—right from your existing checkout.",
+      "features": {
+        "support": "Institutional-grade trading experience with 24/7 support",
+        "pricing": "Spot delivery at the most competitive pricing",
+        "ecosystem": "Ensuring the ecosystem grows compliantly, sustainably, and healthily"
+      }
+    },
+    "solution": {
+      "title": "YASBe solution",
+      "legacyTitle": "Legacy problem",
+      "legacyText": "Businesses spend too much time onboarding partners to manage fiat settlements in new markets. Traditional banking hours and systems create delays and friction when trying to move funds quickly.",
+      "yasbeTitle": "YASBe solution",
+      "yasbeText": "Our platform and Stablecoin settlements give businesses fast access to a global infrastructure. By bypassing traditional bottlenecks, funds can move nearly instantly—no more waiting days."
+    },
+    "why": {
+      "titleLine1": "Why YASBe",
+      "titleLine2": "Stablecoin Checkout",
+      "features": {
+        "offRamps": {
+          "title": "One-Stop Fiat Off-Ramps",
+          "text": "To your own named bank account or to a third-party bank account"
+        },
+        "secure": {
+          "title": "Transparent & Secure Payments",
+          "text": "Blockchain payments offer traceability and KYT-based transaction monitoring."
+        },
+        "borders": {
+          "title": "Doing Business without Borders",
+          "text": "Accept payments from anywhere in the world, eliminating cross-border transaction barriers"
+        },
+        "confidence": {
+          "title": "Do Business with Confidence",
+          "text": "Stablecoins offer low volatility and consistent value, giving both you and your customers peace of mind."
+        }
+      }
+    }
+  },
+  "institutionalOtc": {
+    "hero": {
+      "titleLight": "Institutional",
+      "titleBold": "Over The Counter",
+      "subtitle": "Empowering the next generation of investors",
+      "cta": "Try For Free"
+    },
+    "benefits": {
+      "support": "Institutional-grade trading experience with 24/7 support",
+      "pricing": "Spot delivery at the most competitive pricing",
+      "ecosystem": "Ensuring the ecosystem grows compliantly, sustainably, and healthily"
+    },
+    "trade": {
+      "title": "Institutional - Grade OTC Trade",
+      "description": "We work with traditional institutions looking to begin their digital assets journey and established digital assets traders. Our customers benefit from white-glove, personalized service from initial consultation, onboarding, to trade execution.",
+      "onboarding": {
+        "title": "Onboarding",
+        "text": "Personalized guidance through KYC/KYB with always-on chat support, ensuring a fast and smooth onboarding process."
+      },
+      "tradeStep": {
+        "title": "Trade",
+        "text": "OTC trades with secure chat, confirming asset, size, and price directly with our trade desk."
+      },
+      "execution": {
+        "title": "Execution",
+        "text": "24/7 execution with flexible settlement to your bank, exchange, or external wallet, typically within 24 hours."
+      }
+    },
+    "liquidity": {
+      "title": "We Provide Deep Liquidity with Reliable On and Off Ramp Capability, at Most Competitive Pricing"
+    },
+    "locations": {
+      "title": "Global Locations",
+      "london": "London,UK",
+      "singapore": "Singapore,SG",
+      "newYork": "New York,USA"
+    },
+    "faq": {
+      "title": "Questions?",
+      "subtitle": "Get clarity on OTC, On-Ramp, Off-Ramp, and how our desk can help you trade smarter",
+      "q1": {
+        "question": "What is OTC, on ramp and off ramp?",
+        "a1Strong": "Over-the-counter (OTC) trading",
+        "a1Text": " is a private and flexible method for buying or selling cryptocurrencies without relying on public exchanges. Unlike traditional exchanges, where transactions are visible and influenced by market fluctuations, OTC trading provides a discreet, direct channel between buyers and sellers.",
+        "a2Text": "On ramp refers to using fiat currencies (e.g., USD, EUR) to buy cryptocurrencies or digital assets (e.g., USDT, BTC). Off ramp refers to selling cryptocurrencies or digital assets (e.g., USDT, BTC) to fiat currencies (e.g., USD, EUR)."
+      },
+      "q2": {
+        "question": "Why use OTC desk to trade Crypto?",
+        "a1Text": "An OTC desk helps large or time-sensitive trades execute with more privacy, deeper liquidity, personalized pricing, and less market impact than placing orders directly on public exchanges."
+      },
+      "q3": {
+        "question": "Which Currencies do we support for OTC trading?",
+        "a1Text": "We support major fiat currencies and leading digital assets, including commonly used stablecoins and crypto assets. Final availability depends on trade size, region, settlement rail, and compliance review."
+      },
+      "q4": {
+        "question": "Why should you use us for OTC crypto trading?",
+        "a1Text": "YASBe combines institutional service, reliable on/off-ramp settlement, competitive pricing, compliance workflows, and 24/7 support so counterparties can move between fiat and digital assets with confidence."
+      }
+    },
+    "notices": {
+      "title": "Accept stablecoin payments globally",
+      "subtitle": "Enable stablecoin payments to reach global customers, reduce friction, and settle instantly in fiat—right from your existing checkout.",
+      "compliance": {
+        "title": "Compliance Required",
+        "text": "Eligibility for OTC trading is subject to applicable KYC/KYB and AML/CFT laws and regulations."
+      },
+      "prefunding": {
+        "title": "Pre-Funding Required",
+        "text": "All trades must be pre-funded in crypto (off-ramp) or fiat (on-ramp). YASBe does not offer credit lines or margin trading."
+      },
+      "custody": {
+        "title": "No Asset Custody",
+        "text": "YASBe do not hold custody of any cryptocurrency or digital assets on behalf of trading counterparties"
+      }
+    }
+  },
   "footer": {
     "copyright": "Copyright © YASBe 2026. All Rights Reserved",
     "company": {
@@ -109,7 +387,7 @@ export default {
       "stablecoinCheckout": "Stablecoin Checkout",
       "otc": "Institutional OTC",
       "investment": "Investment Opportunities",
-      "card": "Card"
+      "card": "YASBe Card"
     },
     "useCases": {
       "heading": "Use Cases",
@@ -124,11 +402,93 @@ export default {
       "legal": "Legal and Compliance"
     }
   },
+  "virtualAccount": {
+    "cta": {
+      "tryForFree": "Try For Free",
+      "findOutMore": "Find Out More"
+    },
+    "hero": {
+      "titleLine1": "Simplify Money Management",
+      "titleLine2": "with Virtual Accounts",
+      "subtitle": "One account, endless possibilities for seamless transactions."
+    },
+    "global": {
+      "title": "Streamline Your Global Transactions",
+      "subtitle": "Our virtual accounts let you manage money seamlessly under your own name. With support for growing currencies, YASBe offers"
+    },
+    "network": {
+      "gbpAlt": "United Kingdom payment rails for Faster Payments, CHAPS, and Bacs",
+      "usdAlt": "United States payment rails for SWIFT, Fedwire, and ACH",
+      "eurAlt": "European payment rails for SWIFT and SEPA"
+    },
+    "branded": {
+      "title": "Branded Accounts for Seamless Transactions",
+      "subtitle": "Virtual Accounts are issued in your company's name for both first- and third-party collections and payouts.",
+      "flowAlt": "YASBe named account flow between retail customers, individuals, business customers, and partners",
+      "payin": "First party or third-party payin to your dedicated virtual account in your own name",
+      "payout": "First party or third-party payout to your business partner or expenses from your own named account"
+    },
+    "dashboard": {
+      "title": "Everything You Need, in One Place",
+      "alt": "YASBe account dashboard displayed on a MacBook Air"
+    },
+    "benefits": {
+      "title": "Benefits of Virtual Accounts",
+      "efficiency": {
+        "title": "Enhanced Efficiency",
+        "text": "Streamline financial operations and simplify reporting"
+      },
+      "control": {
+        "title": "Improved Control",
+        "text": "Track funds for specific projects and budgets"
+      },
+      "risk": {
+        "title": "Reduced Risk",
+        "text": "Track funds for specific projects and budgets"
+      },
+      "cashflow": {
+        "title": "Improved Cash Flow",
+        "text": "Track funds for specific projects and budgets"
+      }
+    }
+  },
   "about": {
     "eyebrow": "About Route",
     "title": "This is a sample secondary page.",
     "descriptionPrefix": "This route currently uses",
     "descriptionMiddle": "which works well for a standard frontend site. To add more pages later, keep extending",
     "descriptionSuffix": "."
+  },
+  "globalCollectionPayout": {
+    "cta": {
+      "tryForFree": "Try For Free"
+    },
+    "hero": {
+      "titleLine1": "Expand Your Reach with",
+      "titleLine2": "Inclusive Payment Coverage",
+      "subtitle": "Access local and global payment rails to seamlessly grow across markets."
+    },
+    "coverage": {
+      "title": "Global Collection and Payout Coverage",
+      "subtitle": "Our virtual accounts let you manage money seamlessly under your own name. With support for growing currencies, YASBe offers"
+    },
+    "dashboard": {
+      "title": "Everything You Need, in One Place",
+      "alt": "YASBe payment management dashboard"
+    },
+    "caption": {
+      "title": "Unified Payments for Global Business",
+      "text": "We bridge the gap between traditional and modern payments, enabling your business to transact effortlessly across borders. With our global network, you can scale confidently and thrive worldwide."
+    },
+    "businessCards": {
+      "card1": {
+        "title": "Do Business Without Borders",
+        "text": "Go global without the hassle of cross-border payments. Our unified platform lets you send and receive money worldwide. Fast, simple, and cost-efficient."
+      },
+      "card2": {
+        "title": "Unleash Global Potential",
+        "text": "Easily pay suppliers or collect payments globally. Unlock new markets and simplify treasury operations for greater efficiency."
+      }
+    }
   }
 }

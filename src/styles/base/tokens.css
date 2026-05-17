@@ -34,7 +34,7 @@
   --radius-full: 999px;
 
   --max-width: 1440px;
-  --content-padding: 120px;
+  --content-padding: 0px;
   --content-padding-tablet: 60px;
   --content-padding-mobile: 20px;
 }

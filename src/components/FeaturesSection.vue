@@ -209,12 +209,12 @@
                   <p class="features__list-items" v-html="$t(`features.${slide.key}.listItems`)"></p>
                 </div>
 
-                <button v-if="slide.hasCta" type="button" class="features__cta">
+                <a v-if="slide.hasCta" href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="features__cta">
                   <span>{{ $t(`features.${slide.key}.cta`) }}</span>
                   <div class="features__cta-icon">
                     <img src="../assets/images/icon-arrow-right-dark.svg" alt="Arrow" loading="lazy" decoding="async" />
                   </div>
-                </button>
+                </a>
               </div>
             </div>
           </div>
