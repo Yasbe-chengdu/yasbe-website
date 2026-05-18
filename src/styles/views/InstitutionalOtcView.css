@@ -726,49 +726,6 @@
   color: #1d1d1f;
 }
 
-.institutional-otc-page :deep(.footer) {
-  padding: 64px;
-}
-
-.institutional-otc-page :deep(.footer__container) {
-  max-width: 1440px;
-}
-
-.institutional-otc-page :deep(.footer__main) {
-  min-height: 217px;
-  gap: 64px;
-}
-
-.institutional-otc-page :deep(.footer__brand) {
-  width: 265px;
-}
-
-.institutional-otc-page :deep(.footer__social) {
-  width: 32px;
-  height: 32px;
-}
-
-.institutional-otc-page :deep(.footer__links) {
-  gap: 0;
-  margin-left: auto;
-}
-
-.institutional-otc-page :deep(.footer__column:nth-child(1)) {
-  width: 170px;
-}
-
-.institutional-otc-page :deep(.footer__column:nth-child(2)) {
-  width: 256px;
-}
-
-.institutional-otc-page :deep(.footer__column:nth-child(3)) {
-  width: 288px;
-}
-
-.institutional-otc-page :deep(.footer__column:nth-child(4)) {
-  width: 150px;
-}
-
 @media (max-width: 1199px) {
   .otc-benefits,
   .otc-trade,
@@ -889,11 +846,19 @@
 
 @media (max-width: 767px) {
   .otc-hero {
-    height: 720px;
+    height: 670px;
   }
 
   .otc-hero__content {
     padding-top: 112px;
+  }
+
+  .otc-hero__pattern {
+    width: 100%;
+    height: 100%;
+    background: url("../../assets/images/stablecoin-hero-pattern.png") center top / cover no-repeat;
+    mix-blend-mode: multiply;
+    opacity: 1;
   }
 
   .otc-hero__title {
@@ -914,23 +879,23 @@
   }
 
   .otc-hero__visual {
-    bottom: -100px;
-    width: 520px;
-    height: 460px;
+    bottom: -44px;
+    width: min(112vw, 520px);
+    height: 360px;
     transform: translateX(-50%);
   }
 
   .otc-hero__coins {
-    top: 68px;
-    left: -88px;
-    width: 600px;
+    top: 66px;
+    left: -8%;
+    width: 116%;
     height: auto;
   }
 
   .otc-hero__stack {
     top: 0;
-    left: -20px;
-    width: 500px;
+    left: 5%;
+    width: 96%;
     height: auto;
   }
 
@@ -1120,13 +1085,6 @@
     padding-bottom: 24px;
   }
 
-  .institutional-otc-page :deep(.footer) {
-    padding: 44px var(--content-padding) max(44px, env(safe-area-inset-bottom));
-  }
-
-  .institutional-otc-page :deep(.footer__links) {
-    margin-left: 0;
-  }
 }
 
 @media (max-width: 420px) {
@@ -1139,17 +1097,18 @@
   }
 
   .otc-hero__visual {
-    width: 470px;
+    width: min(112vw, 470px);
+    height: 330px;
   }
 
   .otc-hero__coins {
-    left: -100px;
-    width: 560px;
+    left: -10%;
+    width: 118%;
   }
 
   .otc-hero__stack {
-    left: -26px;
-    width: 450px;
+    left: 4%;
+    width: 96%;
   }
 
   .otc-section-heading h2,

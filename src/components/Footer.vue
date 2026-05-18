@@ -35,7 +35,7 @@
             <RouterLink :to="footerLinks.products.globalCollection.to" class="footer__link">{{ $t('footer.products.globalCollection') }}</RouterLink>
             <RouterLink :to="footerLinks.products.stablecoinCheckout.to" class="footer__link">{{ $t('footer.products.stablecoinCheckout') }}</RouterLink>
             <RouterLink :to="footerLinks.products.otc.to" class="footer__link">{{ $t('footer.products.otc') }}</RouterLink>
-            <span class="footer__link">{{ $t('footer.products.investment') }}</span>
+            <!-- <span class="footer__link">{{ $t('footer.products.investment') }}</span> -->
             <RouterLink :to="footerLinks.products.card.to" class="footer__link">{{ $t('footer.products.card') }}</RouterLink>
           </div>
 

@@ -8,6 +8,7 @@ const heroMinHeight = ref(null)
 
 let resizeObserver
 let visibilityObserver
+let stopPlaybackUnlock
 let rafId = 0
 let settlePasses = 0
 
@@ -30,6 +31,22 @@ const handleVisibilityChange = () => {
     }
 
     playHeroVideo()
+}
+
+const registerPlaybackUnlock = () => {
+    const replay = () => {
+        playHeroVideo()
+    }
+
+    document.addEventListener('WeixinJSBridgeReady', replay, false)
+    document.addEventListener('touchstart', replay, { once: true, passive: true })
+    window.addEventListener('pageshow', replay)
+
+    return () => {
+        document.removeEventListener('WeixinJSBridgeReady', replay, false)
+        document.removeEventListener('touchstart', replay)
+        window.removeEventListener('pageshow', replay)
+    }
 }
 
 const scheduleHeroHeightUpdate = (resetSettlePasses = true) => {
@@ -109,7 +126,9 @@ onMounted(async () => {
 
     window.addEventListener('resize', scheduleHeroHeightUpdate)
     document.addEventListener('visibilitychange', handleVisibilityChange)
+    stopPlaybackUnlock = registerPlaybackUnlock()
     scheduleHeroHeightUpdate()
+    playHeroVideo()
 })
 
 onBeforeUnmount(() => {
@@ -119,6 +138,7 @@ onBeforeUnmount(() => {
 
     resizeObserver?.disconnect()
     visibilityObserver?.disconnect()
+    stopPlaybackUnlock?.()
     window.removeEventListener('resize', scheduleHeroHeightUpdate)
     document.removeEventListener('visibilitychange', handleVisibilityChange)
 })
@@ -135,12 +155,18 @@ onBeforeUnmount(() => {
                         muted
                         loop
                         playsinline
+                        webkit-playsinline
+                        x5-playsinline
+                        x5-video-player-type="h5"
+                        x5-video-player-fullscreen="false"
                         preload="metadata"
                         :poster="heroPoster"
                         class="hero-video"
                         @loadedmetadata="scheduleHeroHeightUpdate"
+                        @canplay="playHeroVideo"
                     >
                         <source src="../assets/images/hero-video.webm" type="video/webm" />
+                        <source src="../assets/images/hero-video.mp4" type="video/mp4" />
                     </video>
                 </div>
             </div>

@@ -553,6 +553,14 @@
     padding-top: 96px;
   }
 
+  .yasbe-card-hero__pattern {
+    width: 100%;
+    height: 100%;
+    /* background: url("../../assets/images/stablecoin-hero-pattern.png") center top / cover no-repeat; */
+    mix-blend-mode: multiply;
+    opacity: 1;
+  }
+
   .yasbe-card-hero__title {
     font-size: clamp(32px, 9.4vw, 40px);
     line-height: 1.12;
@@ -580,8 +588,9 @@
   }
 
   .yasbe-card-hero__visual-anchor {
-    top: 330px;
-    width: 112vw;
+    top: auto;
+    bottom: 0;
+    width: min(112vw, 520px);
   }
 
   .yasbe-card-payments {
@@ -672,8 +681,9 @@
   }
 
   .yasbe-card-hero__visual-anchor {
-    top: 350px;
-    width: 126vw;
+    top: auto;
+    bottom: 0;
+    width: min(112vw, 480px);
   }
 
   .yasbe-card-cta {

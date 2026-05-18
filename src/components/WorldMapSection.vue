@@ -21,11 +21,17 @@
                     muted
                     loop
                     playsinline
+                    webkit-playsinline
+                    x5-playsinline
+                    x5-video-player-type="h5"
+                    x5-video-player-fullscreen="false"
                     preload="metadata"
                     :poster="heroPoster"
                     class="hero-video"
+                    @canplay="playVideo"
                 >
                     <source src="../assets/images/hero-bg2.webm" type="video/webm" />
+                    <source src="../assets/images/hero-bg2.mp4" type="video/mp4" />
                 </video>
                 <img v-else :src="heroPoster" alt="" class="world-map__poster" />
             </div>
@@ -41,6 +47,7 @@ const videoRef = ref(null)
 const shouldLoadVideo = ref(false)
 
 let observer = null
+let stopPlaybackUnlock = null
 
 const prefersReducedPlayback = () => {
     if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
@@ -100,6 +107,24 @@ const handleVisibilityChange = () => {
     }
 }
 
+const registerPlaybackUnlock = () => {
+    const replay = () => {
+        if (isSectionNearViewport()) {
+            loadAndPlayVideo()
+        }
+    }
+
+    document.addEventListener('WeixinJSBridgeReady', replay, false)
+    document.addEventListener('touchstart', replay, { once: true, passive: true })
+    window.addEventListener('pageshow', replay)
+
+    return () => {
+        document.removeEventListener('WeixinJSBridgeReady', replay, false)
+        document.removeEventListener('touchstart', replay)
+        window.removeEventListener('pageshow', replay)
+    }
+}
+
 onMounted(() => {
     if (prefersReducedPlayback()) {
         return
@@ -125,10 +150,12 @@ onMounted(() => {
     }
 
     document.addEventListener('visibilitychange', handleVisibilityChange)
+    stopPlaybackUnlock = registerPlaybackUnlock()
 })
 
 onBeforeUnmount(() => {
     observer?.disconnect()
+    stopPlaybackUnlock?.()
     document.removeEventListener('visibilitychange', handleVisibilityChange)
     pauseVideo()
 })
