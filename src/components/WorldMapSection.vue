@@ -28,7 +28,7 @@
                     preload="metadata"
                     :poster="heroPoster"
                     class="hero-video"
-                    @canplay="playVideo"
+                    @canplay="replayVideo"
                 >
                     <source src="../assets/images/hero-bg2.webm" type="video/webm" />
                     <source src="../assets/images/hero-bg2.mp4" type="video/mp4" />
@@ -41,6 +41,7 @@
 <script setup>
 import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import heroPoster from '../assets/images/hero-bg.png'
+import { registerViewportPlaybackReplay, registerWeixinBridgeReplay } from '../utils/wechatVideoPlayback'
 
 const sectionRef = ref(null)
 const videoRef = ref(null)
@@ -48,6 +49,8 @@ const shouldLoadVideo = ref(false)
 
 let observer = null
 let stopPlaybackUnlock = null
+let stopWeixinBridgeReplay = null
+let playbackRetryIds = []
 
 const prefersReducedPlayback = () => {
     if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
@@ -76,11 +79,38 @@ const playVideo = () => {
         return
     }
 
-    videoRef.value?.play().catch(() => {})
+    prepareVideo()?.play().catch(() => {})
 }
 
 const pauseVideo = () => {
     videoRef.value?.pause()
+}
+
+const prepareVideo = () => {
+    const video = videoRef.value
+
+    if (!video) {
+        return null
+    }
+
+    video.muted = true
+    video.defaultMuted = true
+    video.playsInline = true
+    video.setAttribute('muted', '')
+    video.setAttribute('playsinline', '')
+    video.setAttribute('webkit-playsinline', '')
+
+    if (video.readyState === 0) {
+        video.load()
+    }
+
+    return video
+}
+
+const replayVideo = () => {
+    playVideo()
+    playbackRetryIds.forEach((retryId) => window.clearTimeout(retryId))
+    playbackRetryIds = [120, 600].map((delay) => window.setTimeout(playVideo, delay))
 }
 
 const loadAndPlayVideo = async () => {
@@ -93,7 +123,7 @@ const loadAndPlayVideo = async () => {
         await nextTick()
     }
 
-    playVideo()
+    replayVideo()
 }
 
 const handleVisibilityChange = () => {
@@ -103,26 +133,15 @@ const handleVisibilityChange = () => {
     }
 
     if (shouldLoadVideo.value && isSectionNearViewport()) {
-        playVideo()
+        replayVideo()
     }
 }
 
 const registerPlaybackUnlock = () => {
-    const replay = () => {
-        if (isSectionNearViewport()) {
-            loadAndPlayVideo()
-        }
-    }
-
-    document.addEventListener('WeixinJSBridgeReady', replay, false)
-    document.addEventListener('touchstart', replay, { once: true, passive: true })
-    window.addEventListener('pageshow', replay)
-
-    return () => {
-        document.removeEventListener('WeixinJSBridgeReady', replay, false)
-        document.removeEventListener('touchstart', replay)
-        window.removeEventListener('pageshow', replay)
-    }
+    return registerViewportPlaybackReplay({
+        replay: loadAndPlayVideo,
+        canReplay: isSectionNearViewport,
+    })
 }
 
 onMounted(() => {
@@ -150,12 +169,19 @@ onMounted(() => {
     }
 
     document.addEventListener('visibilitychange', handleVisibilityChange)
+    stopWeixinBridgeReplay = registerWeixinBridgeReplay(() => {
+        if (isSectionNearViewport()) {
+            loadAndPlayVideo()
+        }
+    })
     stopPlaybackUnlock = registerPlaybackUnlock()
 })
 
 onBeforeUnmount(() => {
     observer?.disconnect()
+    playbackRetryIds.forEach((retryId) => window.clearTimeout(retryId))
     stopPlaybackUnlock?.()
+    stopWeixinBridgeReplay?.()
     document.removeEventListener('visibilitychange', handleVisibilityChange)
     pauseVideo()
 })

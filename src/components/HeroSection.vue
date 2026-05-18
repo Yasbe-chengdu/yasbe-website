@@ -1,6 +1,7 @@
 <script setup>
 import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import heroPoster from '../assets/images/hero-bg.png'
+import { registerWeixinBridgeReplay } from '../utils/wechatVideoPlayback'
 
 const heroRef = ref(null)
 const heroVideoRef = ref(null)
@@ -9,8 +10,31 @@ const heroMinHeight = ref(null)
 let resizeObserver
 let visibilityObserver
 let stopPlaybackUnlock
+let stopWeixinBridgeReplay
+let playbackRetryIds = []
 let rafId = 0
 let settlePasses = 0
+
+const prepareHeroVideo = () => {
+    const video = heroVideoRef.value
+
+    if (!video) {
+        return null
+    }
+
+    video.muted = true
+    video.defaultMuted = true
+    video.playsInline = true
+    video.setAttribute('muted', '')
+    video.setAttribute('playsinline', '')
+    video.setAttribute('webkit-playsinline', '')
+
+    if (video.readyState === 0) {
+        video.load()
+    }
+
+    return video
+}
 
 const pauseHeroVideo = () => {
     heroVideoRef.value?.pause()
@@ -21,7 +45,13 @@ const playHeroVideo = () => {
         return
     }
 
-    heroVideoRef.value?.play().catch(() => {})
+    prepareHeroVideo()?.play().catch(() => {})
+}
+
+const replayHeroVideo = () => {
+    playHeroVideo()
+    playbackRetryIds.forEach((retryId) => window.clearTimeout(retryId))
+    playbackRetryIds = [120, 600].map((delay) => window.setTimeout(playHeroVideo, delay))
 }
 
 const handleVisibilityChange = () => {
@@ -35,15 +65,13 @@ const handleVisibilityChange = () => {
 
 const registerPlaybackUnlock = () => {
     const replay = () => {
-        playHeroVideo()
+        replayHeroVideo()
     }
 
-    document.addEventListener('WeixinJSBridgeReady', replay, false)
     document.addEventListener('touchstart', replay, { once: true, passive: true })
     window.addEventListener('pageshow', replay)
 
     return () => {
-        document.removeEventListener('WeixinJSBridgeReady', replay, false)
         document.removeEventListener('touchstart', replay)
         window.removeEventListener('pageshow', replay)
     }
@@ -126,9 +154,10 @@ onMounted(async () => {
 
     window.addEventListener('resize', scheduleHeroHeightUpdate)
     document.addEventListener('visibilitychange', handleVisibilityChange)
+    stopWeixinBridgeReplay = registerWeixinBridgeReplay(replayHeroVideo)
     stopPlaybackUnlock = registerPlaybackUnlock()
     scheduleHeroHeightUpdate()
-    playHeroVideo()
+    replayHeroVideo()
 })
 
 onBeforeUnmount(() => {
@@ -138,7 +167,9 @@ onBeforeUnmount(() => {
 
     resizeObserver?.disconnect()
     visibilityObserver?.disconnect()
+    playbackRetryIds.forEach((retryId) => window.clearTimeout(retryId))
     stopPlaybackUnlock?.()
+    stopWeixinBridgeReplay?.()
     window.removeEventListener('resize', scheduleHeroHeightUpdate)
     document.removeEventListener('visibilitychange', handleVisibilityChange)
 })
