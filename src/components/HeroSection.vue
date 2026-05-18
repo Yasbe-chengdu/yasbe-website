@@ -25,7 +25,10 @@ const prepareHeroVideo = () => {
     video.muted = true
     video.defaultMuted = true
     video.playsInline = true
+    video.autoplay = true
+    video.preload = 'auto'
     video.setAttribute('muted', '')
+    video.setAttribute('autoplay', '')
     video.setAttribute('playsinline', '')
     video.setAttribute('webkit-playsinline', '')
 
@@ -51,7 +54,7 @@ const playHeroVideo = () => {
 const replayHeroVideo = () => {
     playHeroVideo()
     playbackRetryIds.forEach((retryId) => window.clearTimeout(retryId))
-    playbackRetryIds = [120, 600].map((delay) => window.setTimeout(playHeroVideo, delay))
+    playbackRetryIds = [80, 240, 800, 1600].map((delay) => window.setTimeout(playHeroVideo, delay))
 }
 
 const handleVisibilityChange = () => {
@@ -190,14 +193,14 @@ onBeforeUnmount(() => {
                         x5-playsinline
                         x5-video-player-type="h5"
                         x5-video-player-fullscreen="false"
-                        preload="metadata"
+                        preload="auto"
                         :poster="heroPoster"
                         class="hero-video"
                         @loadedmetadata="scheduleHeroHeightUpdate"
-                        @canplay="playHeroVideo"
+                        @canplay="replayHeroVideo"
                     >
-                        <source src="../assets/images/hero-video.webm" type="video/webm" />
                         <source src="../assets/images/hero-video.mp4" type="video/mp4" />
+                        <source src="../assets/images/hero-video.webm" type="video/webm" />
                     </video>
                 </div>
             </div>

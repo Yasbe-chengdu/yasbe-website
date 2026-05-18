@@ -51,6 +51,31 @@ const createFakeDocument = () => {
 
 {
   const fakeDocument = createFakeDocument()
+  let invokedMethod = ''
+  const fakeWindow = {
+    WeixinJSBridge: {
+      invoke(method, _params, callback) {
+        invokedMethod = method
+        callback()
+      },
+    },
+    setTimeout(callback) {
+      callback()
+      return 1
+    },
+  }
+  let replayCount = 0
+
+  registerWeixinBridgeReplay(() => {
+    replayCount += 1
+  }, fakeDocument, fakeWindow)
+
+  assert.equal(invokedMethod, 'getNetworkType')
+  assert.equal(replayCount, 1)
+}
+
+{
+  const fakeDocument = createFakeDocument()
   const fakeWindow = {
     setTimeout() {
       throw new Error('setTimeout should not be used without WeixinJSBridge')

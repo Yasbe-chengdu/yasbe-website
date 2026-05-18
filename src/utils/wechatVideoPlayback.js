@@ -7,18 +7,29 @@ export const registerWeixinBridgeReplay = (
         return () => {}
     }
 
-    const runReplay = () => {
+    const replayDirectly = () => {
         replay()
     }
 
-    ownerDocument.addEventListener('WeixinJSBridgeReady', runReplay, false)
+    const replayThroughBridge = () => {
+        const bridge = ownerWindow?.WeixinJSBridge
+
+        if (typeof bridge?.invoke === 'function') {
+            bridge.invoke('getNetworkType', {}, replayDirectly)
+            return
+        }
+
+        replayDirectly()
+    }
+
+    ownerDocument.addEventListener('WeixinJSBridgeReady', replayThroughBridge, false)
 
     if (ownerWindow?.WeixinJSBridge) {
-        ownerWindow.setTimeout(runReplay, 0)
+        ownerWindow.setTimeout(replayThroughBridge, 0)
     }
 
     return () => {
-        ownerDocument.removeEventListener('WeixinJSBridgeReady', runReplay, false)
+        ownerDocument.removeEventListener('WeixinJSBridgeReady', replayThroughBridge, false)
     }
 }
 
