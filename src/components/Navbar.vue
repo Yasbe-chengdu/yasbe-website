@@ -130,13 +130,14 @@ const globalPaymentSubnav = [
     to: '/global-collection-payout',
   },
   {
-    labelKey: 'nav.globalPaymentSubnav.stablecoinCheckout',
-    to: '/stablecoin-checkout',
-  },
-  {
     labelKey: 'nav.globalPaymentSubnav.yasbeCard',
     to: '/yasbe-card',
   },
+  {
+    labelKey: 'nav.globalPaymentSubnav.stablecoinCheckout',
+    to: '/stablecoin-checkout',
+  },
+  
 ]
 
 const currentLocaleLabel = computed(

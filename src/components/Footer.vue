@@ -33,10 +33,10 @@
             <h4 class="footer__heading">{{ $t('footer.products.heading') }}</h4>
             <RouterLink :to="footerLinks.products.virtualAccounts.to" class="footer__link">{{ $t('footer.products.virtualAccounts') }}</RouterLink>
             <RouterLink :to="footerLinks.products.globalCollection.to" class="footer__link">{{ $t('footer.products.globalCollection') }}</RouterLink>
-            <RouterLink :to="footerLinks.products.stablecoinCheckout.to" class="footer__link">{{ $t('footer.products.stablecoinCheckout') }}</RouterLink>
-            <RouterLink :to="footerLinks.products.otc.to" class="footer__link">{{ $t('footer.products.otc') }}</RouterLink>
-            <!-- <span class="footer__link">{{ $t('footer.products.investment') }}</span> -->
             <RouterLink :to="footerLinks.products.card.to" class="footer__link">{{ $t('footer.products.card') }}</RouterLink>
+            <RouterLink :to="footerLinks.products.otc.to" class="footer__link">{{ $t('footer.products.otc') }}</RouterLink>
+            <RouterLink :to="footerLinks.products.stablecoinCheckout.to" class="footer__link">{{ $t('footer.products.stablecoinCheckout') }}</RouterLink>
+            <!-- <span class="footer__link">{{ $t('footer.products.investment') }}</span> -->
           </div>
 
           <div v-reveal="{ delay: 180 }" class="footer__column">
@@ -67,9 +67,9 @@ const footerLinks = {
   products: {
     virtualAccounts: { to: '/virtual-account' },
     globalCollection: { to: '/global-collection-payout' },
-    stablecoinCheckout: { to: '/stablecoin-checkout' },
-    otc: { to: '/institutional-otc' },
     card: { to: '/yasbe-card' },
+    otc: { to: '/institutional-otc' },
+    stablecoinCheckout: { to: '/stablecoin-checkout' },
   },
 }
 

@@ -63,8 +63,10 @@
 }
 
 .footer__links {
-  display: flex;
-  gap: 60px;
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  justify-content: space-between;
+  column-gap: 48px;
   flex: auto;
 }
 
@@ -72,7 +74,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  flex: 1;
+  min-width: 0;
 }
 
 .footer__heading {
@@ -102,12 +104,13 @@
   }
 
   .footer__links {
-    flex-wrap: wrap;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: stretch;
     gap: 40px;
   }
 
   .footer__column {
-    flex: 1 1 calc(50% - 20px);
+    min-width: 0;
   }
 }
 
@@ -125,12 +128,13 @@
   }
 
   .footer__links {
+    grid-template-columns: repeat(4, max-content);
     justify-content: space-between;
     gap: 28px 24px;
   }
 
   .footer__column {
-    min-width: 180px;
+    min-width: 0;
   }
 }
 
@@ -178,6 +182,7 @@
   .footer__links {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: stretch;
     gap: 42px 36px;
     width: 100%;
   }
