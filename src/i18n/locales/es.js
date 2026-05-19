@@ -217,13 +217,16 @@ export default {
         "text": "Usa herramientas avanzadas de monitoreo para proteger tus pagos y garantías con activos digitales."
       },
       "fraud": {
-        "title": "Prevención de fraude"
+        "title": "Prevención avanzada de fraude y controles de seguridad",
+        "text": "Creada con prevención de fraude de nivel empresarial y monitoreo de riesgo en tiempo real para ayudar a proteger a usuarios y empresas frente a transacciones no autorizadas, actividad sospechosa y fraude de pagos."
       },
       "blocking": {
-        "title": "Bloqueo de transacciones"
+        "title": "Bloqueo inteligente de transacciones y controles de riesgo",
+        "text": "Incluye capacidades inteligentes de bloqueo de transacciones diseñadas para ayudar a prevenir actividades no autorizadas, sospechosas o de alto riesgo en tiempo real."
       },
       "freeze": {
-        "title": "Congelar tarjetas"
+        "title": "Controles instantáneos para congelar y descongelar tarjetas",
+        "text": "Permite a los usuarios congelar o descongelar su tarjeta al instante en cualquier momento para mayor seguridad y control del gasto."
       }
     }
   },

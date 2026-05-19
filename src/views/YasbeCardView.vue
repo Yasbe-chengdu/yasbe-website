@@ -261,16 +261,19 @@ const securityItems = reactive([
   {
     icon: fraudIcon,
     titleKey: 'yasbeCard.why.fraud.title',
+    textKey: 'yasbeCard.why.fraud.text',
     delay: 130,
   },
   {
     icon: blockingIcon,
     titleKey: 'yasbeCard.why.blocking.title',
+    textKey: 'yasbeCard.why.blocking.text',
     delay: 180,
   },
   {
     icon: freezeIcon,
     titleKey: 'yasbeCard.why.freeze.title',
+    textKey: 'yasbeCard.why.freeze.text',
     delay: 230,
   },
 ])

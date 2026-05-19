@@ -217,13 +217,16 @@ export default {
         "text": "Utilisez des outils avancés de suivi des transactions pour protéger vos remboursements et garanties en actifs numériques."
       },
       "fraud": {
-        "title": "Prévention de la fraude"
+        "title": "Prévention avancée de la fraude et contrôles de sécurité",
+        "text": "Conçue avec une prévention de la fraude de niveau entreprise et une surveillance des risques en temps réel pour aider à protéger les utilisateurs et les entreprises contre les transactions non autorisées, les activités suspectes et la fraude aux paiements."
       },
       "blocking": {
-        "title": "Blocage des transactions"
+        "title": "Blocage intelligent des transactions et contrôles des risques",
+        "text": "Comprend des capacités intelligentes de blocage des transactions conçues pour aider à prévenir en temps réel les activités non autorisées, suspectes ou à haut risque."
       },
       "freeze": {
-        "title": "Geler les cartes"
+        "title": "Contrôles instantanés de gel et de dégel de carte",
+        "text": "Permet aux utilisateurs de geler ou dégeler instantanément leur carte à tout moment pour renforcer la sécurité et le contrôle des dépenses."
       }
     }
   },

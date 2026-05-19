@@ -211,19 +211,22 @@ export default {
       "text": "Designed to meet the needs of businesses everywhere, our corporate card offers seamless access with no bank account or complex requirements."
     },
     "why": {
-      "title": "Why YASBe Corporate Card",
+      "title": "Why YASBe Card",
       "monitoring": {
         "title": "Transaction Monitoring",
         "text": "Utilize advanced transaction monitoring tools to protect your digital asset repayments and collateral."
       },
       "fraud": {
-        "title": "Fraud Prevention"
+        "title": "Advanced Fraud Prevention & Security Controls",
+        "text": "Built with enterprise-grade fraud prevention and real-time risk monitoring to help protect users and businesses from unauthorized transactions, suspicious activity, and payment fraud."
       },
       "blocking": {
-        "title": "Transaction blocking"
+        "title": "Smart Transaction Blocking & Risk Controls",
+        "text": "Includes intelligent transaction blocking capabilities designed to help prevent unauthorized, suspicious, or high-risk activities in real time."
       },
       "freeze": {
-        "title": "Freeze cards"
+        "title": "Instant Card Freeze & Unfreeze Controls",
+        "text": "Allows users to instantly freeze or unfreeze their card at any time for enhanced security and spending control."
       }
     }
   },
