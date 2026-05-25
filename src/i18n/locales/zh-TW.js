@@ -493,5 +493,26 @@ export default {
         "text": "輕鬆向供應商付款或全球收款。開拓新市場，簡化財務運營，提升效率。"
       }
     }
+  },
+  "legalPage": {
+    "sidebar": {
+      "termsAndConditions": "條款與條件",
+      "websiteTermsOfUse": "網站使用條款",
+      "privacyPolicy": "隱私政策",
+      "requestForInformation": "資訊請求 (RFI)",
+      "prohibitedBusinesses": "禁止業務",
+      "restrictedJurisdiction": "限制地區",
+      "cookiesPolicy": "Cookie 政策"
+    },
+    "content": {
+      "termsAndConditions": { "title": "條款與條件" },
+      "websiteTermsOfUse": { "title": "網站使用條款" },
+      "privacyPolicy": { "title": "隱私政策" },
+      "requestForInformation": { "title": "資訊請求 (RFI)" },
+      "prohibitedBusinesses": { "title": "禁止業務" },
+      "restrictedJurisdiction": { "title": "限制地區" },
+      "cookiesPolicy": { "title": "Cookie 政策" }
+    },
+    "contentPlaceholder": "內容即將推出..."
   }
 }

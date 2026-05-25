@@ -1,0 +1,251 @@
+/* ============================================
+   LegalView – 法律与合规页面
+   参考设计图 5442_1257
+   ============================================ */
+
+/* ---------- 布局 ---------- */
+.legal-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--color-white);
+}
+
+.legal-page__body {
+  flex: 1;
+  position: relative;  /* sidebar absolute 定位的参照物 */
+  display: flex;
+  align-items: flex-start;
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 90px; /* navbar 高度 */
+}
+
+/* ---------- 左侧菜单 ---------- */
+.legal-page__sidebar {
+  width: 250px;
+  min-width: 250px;
+  background: var(--color-bg-gray);
+  position: sticky;
+  top: 90px;
+  align-self: flex-start;
+}
+
+.legal-sidebar {
+  display: flex;
+  flex-direction: column;
+  /* 当 sidebar 是 fixed 时限制高度，防止超出视口 */
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+}
+
+.legal-sidebar__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 49px;
+  padding: 0 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  text-align: left;
+  transition: background 0.2s ease;
+  line-height: 1;
+}
+
+.legal-sidebar__item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.legal-sidebar__item--active {
+  background: var(--color-accent-yellow);
+  font-weight: 500;
+}
+
+/* ---------- 右侧内容区 ---------- */
+.legal-page__content {
+  flex: 1;
+  padding: 0 80px 80px 80px;
+  max-width: 880px;
+}
+
+.legal-content__title {
+  font-family: var(--font-family);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  margin: 0 0 40px 0;
+  line-height: 1.2;
+}
+
+.legal-content__body {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.7;
+}
+
+.legal-content__placeholder {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* ---------- 内容排版 ---------- */
+.legal-content__heading {
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.5;
+  margin: 32px 0 16px 0;
+}
+
+.legal-content__heading:first-child {
+  margin-top: 0;
+}
+
+.legal-content__paragraph {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.7;
+  margin: 0 0 16px 0;
+}
+
+.legal-content__paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.legal-content__list-item {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.7;
+  margin: 0 0 8px 24px;
+  list-style: none;
+  position: relative;
+}
+
+.legal-content__list-item::before {
+  content: '•';
+  position: absolute;
+  left: -16px;
+  color: var(--color-text-primary);
+}
+
+/* ============================================
+   平板端 (768px - 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+  .legal-page__body {
+    padding-top: 80px;
+  }
+
+  .legal-page__sidebar {
+    width: 220px;
+    min-width: 220px;
+    top: 80px;
+  }
+
+  .legal-sidebar {
+    max-height: calc(100vh - 80px);
+  }
+
+  .legal-page__content {
+    padding: 0 40px 60px 40px;
+  }
+
+  .legal-content__title {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+}
+
+/* ============================================
+   移动端 (320px - 767px)
+   ============================================ */
+@media (max-width: 767px) {
+  .legal-page__body {
+    flex-direction: column;
+    padding-top: 70px;
+  }
+
+  .legal-page__sidebar {
+    position: static;
+    top: auto;
+    width: 100%;
+    min-width: 100%;
+    background: var(--color-white);
+    border-bottom: 1px solid #e5e5e5;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .legal-sidebar {
+    flex-direction: row;
+    padding: 0 var(--content-padding-mobile);
+    gap: 0;
+  }
+
+  .legal-sidebar__item {
+    width: auto;
+    height: 44px;
+    padding: 0 16px;
+    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .legal-sidebar__item--active {
+    background: transparent;
+    color: var(--color-text-primary);
+    font-weight: 600;
+    border-bottom-color: var(--color-accent-yellow);
+  }
+
+  .legal-page__content {
+    padding: 24px var(--content-padding-mobile) 60px;
+    max-width: 100%;
+  }
+
+  .legal-content__title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .legal-content__body {
+    font-size: 14px;
+  }
+
+  .legal-content__heading {
+    font-size: 16px;
+    margin: 24px 0 12px 0;
+  }
+
+  .legal-content__paragraph {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .legal-content__list-item {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+}

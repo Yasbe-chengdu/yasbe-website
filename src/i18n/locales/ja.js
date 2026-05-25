@@ -493,5 +493,26 @@ export default {
         "text": "サプライヤーへの支払いやグローバルな入金を簡単に。新市場の開拓と財務業務の効率化を実現。"
       }
     }
+  },
+  "legalPage": {
+    "sidebar": {
+      "termsAndConditions": "利用規約",
+      "websiteTermsOfUse": "ウェブサイト利用規約",
+      "privacyPolicy": "プライバシーポリシー",
+      "requestForInformation": "情報請求 (RFI)",
+      "prohibitedBusinesses": "禁止事業",
+      "restrictedJurisdiction": "制限地域",
+      "cookiesPolicy": "Cookie ポリシー"
+    },
+    "content": {
+      "termsAndConditions": { "title": "利用規約" },
+      "websiteTermsOfUse": { "title": "ウェブサイト利用規約" },
+      "privacyPolicy": { "title": "プライバシーポリシー" },
+      "requestForInformation": { "title": "情報請求 (RFI)" },
+      "prohibitedBusinesses": { "title": "禁止事業" },
+      "restrictedJurisdiction": { "title": "制限地域" },
+      "cookiesPolicy": { "title": "Cookie ポリシー" }
+    },
+    "contentPlaceholder": "コンテンツは近日公開..."
   }
 }

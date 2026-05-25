@@ -493,5 +493,26 @@ export default {
         "text": "Payez facilement vos fournisseurs ou collectez des paiements à l'échelle mondiale. Débloquez de nouveaux marchés et simplifiez vos opérations de trésorerie pour une plus grande efficacité."
       }
     }
+  },
+  "legalPage": {
+    "sidebar": {
+      "termsAndConditions": "Conditions Générales",
+      "websiteTermsOfUse": "Conditions d'Utilisation du Site",
+      "privacyPolicy": "Politique de Confidentialité",
+      "requestForInformation": "Demande d'Information (RFI)",
+      "prohibitedBusinesses": "Activités Interdites",
+      "restrictedJurisdiction": "Juridictions Restreintes",
+      "cookiesPolicy": "Politique de Cookies"
+    },
+    "content": {
+      "termsAndConditions": { "title": "Conditions Générales" },
+      "websiteTermsOfUse": { "title": "Conditions d'Utilisation du Site" },
+      "privacyPolicy": { "title": "Politique de Confidentialité" },
+      "requestForInformation": { "title": "Demande d'Information (RFI)" },
+      "prohibitedBusinesses": { "title": "Activités Interdites" },
+      "restrictedJurisdiction": { "title": "Juridictions Restreintes" },
+      "cookiesPolicy": { "title": "Politique de Cookies" }
+    },
+    "contentPlaceholder": "Contenu à venir..."
   }
 }

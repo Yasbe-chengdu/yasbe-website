@@ -493,5 +493,26 @@ export default {
         "text": "공급업체에 쉽게 지급하거나 글로벌로 입금. 새로운 시장을 개척하고 재무 운영을 간소화하여 효율성을 높이세요."
       }
     }
+  },
+  "legalPage": {
+    "sidebar": {
+      "termsAndConditions": "이용약관",
+      "websiteTermsOfUse": "웹사이트 이용약관",
+      "privacyPolicy": "개인정보 처리방침",
+      "requestForInformation": "정보 요청 (RFI)",
+      "prohibitedBusinesses": "금지된 사업",
+      "restrictedJurisdiction": "제한 지역",
+      "cookiesPolicy": "쿠키 정책"
+    },
+    "content": {
+      "termsAndConditions": { "title": "이용약관" },
+      "websiteTermsOfUse": { "title": "웹사이트 이용약관" },
+      "privacyPolicy": { "title": "개인정보 처리방침" },
+      "requestForInformation": { "title": "정보 요청 (RFI)" },
+      "prohibitedBusinesses": { "title": "금지된 사업" },
+      "restrictedJurisdiction": { "title": "제한 지역" },
+      "cookiesPolicy": { "title": "쿠키 정책" }
+    },
+    "contentPlaceholder": "콘텐츠 준비 중..."
   }
 }

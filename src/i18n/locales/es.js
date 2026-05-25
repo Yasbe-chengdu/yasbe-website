@@ -493,5 +493,26 @@ export default {
         "text": "Paga a proveedores o cobra pagos globalmente con facilidad. Desbloquea nuevos mercados y simplifica las operaciones de tesorería para una mayor eficiencia."
       }
     }
+  },
+  "legalPage": {
+    "sidebar": {
+      "termsAndConditions": "Términos y Condiciones",
+      "websiteTermsOfUse": "Términos de Uso del Sitio Web",
+      "privacyPolicy": "Política de Privacidad",
+      "requestForInformation": "Solicitud de Información (RFI)",
+      "prohibitedBusinesses": "Negocios Prohibidos",
+      "restrictedJurisdiction": "Jurisdicción Restringida",
+      "cookiesPolicy": "Política de Cookies"
+    },
+    "content": {
+      "termsAndConditions": { "title": "Términos y Condiciones" },
+      "websiteTermsOfUse": { "title": "Términos de Uso del Sitio Web" },
+      "privacyPolicy": { "title": "Política de Privacidad" },
+      "requestForInformation": { "title": "Solicitud de Información (RFI)" },
+      "prohibitedBusinesses": { "title": "Negocios Prohibidos" },
+      "restrictedJurisdiction": { "title": "Jurisdicción Restringida" },
+      "cookiesPolicy": { "title": "Política de Cookies" }
+    },
+    "contentPlaceholder": "Contenido próximamente..."
   }
 }

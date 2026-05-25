@@ -493,5 +493,26 @@ export default {
         "text": "Easily pay suppliers or collect payments globally. Unlock new markets and simplify treasury operations for greater efficiency."
       }
     }
+  },
+  "legalPage": {
+    "sidebar": {
+      "termsAndConditions": "Terms & Conditions",
+      "websiteTermsOfUse": "Website Terms of Use",
+      "privacyPolicy": "Privacy Policy",
+      "requestForInformation": "Request for Information (RFI)",
+      "prohibitedBusinesses": "Prohibited Businesses",
+      "restrictedJurisdiction": "Restricted Jurisdiction",
+      "cookiesPolicy": "Cookies Policy"
+    },
+    "content": {
+      "termsAndConditions": { "title": "Terms & Conditions" },
+      "websiteTermsOfUse": { "title": "Website Terms of Use" },
+      "privacyPolicy": { "title": "Privacy Policy" },
+      "requestForInformation": { "title": "Request for Information (RFI)" },
+      "prohibitedBusinesses": { "title": "Prohibited Businesses" },
+      "restrictedJurisdiction": { "title": "Restricted Jurisdiction" },
+      "cookiesPolicy": { "title": "Cookies Policy" }
+    },
+    "contentPlaceholder": "Content coming soon..."
   }
 }

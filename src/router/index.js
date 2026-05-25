@@ -43,6 +43,11 @@ const router = createRouter({
       name: 'contact',
       component: () => import('../views/ContactView.vue'),
     },
+    {
+      path: '/legal',
+      name: 'legal',
+      component: () => import('../views/LegalView.vue'),
+    },
   ],
   scrollBehavior(to) {
     if (to.hash) {

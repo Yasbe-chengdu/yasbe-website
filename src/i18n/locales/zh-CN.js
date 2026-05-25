@@ -493,5 +493,26 @@ export default {
         "text": "轻松向供应商付款或全球收款。开拓新市场，简化财务运营，提升效率。"
       }
     }
+  },
+  "legalPage": {
+    "sidebar": {
+      "termsAndConditions": "条款与条件",
+      "websiteTermsOfUse": "网站使用条款",
+      "privacyPolicy": "隐私政策",
+      "requestForInformation": "信息请求 (RFI)",
+      "prohibitedBusinesses": "禁止业务",
+      "restrictedJurisdiction": "限制地区",
+      "cookiesPolicy": "Cookie 政策"
+    },
+    "content": {
+      "termsAndConditions": { "title": "条款与条件" },
+      "websiteTermsOfUse": { "title": "网站使用条款" },
+      "privacyPolicy": { "title": "隐私政策" },
+      "requestForInformation": { "title": "信息请求 (RFI)" },
+      "prohibitedBusinesses": { "title": "禁止业务" },
+      "restrictedJurisdiction": { "title": "限制地区" },
+      "cookiesPolicy": { "title": "Cookie 政策" }
+    },
+    "contentPlaceholder": "内容即将推出..."
   }
 }
