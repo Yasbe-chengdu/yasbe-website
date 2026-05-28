@@ -215,7 +215,7 @@ onBeforeUnmount(() => {
                         {{ $t('hero.subtitle') }}
                     </p>
                 </div>
-                <a href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="hero__cta hero__cta--intro">
+                <a href="https://yasbe.com/customer" target="_blank" rel="noopener noreferrer" class="hero__cta hero__cta--intro">
                     <span>{{ $t('hero.cta') }}</span>
                     <div class="hero__cta-icon">
                         <img src="../assets/images/icon-arrow-right-white.svg" alt="Arrow" />
