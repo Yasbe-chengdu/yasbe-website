@@ -6,7 +6,7 @@
                 </h2>
                 <div v-reveal="{ delay: 100, origin: 'right', distance: 32 }" class="world-map__right">
                     <p class="world-map__description">{{ $t('worldMap.description') }}</p>
-                    <a href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="world-map__cta">
+                    <a :href="customerBaseUrl" target="_blank" rel="noopener noreferrer" class="world-map__cta">
                         <span>{{ $t('worldMap.cta') }}</span>
                         <div class="world-map__cta-icon">
                             <img src="../assets/images/icon-arrow-right-white.svg" alt="Arrow" />
@@ -42,6 +42,8 @@
 import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import heroPoster from '../assets/images/hero-bg.png'
 import { registerViewportPlaybackReplay, registerWeixinBridgeReplay } from '../utils/wechatVideoPlayback'
+
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 
 const sectionRef = ref(null)
 const videoRef = ref(null)

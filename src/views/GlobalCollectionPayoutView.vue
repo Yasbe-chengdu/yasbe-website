@@ -14,7 +14,7 @@
             <p v-reveal="{ delay: 80, distance: 24 }" class="gcp-hero__subtitle">
               {{ t('globalCollectionPayout.hero.subtitle') }}
             </p>
-            <a v-reveal="{ delay: 140, distance: 20 }" href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="gcp-cta">
+            <a v-reveal="{ delay: 140, distance: 20 }" :href="customerBaseUrl" target="_blank" rel="noopener noreferrer" class="gcp-cta">
               <span>{{ t('globalCollectionPayout.cta.tryForFree') }}</span>
               <img :src="arrowCircleIcon" alt="" aria-hidden="true" />
             </a>
@@ -118,6 +118,7 @@ import climbImage from '../assets/images/global-collection-payout/gcp-card-climb
 import arrowCircleIcon from '../assets/images/global-collection-payout/gcp-arrow-circle@4x.png?no-inline'
 import heroPoster from '../assets/images/hero-bg.png'
 
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 const { t } = useI18n()
 
 const videoRef = ref(null)

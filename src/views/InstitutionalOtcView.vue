@@ -11,7 +11,7 @@
             <strong>{{ $t('institutionalOtc.hero.titleBold') }}</strong>
           </h1>
           <p class="otc-hero__subtitle">{{ $t('institutionalOtc.hero.subtitle') }}</p>
-          <a href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="otc-cta">
+          <a :href="customerBaseUrl" target="_blank" rel="noopener noreferrer" class="otc-cta">
             <span>{{ $t('institutionalOtc.hero.cta') }}</span>
             <span class="otc-cta__icon" aria-hidden="true">
               <img :src="arrowIcon" alt="" />
@@ -172,7 +172,6 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { RouterLink } from 'vue-router'
 
 import Footer from '../components/Footer.vue'
 import Navbar from '../components/Navbar.vue'
@@ -190,6 +189,8 @@ import liquidityCoins from '../assets/images/institutional-otc/otc-liquidity-coi
 import onboardingIcon from '../assets/images/institutional-otc/otc-icon-onboarding@4x.png'
 import prefundingIcon from '../assets/images/institutional-otc/otc-icon-prefunding@4x.png'
 import tradeIcon from '../assets/images/institutional-otc/otc-icon-trade@4x.png'
+
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 
 const benefits = [
   {

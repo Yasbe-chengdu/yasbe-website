@@ -13,7 +13,7 @@
                     <p v-reveal="{ delay: 80, distance: 28 }" class="stablecoin-hero__subtitle">
                         {{ $t('stablecoinCheckout.hero.subtitle') }}
                     </p>
-                    <a v-reveal="{ delay: 140, distance: 24 }" href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="stablecoin-cta">
+                    <a v-reveal="{ delay: 140, distance: 24 }" :href="customerBaseUrl" target="_blank" rel="noopener noreferrer" class="stablecoin-cta">
                         <span>{{ $t('stablecoinCheckout.cta.tryForFree') }}</span>
                         <span class="stablecoin-cta__icon" aria-hidden="true">
                             <img :src="arrowIcon" alt="" />
@@ -166,6 +166,8 @@ import bordersIcon from '../assets/images/stablecoin-icon-borders.png?no-inline'
 import confidenceIcon from '../assets/images/stablecoin-icon-confidence.png?no-inline'
 import arrowIcon from '../assets/images/stablecoin-icon-arrow.png?no-inline'
 import solutionArrowIcon from '../assets/images/stablecoin-icon-solution-arrow.png?no-inline'
+
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 
 const globalFeatures = [
     {

@@ -209,7 +209,7 @@
                   <p class="features__list-items" v-html="$t(`features.${slide.key}.listItems`)"></p>
                 </div>
 
-                <a v-if="slide.hasCta" href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="features__cta">
+                <a v-if="slide.hasCta" :href="customerBaseUrl" target="_blank" rel="noopener noreferrer" class="features__cta">
                   <span>{{ $t(`features.${slide.key}.cta`) }}</span>
                   <div class="features__cta-icon">
                     <img src="../assets/images/icon-arrow-right-dark.svg" alt="Arrow" loading="lazy" decoding="async" />
@@ -235,6 +235,8 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import img2 from '../assets/images/img2.png'
+
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 import img3 from '../assets/images/img3.png'
 import img4 from '../assets/images/img4.png'
 import btcIcon from '../assets/images/icon-btc.svg'

@@ -14,7 +14,7 @@
             <p v-reveal="{ delay: 80, distance: 24 }" class="va-hero__subtitle">
               {{ t('virtualAccount.hero.subtitle') }}
             </p>
-            <a v-reveal="{ delay: 140, distance: 20 }" href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="va-cta">
+            <a v-reveal="{ delay: 140, distance: 20 }" :href="customerBaseUrl" target="_blank" rel="noopener noreferrer" class="va-cta">
               <span>{{ t('virtualAccount.cta.tryForFree') }}</span>
               <img :src="arrowCircleIcon" alt="" aria-hidden="true" />
             </a>
@@ -160,6 +160,7 @@ import controlIcon from '../assets/images/virtual-account/va-benefit-control@4x.
 import riskIcon from '../assets/images/virtual-account/va-benefit-risk@4x.png?no-inline'
 import cashflowIcon from '../assets/images/virtual-account/va-benefit-cashflow@4x.png?no-inline'
 
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 const { t } = useI18n()
 
 const networkCards = computed(() => [

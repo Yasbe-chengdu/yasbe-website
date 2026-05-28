@@ -6,6 +6,7 @@ import { registerWeixinBridgeReplay } from '../utils/wechatVideoPlayback'
 const heroRef = ref(null)
 const heroVideoRef = ref(null)
 const heroMinHeight = ref(null)
+const customerUrl = new URL('customer', import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/').toString()
 
 let resizeObserver
 let visibilityObserver
@@ -215,7 +216,7 @@ onBeforeUnmount(() => {
                         {{ $t('hero.subtitle') }}
                     </p>
                 </div>
-                <a href="https://yasbe.com/customer" target="_blank" rel="noopener noreferrer" class="hero__cta hero__cta--intro">
+                <a :href="customerUrl" target="_blank" rel="noopener noreferrer" class="hero__cta hero__cta--intro">
                     <span>{{ $t('hero.cta') }}</span>
                     <div class="hero__cta-icon">
                         <img src="../assets/images/icon-arrow-right-white.svg" alt="Arrow" />

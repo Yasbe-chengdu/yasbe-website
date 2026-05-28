@@ -14,7 +14,7 @@
             <p v-reveal="{ delay: 80, distance: 24 }" class="yasbe-card-hero__subtitle">
               {{ $t('yasbeCard.hero.subtitle') }}
             </p>
-            <a v-reveal="{ delay: 140, distance: 20 }" href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="yasbe-card-cta">
+            <a v-reveal="{ delay: 140, distance: 20 }" :href="customerBaseUrl" target="_blank" rel="noopener noreferrer" class="yasbe-card-cta">
               <span>{{ $t('yasbeCard.cta.tryForFree') }}</span>
               <span class="yasbe-card-cta__icon" aria-hidden="true">
                 <img :src="arrowIcon" alt="" />
@@ -200,6 +200,8 @@ import blockingIcon from '../assets/images/yasbe-card-icon-blocking.png?no-inlin
 import freezeIcon from '../assets/images/yasbe-card-icon-freeze.png?no-inline'
 import arrowIcon from '../assets/images/institutional-otc/otc-icon-arrow@4x.png'
 import chevronIcon from '../assets/images/yasbe-card-icon-chevron.png?no-inline'
+
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 
 const paymentCards = [
   {

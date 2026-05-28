@@ -74,8 +74,8 @@
           </div>
 
           <div class="navbar__auth">
-            <a href="https://customer.beeznis.com/register" target="_blank" rel="noopener noreferrer" class="navbar__btn navbar__btn--text">{{ $t('nav.auth.signUp') }}</a>
-            <a href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="navbar__btn navbar__btn--primary">{{ $t('nav.auth.login') }}</a>
+            <a :href="customerRegisterUrl" target="_blank" rel="noopener noreferrer" class="navbar__btn navbar__btn--text">{{ $t('nav.auth.signUp') }}</a>
+            <a :href="customerBaseUrl" target="_blank" rel="noopener noreferrer" class="navbar__btn navbar__btn--primary">{{ $t('nav.auth.login') }}</a>
           </div>
         </div>
       </div>
@@ -119,6 +119,8 @@ const globalPaymentMenuRef = ref(null)
 const { locale } = useI18n()
 const route = useRoute()
 const isHome = computed(() => route.path === '/')
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
+const customerRegisterUrl = new URL('register', customerBaseUrl).toString()
 
 const globalPaymentSubnav = [
   {
