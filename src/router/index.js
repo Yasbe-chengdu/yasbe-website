@@ -48,6 +48,11 @@ const router = createRouter({
       name: 'legal',
       component: () => import('../views/LegalView.vue'),
     },
+    {
+      path: '/treasury',
+      name: 'treasury',
+      component: () => import('../views/TreasuryView.vue'),
+    },
   ],
   scrollBehavior(to) {
     if (to.hash) {

@@ -41,7 +41,7 @@
 
           <div v-reveal="{ delay: 180 }" class="footer__column">
             <h4 class="footer__heading">{{ $t('footer.useCases.heading') }}</h4>
-            <span class="footer__link">{{ $t('footer.useCases.treasury') }}</span>
+            <RouterLink to="/treasury" class="footer__link">{{ $t('footer.useCases.treasury') }}</RouterLink>
             <span class="footer__link">{{ $t('footer.useCases.importExport') }}</span>
             <span class="footer__link">{{ $t('footer.useCases.services') }}</span>
             <span class="footer__link">{{ $t('footer.useCases.vc') }}</span>

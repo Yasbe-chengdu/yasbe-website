@@ -514,5 +514,126 @@ export default {
       "cookiesPolicy": { "title": "Política de Cookies" }
     },
     "contentPlaceholder": "Contenido próximamente..."
+  },
+  "treasury": {
+      "cta": {
+        "tryForFree": "Probar Gratis"
+      },
+      "hero": {
+        "titleLight": "Infraestructura Moderna de Tesorería",
+        "titleBold": "Diseñada para Escala Global",
+        "subtitle": "YASBe permite a los equipos de tesorería controlar la liquidez, gestionar operaciones multidivisa y simplificar los pagos transfronterizos, todo en una plataforma integrada.",
+        "deviceAlt": "Panel de la Plataforma de Tesorería YASBe"
+      },
+      "challenges": {
+        "title": "Desafíos Clave en los Equipos de Tesorería",
+        "subtitle": "Desde la fragmentación bancaria hasta los retrasos transfronterizos, estas son barreras comunes para la eficiencia y el crecimiento.",
+        "items": {
+          "fragmentation": {
+            "title": "Fragmentación Bancaria",
+            "text": "Relaciones bancarias fragmentadas y acceso limitado a cuentas nominativas en monedas clave"
+          },
+          "delays": {
+            "title": "Retrasos en los Pagos",
+            "text": "Retrasos en los pagos transfronterizos, causando ineficiencias en el capital de trabajo"
+          },
+          "reconciliation": {
+            "title": "Complejidad de Conciliación",
+            "text": "Conciliación compleja de pagos entre múltiples partes"
+          },
+          "access": {
+            "title": "Restricciones de Acceso",
+            "text": "Acceso limitado en tiempo real a los fondos debido a horarios bancarios y restricciones geográficas"
+          }
+        }
+      },
+      "solution": {
+        "title": "Solución YASBe",
+        "items": {
+          "virtualAccounts": {
+            "title": "Cuentas Virtuales: Estructura, Control y Conciliación a Escala",
+            "intro": "YASBe proporciona Cuentas Virtuales a nombre de la empresa en las principales monedas (EUR, GBP, USD), permitiendo a los tesoreros:",
+            "bullet1": "Abrir cuentas únicas para cada entidad, región o línea de negocio",
+            "bullet2": "Realizar seguimiento de fondos por proyecto o unidad de negocio para una supervisión financiera granular",
+            "bullet3": "Automatizar la conciliación de pagos entrantes de clientes, socios o subsidiarias",
+            "bullet4": "Simplificar la auditoría y el cumplimiento con flujos de fondos más claros",
+            "bullet5": "Mejorar la visibilidad del capital de trabajo y la previsión de liquidez"
+          },
+          "collectionPayout": {
+            "title": "Cobro y Pago Global: Operaciones de Tesorería Global Unificadas",
+            "intro": "La red de pagos global de YASBe admite cobros y pagos en más de 20 países, permitiendo:",
+            "bullet1": "Liquidación más rápida hacia/desde proveedores, socios comerciales y clientes",
+            "bullet2": "Operaciones de tesorería unificadas en todas las jurisdicciones, con menor dependencia de los bancos locales",
+            "bullet3": "Optimización de divisas mediante soporte multidivisa y redes locales",
+            "bullet4": "Visibilidad de extremo a extremo sobre los flujos entrantes y salientes en una sola plataforma"
+          },
+          "stablecoin": {
+            "title": "Checkout con Stablecoins: Liquidez 24/7 y Crecimiento sin Fronteras",
+            "intro": "YASBe permite a las empresas aceptar Stablecoins (por ejemplo, USDT, USDC, EURC) y liquidar en moneda fiduciaria al instante, permitiendo:",
+            "bullet1": "Acceso en tiempo real al capital, incluso los fines de semana y días festivos",
+            "bullet2": "Liquidación transfronteriza más rápida en comparación con SWIFT o las redes tradicionales",
+            "bullet3": "Conversión directa a moneda fiduciaria a cuentas bancarias propias o de terceros",
+            "bullet4": "Mayor seguridad y transparencia mediante blockchain y revisión KYT"
+          }
+        }
+      },
+      "benefits": {
+        "title": "Beneficios Clave",
+        "items": {
+          "offramp": {
+            "title": "Conversión a Fiat Todo en Uno",
+            "text": "Conversión fluida a moneda fiduciaria en la cuenta nominativa de su empresa o en beneficiarios terceros."
+          },
+          "security": {
+            "title": "Seguridad y Transparencia Mejoradas",
+            "text": "Trazabilidad en cadena con monitoreo de transacciones habilitado por KYT."
+          },
+          "globe": {
+            "title": "Sin Límites Geográficos",
+            "text": "Acepte pagos globalmente, habilitando nuevos mercados sin dependencias de infraestructura de pago."
+          },
+          "stable": {
+            "title": "Valor Predecible",
+            "text": "Vinculadas a monedas fiduciarias, las Stablecoins eliminan la volatilidad asociada con los pagos en criptomonedas."
+          }
+        }
+      },
+      "goals": {
+        "title": "Del Objetivo al Resultado",
+        "goalColumn": "Objetivo de Tesorería",
+        "deliversColumn": "YASBe Proporciona",
+        "rows": {
+          "centralizedLiquidity": "Gestión Centralizada de Liquidez",
+          "realTimeVisibility": "Visibilidad de Tesorería en Tiempo Real",
+          "workingCapital": "Acceso Más Rápido al Capital de Trabajo",
+          "operationalEfficiency": "Eficiencia Operativa",
+          "expansion": "Expansión a Nuevos Mercados"
+        },
+        "delivers": {
+          "centralizedLiquidity": "Cuentas Virtuales Nominativas en múltiples monedas",
+          "realTimeVisibility": "Plataforma de Cobro y Pago Global con datos instantáneos",
+          "workingCapital": "Liquidación con Stablecoins 24/7 y conversión a fiat",
+          "operationalEfficiency": "Conciliación automatizada, reducción de trabajo manual",
+          "expansion": "Redes locales + Stablecoins para eliminar la fricción transfronteriza"
+        }
+      },
+      "cases": {
+        "title": "Casos de Uso en Diversas Industrias",
+        "subtitle": "Vea cómo las organizaciones de todos los sectores se benefician de la plataforma de YASBe.",
+        "items": {
+          "logistics": {
+            "title": "Empresa de Logística",
+            "text": "Una empresa de logística global utiliza cuentas virtuales para gestionar los pagos de clientes en la UE, Reino Unido y EE. UU., simplificando la conciliación y mejorando la visibilidad de las posiciones de efectivo regionales."
+          },
+          "saas": {
+            "title": "Empresa SaaS",
+            "text": "Una empresa SaaS que atiende a clientes empresariales globales adopta el Checkout con Stablecoins para la facturación de contratos, reduciendo drásticamente los tiempos de liquidación de facturas de 5 días a menos de 5 minutos."
+          },
+          "consulting": {
+            "title": "Firma de Consultoría",
+            "text": "Una consultora multinacional asigna cuentas virtuales por proyecto de cliente, permitiendo un seguimiento más claro del flujo de caja y procesos de cierre financiero más rápidos en todas las regiones."
+          }
+        }
+      }
+    }
   }
-}

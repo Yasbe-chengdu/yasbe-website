@@ -514,5 +514,126 @@ export default {
       "cookiesPolicy": { "title": "Cookie 政策" }
     },
     "contentPlaceholder": "内容即将推出..."
+  },
+  "treasury": {
+    "cta": {
+      "tryForFree": "免费试用"
+    },
+    "hero": {
+      "titleLight": "现代财务基础设施",
+      "titleBold": "为全球规模而构建",
+      "subtitle": "YASBe 使财务团队能够控制流动性、管理多货币运营，并在一个无缝平台上简化跨境支付。",
+      "deviceAlt": "YASBe 财务平台仪表板"
+    },
+    "challenges": {
+      "title": "财务团队的主要挑战",
+      "subtitle": "从银行分散到跨境延误，这些都是影响效率和增长的常见障碍。",
+      "items": {
+        "fragmentation": {
+          "title": "银行分散化",
+          "text": "分散的银行关系和有限的主要货币命名账户访问"
+        },
+        "delays": {
+          "title": "付款延迟",
+          "text": "跨境付款延迟，导致营运资金效率低下"
+        },
+        "reconciliation": {
+          "title": "对账复杂性",
+          "text": "多方支付的复杂对账"
+        },
+        "access": {
+          "title": "访问限制",
+          "text": "由于银行营业时间和地理限制，实时访问资金受限"
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe 解决方案",
+      "items": {
+        "virtualAccounts": {
+          "title": "虚拟账户：结构、控制和大规模对账",
+          "intro": "YASBe 提供以企业名义开设的虚拟账户，涵盖主要货币（EUR、GBP、USD），使财务主管能够：",
+          "bullet1": "为每个实体、地区或业务线开设唯一账户",
+          "bullet2": "按项目或业务部门跟踪资金，实现精细化财务监督",
+          "bullet3": "自动对客户、合作伙伴或子公司的来款进行对账",
+          "bullet4": "通过更清晰的资金流简化审计和合规",
+          "bullet5": "改善营运资金可见性和流动性预测"
+        },
+        "collectionPayout": {
+          "title": "全球收款与付款：统一的全球财务运营",
+          "intro": "YASBe 的全球支付网络支持 20 多个国家的收款和付款，使得：",
+          "bullet1": "更快地与上游供应商、业务合作伙伴和客户进行结算",
+          "bullet2": "跨司法管辖区统一财务运营，减少对当地银行的依赖",
+          "bullet3": "通过多货币支持和本地支付网络优化外汇",
+          "bullet4": "在单一平台上实现对资金流入和流出的端到端可见性"
+        },
+        "stablecoin": {
+          "title": "稳定币结算：24/7 流动性和无国界增长",
+          "intro": "YASBe 使企业能够接受稳定币（例如 USDT、USDC、EURC）并即时以法币结算，从而实现：",
+          "bullet1": "即使在周末和节假日也能实时访问资金",
+          "bullet2": "比 SWIFT 或传统支付网络更快的跨境结算",
+          "bullet3": "直接将法币提现至您自己的或第三方的银行账户",
+          "bullet4": "通过区块链和 KYT 审核增强安全性和透明度"
+        }
+      }
+    },
+    "benefits": {
+      "title": "主要优势",
+      "items": {
+        "offramp": {
+          "title": "一站式法币提现",
+          "text": "无缝转换为法币，并存入您公司自己的命名账户或第三方账户。"
+        },
+        "security": {
+          "title": "增强的安全性与透明度",
+          "text": "通过启用 KYT 的交易监控实现链上可追溯性。"
+        },
+        "globe": {
+          "title": "无地域限制",
+          "text": "全球接收付款，无需依赖支付基础设施，即可进入新市场。"
+        },
+        "stable": {
+          "title": "可预测的价值",
+          "text": "与法币挂钩，稳定币消除了加密支付相关的波动性。"
+        }
+      }
+    },
+    "goals": {
+      "title": "从目标到结果",
+      "goalColumn": "财务目标",
+      "deliversColumn": "YASBe 提供",
+      "rows": {
+        "centralizedLiquidity": "集中流动性管理",
+        "realTimeVisibility": "实时财务可见性",
+        "workingCapital": "更快获取营运资金",
+        "operationalEfficiency": "运营效率",
+        "expansion": "扩展至新市场"
+      },
+      "delivers": {
+        "centralizedLiquidity": "多种货币的命名虚拟账户",
+        "realTimeVisibility": "具有即时数据的全球收款与付款平台",
+        "workingCapital": "24/7 稳定币结算和法币提现",
+        "operationalEfficiency": "自动对账，减少人工工作量",
+        "expansion": "本地支付网络 + 稳定币，消除跨境摩擦"
+      }
+    },
+    "cases": {
+      "title": "跨行业应用场景",
+      "subtitle": "了解各行业的组织如何从 YASBe 平台中受益。",
+      "items": {
+        "logistics": {
+          "title": "物流公司",
+          "text": "一家全球物流公司使用虚拟账户管理来自欧盟、英国和美国客户的付款，简化对账并提高区域现金状况的可见性。"
+        },
+        "saas": {
+          "title": "SaaS 公司",
+          "text": "一家服务全球企业客户的 SaaS 公司采用稳定币结算进行合同账单，将发票结算时间从 5 天大幅缩短至 5 分钟以内。"
+        },
+        "consulting": {
+          "title": "咨询公司",
+          "text": "一家跨国咨询公司为每个客户项目分配虚拟账户，实现更清晰的现金流跟踪和更快速的跨区域财务结算流程。"
+        }
+      }
+    }
   }
 }

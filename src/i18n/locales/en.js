@@ -514,5 +514,126 @@ export default {
       "cookiesPolicy": { "title": "Cookies Policy" }
     },
     "contentPlaceholder": "Content coming soon..."
+  },
+  "treasury": {
+    "cta": {
+      "tryForFree": "Try For Free"
+    },
+    "hero": {
+      "titleLight": "Modern Treasury Infrastructure",
+      "titleBold": "Built for Global Scale",
+      "subtitle": "YASBe empowers treasury teams to control liquidity, manage multi-currency operations, and simplify cross-border payments — all in one seamless platform.",
+      "deviceAlt": "YASBe Treasury Platform Dashboard"
+    },
+    "challenges": {
+      "title": "Key Challenges in Treasury Teams",
+      "subtitle": "From banking fragmentation to cross-border delays, these are common barriers to efficiency and growth.",
+      "items": {
+        "fragmentation": {
+          "title": "Banking Fragmentation",
+          "text": "Fragmented banking relationships and limited access to named accounts in key currencies"
+        },
+        "delays": {
+          "title": "Payment Delays",
+          "text": "Delays in cross-border payments, causing working capital inefficiencies"
+        },
+        "reconciliation": {
+          "title": "Reconciliation Complexity",
+          "text": "Complex reconciliation of multi-party payments"
+        },
+        "access": {
+          "title": "Access Constraints",
+          "text": "Limited real-time access to funds due to banking hours and geographic constraints"
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe Solution",
+      "items": {
+        "virtualAccounts": {
+          "title": "Virtual Accounts: Structure, Control, and Reconciliation at Scale",
+          "intro": "YASBe provides Virtual Accounts in the name of the business across key currencies (EUR, GBP, USD), allowing treasurers to:",
+          "bullet1": "Open unique accounts for each entity, region, or business line",
+          "bullet2": "Track funds per project or business unit for granular financial oversight",
+          "bullet3": "Automate reconciliation of incoming payments from customers, partners, or subsidiaries",
+          "bullet4": "Simplify audit and compliance with clearer fund flows",
+          "bullet5": "Improve working capital visibility and liquidity forecasting"
+        },
+        "collectionPayout": {
+          "title": "Global Collection & Payout: Unified Global Treasury Operations",
+          "intro": "YASBe's global payment rails support collections and payouts in 20+ countries, enabling:",
+          "bullet1": "Faster settlement to/from upstream suppliers, business partners, and customers",
+          "bullet2": "Unified treasury operations across jurisdictions, with reduced reliance on local banks",
+          "bullet3": "FX optimization via multi-currency support and local rails",
+          "bullet4": "End-to-end visibility over incoming and outgoing flows on a single platform"
+        },
+        "stablecoin": {
+          "title": "Stablecoin Checkout: 24/7 Liquidity and Borderless Growth",
+          "intro": "YASBe empowers corporates to accept Stablecoins (e.g., USDT, USDC, EURC) and settle in fiat instantly, enabling:",
+          "bullet1": "Real-time access to capital, even on weekends and holidays",
+          "bullet2": "Faster cross-border settlement compared to SWIFT or traditional rails",
+          "bullet3": "Direct fiat off-ramping to your own or third-party bank accounts",
+          "bullet4": "Enhanced security and transparency via blockchain and KYT screening"
+        }
+      }
+    },
+    "benefits": {
+      "title": "Key Benefits",
+      "items": {
+        "offramp": {
+          "title": "One-Stop Fiat Off-Ramps",
+          "text": "Seamless conversion to fiat into your company's own named account or third-party beneficiaries."
+        },
+        "security": {
+          "title": "Enhanced Security & Transparency",
+          "text": "On-chain traceability with KYT-enabled transaction monitoring."
+        },
+        "globe": {
+          "title": "No Geographic Limits",
+          "text": "Accept payments globally, enabling new markets without payment infrastructure dependencies."
+        },
+        "stable": {
+          "title": "Predictable Value",
+          "text": "Pegged to fiat currencies, Stablecoins eliminate the volatility associated with crypto payments."
+        }
+      }
+    },
+    "goals": {
+      "title": "From Goal to Outcome",
+      "goalColumn": "Treasury Goal",
+      "deliversColumn": "YASBe Delivers",
+      "rows": {
+        "centralizedLiquidity": "Centralized Liquidity Management",
+        "realTimeVisibility": "Real-Time Treasury Visibility",
+        "workingCapital": "Faster Access to Working Capital",
+        "operationalEfficiency": "Operational Efficiency",
+        "expansion": "Expansion into New Markets"
+      },
+      "delivers": {
+        "centralizedLiquidity": "Named Virtual Accounts in multiple currencies",
+        "realTimeVisibility": "Global Collection & Payout platform with instant data",
+        "workingCapital": "24/7 Stablecoin settlement and fiat off-ramps",
+        "operationalEfficiency": "Automated reconciliation, reduced manual overhead",
+        "expansion": "Local rails + Stablecoins to remove cross-border friction"
+      }
+    },
+    "cases": {
+      "title": "Use Cases Across Industries",
+      "subtitle": "See how organizations across sectors benefit from YASBe's platform.",
+      "items": {
+        "logistics": {
+          "title": "Logistics Company",
+          "text": "A global logistics company uses virtual accounts to manage payments from customers in the EU, UK, and US, simplifying reconciliation and improving visibility into regional cash positions."
+        },
+        "saas": {
+          "title": "SaaS Company",
+          "text": "A SaaS company serving global enterprise clients adopts Stablecoin Checkout for contract billing, dramatically reducing invoice settlement times from 5 days to under 5 minutes."
+        },
+        "consulting": {
+          "title": "Consulting Firm",
+          "text": "A multinational consultancy assigns virtual accounts per client project, enabling clearer cash flow tracking and faster financial close processes across regions."
+        }
+      }
+    }
   }
 }

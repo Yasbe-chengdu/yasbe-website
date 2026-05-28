@@ -514,5 +514,126 @@ export default {
       "cookiesPolicy": { "title": "Cookie 政策" }
     },
     "contentPlaceholder": "內容即將推出..."
+  },
+  "treasury": {
+      "cta": {
+        "tryForFree": "免費試用"
+      },
+      "hero": {
+        "titleLight": "現代財務基礎設施",
+        "titleBold": "為全球規模而構建",
+        "subtitle": "YASBe 使財務團隊能夠控制流動性、管理多貨幣運營，並在一個無縫平台上簡化跨境支付。",
+        "deviceAlt": "YASBe 財務平台儀表板"
+      },
+      "challenges": {
+        "title": "財務團隊的主要挑戰",
+        "subtitle": "從銀行分散到跨境延誤，這些都是影響效率和增長的常見障礙。",
+        "items": {
+          "fragmentation": {
+            "title": "銀行分散化",
+            "text": "分散的銀行關係和有限的主要貨幣命名帳戶存取"
+          },
+          "delays": {
+            "title": "付款延遲",
+            "text": "跨境付款延遲，導致營運資金效率低下"
+          },
+          "reconciliation": {
+            "title": "對帳複雜性",
+            "text": "多方支付的複雜對帳"
+          },
+          "access": {
+            "title": "存取限制",
+            "text": "由於銀行營業時間和地理限制，實時存取資金受限"
+          }
+        }
+      },
+      "solution": {
+        "title": "YASBe 解決方案",
+        "items": {
+          "virtualAccounts": {
+            "title": "虛擬帳戶：結構、控制和大規模對帳",
+            "intro": "YASBe 提供以企業名義開設的虛擬帳戶，涵蓋主要貨幣（EUR、GBP、USD），使財務主管能夠：",
+            "bullet1": "為每個實體、地區或業務線開設唯一帳戶",
+            "bullet2": "按項目或業務部門追蹤資金，實現精細化財務監督",
+            "bullet3": "自動對客戶、合作夥伴或子公司的來款進行對帳",
+            "bullet4": "通過更清晰的資金流簡化審計和合規",
+            "bullet5": "改善營運資金可見性和流動性預測"
+          },
+          "collectionPayout": {
+            "title": "全球收款與付款：統一的全球財務運營",
+            "intro": "YASBe 的全球支付網絡支援 20 多個國家的收款和付款，使得：",
+            "bullet1": "更快地與上游供應商、業務合作夥伴和客戶進行結算",
+            "bullet2": "跨司法管轄區統一財務運營，減少對當地銀行的依賴",
+            "bullet3": "通過多貨幣支援和本地支付網絡優化外匯",
+            "bullet4": "在單一平台上實現對資金流入和流出的端到端可見性"
+          },
+          "stablecoin": {
+            "title": "穩定幣結算：24/7 流動性和無國界增長",
+            "intro": "YASBe 使企業能夠接受穩定幣（例如 USDT、USDC、EURC）並即時以法幣結算，從而實現：",
+            "bullet1": "即使在週末和節假日也能實時存取資金",
+            "bullet2": "比 SWIFT 或傳統支付網絡更快的跨境結算",
+            "bullet3": "直接將法幣提現至您自己的或第三方的銀行帳戶",
+            "bullet4": "通過區塊鏈和 KYT 審核增強安全性和透明度"
+          }
+        }
+      },
+      "benefits": {
+        "title": "主要優勢",
+        "items": {
+          "offramp": {
+            "title": "一站式法幣提現",
+            "text": "無縫轉換為法幣，並存入您公司自己的命名帳戶或第三方帳戶。"
+          },
+          "security": {
+            "title": "增強的安全性與透明度",
+            "text": "通過啟用 KYT 的交易監控實現鏈上可追溯性。"
+          },
+          "globe": {
+            "title": "無地域限制",
+            "text": "全球接收付款，無需依賴支付基礎設施，即可進入新市場。"
+          },
+          "stable": {
+            "title": "可預測的價值",
+            "text": "與法幣掛鉤，穩定幣消除了加密支付相關的波動性。"
+          }
+        }
+      },
+      "goals": {
+        "title": "從目標到結果",
+        "goalColumn": "財務目標",
+        "deliversColumn": "YASBe 提供",
+        "rows": {
+          "centralizedLiquidity": "集中流動性管理",
+          "realTimeVisibility": "實時財務可見性",
+          "workingCapital": "更快獲取營運資金",
+          "operationalEfficiency": "運營效率",
+          "expansion": "擴展至新市場"
+        },
+        "delivers": {
+          "centralizedLiquidity": "多種貨幣的命名虛擬帳戶",
+          "realTimeVisibility": "具有即時數據的全球收款與付款平台",
+          "workingCapital": "24/7 穩定幣結算和法幣提現",
+          "operationalEfficiency": "自動對帳，減少人工工作量",
+          "expansion": "本地支付網絡 + 穩定幣，消除跨境摩擦"
+        }
+      },
+      "cases": {
+        "title": "跨行業應用場景",
+        "subtitle": "了解各行業的組織如何從 YASBe 平台中受益。",
+        "items": {
+          "logistics": {
+            "title": "物流公司",
+            "text": "一家全球物流公司使用虛擬帳戶管理來自歐盟、英國和美國客戶的付款，簡化對帳並提高區域現金狀況的可見性。"
+          },
+          "saas": {
+            "title": "SaaS 公司",
+            "text": "一家服務全球企業客戶的 SaaS 公司採用穩定幣結算進行合約帳單，將發票結算時間從 5 天大幅縮短至 5 分鐘以內。"
+          },
+          "consulting": {
+            "title": "諮詢公司",
+            "text": "一家跨國諮詢公司為每個客戶項目分配虛擬帳戶，實現更清晰的現金流追蹤和更快速的跨區域財務結算流程。"
+          }
+        }
+      }
+    }
   }
-}

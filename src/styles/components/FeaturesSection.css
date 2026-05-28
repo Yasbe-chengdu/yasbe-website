@@ -626,8 +626,13 @@
   }
 
   .features__visual {
-    flex: 0 0 350px;
+    flex: 0 0 clamp(330px, 92vw, 372px);
     border-radius: 18px;
+  }
+
+  .features__visual--dark {
+    align-items: center;
+    justify-content: center;
   }
 
   .features__info {
@@ -644,22 +649,38 @@
   }
 
   .exchange-card__main {
-    width: min(100%, 280px);
+    width: min(100%, 320px);
     max-width: none;
     height: auto;
-    aspect-ratio: 452 / 377;
+    aspect-ratio: 452 / 426;
     border-radius: 20px;
   }
 
   .exchange-card__users {
-    gap: 8px;
+    gap: 10px;
   }
 
   .exchange-card__user {
-    width: 56px;
-    height: 56px;
-    border-radius: 14px;
+    width: 76px;
+    height: 76px;
+    border-radius: 18px;
     flex: 0 0 auto;
+  }
+
+  .exchange-card__users--top {
+    top: -34px;
+  }
+
+  .exchange-card__users--bottom {
+    bottom: -34px;
+  }
+
+  .exchange-card__arrow {
+    height: 38px;
+  }
+
+  .exchange-card__arrow--up {
+    top: 13px;
   }
 
   .exchange-card__arrow img {
@@ -669,7 +690,7 @@
 
   .exchange-card__content {
     border-radius: 20px;
-    padding: 14px 10px 10px;
+    padding: 16px 12px 12px;
   }
 
   .exchange-card__glow {
@@ -722,7 +743,7 @@
   }
 
   .exchange-input__value-field {
-    width: 112px;
+    width: min(42vw, 136px);
   }
 
   .exchange-input__dropdown {
