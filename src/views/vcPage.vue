@@ -32,16 +32,16 @@
             <section class="treasury-challenges">
                 <div class="treasury-challenges__content">
                     <div v-reveal class="treasury-section__header">
-                        <h2 class="treasury-heading treasury-heading--white">{{ $t('treasury.challenges.title') }}</h2>
-                        <p class="treasury-section__subtitle treasury-section__subtitle--white">{{ $t('treasury.challenges.subtitle') }}</p>
+                        <h2 class="treasury-heading treasury-heading--white">{{ challengesContent.title }}</h2>
+                        <p class="treasury-section__subtitle treasury-section__subtitle--white">{{ challengesContent.subtitle }}</p>
                     </div>
                     <div class="treasury-challenges__grid">
                         <article v-for="(challenge, index) in challenges" :key="challenge.key"
                             v-reveal="{ delay: index * 60, distance: 28 }"
                             class="treasury-challenge-card">
                             <img :src="challenge.icon" alt="" class="treasury-challenge-card__icon" aria-hidden="true" loading="lazy" decoding="async" />
-                            <h3>{{ $t(challenge.titleKey) }}</h3>
-                            <p>{{ $t(challenge.textKey) }}</p>
+                            <h3>{{ challenge.title }}</h3>
+                            <p>{{ challenge.text }}</p>
                         </article>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
             <!-- YASBe Solution Section (Accordion) -->
             <section class="treasury-solution">
                 <div class="treasury-section__inner">
-                    <h2 v-reveal class="treasury-heading">{{ $t('treasury.solution.title') }}</h2>
+                    <h2 v-reveal class="treasury-heading">{{ solutionContent.title }}</h2>
                     <div class="treasury-solution__accordion">
                         <article v-for="(item, index) in solutionItems" :key="item.number"
                             v-reveal="{ delay: index * 60, distance: 24 }"
@@ -64,7 +64,7 @@
                             @keydown.space.prevent="toggleAccordion(index)">
                             <div class="treasury-accordion-item__header">
                                 <span class="treasury-accordion-item__number">{{ item.number }}</span>
-                                <h3>{{ $t(item.titleKey) }}</h3>
+                                <h3>{{ item.title }}</h3>
                                 <span class="treasury-accordion-item__arrow" aria-hidden="true">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                         <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -73,9 +73,9 @@
                             </div>
                             <div class="treasury-accordion-item__content">
                                 <div class="treasury-accordion-item__content-inner">
-                                    <p class="treasury-accordion-item__intro">{{ $t(item.introKey) }}</p>
-                                    <ul class="treasury-accordion-item__bullets">
-                                        <li v-for="bullet in item.bullets" :key="bullet">{{ $t(bullet) }}</li>
+                                    <p class="treasury-accordion-item__intro">{{ item.intro }}</p>
+                                    <ul v-if="item.bullets.length" class="treasury-accordion-item__bullets">
+                                        <li v-for="bullet in item.bullets" :key="bullet">{{ bullet }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -84,33 +84,18 @@
                 </div>
             </section>
 
-            <!-- Stablecoin Checkout Benefits Section -->
-            <section class="treasury-benefits">
-                <div class="treasury-section__inner">
-                    <h2 v-reveal class="treasury-heading">{{ $t('treasury.benefits.title') }}</h2>
-                    <div class="treasury-benefits__grid">
-                        <article v-for="(benefit, index) in benefits" :key="benefit.key"
-                            v-reveal="{ delay: index * 60, distance: 32 }"
-                            class="treasury-benefit-card">
-                            <img :src="benefit.icon" alt="" class="treasury-benefit-card__icon" aria-hidden="true" loading="lazy" decoding="async" />
-                            <h3>{{ $t(benefit.titleKey) }}</h3>
-                            <p>{{ $t(benefit.textKey) }}</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
 
             <!-- From Goal to Outcome Section -->
             <section class="treasury-goals">
                 <div class="treasury-section__inner">
-                    <h2 v-reveal class="treasury-heading">{{ $t('treasury.goals.title') }}</h2>
+                    <h2 v-reveal class="treasury-heading">{{ goalsContent.title }}</h2>
                     <div v-reveal="{ delay: 80 }" class="treasury-goals__comparison">
                         <article class="treasury-goals-card treasury-goals-card--light">
-                            <h3>{{ $t('treasury.goals.goalColumn') }}</h3>
+                            <h3>{{ goalsContent.goalColumn }}</h3>
                             <ul class="treasury-goals__list">
-                                <li v-for="row in goalRows" :key="row.goalKey">
+                                <li v-for="row in goalRows" :key="row.goal">
                                     <span class="treasury-goals__check" aria-hidden="true"></span>
-                                    <span>{{ $t(row.goalKey) }}</span>
+                                    <span>{{ row.goal }}</span>
                                 </li>
                             </ul>
                         </article>
@@ -122,11 +107,11 @@
                             </svg>
                         </div>
                         <article class="treasury-goals-card treasury-goals-card--dark">
-                            <h3>{{ $t('treasury.goals.deliversColumn') }}</h3>
+                            <h3>{{ goalsContent.deliversColumn }}</h3>
                             <ul class="treasury-goals__list">
-                                <li v-for="row in goalRows" :key="row.deliverKey">
+                                <li v-for="row in goalRows" :key="row.deliver">
                                     <span class="treasury-goals__check" aria-hidden="true"></span>
-                                    <span>{{ $t(row.deliverKey) }}</span>
+                                    <span>{{ row.deliver }}</span>
                                 </li>
                             </ul>
                         </article>
@@ -138,17 +123,28 @@
             <section class="treasury-cases">
                 <div class="treasury-section__inner">
                     <div v-reveal class="treasury-cases__header">
-                        <h2 class="treasury-heading">{{ $t('treasury.cases.title') }}</h2>
-                        <p class="treasury-section__subtitle">{{ $t('treasury.cases.subtitle') }}</p>
+                        <h2 class="treasury-heading">{{ casesContent.title }}</h2>
+                        <p class="treasury-section__subtitle">{{ casesContent.subtitle }}</p>
                     </div>
                     <div class="treasury-cases__list">
                         <article v-for="(item, index) in useCases" :key="item.key"
                             v-reveal="{ delay: index * 80, distance: 28 }"
                             class="treasury-case-row">
-                            <h3>{{ $t(item.titleKey) }}</h3>
-                            <p>{{ $t(item.textKey) }}</p>
+                            <h3>{{ item.title }}</h3>
+                            <p>{{ item.text }}</p>
                         </article>
                     </div>
+                </div>
+            </section>
+
+            <!-- Strategic Vision Section -->
+            <section class="vc-strategy">
+                <div class="treasury-section__inner">
+                    <article v-reveal="{ distance: 24 }" class="vc-strategy-card">
+                        <img :src="strategicVision.icon" alt="" class="vc-strategy-card__icon" aria-hidden="true" loading="lazy" decoding="async" />
+                        <h2>{{ strategicVision.title }}</h2>
+                        <p>{{ strategicVision.text }}</p>
+                    </article>
                 </div>
             </section>
         </main>
@@ -186,50 +182,82 @@ const createIcon = (name) => {
         logistics: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="10" width="32" height="20" rx="4" stroke="#1D1D1F" stroke-width="2.5" opacity="0.3"/><circle cx="12" cy="30" r="4" stroke="#1D1D1F" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="30" r="4" stroke="#1D1D1F" stroke-width="2.5" opacity="0.5"/></svg>`,
         saas: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="32" height="24" rx="4" stroke="#1D1D1F" stroke-width="2.5" opacity="0.3"/><rect x="10" y="10" width="20" height="12" rx="2" stroke="#1D1D1F" stroke-width="2" opacity="0.5"/><path d="M14 34h12" stroke="#1D1D1F" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/><path d="M20 28v6" stroke="#1D1D1F" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/></svg>`,
         consulting: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 36H6V16L20 4L34 16v20H26" stroke="#1D1D1F" stroke-width="2.5" opacity="0.3"/><path d="M16 28h8M16 22h8" stroke="#1D1D1F" stroke-width="2" stroke-linecap="round" opacity="0.5"/><rect x="20" y="26" width="8" height="10" rx="2" stroke="#1D1D1F" stroke-width="2.5" opacity="0.5"/></svg>`,
+        strategy: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 6L31 13L27 17H21L17 13L24 6Z" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/><path d="M21 17L17 31H31L27 17" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/><path d="M15 31H33L38 40H10L15 31Z" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/><path d="M24 6V17" stroke="#FFCA00" stroke-width="3" stroke-linecap="round"/></svg>`,
     }
     return 'data:image/svg+xml,' + encodeURIComponent(icons[name] || icons.fragmentation)
 }
 
+const challengesContent = {
+    title: 'Challenges for VC & Investment Funds',
+    subtitle: 'From liquidity lockups to deal competition, today’s VC and investment firms face mounting pressure to deploy capital wisely and secure long-term returns.',
+}
+
 const challenges = [
-    { key: 'fragmentation', icon: createIcon('fragmentation'), titleKey: 'treasury.challenges.items.fragmentation.title', textKey: 'treasury.challenges.items.fragmentation.text' },
-    { key: 'payment', icon: createIcon('payment'), titleKey: 'treasury.challenges.items.delays.title', textKey: 'treasury.challenges.items.delays.text' },
-    { key: 'reconciliation', icon: createIcon('reconciliation'), titleKey: 'treasury.challenges.items.reconciliation.title', textKey: 'treasury.challenges.items.reconciliation.text' },
-    { key: 'access', icon: createIcon('access'), titleKey: 'treasury.challenges.items.access.title', textKey: 'treasury.challenges.items.access.text' },
+    {
+        key: 'dueDiligenceRiskAssessment',
+        icon: createIcon('security'),
+        title: 'Due Diligence & Risk Assessment',
+        text: 'Identifying high-potential investments while minimizing the risk of failure. Ensuring a thorough vetting process for startups or businesses seeking funding.',
+    },
+    {
+        key: 'liquidityConstraints',
+        icon: createIcon('fragmentation'),
+        title: 'Liquidity Constraints',
+        text: 'VC funds typically require a longer-term commitment to investments (often 5-10 years), making liquidity a challenge for fund managers and investors.',
+    },
+    {
+        key: 'investmentCompetition',
+        icon: createIcon('globe'),
+        title: 'Competition for Investment Opportunities',
+        text: 'As more VC firms enter the market, competition for high-quality deals increases, often leading to higher valuations and tighter margins.',
+    },
+    {
+        key: 'exitStrategies',
+        icon: createIcon('reconciliation'),
+        title: 'Exit Strategies',
+        text: 'Determining the right exit strategy (e.g., IPO, acquisition) and timing to ensure that returns are maximized can be challenging.',
+    },
 ]
+
+const solutionContent = {
+    title: 'How YASBe Can Help VC & Investment Funds:',
+}
 
 const solutionItems = [
     {
         number: '01',
-        titleKey: 'treasury.solution.items.virtualAccounts.title',
-        introKey: 'treasury.solution.items.virtualAccounts.intro',
-        bullets: [
-            'treasury.solution.items.virtualAccounts.bullet1',
-            'treasury.solution.items.virtualAccounts.bullet2',
-            'treasury.solution.items.virtualAccounts.bullet3',
-            'treasury.solution.items.virtualAccounts.bullet4',
-            'treasury.solution.items.virtualAccounts.bullet5',
-        ],
+        title: 'Seamless Access to Both Digital and Traditional Assets',
+        intro: 'YASBe’s platform offers institutional-grade access to both crypto and traditional assets (e.g., real estate, crypto mining farms, yield-generating funds). This allows VCs and investment funds to create diversified portfolios that span multiple asset classes without the complexities typically involved in managing both.',
+        bullets: [],
     },
     {
         number: '02',
-        titleKey: 'treasury.solution.items.collectionPayout.title',
-        introKey: 'treasury.solution.items.collectionPayout.intro',
+        title: 'Enhanced Liquidity and Access to Portfolio Diversification',
+        intro: 'YASBe helps VC and investment funds broaden portfolio exposure while improving access to liquidity across digital and traditional finance opportunities.',
         bullets: [
-            'treasury.solution.items.collectionPayout.bullet1',
-            'treasury.solution.items.collectionPayout.bullet2',
-            'treasury.solution.items.collectionPayout.bullet3',
-            'treasury.solution.items.collectionPayout.bullet4',
+            'Access diversified opportunities across crypto, real-world assets, and yield-generating structures.',
+            'Reduce operational friction when managing allocations across multiple asset categories.',
+            'Improve liquidity options for funds seeking more flexible capital deployment.',
         ],
     },
     {
         number: '03',
-        titleKey: 'treasury.solution.items.stablecoin.title',
-        introKey: 'treasury.solution.items.stablecoin.intro',
+        title: 'Stablecoin Check: Instant Settlements and Borderless Transactions',
+        intro: 'YASBe supports stablecoin-based settlement flows that help funds move capital across borders with greater speed and fewer traditional banking constraints.',
         bullets: [
-            'treasury.solution.items.stablecoin.bullet1',
-            'treasury.solution.items.stablecoin.bullet2',
-            'treasury.solution.items.stablecoin.bullet3',
-            'treasury.solution.items.stablecoin.bullet4',
+            'Settle investment-related transactions quickly across time zones.',
+            'Reduce delays caused by banking hours, cut-off times, and intermediary institutions.',
+            'Support borderless movement of capital for global investment opportunities.',
+        ],
+    },
+    {
+        number: '04',
+        title: 'Support for Disruptive Technologies and the Crypto Ecosystem',
+        intro: 'YASBe gives investment teams the tools to participate in emerging crypto and digital-asset opportunities while maintaining a bridge to traditional finance.',
+        bullets: [
+            'Support investment strategies focused on disruptive technologies and crypto-native businesses.',
+            'Connect digital asset workflows with fiat settlement and traditional operating needs.',
+            'Give funds a flexible foundation for future-facing investment mandates.',
         ],
     },
 ]
@@ -241,21 +269,65 @@ const benefits = [
     { key: 'stable', icon: createIcon('stable'), titleKey: 'treasury.benefits.items.stable.title', textKey: 'treasury.benefits.items.stable.text' },
 ]
 
+const goalsContent = {
+    title: 'From Goal to Outcome',
+    goalColumn: 'Business Goal',
+    deliversColumn: 'YASBe Delivers',
+}
+
 const goalRows = [
-    { goalKey: 'treasury.goals.rows.centralizedLiquidity', deliverKey: 'treasury.goals.delivers.centralizedLiquidity' },
-    { goalKey: 'treasury.goals.rows.realTimeVisibility', deliverKey: 'treasury.goals.delivers.realTimeVisibility' },
-    { goalKey: 'treasury.goals.rows.workingCapital', deliverKey: 'treasury.goals.delivers.workingCapital' },
-    { goalKey: 'treasury.goals.rows.operationalEfficiency', deliverKey: 'treasury.goals.delivers.operationalEfficiency' },
-    { goalKey: 'treasury.goals.rows.expansion', deliverKey: 'treasury.goals.delivers.expansion' },
+    {
+        goal: 'Simplified Cross-Border Payments',
+        deliver: 'Global Collection & Payout reduces complexity and fees for international payments',
+    },
+    {
+        goal: 'Improved Cash Flow & Access to Funds',
+        deliver: 'Improved Cash Flow & Access to Funds',
+    },
+    {
+        goal: 'Currency Risk Mitigation',
+        deliver: 'Stablecoins reduce exposure to exchange rate fluctuations, ensuring stable payments',
+    },
+    {
+        goal: 'Enhanced Financial Control',
+        deliver: 'Enhanced Financial Control',
+    },
+    {
+        goal: 'Seamless Project Financial Management',
+        deliver: 'Seamless Project Financial Management',
+    },
 ]
 
+const casesContent = {
+    title: 'Use Cases Across Industries',
+    subtitle: "See how organizations across sectors benefit from YASBe's platform.",
+}
+
 const useCases = [
-    { key: 'logistics', icon: createIcon('logistics'), titleKey: 'treasury.cases.items.logistics.title', textKey: 'treasury.cases.items.logistics.text' },
-    { key: 'saas', icon: createIcon('saas'), titleKey: 'treasury.cases.items.saas.title', textKey: 'treasury.cases.items.saas.text' },
-    { key: 'consulting', icon: createIcon('consulting'), titleKey: 'treasury.cases.items.consulting.title', textKey: 'treasury.cases.items.consulting.text' },
+    {
+        key: 'taxAdvisoryFirm',
+        title: 'Tax Advisory Firm',
+        text: 'A tax advisory firm uses YASBe Virtual Accounts to manage client payments across the EU, UK, and US. Each virtual account is tied to a specific jurisdiction, simplifying tax reporting and reconciliation while ensuring funds are available in the correct currencies.',
+    },
+    {
+        key: 'consultingFirm',
+        title: 'Consulting Firm',
+        text: 'A global management consulting firm uses YASBe’s Global Collection & Payout to manage payments from clients in Asia, Europe, and the US. The firm can collect payments in local currencies, eliminating cross-border transfer fees and accessing funds in real time.',
+    },
+    {
+        key: 'accountingFirm',
+        title: 'Accounting Firm',
+        text: 'An accounting firm that works with international clients adopts YASBe’s Stablecoin payments to receive fees for services rendered. This enables them to receive payments outside of traditional banking hours, reducing delays and giving clients more flexibility in paying their invoices.',
+    },
 ]
+
+const strategicVision = {
+    icon: createIcon('strategy'),
+    title: 'Strategic Vision',
+    text: 'YASBe’s solutions are designed to empower the next generation of investment strategies, giving VCs and investment funds the tools they need to thrive in both the crypto world and traditional finance.',
+}
 
 const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 </script>
 
-<style scoped src="../styles/views/TreasuryView.css"></style>
+<style scoped src="../styles/views/vcPage.css"></style>

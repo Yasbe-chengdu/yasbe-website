@@ -32,16 +32,16 @@
             <section class="treasury-challenges">
                 <div class="treasury-challenges__content">
                     <div v-reveal class="treasury-section__header">
-                        <h2 class="treasury-heading treasury-heading--white">{{ $t('treasury.challenges.title') }}</h2>
-                        <p class="treasury-section__subtitle treasury-section__subtitle--white">{{ $t('treasury.challenges.subtitle') }}</p>
+                        <h2 class="treasury-heading treasury-heading--white">{{ challengesContent.title }}</h2>
+                        <p class="treasury-section__subtitle treasury-section__subtitle--white">{{ challengesContent.subtitle }}</p>
                     </div>
                     <div class="treasury-challenges__grid">
                         <article v-for="(challenge, index) in challenges" :key="challenge.key"
                             v-reveal="{ delay: index * 60, distance: 28 }"
                             class="treasury-challenge-card">
                             <img :src="challenge.icon" alt="" class="treasury-challenge-card__icon" aria-hidden="true" loading="lazy" decoding="async" />
-                            <h3>{{ $t(challenge.titleKey) }}</h3>
-                            <p>{{ $t(challenge.textKey) }}</p>
+                            <h3>{{ challenge.title }}</h3>
+                            <p>{{ challenge.text }}</p>
                         </article>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
             <!-- YASBe Solution Section (Accordion) -->
             <section class="treasury-solution">
                 <div class="treasury-section__inner">
-                    <h2 v-reveal class="treasury-heading">{{ $t('treasury.solution.title') }}</h2>
+                    <h2 v-reveal class="treasury-heading">{{ solutionContent.title }}</h2>
                     <div class="treasury-solution__accordion">
                         <article v-for="(item, index) in solutionItems" :key="item.number"
                             v-reveal="{ delay: index * 60, distance: 24 }"
@@ -64,7 +64,7 @@
                             @keydown.space.prevent="toggleAccordion(index)">
                             <div class="treasury-accordion-item__header">
                                 <span class="treasury-accordion-item__number">{{ item.number }}</span>
-                                <h3>{{ $t(item.titleKey) }}</h3>
+                                <h3>{{ item.title }}</h3>
                                 <span class="treasury-accordion-item__arrow" aria-hidden="true">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                         <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -73,9 +73,9 @@
                             </div>
                             <div class="treasury-accordion-item__content">
                                 <div class="treasury-accordion-item__content-inner">
-                                    <p class="treasury-accordion-item__intro">{{ $t(item.introKey) }}</p>
+                                    <p class="treasury-accordion-item__intro">{{ item.intro }}</p>
                                     <ul class="treasury-accordion-item__bullets">
-                                        <li v-for="bullet in item.bullets" :key="bullet">{{ $t(bullet) }}</li>
+                                        <li v-for="bullet in item.bullets" :key="bullet">{{ bullet }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -84,33 +84,18 @@
                 </div>
             </section>
 
-            <!-- Stablecoin Checkout Benefits Section -->
-            <section class="treasury-benefits">
-                <div class="treasury-section__inner">
-                    <h2 v-reveal class="treasury-heading">{{ $t('treasury.benefits.title') }}</h2>
-                    <div class="treasury-benefits__grid">
-                        <article v-for="(benefit, index) in benefits" :key="benefit.key"
-                            v-reveal="{ delay: index * 60, distance: 32 }"
-                            class="treasury-benefit-card">
-                            <img :src="benefit.icon" alt="" class="treasury-benefit-card__icon" aria-hidden="true" loading="lazy" decoding="async" />
-                            <h3>{{ $t(benefit.titleKey) }}</h3>
-                            <p>{{ $t(benefit.textKey) }}</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
 
             <!-- From Goal to Outcome Section -->
             <section class="treasury-goals">
                 <div class="treasury-section__inner">
-                    <h2 v-reveal class="treasury-heading">{{ $t('treasury.goals.title') }}</h2>
+                    <h2 v-reveal class="treasury-heading">{{ goalsContent.title }}</h2>
                     <div v-reveal="{ delay: 80 }" class="treasury-goals__comparison">
                         <article class="treasury-goals-card treasury-goals-card--light">
-                            <h3>{{ $t('treasury.goals.goalColumn') }}</h3>
+                            <h3>{{ goalsContent.goalColumn }}</h3>
                             <ul class="treasury-goals__list">
-                                <li v-for="row in goalRows" :key="row.goalKey">
+                                <li v-for="row in goalRows" :key="row.goal">
                                     <span class="treasury-goals__check" aria-hidden="true"></span>
-                                    <span>{{ $t(row.goalKey) }}</span>
+                                    <span>{{ row.goal }}</span>
                                 </li>
                             </ul>
                         </article>
@@ -122,11 +107,11 @@
                             </svg>
                         </div>
                         <article class="treasury-goals-card treasury-goals-card--dark">
-                            <h3>{{ $t('treasury.goals.deliversColumn') }}</h3>
+                            <h3>{{ goalsContent.deliversColumn }}</h3>
                             <ul class="treasury-goals__list">
-                                <li v-for="row in goalRows" :key="row.deliverKey">
+                                <li v-for="row in goalRows" :key="row.deliver">
                                     <span class="treasury-goals__check" aria-hidden="true"></span>
-                                    <span>{{ $t(row.deliverKey) }}</span>
+                                    <span>{{ row.deliver }}</span>
                                 </li>
                             </ul>
                         </article>
@@ -138,15 +123,15 @@
             <section class="treasury-cases">
                 <div class="treasury-section__inner">
                     <div v-reveal class="treasury-cases__header">
-                        <h2 class="treasury-heading">{{ $t('treasury.cases.title') }}</h2>
-                        <p class="treasury-section__subtitle">{{ $t('treasury.cases.subtitle') }}</p>
+                        <h2 class="treasury-heading">{{ casesContent.title }}</h2>
+                        <p class="treasury-section__subtitle">{{ casesContent.subtitle }}</p>
                     </div>
                     <div class="treasury-cases__list">
                         <article v-for="(item, index) in useCases" :key="item.key"
                             v-reveal="{ delay: index * 80, distance: 28 }"
                             class="treasury-case-row">
-                            <h3>{{ $t(item.titleKey) }}</h3>
-                            <p>{{ $t(item.textKey) }}</p>
+                            <h3>{{ item.title }}</h3>
+                            <p>{{ item.text }}</p>
                         </article>
                     </div>
                 </div>
@@ -190,46 +175,74 @@ const createIcon = (name) => {
     return 'data:image/svg+xml,' + encodeURIComponent(icons[name] || icons.fragmentation)
 }
 
+const challengesContent = {
+    title: 'Key Challenges in Import & Export',
+    subtitle: "Cross-border complexity, delayed settlements, and currency risks are common hurdles—here's what global trade teams face every day.",
+}
+
 const challenges = [
-    { key: 'fragmentation', icon: createIcon('fragmentation'), titleKey: 'treasury.challenges.items.fragmentation.title', textKey: 'treasury.challenges.items.fragmentation.text' },
-    { key: 'payment', icon: createIcon('payment'), titleKey: 'treasury.challenges.items.delays.title', textKey: 'treasury.challenges.items.delays.text' },
-    { key: 'reconciliation', icon: createIcon('reconciliation'), titleKey: 'treasury.challenges.items.reconciliation.title', textKey: 'treasury.challenges.items.reconciliation.text' },
-    { key: 'access', icon: createIcon('access'), titleKey: 'treasury.challenges.items.access.title', textKey: 'treasury.challenges.items.access.text' },
+    {
+        key: 'crossBorderPayments',
+        icon: createIcon('fragmentation'),
+        title: 'Complex Cross-Border Payments',
+        text: 'Multiple currencies involved in payments and settlements. Delays in cross-border transfers due to banking hours, correspondent banking inefficiencies, and currency conversion.',
+    },
+    {
+        key: 'cashFlowInefficiencies',
+        icon: createIcon('payment'),
+        title: 'Cash Flow Inefficiencies',
+        text: 'Slow access to funds tied up in international bank accounts, impacting working capital. Difficulty in forecasting and managing liquidity across global markets.',
+    },
+    {
+        key: 'currencyRisks',
+        icon: createIcon('access'),
+        title: 'Currency Risks',
+        text: 'Exposure to exchange rate fluctuations can result in unpredictable costs for suppliers and buyers.',
+    },
+    {
+        key: 'reconciliationIssues',
+        icon: createIcon('reconciliation'),
+        title: 'Reconciliation Issues',
+        text: 'Complexities in reconciling payments and collections from different currencies and jurisdictions.',
+    },
 ]
+
+const solutionContent = {
+    title: 'YASBe Solution',
+}
 
 const solutionItems = [
     {
         number: '01',
-        titleKey: 'treasury.solution.items.virtualAccounts.title',
-        introKey: 'treasury.solution.items.virtualAccounts.intro',
+        title: 'Virtual Accounts: Simplifying Payment Flows and Enhancing Control',
+        intro: "YASBe's Virtual Accounts allow import and export companies to:",
         bullets: [
-            'treasury.solution.items.virtualAccounts.bullet1',
-            'treasury.solution.items.virtualAccounts.bullet2',
-            'treasury.solution.items.virtualAccounts.bullet3',
-            'treasury.solution.items.virtualAccounts.bullet4',
-            'treasury.solution.items.virtualAccounts.bullet5',
+            "Issue accounts in your business's name in multiple currencies (EUR, GBP, USD), eliminating the need to open multiple bank accounts in each region.",
+            'Track funds by project or sector, giving greater clarity on cash flow and simplifying financial reporting.',
+            'Segment and isolate funds for different customers, suppliers, or regions, reducing risk exposure and enabling better cash flow management.',
+            'Streamline reconciliation by having all collections and payments routed through dedicated virtual accounts.',
         ],
     },
     {
         number: '02',
-        titleKey: 'treasury.solution.items.collectionPayout.title',
-        introKey: 'treasury.solution.items.collectionPayout.intro',
+        title: 'Global Collection & Payout: Bridging the Gap Between Markets',
+        intro: "YASBe's global payment rails help import and export teams collect and pay across markets with fewer banking delays.",
         bullets: [
-            'treasury.solution.items.collectionPayout.bullet1',
-            'treasury.solution.items.collectionPayout.bullet2',
-            'treasury.solution.items.collectionPayout.bullet3',
-            'treasury.solution.items.collectionPayout.bullet4',
+            'Collect from international buyers and pay suppliers through connected local and cross-border rails.',
+            'Reduce reliance on separate regional bank accounts while maintaining visibility across markets.',
+            'Support multi-currency settlement flows for smoother supplier, buyer, and partner payments.',
+            'Monitor incoming and outgoing payments from a single platform for clearer operational control.',
         ],
     },
     {
         number: '03',
-        titleKey: 'treasury.solution.items.stablecoin.title',
-        introKey: 'treasury.solution.items.stablecoin.intro',
+        title: 'Stablecoin Check: Instant Settlements and Borderless Transactions',
+        intro: 'YASBe enables stablecoin-based settlement flows for faster cross-border transactions and improved payment flexibility.',
         bullets: [
-            'treasury.solution.items.stablecoin.bullet1',
-            'treasury.solution.items.stablecoin.bullet2',
-            'treasury.solution.items.stablecoin.bullet3',
-            'treasury.solution.items.stablecoin.bullet4',
+            'Settle transactions faster across time zones, including outside traditional banking hours.',
+            'Reduce delays caused by intermediary banks and cross-border payment cut-off times.',
+            'Convert stablecoin payments into fiat when funds need to move back into operating accounts.',
+            'Improve transaction transparency with blockchain-based payment records and screening.',
         ],
     },
 ]
@@ -241,21 +254,59 @@ const benefits = [
     { key: 'stable', icon: createIcon('stable'), titleKey: 'treasury.benefits.items.stable.title', textKey: 'treasury.benefits.items.stable.text' },
 ]
 
+const goalsContent = {
+    title: 'From Goal to Outcome',
+    goalColumn: 'Business Goal',
+    deliversColumn: 'YASBe Delivers',
+}
+
 const goalRows = [
-    { goalKey: 'treasury.goals.rows.centralizedLiquidity', deliverKey: 'treasury.goals.delivers.centralizedLiquidity' },
-    { goalKey: 'treasury.goals.rows.realTimeVisibility', deliverKey: 'treasury.goals.delivers.realTimeVisibility' },
-    { goalKey: 'treasury.goals.rows.workingCapital', deliverKey: 'treasury.goals.delivers.workingCapital' },
-    { goalKey: 'treasury.goals.rows.operationalEfficiency', deliverKey: 'treasury.goals.delivers.operationalEfficiency' },
-    { goalKey: 'treasury.goals.rows.expansion', deliverKey: 'treasury.goals.delivers.expansion' },
+    {
+        goal: 'Simplify Cross-Border Payments',
+        deliver: 'Virtual Accounts in multiple currencies for seamless collections and payouts',
+    },
+    {
+        goal: 'Improve Cash Flow Management',
+        deliver: 'Near-instant settlements with Stablecoin checkout, allowing quicker access to working capital',
+    },
+    {
+        goal: 'Reduce Currency Risk',
+        deliver: 'Stablecoins pegged to fiat reduce volatility in international transactions',
+    },
+    {
+        goal: 'Streamline Reconciliation',
+        deliver: 'Dedicated virtual accounts for each region, simplifying accounting processes',
+    },
+    {
+        goal: 'Expand Global Operations',
+        deliver: 'Easy access to local payment rails and fiat off-ramps across borders',
+    },
 ]
 
+const casesContent = {
+    title: 'Use Cases Across Industries',
+    subtitle: "See how organizations across sectors benefit from YASBe's platform.",
+}
+
 const useCases = [
-    { key: 'logistics', icon: createIcon('logistics'), titleKey: 'treasury.cases.items.logistics.title', textKey: 'treasury.cases.items.logistics.text' },
-    { key: 'saas', icon: createIcon('saas'), titleKey: 'treasury.cases.items.saas.title', textKey: 'treasury.cases.items.saas.text' },
-    { key: 'consulting', icon: createIcon('consulting'), titleKey: 'treasury.cases.items.consulting.title', textKey: 'treasury.cases.items.consulting.text' },
+    {
+        key: 'importCompany',
+        title: 'Import Company',
+        text: 'An import company based in the US expands operations in South America and Africa, using YASBe to simplify payout and collections, and reduce the time and cost involved in transferring funds across borders.',
+    },
+    {
+        key: 'electronicsExporter',
+        title: 'Electronics Exporter',
+        text: 'A Hong Kong-based exporter of electronics adopts Stablecoin checkout to accept payments from global clients, enabling them to instantly settle transactions across time zones and reinvest in new inventory without waiting for bank processing.',
+    },
+    {
+        key: 'ecommerceCompany',
+        title: 'E-commerce Company',
+        text: 'An e-commerce company consolidates supplier payments and customer collections across APAC, EMEA, and the Americas, using YASBe to streamline treasury operations while reducing FX and bank fees.',
+    },
 ]
 
 const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 </script>
 
-<style scoped src="../styles/views/TreasuryView.css"></style>
+<style scoped src="../styles/views/ImportExport.css"></style>

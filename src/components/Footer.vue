@@ -42,10 +42,10 @@
           <div v-reveal="{ delay: 180 }" class="footer__column">
             <h4 class="footer__heading">{{ $t('footer.useCases.heading') }}</h4>
             <RouterLink to="/treasury" class="footer__link">{{ $t('footer.useCases.treasury') }}</RouterLink>
-            <span class="footer__link">{{ $t('footer.useCases.importExport') }}</span>
-            <span class="footer__link">{{ $t('footer.useCases.services') }}</span>
-            <span class="footer__link">{{ $t('footer.useCases.vc') }}</span>
-            <span class="footer__link">{{ $t('footer.useCases.crypto') }}</span>
+            <!-- <RouterLink to="/importExport" class="footer__link">{{ $t('footer.useCases.importExport') }}</RouterLink>
+            <RouterLink to="/servicesPage" class="footer__link">{{ $t('footer.useCases.services') }}</RouterLink>
+            <RouterLink to="/vcPage" class="footer__link">{{ $t('footer.useCases.vc') }}</RouterLink>
+            <RouterLink to="/cryptoPage" class="footer__link">{{ $t('footer.useCases.crypto') }}</RouterLink> -->
           </div>
 
           <div v-reveal="{ delay: 240 }" class="footer__column">

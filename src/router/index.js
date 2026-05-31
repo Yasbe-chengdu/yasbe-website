@@ -53,6 +53,26 @@ const router = createRouter({
       name: 'treasury',
       component: () => import('../views/TreasuryView.vue'),
     },
+    {
+      path: '/importExport',
+      name: 'importExport',
+      component: () => import('../views/ImportExport.vue'),
+    },
+    {
+      path: '/servicesPage',
+      name: 'servicesPage',
+      component: () => import('../views/servicesPage.vue'),
+    },
+    {
+      path: '/vcPage',
+      name: 'vcPage',
+      component: () => import('../views/vcPage.vue'),
+    },
+    {
+      path: '/cryptoPage',
+      name: 'cryptoPage',
+      component: () => import('../views/cryptoPage.vue'),
+    },
   ],
   scrollBehavior(to) {
     if (to.hash) {

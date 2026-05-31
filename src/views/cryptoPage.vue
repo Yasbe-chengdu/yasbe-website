@@ -32,16 +32,16 @@
             <section class="treasury-challenges">
                 <div class="treasury-challenges__content">
                     <div v-reveal class="treasury-section__header">
-                        <h2 class="treasury-heading treasury-heading--white">{{ $t('treasury.challenges.title') }}</h2>
-                        <p class="treasury-section__subtitle treasury-section__subtitle--white">{{ $t('treasury.challenges.subtitle') }}</p>
+                        <h2 class="treasury-heading treasury-heading--white">{{ challengesContent.title }}</h2>
+                        <p class="treasury-section__subtitle treasury-section__subtitle--white">{{ challengesContent.subtitle }}</p>
                     </div>
                     <div class="treasury-challenges__grid">
                         <article v-for="(challenge, index) in challenges" :key="challenge.key"
                             v-reveal="{ delay: index * 60, distance: 28 }"
                             class="treasury-challenge-card">
                             <img :src="challenge.icon" alt="" class="treasury-challenge-card__icon" aria-hidden="true" loading="lazy" decoding="async" />
-                            <h3>{{ $t(challenge.titleKey) }}</h3>
-                            <p>{{ $t(challenge.textKey) }}</p>
+                            <h3>{{ challenge.title }}</h3>
+                            <p>{{ challenge.text }}</p>
                         </article>
                     </div>
                 </div>
@@ -50,9 +50,9 @@
             <!-- YASBe Solution Section (Accordion) -->
             <section class="treasury-solution">
                 <div class="treasury-section__inner">
-                    <h2 v-reveal class="treasury-heading">{{ $t('treasury.solution.title') }}</h2>
+                    <h2 v-reveal class="treasury-heading">{{ solutionContent.title }}</h2>
                     <div class="treasury-solution__accordion">
-                        <article v-for="(item, index) in solutionItems" :key="item.number"
+                        <article v-for="(item, index) in solutionItems" :key="`${item.number}-${item.title}`"
                             v-reveal="{ delay: index * 60, distance: 24 }"
                             class="treasury-accordion-item"
                             :class="{ 'treasury-accordion-item--active': activeAccordion === index }"
@@ -64,7 +64,7 @@
                             @keydown.space.prevent="toggleAccordion(index)">
                             <div class="treasury-accordion-item__header">
                                 <span class="treasury-accordion-item__number">{{ item.number }}</span>
-                                <h3>{{ $t(item.titleKey) }}</h3>
+                                <h3>{{ item.title }}</h3>
                                 <span class="treasury-accordion-item__arrow" aria-hidden="true">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                         <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -73,9 +73,9 @@
                             </div>
                             <div class="treasury-accordion-item__content">
                                 <div class="treasury-accordion-item__content-inner">
-                                    <p class="treasury-accordion-item__intro">{{ $t(item.introKey) }}</p>
-                                    <ul class="treasury-accordion-item__bullets">
-                                        <li v-for="bullet in item.bullets" :key="bullet">{{ $t(bullet) }}</li>
+                                    <p v-if="item.intro" class="treasury-accordion-item__intro">{{ item.intro }}</p>
+                                    <ul v-if="item.bullets.length" class="treasury-accordion-item__bullets">
+                                        <li v-for="bullet in item.bullets" :key="bullet">{{ bullet }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -84,33 +84,18 @@
                 </div>
             </section>
 
-            <!-- Stablecoin Checkout Benefits Section -->
-            <section class="treasury-benefits">
-                <div class="treasury-section__inner">
-                    <h2 v-reveal class="treasury-heading">{{ $t('treasury.benefits.title') }}</h2>
-                    <div class="treasury-benefits__grid">
-                        <article v-for="(benefit, index) in benefits" :key="benefit.key"
-                            v-reveal="{ delay: index * 60, distance: 32 }"
-                            class="treasury-benefit-card">
-                            <img :src="benefit.icon" alt="" class="treasury-benefit-card__icon" aria-hidden="true" loading="lazy" decoding="async" />
-                            <h3>{{ $t(benefit.titleKey) }}</h3>
-                            <p>{{ $t(benefit.textKey) }}</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
 
             <!-- From Goal to Outcome Section -->
             <section class="treasury-goals">
                 <div class="treasury-section__inner">
-                    <h2 v-reveal class="treasury-heading">{{ $t('treasury.goals.title') }}</h2>
+                    <h2 v-reveal class="treasury-heading">{{ goalsContent.title }}</h2>
                     <div v-reveal="{ delay: 80 }" class="treasury-goals__comparison">
                         <article class="treasury-goals-card treasury-goals-card--light">
-                            <h3>{{ $t('treasury.goals.goalColumn') }}</h3>
+                            <h3>{{ goalsContent.goalColumn }}</h3>
                             <ul class="treasury-goals__list">
-                                <li v-for="row in goalRows" :key="row.goalKey">
+                                <li v-for="row in goalRows" :key="row.goal">
                                     <span class="treasury-goals__check" aria-hidden="true"></span>
-                                    <span>{{ $t(row.goalKey) }}</span>
+                                    <span>{{ row.goal }}</span>
                                 </li>
                             </ul>
                         </article>
@@ -122,11 +107,11 @@
                             </svg>
                         </div>
                         <article class="treasury-goals-card treasury-goals-card--dark">
-                            <h3>{{ $t('treasury.goals.deliversColumn') }}</h3>
+                            <h3>{{ goalsContent.deliversColumn }}</h3>
                             <ul class="treasury-goals__list">
-                                <li v-for="row in goalRows" :key="row.deliverKey">
+                                <li v-for="row in goalRows" :key="row.deliver">
                                     <span class="treasury-goals__check" aria-hidden="true"></span>
-                                    <span>{{ $t(row.deliverKey) }}</span>
+                                    <span>{{ row.deliver }}</span>
                                 </li>
                             </ul>
                         </article>
@@ -134,19 +119,30 @@
                 </div>
             </section>
 
-            <!-- Use Cases Section -->
-            <section class="treasury-cases">
+            <!-- Crypto Treasury Use Case Section -->
+            <section class="crypto-usecase">
                 <div class="treasury-section__inner">
-                    <div v-reveal class="treasury-cases__header">
-                        <h2 class="treasury-heading">{{ $t('treasury.cases.title') }}</h2>
-                        <p class="treasury-section__subtitle">{{ $t('treasury.cases.subtitle') }}</p>
-                    </div>
-                    <div class="treasury-cases__list">
-                        <article v-for="(item, index) in useCases" :key="item.key"
-                            v-reveal="{ delay: index * 80, distance: 28 }"
-                            class="treasury-case-row">
-                            <h3>{{ $t(item.titleKey) }}</h3>
-                            <p>{{ $t(item.textKey) }}</p>
+                    <h2 v-reveal class="treasury-heading crypto-usecase__heading">{{ cryptoUseCase.title }}</h2>
+                    <div v-reveal="{ delay: 80, distance: 24 }" class="crypto-usecase__flow">
+                        <article class="crypto-usecase-card crypto-usecase-card--light">
+                            <h3>{{ cryptoUseCase.clientTitle }}</h3>
+                            <p>{{ cryptoUseCase.clientText }}</p>
+                        </article>
+                        <div class="crypto-usecase__connector" aria-hidden="true">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="32" fill="white"/>
+                                <circle cx="32" cy="32" r="28" fill="#FFCA00"/>
+                                <path d="M30.4167 17H33.5833V40.9167L44.25 30.25L46.5 32.5L32 47L17.5 32.5L19.75 30.25L30.4167 40.9167V17Z" fill="#1D1D1F"/>
+                            </svg>
+                        </div>
+                        <article class="crypto-usecase-card crypto-usecase-card--dark">
+                            <h3>{{ cryptoUseCase.solutionTitle }}</h3>
+                            <ul class="treasury-goals__list">
+                                <li v-for="item in cryptoUseCase.solutionBullets" :key="item">
+                                    <span class="treasury-goals__check" aria-hidden="true"></span>
+                                    <span>{{ item }}</span>
+                                </li>
+                            </ul>
                         </article>
                     </div>
                 </div>
@@ -186,51 +182,89 @@ const createIcon = (name) => {
         logistics: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="10" width="32" height="20" rx="4" stroke="#1D1D1F" stroke-width="2.5" opacity="0.3"/><circle cx="12" cy="30" r="4" stroke="#1D1D1F" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="30" r="4" stroke="#1D1D1F" stroke-width="2.5" opacity="0.5"/></svg>`,
         saas: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="32" height="24" rx="4" stroke="#1D1D1F" stroke-width="2.5" opacity="0.3"/><rect x="10" y="10" width="20" height="12" rx="2" stroke="#1D1D1F" stroke-width="2" opacity="0.5"/><path d="M14 34h12" stroke="#1D1D1F" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/><path d="M20 28v6" stroke="#1D1D1F" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/></svg>`,
         consulting: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 36H6V16L20 4L34 16v20H26" stroke="#1D1D1F" stroke-width="2.5" opacity="0.3"/><path d="M16 28h8M16 22h8" stroke="#1D1D1F" stroke-width="2" stroke-linecap="round" opacity="0.5"/><rect x="20" y="26" width="8" height="10" rx="2" stroke="#1D1D1F" stroke-width="2.5" opacity="0.5"/></svg>`,
+        bank: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 18L24 8L41 18H7Z" fill="#1D1D1F"/><path d="M11 22H17V34H11V22ZM21 22H27V34H21V22ZM31 22H37V34H31V22Z" fill="#1D1D1F"/><path d="M8 38H40" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round"/></svg>`,
+        piggy: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 25C13 17.8 19.4 13 28 13H36L40 17V22H43V29H38C36.8 32.2 34.2 34.7 31 36V42H24V37H19V42H12V35C8.8 33.1 7 30 7 26.5C7 23.7 8.1 21.3 10 19.5" stroke="#1D1D1F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 13C28 9 31 6 35 6" stroke="#1D1D1F" stroke-width="3.5" stroke-linecap="round"/><path d="M34 22H34.02" stroke="#1D1D1F" stroke-width="5" stroke-linecap="round"/></svg>`,
+        swap: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 14H34L28 8M34 14L28 20" stroke="#1D1D1F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M38 24H14L20 18M14 24L20 30" stroke="#1D1D1F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 34H34L28 28M34 34L28 40" stroke="#1D1D1F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
     }
     return 'data:image/svg+xml,' + encodeURIComponent(icons[name] || icons.fragmentation)
 }
 
+const challengesContent = {
+    title: 'Key Challenges in Crypto Native Company',
+    subtitle: 'Crypto-native companies face hurdles across banking, treasury, compliance, and conversion — YASBe helps remove the friction.',
+}
+
 const challenges = [
-    { key: 'fragmentation', icon: createIcon('fragmentation'), titleKey: 'treasury.challenges.items.fragmentation.title', textKey: 'treasury.challenges.items.fragmentation.text' },
-    { key: 'payment', icon: createIcon('payment'), titleKey: 'treasury.challenges.items.delays.title', textKey: 'treasury.challenges.items.delays.text' },
-    { key: 'reconciliation', icon: createIcon('reconciliation'), titleKey: 'treasury.challenges.items.reconciliation.title', textKey: 'treasury.challenges.items.reconciliation.text' },
-    { key: 'access', icon: createIcon('access'), titleKey: 'treasury.challenges.items.access.title', textKey: 'treasury.challenges.items.access.text' },
+    {
+        key: 'bankingInfrastructure',
+        icon: createIcon('bank'),
+        title: 'Limited Access to Traditional Banking Infrastructure',
+        text: 'Difficulty opening and maintaining bank accounts (especially under their entity name). Denied access to fiat settlement rails (e.g. SWIFT, SEPA, ACH). Risk of de-banking due to unclear regulatory status',
+    },
+    {
+        key: 'fragmentedTreasury',
+        icon: createIcon('piggy'),
+        title: 'Fragmented Payment & Treasury Operations',
+        text: 'Difficulty opening and maintaining bank accounts (especially under their entity name). Manual reconciliation of on-chain and off-chain transactions. Limited tools for real-time financial visibility or reporting',
+    },
+    {
+        key: 'offRampConstraints',
+        icon: createIcon('swap'),
+        title: 'On/Off-Ramp Constraints',
+        text: 'Poor conversion infrastructure from crypto to fiat (and vice versa). High slippage, compliance friction, and inconsistent processing times. Regulatory bottlenecks when moving funds between ecosystems',
+    },
+    {
+        key: 'complianceRisk',
+        icon: createIcon('security'),
+        title: 'Compliance & Risk Management',
+        text: 'Need for KYC, KYT, AML, and transaction monitoring. Regulatory uncertainty in many jurisdictions. High operational burden for financial reporting and audit trails',
+    },
 ]
+
+const solutionContent = {
+    title: 'YASBe Solution',
+}
 
 const solutionItems = [
     {
         number: '01',
-        titleKey: 'treasury.solution.items.virtualAccounts.title',
-        introKey: 'treasury.solution.items.virtualAccounts.intro',
+        title: 'Virtual Accounts in EUR, USD, GBP — In Your Own Name',
+        intro: '',
         bullets: [
-            'treasury.solution.items.virtualAccounts.bullet1',
-            'treasury.solution.items.virtualAccounts.bullet2',
-            'treasury.solution.items.virtualAccounts.bullet3',
-            'treasury.solution.items.virtualAccounts.bullet4',
-            'treasury.solution.items.virtualAccounts.bullet5',
+            'Open named accounts under your crypto entity for fiat collections and payouts',
+            'Streamline treasury operations with virtual IBANs',
+            'Separate project-specific flows and track expenses clearly',
         ],
     },
     {
         number: '02',
-        titleKey: 'treasury.solution.items.collectionPayout.title',
-        introKey: 'treasury.solution.items.collectionPayout.intro',
-        bullets: [
-            'treasury.solution.items.collectionPayout.bullet1',
-            'treasury.solution.items.collectionPayout.bullet2',
-            'treasury.solution.items.collectionPayout.bullet3',
-            'treasury.solution.items.collectionPayout.bullet4',
-        ],
+        title: 'Global Collections & Payouts',
+        intro: 'Collect and send payments globally across fiat and crypto-adjacent workflows with fewer treasury handoffs.',
+        bullets: [],
     },
     {
         number: '03',
-        titleKey: 'treasury.solution.items.stablecoin.title',
-        introKey: 'treasury.solution.items.stablecoin.intro',
-        bullets: [
-            'treasury.solution.items.stablecoin.bullet1',
-            'treasury.solution.items.stablecoin.bullet2',
-            'treasury.solution.items.stablecoin.bullet3',
-            'treasury.solution.items.stablecoin.bullet4',
-        ],
+        title: 'Stablecoin Acceptance with Fiat Settlement',
+        intro: 'Accept stablecoin payments while settling into fiat where your operating accounts, vendors, and reporting processes require it.',
+        bullets: [],
+    },
+    {
+        number: '04',
+        title: 'One-Stop Crypto Off-Ramps',
+        intro: 'Convert crypto into fiat through a single operational flow, reducing friction between treasury, payments, and vendor settlement.',
+        bullets: [],
+    },
+    {
+        number: '04',
+        title: 'Smarter Treasury Diversification',
+        intro: 'Diversify into fiat, stablecoins, and real-world assets while keeping treasury visibility and operational control.',
+        bullets: [],
+    },
+    {
+        number: '04',
+        title: 'Embedded Compliance and Risk Controls',
+        intro: 'Use embedded KYT, AML, and monitoring workflows to support transaction screening, reporting, and audit trails.',
+        bullets: [],
     },
 ]
 
@@ -241,21 +275,49 @@ const benefits = [
     { key: 'stable', icon: createIcon('stable'), titleKey: 'treasury.benefits.items.stable.title', textKey: 'treasury.benefits.items.stable.text' },
 ]
 
+const goalsContent = {
+    title: 'From Challenge to Solution',
+    goalColumn: 'Challenge',
+    deliversColumn: 'YASBe Solution',
+}
+
 const goalRows = [
-    { goalKey: 'treasury.goals.rows.centralizedLiquidity', deliverKey: 'treasury.goals.delivers.centralizedLiquidity' },
-    { goalKey: 'treasury.goals.rows.realTimeVisibility', deliverKey: 'treasury.goals.delivers.realTimeVisibility' },
-    { goalKey: 'treasury.goals.rows.workingCapital', deliverKey: 'treasury.goals.delivers.workingCapital' },
-    { goalKey: 'treasury.goals.rows.operationalEfficiency', deliverKey: 'treasury.goals.delivers.operationalEfficiency' },
-    { goalKey: 'treasury.goals.rows.expansion', deliverKey: 'treasury.goals.delivers.expansion' },
+    {
+        goal: 'No fiat accounts',
+        deliver: 'Named Virtual Accounts in USD, EUR, GBP',
+    },
+    {
+        goal: 'Payment fragmentation',
+        deliver: 'Unified global platform for crypto & fiat flows',
+    },
+    {
+        goal: 'On/off-ramp issues',
+        deliver: 'Stablecoin checkout + compliant fiat settlement',
+    },
+    {
+        goal: 'Treasury inefficiency',
+        deliver: 'Diversify into fiat, stablecoins, RWAs',
+    },
+    {
+        goal: 'Cross-border payment friction',
+        deliver: 'Global payout and collection infrastructure',
+    },
 ]
 
-const useCases = [
-    { key: 'logistics', icon: createIcon('logistics'), titleKey: 'treasury.cases.items.logistics.title', textKey: 'treasury.cases.items.logistics.text' },
-    { key: 'saas', icon: createIcon('saas'), titleKey: 'treasury.cases.items.saas.title', textKey: 'treasury.cases.items.saas.text' },
-    { key: 'consulting', icon: createIcon('consulting'), titleKey: 'treasury.cases.items.consulting.title', textKey: 'treasury.cases.items.consulting.text' },
-]
+const cryptoUseCase = {
+    title: 'How YASBe Solves Crypto Treasury Challenges',
+    clientTitle: 'Client Use Case',
+    clientText: 'A DAO receives contributions in crypto, pays contributors in USDC, and needs fiat accounts to fund service providers and run marketing in EUR and GBP.',
+    solutionTitle: 'YASBe Solution',
+    solutionBullets: [
+        'Auto-convert USDC to EUR/GBP and pay vendors on behalf of the DAO',
+        'Pays EU-based vendors via SEPA Instant',
+        'Tracks flows per project for accounting and transparency',
+        "Uses YASBe's embedded KYT for transaction screening",
+    ],
+}
 
 const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 </script>
 
-<style scoped src="../styles/views/TreasuryView.css"></style>
+<style scoped src="../styles/views/cryptoPage.css"></style>
