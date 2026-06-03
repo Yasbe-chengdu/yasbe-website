@@ -635,5 +635,406 @@ export default {
         }
       }
     }
+  },
+  "importExport": {
+    "cta": {
+      "tryForFree": "Try For Free"
+    },
+    "hero": {
+      "titleLight": "Powering Global Trade for",
+      "titleBold": "Import & Export Companies",
+      "subtitle": "YASBe helps import-export businesses overcome settlement delays, manage currency risk, and operate with greater financial control.",
+      "deviceAlt": "YASBe Treasury Platform Dashboard"
+    },
+    "challenges": {
+      "title": "Key Challenges in Import & Export",
+      "subtitle": "Cross-border complexity, delayed settlements, and currency risks are common hurdles—here's what global trade teams face every day.",
+      "items": {
+        "crossBorderPayments": {
+          "title": "Complex Cross-Border Payments",
+          "text": "Multiple currencies involved in payments and settlements. Delays in cross-border transfers due to banking hours, correspondent banking inefficiencies, and currency conversion."
+        },
+        "cashFlowInefficiencies": {
+          "title": "Cash Flow Inefficiencies",
+          "text": "Slow access to funds tied up in international bank accounts, impacting working capital. Difficulty in forecasting and managing liquidity across global markets."
+        },
+        "currencyRisks": {
+          "title": "Currency Risks",
+          "text": "Exposure to exchange rate fluctuations can result in unpredictable costs for suppliers and buyers."
+        },
+        "reconciliationIssues": {
+          "title": "Reconciliation Issues",
+          "text": "Complexities in reconciling payments and collections from different currencies and jurisdictions."
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe Solution",
+      "items": {
+        "virtualAccounts": {
+          "title": "Virtual Accounts: Simplifying Payment Flows and Enhancing Control",
+          "intro": "YASBe's Virtual Accounts allow import and export companies to:",
+          "bullet1": "Issue accounts in your business's name in multiple currencies (EUR, GBP, USD), eliminating the need to open multiple bank accounts in each region.",
+          "bullet2": "Track funds by project or sector, giving greater clarity on cash flow and simplifying financial reporting.",
+          "bullet3": "Segment and isolate funds for different customers, suppliers, or regions, reducing risk exposure and enabling better cash flow management.",
+          "bullet4": "Streamline reconciliation by having all collections and payments routed through dedicated virtual accounts."
+        },
+        "globalCollection": {
+          "title": "Global Collection & Payout: Unified Global Treasury Operations",
+          "intro": "YASBe’s global payment rails support collections and payouts in 20+ countries, enabling:",
+          "bullet1": "Faster settlement to/from upstream suppliers, business partners, and customers.",
+          "bullet2": "Unified treasury operations across jurisdictions, with reduced reliance on local banks.",
+          "bullet3": "FX optimization via multi-currency support and local rails.",
+          "bullet4": "End-to-end visibility over incoming and outgoing flows on a single platform."
+        },
+        "stablecoin": {
+          "title": "Stablecoin Checkout: 24/7 Liquidity and Borderless Growth",
+          "intro": "YASBe empowers corporates to accept Stablecoins (e.g., USDT, USDC, EURC, etc.) and settle in fiat instantly, enabling:",
+          "bullet1": "Real-time access to capital, even on weekends and holidays.",
+          "bullet2": "Faster cross-border settlement compared to SWIFT or traditional rails.",
+          "bullet3": "Direct fiat off-ramping to your own or third-party bank accounts.",
+          "bullet4": "Enhanced security and transparency via blockchain and KYT screening."
+        }
+      }
+    },
+    "goals": {
+      "title": "From Goal to Outcome",
+      "goalColumn": "Business Goal",
+      "deliversColumn": "YASBe Delivers",
+      "rows": {
+        "simplifyPayments": "Simplify Cross-Border Payments",
+        "improveCashFlow": "Improve Cash Flow Management",
+        "reduceCurrencyRisk": "Reduce Currency Risk",
+        "streamlineReconciliation": "Streamline Reconciliation",
+        "expandGlobalOps": "Expand Global Operations"
+      },
+      "delivers": {
+        "simplifyPayments": "Virtual Accounts in multiple currencies for seamless collections and payouts",
+        "improveCashFlow": "Near-instant settlements with Stablecoin checkout, allowing quicker access to working capital",
+        "reduceCurrencyRisk": "Stablecoins pegged to fiat reduce volatility in international transactions",
+        "streamlineReconciliation": "Dedicated virtual accounts for each region, simplifying accounting processes",
+        "expandGlobalOps": "Easy access to local payment rails and fiat off-ramps across borders"
+      }
+    },
+    "cases": {
+      "title": "Use Cases Across Industries",
+      "subtitle": "See how organizations across sectors benefit from YASBe's platform.",
+      "items": {
+        "importCompany": {
+          "title": "Import Company",
+          "text": "An import company based in the US expands operations in South America and Africa, using YASBe to simplify payout and collections, and reduce the time and cost involved in transferring funds across borders."
+        },
+        "electronicsExporter": {
+          "title": "Electronics Exporter",
+          "text": "A Hong Kong-based exporter of electronics adopts Stablecoin checkout to accept payments from global clients, enabling them to instantly settle transactions across time zones and reinvest in new inventory without waiting for bank processing."
+        },
+        "ecommerceCompany": {
+          "title": "E-commerce Company",
+          "text": "An e-commerce company consolidates supplier payments and customer collections across APAC, EMEA, and the Americas, using YASBe to streamline treasury operations while reducing FX and bank fees."
+        }
+      }
+    }
+  },
+  "servicesPage": {
+    "cta": {
+      "tryForFree": "Try For Free"
+    },
+    "hero": {
+      "titleLight": "Simplifying Finance for",
+      "titleBold": "Professional Services Firms",
+      "subtitle": "From client billing to global cash flow, YASBe helps professional services firms manage financial operations with ease, transparency, and speed.",
+      "deviceAlt": "YASBe Treasury Platform Dashboard"
+    },
+    "challenges": {
+      "title": "Key Challenges in Services Firms",
+      "subtitle": "From cross-border billing to currency complexity, here's what slows down modern professional teams.",
+      "items": {
+        "crossBorderPaymentComplexity": {
+          "title": "Cross-Border Payment Complexity",
+          "text": "Firms work with clients across multiple regions, and managing payments in different currencies adds complexity, cost, and delay to the transaction process."
+        },
+        "slowAccessToFunds": {
+          "title": "Slow Access to Funds",
+          "text": "Traditional banking systems are slow, especially for international payments, which delays revenue recognition and impacts cash flow."
+        },
+        "currencyRiskExposure": {
+          "title": "Currency Risk Exposure",
+          "text": "Exchange rate fluctuations make it challenging to predict payment amounts, affecting margins on international contracts and advisory services."
+        },
+        "reconciliationIssues": {
+          "title": "Reconciliation Issues",
+          "text": "Professional services often need to manage multiple clients with varying financial terms, requiring clear tracking of project-specific budgets and payments."
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe Solution",
+      "items": {
+        "virtualAccounts": {
+          "title": "Virtual Accounts: Simplifying Payment Flows and Enhancing Control",
+          "intro": "YASBe's Virtual Accounts allow import and export companies to:",
+          "bullet1": "Issue accounts in your business's name in multiple currencies (EUR, GBP, USD), eliminating the need to open multiple bank accounts in each region.",
+          "bullet2": "Track funds by project or sector, giving greater clarity on cash flow and simplifying financial reporting.",
+          "bullet3": "Segment and isolate funds for different customers, suppliers, or regions, reducing risk exposure and enabling better cash flow management.",
+          "bullet4": "Streamline reconciliation by having all collections and payments routed through dedicated virtual accounts."
+        },
+        "globalCollection": {
+          "title": "Global Collection & Payout: Unified Global Treasury Operations",
+          "intro": "YASBe’s global payment rails support collections and payouts in 20+ countries, enabling:",
+          "bullet1": "Faster settlement to/from upstream suppliers, business partners, and customers.",
+          "bullet2": "Unified treasury operations across jurisdictions, with reduced reliance on local banks.",
+          "bullet3": "FX optimization via multi-currency support and local rails.",
+          "bullet4": "End-to-end visibility over incoming and outgoing flows on a single platform."
+        },
+        "stablecoin": {
+          "title": "Stablecoin Checkout: 24/7 Liquidity and Borderless Growth",
+          "intro": "YASBe empowers corporates to accept Stablecoins (e.g., USDT, USDC, EURC, etc.) and settle in fiat instantly, enabling:",
+          "bullet1": "Real-time access to capital, even on weekends and holidays.",
+          "bullet2": "Faster cross-border settlement compared to SWIFT or traditional rails.",
+          "bullet3": "Direct fiat off-ramping to your own or third-party bank accounts.",
+          "bullet4": "Enhanced security and transparency via blockchain and KYT screening."
+        }
+      }
+    },
+    "goals": {
+      "title": "From Goal to Outcome",
+      "goalColumn": "Business Goal",
+      "deliversColumn": "YASBe Delivers",
+      "rows": {
+        "simplifiedPayments": "Simplified Cross-Border Payments",
+        "improvedCashFlow": "Improved Cash Flow & Access to Funds",
+        "currencyRiskMitigation": "Currency Risk Mitigation",
+        "enhancedControl": "Enhanced Financial Control",
+        "seamlessManagement": "Seamless Project Financial Management"
+      },
+      "delivers": {
+        "simplifiedPayments": "Global Collection & Payout reduces complexity and fees for international payments",
+        "improvedCashFlow": "Near-instant settlements with Stablecoin checkout, allowing quicker access to working capital",
+        "currencyRiskMitigation": "Stablecoins reduce exposure to exchange rate fluctuations, ensuring stable payments",
+        "enhancedControl": "Virtual Accounts per client or project for clearer fund tracking and reporting",
+        "seamlessManagement": "Dedicated virtual accounts linked to client invoices for streamlined accounting"
+      }
+    },
+    "cases": {
+      "title": "Use Cases Across Industries",
+      "subtitle": "See how organizations across sectors benefit from YASBe's platform.",
+      "items": {
+        "taxAdvisoryFirm": {
+          "title": "Tax Advisory Firm",
+          "text": "A tax advisory firm uses YASBe Virtual Accounts to manage client payments across the EU, UK, and US. Each virtual account is tied to a specific jurisdiction, simplifying tax reporting and reconciliation while ensuring funds are available in the correct currencies."
+        },
+        "consultingFirm": {
+          "title": "Consulting Firm",
+          "text": "A global management consulting firm uses YASBe's Global Collection & Payout to manage payments from clients in Asia, Europe, and the US. The firm can collect payments in local currencies, eliminating cross-border transfer fees and accessing funds in real time."
+        },
+        "accountingFirm": {
+          "title": "Accounting Firm",
+          "text": "An accounting firm that works with international clients adopts YASBe's Stablecoin payments to receive fees for services rendered. This enables them to receive payments outside of traditional banking hours, reducing delays and giving clients more flexibility in paying their invoices."
+        }
+      }
+    }
+  },
+  "vcPage": {
+    "cta": {
+      "tryForFree": "Try For Free"
+    },
+    "hero": {
+      "titleLight": "Smarter Investing Across",
+      "titleBold": "Digital and Traditional Assets",
+      "subtitle": "Built for VCs and investment funds, YASBe helps you unlock new markets, manage risks, and scale faster by bridging traditional finance with the future of digital assets.",
+      "deviceAlt": "YASBe Treasury Platform Dashboard"
+    },
+    "challenges": {
+      "title": "Challenges for VC & Investment Funds",
+      "subtitle": "From liquidity lockups to deal competition, today's VC and investment firms face mounting pressure to deploy capital wisely and secure long-term returns.",
+      "items": {
+        "dueDiligenceRiskAssessment": {
+          "title": "Due Diligence & Risk Assessment",
+          "text": "Identifying high-potential investments while minimizing the risk of failure. Ensuring a thorough vetting process for startups or businesses seeking funding."
+        },
+        "liquidityConstraints": {
+          "title": "Liquidity Constraints",
+          "text": "VC funds typically require a longer-term commitment to investments (often 5-10 years), making liquidity a challenge for fund managers and investors."
+        },
+        "investmentCompetition": {
+          "title": "Competition for Investment Opportunities",
+          "text": "As more VC firms enter the market, competition for high-quality deals increases, often leading to higher valuations and tighter margins."
+        },
+        "exitStrategies": {
+          "title": "Exit Strategies",
+          "text": "Determining the right exit strategy (e.g., IPO, acquisition) and timing to ensure that returns are maximized can be challenging."
+        }
+      }
+    },
+    "solution": {
+      "title": "How YASBe Can Help VC & Investment Funds:",
+      "items": {
+        "digitalTraditionalAssets": {
+          "title": "Seamless Access to Both Digital and Traditional Assets",
+          "intro": "YASBe's platform offers institutional-grade access to both crypto and traditional assets (e.g., real estate, crypto mining farms, yield-generating funds). This allows VCs and investment funds to create diversified portfolios that span multiple asset classes without the complexities typically involved in managing both.",
+          "bullets": []
+        },
+        "enhancedLiquidity": {
+          "title": "Enhanced Liquidity and Access to Portfolio Diversification",
+          "intro": "VCs often face liquidity constraints in traditional assets, particularly with long investment timelines, while crypto assets can offer more immediate returns but are often volatile. YASBe provides a liquid infrastructure for both crypto and traditional assets, making it easier for firms to diversify investments across both without sacrificing liquidity or returns.",
+          "bullet1": "Access smart diversification through tailored liquidity solutions.",
+          "bullet2": "Blend stable assets, such as stablecoins, with growth assets, such as real estate or private equity.",
+          "bullet3": "Hedge crypto volatility while still capturing crypto’s explosive upside."
+        },
+        "disruptiveTech": {
+          "title": "Support for Disruptive Technologies and the Crypto Ecosystem",
+          "intro": "VC and investment funds looking to stay ahead of the curve are increasingly interested in backing disruptive technologies and innovators within the crypto sphere. YASBe’s active support for disruptive technologies can help VC firms access projects and opportunities that are shaping the future of finance.",
+          "bullet1": "Partner with creators and innovators across the cryptosphere and digital finance.",
+          "bullet2": "Access investment opportunities in disruptive technologies that are advancing the industry.",
+          "bullet3": "Stay on the cutting edge of crypto and digital-finance evolution."
+        }
+      }
+    },
+    "goals": {
+      "title": "From Goal to Outcome",
+      "goalColumn": "Business Goal",
+      "deliversColumn": "YASBe Delivers",
+      "rows": {
+        "simplifiedPayments": "Access Digital and Traditional Assets",
+        "improvedCashFlow": "Improve Liquidity and Capital Flexibility",
+        "currencyRiskMitigation": "Diversify Portfolio Exposure",
+        "enhancedControl": "Support Disruptive Technology Strategies",
+        "seamlessManagement": "Scale Long-Term Investment Returns"
+      },
+      "delivers": {
+        "simplifiedPayments": "Institutional-grade access to crypto and traditional assets on one platform",
+        "improvedCashFlow": "Liquid infrastructure for both crypto and traditional asset strategies",
+        "currencyRiskMitigation": "Diversified portfolios across real estate, crypto mining farms, yield funds, and digital assets",
+        "enhancedControl": "Access to projects and innovators shaping the future of finance",
+        "seamlessManagement": "A bridge between crypto markets and traditional finance for next-generation investment strategies"
+      }
+    },
+    "cases": {
+      "title": "Example Scenarios",
+      "subtitle": "See how VC and investment funds can apply YASBe across digital and traditional asset strategies.",
+      "items": {
+        "liquiditySolutions": {
+          "title": "Tailored Liquidity Solutions",
+          "text": "YASBe’s tailored liquidity solutions allow funds to access smart diversification. By blending stable assets, such as stablecoins, with growth assets, such as real estate or private equity, funds can hedge crypto volatility while still capturing crypto’s explosive upside."
+        },
+        "disruptiveOpportunities": {
+          "title": "Disruptive Technology Opportunities",
+          "text": "By partnering with creators and innovators, YASBe gives VCs and investment funds access to investment opportunities in disruptive technologies that are advancing the cryptosphere and digital finance, allowing them to stay on the cutting edge of industry evolution."
+        }
+      }
+    },
+    "strategy": {
+      "title": "Strategic Vision",
+      "text": "YASBe's solutions are designed to empower the next generation of investment strategies, giving VCs and investment funds the tools they need to thrive in both the crypto world and traditional finance."
+    }
+  },
+  "cryptoPage": {
+    "cta": {
+      "tryForFree": "Try For Free"
+    },
+    "hero": {
+      "titleLight": "Global Cash Management",
+      "titleBold": "for Crypto Businesses",
+      "subtitle": "YASBe powers crypto-native businesses with smarter cash control, seamless global reach, and built-in regulatory compliance — all from one unified platform.",
+      "deviceAlt": "YASBe Treasury Platform Dashboard"
+    },
+    "challenges": {
+      "title": "Key Challenges in Crypto Native Companies",
+      "subtitle": "Crypto-native companies face hurdles across banking, treasury, compliance, and conversion — YASBe helps remove the friction.",
+      "items": {
+        "bankingInfrastructure": {
+          "title": "Limited Access to Traditional Banking Infrastructure",
+          "text": "Difficulty opening and maintaining bank accounts (especially under their entity name). Denied access to fiat settlement rails (e.g. SWIFT, SEPA, ACH). Risk of de-banking due to unclear regulatory status"
+        },
+        "fragmentedTreasury": {
+          "title": "Fragmented Payment & Treasury Operations",
+          "text": "Manual reconciliation of on-chain and off-chain transactions. Limited tools for real-time financial visibility or reporting"
+        },
+        "offRampConstraints": {
+          "title": "On/Off-Ramp Constraints",
+          "text": "Poor conversion infrastructure from crypto to fiat (and vice versa). High slippage, compliance friction, and inconsistent processing times. Regulatory bottlenecks when moving funds between ecosystems"
+        },
+        "complianceRisk": {
+          "title": "Compliance & Risk Management",
+          "text": "Need for KYC, KYT, AML, and transaction monitoring. Regulatory uncertainty in many jurisdictions. High operational burden for financial reporting and audit trails"
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe Solution",
+      "items": {
+        "virtualAccounts": {
+          "title": "Virtual Accounts in EUR, USD, GBP — In Your Own Name",
+          "intro": "Issue named fiat accounts under your crypto entity and keep collections, payouts, and project flows organized.",
+          "bullet1": "Open named accounts under your crypto entity for fiat collections and payouts",
+          "bullet2": "Streamline treasury operations with virtual IBANs",
+          "bullet3": "Separate project-specific flows and track expenses clearly"
+        },
+        "globalCollection": {
+          "title": "Global Collections & Payouts",
+          "intro": "Unify global collections and payouts across clients, partners, vendors, contributors, and grantees.",
+          "bullet1": "Accept fiat from clients and partners worldwide",
+          "bullet2": "Pay vendors, contributors, or grantees instantly across borders",
+          "bullet3": "Save on FX fees, eliminate intermediary banks, and speed up settlements"
+        },
+        "stablecoinAcceptance": {
+          "title": "Stablecoin Acceptance with Fiat Settlement",
+          "intro": "Accept stablecoin payments and settle into fiat for named accounts or third-party vendors.",
+          "bullet1": "Accept stablecoin payments (USDC, USDT, etc.) across major chains",
+          "bullet2": "Auto-convert to fiat and settle to a named account or third-party vendor",
+          "bullet3": "Enable a 24/7 payment infrastructure with blockchain finality"
+        },
+        "cryptoOffRamps": {
+          "title": "One-Stop Crypto Off-Ramps",
+          "intro": "Convert crypto into fiat through regulated, compliant rails without exchange bottlenecks.",
+          "bullet1": "Seamlessly convert crypto into fiat via regulated, compliant rails",
+          "bullet2": "Withdraw directly to your own or third-party bank accounts",
+          "bullet3": "Avoid exchange withdrawal limits, delays, or heavy manual KYC"
+        },
+        "treasuryDiversification": {
+          "title": "Smarter Treasury Diversification",
+          "intro": "Put idle crypto treasury to work while diversifying beyond the crypto-native ecosystem.",
+          "bullet1": "Move idle crypto treasury into yield-bearing assets, stablecoins, or real-world assets",
+          "bullet2": "Hedge against volatility and diversify beyond the crypto-native ecosystem",
+          "bullet3": "Stay agile across market cycles and regulatory waves"
+        },
+        "complianceControls": {
+          "title": "Embedded Compliance and Risk Controls",
+          "intro": "Embed transaction monitoring and risk controls into everyday treasury workflows.",
+          "bullet1": "Integrated KYT (Know-Your-Transaction) monitoring",
+          "bullet2": "Real-time alerts for suspicious payments",
+          "bullet3": "Meet institutional compliance standards effortlessly"
+        }
+      }
+    },
+    "goals": {
+      "title": "From Challenge to Solution",
+      "goalColumn": "Challenge",
+      "deliversColumn": "YASBe Solution",
+      "rows": {
+        "noFiatAccounts": "No fiat accounts",
+        "paymentFragmentation": "Payment fragmentation",
+        "onOffRampIssues": "On/off-ramp issues",
+        "treasuryInefficiency": "Treasury inefficiency",
+        "crossBorderFriction": "Cross-border payment friction"
+      },
+      "delivers": {
+        "noFiatAccounts": "Named Virtual Accounts in USD, EUR, GBP",
+        "paymentFragmentation": "Unified global platform for crypto & fiat flows",
+        "onOffRampIssues": "Stablecoin checkout + compliant fiat settlement",
+        "treasuryInefficiency": "Diversify into fiat, stablecoins, RWAs",
+        "crossBorderFriction": "Global payout and collection infrastructure"
+      }
+    },
+    "useCase": {
+      "title": "How YASBe Solves Crypto Treasury Challenges",
+      "clientTitle": "Client Use Case",
+      "clientText": "A DAO receives contributions in crypto, pays contributors in USDC, and needs fiat accounts to fund service providers and run marketing in EUR and GBP.",
+      "solutionTitle": "YASBe Solution",
+      "solutionBullet1": "Auto-convert USDC to EUR/GBP and pay vendors on behalf of the DAO",
+      "solutionBullet2": "Pay EU-based vendors via SEPA Instant",
+      "solutionBullet3": "Track flows per project for accounting and transparency",
+      "solutionBullet4": "Use YASBe's embedded KYT for transaction screening"
+    }
   }
 }

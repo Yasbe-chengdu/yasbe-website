@@ -138,9 +138,9 @@
 /* 3.png - 前景清晰设备图 (445x450, left:200 top:60) */
 .treasury-hero__visual-device {
   position: absolute;
-  width: 345px;
+  width: 545px;
   height: auto;
-  left: 250px;
+  left: 150px;
   bottom: 0px;
   object-fit: contain;
   pointer-events: none;
@@ -773,11 +773,11 @@
   }
 
   .treasury-hero__visual-device {
-    width: 55%;
+    width:80%;
     height: auto;
     aspect-ratio: 445 / 450;
-    left: 24.8%;
-    top: 11.8%;
+    left: 10%;
+    top: -20%;
   }
 
 }

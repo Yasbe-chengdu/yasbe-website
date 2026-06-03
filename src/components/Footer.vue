@@ -11,7 +11,7 @@
             <a href="javascript:void(0);" class="footer__social" @click="toPage('https://x.com/YASBeGlobal')">
               <img src="../assets/images/social-linkedin.svg" alt="LinkedIn" loading="lazy" decoding="async" />
             </a>
-            <a href="javascript:void(0);" class="footer__social" @click="toPage('https://www.linkedin.cn/incareer/company/yasbe/')">
+            <a href="javascript:void(0);" class="footer__social" @click="toPage(' https://www.linkedin.com/company/yasbe/posts/?feedView=all')">
               <img src="../assets/images/social-discord.svg" alt="Discord" loading="lazy" decoding="async" />
             </a>
             <a href="javascript:void(0);" class="footer__social" @click="toPage('https://www.instagram.com/yasbe_global/')">
@@ -42,10 +42,10 @@
           <div v-reveal="{ delay: 180 }" class="footer__column">
             <h4 class="footer__heading">{{ $t('footer.useCases.heading') }}</h4>
             <RouterLink to="/treasury" class="footer__link">{{ $t('footer.useCases.treasury') }}</RouterLink>
-            <!-- <RouterLink to="/importExport" class="footer__link">{{ $t('footer.useCases.importExport') }}</RouterLink>
+            <RouterLink to="/importExport" class="footer__link">{{ $t('footer.useCases.importExport') }}</RouterLink>
             <RouterLink to="/servicesPage" class="footer__link">{{ $t('footer.useCases.services') }}</RouterLink>
             <RouterLink to="/vcPage" class="footer__link">{{ $t('footer.useCases.vc') }}</RouterLink>
-            <RouterLink to="/cryptoPage" class="footer__link">{{ $t('footer.useCases.crypto') }}</RouterLink> -->
+            <RouterLink to="/cryptoPage" class="footer__link">{{ $t('footer.useCases.crypto') }}</RouterLink>
           </div>
 
           <div v-reveal="{ delay: 240 }" class="footer__column">

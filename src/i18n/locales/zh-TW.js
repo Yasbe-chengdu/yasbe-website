@@ -635,5 +635,413 @@ export default {
           }
         }
       }
+    },
+  "importExport": {
+    "cta": {
+      "tryForFree": "免費試用"
+    },
+    "hero": {
+      "titleLight": "為全球貿易賦能",
+      "titleBold": "服務進出口企業",
+      "subtitle": "YASBe 協助進出口企業克服結算延遲、管理貨幣風險，並以更強的財務掌控力開展營運。",
+      "deviceAlt": "YASBe 資金管理平台儀表盤"
+    },
+    "challenges": {
+      "title": "進出口行業的關鍵挑戰",
+      "subtitle": "跨境複雜性、結算延遲和貨幣風險是常見障礙——以下是全球貿易團隊每天面臨的挑戰。",
+      "items": {
+        "crossBorderPayments": {
+          "title": "複雜的跨境支付",
+          "text": "支付和結算涉及多種貨幣。由於銀行營業時間、代理行效率低下和貨幣兌換，跨境轉帳出現延遲。"
+        },
+        "cashFlowInefficiencies": {
+          "title": "現金流低效",
+          "text": "國際銀行帳戶中凍結的資金獲取緩慢，影響營運資金。難以預測和管理全球市場的流動性。"
+        },
+        "currencyRisks": {
+          "title": "貨幣風險",
+          "text": "匯率波動可能導致供應商和買家的成本不可預測。"
+        },
+        "reconciliationIssues": {
+          "title": "對帳問題",
+          "text": "不同貨幣和司法管轄區的付款和收款對帳複雜。"
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe 解決方案",
+      "items": {
+        "virtualAccounts": {
+          "title": "虛擬帳戶：簡化支付流程並增強控制",
+          "intro": "YASBe 的虛擬帳戶允許進出口公司：",
+          "bullet1": "以您的企業名義開立多種貨幣（EUR、GBP、USD）的帳戶，無需在每個地區開設多個銀行帳戶。",
+          "bullet2": "按項目或部門追蹤資金，更清晰地了解現金流並簡化財務報告。",
+          "bullet3": "為不同客戶、供應商或地區分割和隔離資金，降低風險敞口並實現更好的現金流管理。",
+          "bullet4": "通過專用虛擬帳戶路由所有收款和付款，簡化對帳流程。"
+        },
+        "globalCollection": {
+          "title": "全球收款與付款：統一的全球資金營運",
+          "intro": "YASBe 的全球支付通道支援 20 多個國家的收款與付款，幫助企業實現：",
+          "bullet1": "與上游供應商、商業夥伴和客戶之間更快完成結算。",
+          "bullet2": "跨司法管轄區統一資金營運，減少對本地銀行的依賴。",
+          "bullet3": "透過多幣種支援和本地支付通道最佳化外匯處理。",
+          "bullet4": "在單一平台上端到端查看所有收款和付款流。"
+        },
+        "stablecoin": {
+          "title": "穩定幣 Checkout：7x24 流動性與無邊界增長",
+          "intro": "YASBe 幫助企業接受穩定幣（如 USDT、USDC、EURC 等）並即時結算為法幣，實現：",
+          "bullet1": "即時取得資金，即使在週末和節假日也不受影響。",
+          "bullet2": "相比 SWIFT 或傳統通道，更快完成跨境結算。",
+          "bullet3": "將資金直接出金為法幣至自有或第三方銀行帳戶。",
+          "bullet4": "透過區塊鏈和 KYT 篩查提升安全性與透明度。"
+        }
+      }
+    },
+    "goals": {
+      "title": "從目標到成果",
+      "goalColumn": "業務目標",
+      "deliversColumn": "YASBe 交付",
+      "rows": {
+        "simplifyPayments": "簡化跨境支付",
+        "improveCashFlow": "改善現金流管理",
+        "reduceCurrencyRisk": "降低貨幣風險",
+        "streamlineReconciliation": "簡化對帳流程",
+        "expandGlobalOps": "擴展全球營運"
+      },
+      "delivers": {
+        "simplifyPayments": "多幣種虛擬帳戶實現無縫收款和付款",
+        "improveCashFlow": "穩定幣結算近乎即時，更快獲取營運資金",
+        "reduceCurrencyRisk": "錨定法幣的穩定幣降低國際交易的波動性",
+        "streamlineReconciliation": "每個地區的專用虛擬帳戶簡化會計流程",
+        "expandGlobalOps": "輕鬆接入本地支付通道和跨境法幣出金通道"
+      }
+    },
+    "cases": {
+      "title": "跨行業用例",
+      "subtitle": "了解各行業組織如何從 YASBe 平台受益。",
+      "items": {
+        "importCompany": {
+          "title": "進口公司",
+          "text": "一家總部位於美國的進口公司在南美和非洲擴展業務，使用 YASBe 簡化付款和收款，減少跨境資金轉移的時間和成本。"
+        },
+        "electronicsExporter": {
+          "title": "電子產品出口商",
+          "text": "一家總部位於香港的電子產品出口商採用穩定幣結算接受全球客戶付款，使其能夠跨時區即時結算交易，無需等待銀行處理即可投資新庫存。"
+        },
+        "ecommerceCompany": {
+          "title": "電子商務公司",
+          "text": "一家電子商務公司在亞太、歐洲和中南美整合供應商付款和客戶收款，使用 YASBe 簡化資金營運，同時降低外匯和銀行費用。"
+        }
+      }
+    }
+  },
+  "servicesPage": {
+    "cta": {
+      "tryForFree": "免費試用"
+    },
+    "hero": {
+      "titleLight": "簡化財務管理，服務於",
+      "titleBold": "專業服務公司",
+      "subtitle": "從客戶帳單到全球現金流，YASBe 協助專業服務公司輕鬆、透明且快速地管理財務營運。",
+      "deviceAlt": "YASBe 資金管理平台儀表盤"
+    },
+    "challenges": {
+      "title": "專業服務公司的關鍵挑戰",
+      "subtitle": "從跨境帳單到貨幣複雜性，以下是拖慢現代專業團隊的障礙。",
+      "items": {
+        "crossBorderPaymentComplexity": {
+          "title": "跨境支付複雜性",
+          "text": "公司與多個地區的客戶合作，以不同貨幣管理付款增加了交易流程的複雜性、成本和延遲。"
+        },
+        "slowAccessToFunds": {
+          "title": "資金獲取緩慢",
+          "text": "傳統銀行系統速度慢，尤其是國際付款，延遲了收入確認並影響現金流。"
+        },
+        "currencyRiskExposure": {
+          "title": "貨幣風險敞口",
+          "text": "匯率波動使預測付款金額變得困難，影響國際合約和顧問服務的利潤率。"
+        },
+        "reconciliationIssues": {
+          "title": "對帳問題",
+          "text": "專業服務通常需要管理具有不同財務條款的多個客戶，需要清晰追蹤項目特定預算和付款。"
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe 解決方案",
+      "items": {
+        "virtualAccounts": {
+          "title": "虛擬帳戶：簡化支付流程並增強控制",
+          "intro": "YASBe 的虛擬帳戶允許進出口公司：",
+          "bullet1": "以您的企業名義開立多種貨幣（EUR、GBP、USD）的帳戶，無需在每個地區開設多個銀行帳戶。",
+          "bullet2": "按項目或部門追蹤資金，更清晰地了解現金流並簡化財務報告。",
+          "bullet3": "為不同客戶、供應商或地區分割和隔離資金，降低風險敞口並實現更好的現金流管理。",
+          "bullet4": "通過專用虛擬帳戶路由所有收款和付款，簡化對帳流程。"
+        },
+        "globalCollection": {
+          "title": "全球收款與付款：統一的全球資金營運",
+          "intro": "YASBe 的全球支付通道支援 20 多個國家的收款與付款，幫助企業實現：",
+          "bullet1": "與上游供應商、商業夥伴和客戶之間更快完成結算。",
+          "bullet2": "跨司法管轄區統一資金營運，減少對本地銀行的依賴。",
+          "bullet3": "透過多幣種支援和本地支付通道最佳化外匯處理。",
+          "bullet4": "在單一平台上端到端查看所有收款和付款流。"
+        },
+        "stablecoin": {
+          "title": "穩定幣 Checkout：7x24 流動性與無邊界增長",
+          "intro": "YASBe 幫助企業接受穩定幣（如 USDT、USDC、EURC 等）並即時結算為法幣，實現：",
+          "bullet1": "即時取得資金，即使在週末和節假日也不受影響。",
+          "bullet2": "相比 SWIFT 或傳統通道，更快完成跨境結算。",
+          "bullet3": "將資金直接出金為法幣至自有或第三方銀行帳戶。",
+          "bullet4": "透過區塊鏈和 KYT 篩查提升安全性與透明度。"
+        }
+      }
+    },
+    "goals": {
+      "title": "從目標到成果",
+      "goalColumn": "業務目標",
+      "deliversColumn": "YASBe 交付",
+      "rows": {
+        "simplifiedPayments": "簡化跨境支付",
+        "improvedCashFlow": "改善現金流與資金獲取",
+        "currencyRiskMitigation": "貨幣風險緩解",
+        "enhancedControl": "增強財務控制",
+        "seamlessManagement": "無縫項目財務管理"
+      },
+      "delivers": {
+        "simplifiedPayments": "全球收款與付款降低國際支付的複雜性和費用",
+        "improvedCashFlow": "穩定幣結算近乎即時，更快獲取營運資金",
+        "currencyRiskMitigation": "穩定幣降低匯率波動敞口，確保穩定付款",
+        "enhancedControl": "按客戶或項目設立虛擬帳戶，更清晰地追蹤和報告資金",
+        "seamlessManagement": "專用虛擬帳戶關聯客戶發票，簡化會計流程"
+      }
+    },
+    "cases": {
+      "title": "跨行業用例",
+      "subtitle": "了解各行業組織如何從 YASBe 平台受益。",
+      "items": {
+        "taxAdvisoryFirm": {
+          "title": "稅務顧問公司",
+          "text": "一家稅務顧問公司使用 YASBe 虛擬帳戶管理歐盟、英國和美國的客戶付款。每個虛擬帳戶綁定特定司法管轄區，簡化稅務報告和對帳，同時確保資金以正確的幣種可用。"
+        },
+        "consultingFirm": {
+          "title": "顧問公司",
+          "text": "一家全球管理顧問公司使用 YASBe 的全球收款與付款管理來自亞洲、歐洲和美國客戶的付款。公司可以以當地貨幣收款，消除跨境轉帳費用並即時獲取資金。"
+        },
+        "accountingFirm": {
+          "title": "會計事務所",
+          "text": "一家與國際客戶合作的會計事務所採用 YASBe 的穩定幣支付接收服務費用。這使其能夠在傳統銀行營業時間之外接收付款，減少延遲並為客戶提供更靈活的發票支付方式。"
+        }
+      }
+    }
+  },
+  "vcPage": {
+    "cta": {
+      "tryForFree": "免費試用"
+    },
+    "hero": {
+      "titleLight": "跨越數位與傳統資產的",
+      "titleBold": "更智慧投資",
+      "subtitle": "專為 VC 與投資基金打造，YASBe 協助您連接傳統金融與數位資產未來，解鎖新市場、管理風險並更快擴展。",
+      "deviceAlt": "YASBe 資金管理平台儀表盤"
+    },
+    "challenges": {
+      "title": "VC 與投資基金面臨的挑戰",
+      "subtitle": "從流動性鎖定到交易競爭，當今的 VC 和投資公司面臨越來越大的壓力，需要明智地部署資本並確保長期回報。",
+      "items": {
+        "dueDiligenceRiskAssessment": {
+          "title": "盡職調查與風險評估",
+          "text": "識別高潛力投資同時最小化失敗風險。確保對尋求融資的初創企業或企業進行徹底的審查流程。"
+        },
+        "liquidityConstraints": {
+          "title": "流動性約束",
+          "text": "VC 基金通常需要對投資進行較長期的承諾（通常 5-10 年），使流動性成為基金經理和投資者的挑戰。"
+        },
+        "investmentCompetition": {
+          "title": "投資機會競爭",
+          "text": "隨著更多 VC 公司進入市場，對優質交易的競爭加劇，往往導致更高的估值和更窄的利潤空間。"
+        },
+        "exitStrategies": {
+          "title": "退出策略",
+          "text": "確定正確的退出策略（如 IPO、收購）和時機以確保回報最大化可能具有挑戰性。"
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe 如何幫助 VC 與投資基金：",
+      "items": {
+        "digitalTraditionalAssets": {
+          "title": "無縫接入數字與傳統資產",
+          "intro": "YASBe 平台提供機構級數字和傳統資產（如房地產、加密礦場、收益基金）的接入。這使 VC 和投資基金能夠創建跨越多個資產類別的多元化投資組合，而無需承擔管理兩者的複雜性。",
+          "bullets": []
+        },
+        "enhancedLiquidity": {
+          "title": "增強流動性與投資組合多元化",
+          "intro": "VC 通常在傳統資產中面臨流動性限制，尤其是投資週期較長時；而加密資產雖然可能帶來更即時的回報，但往往波動較大。YASBe 為加密和傳統資產提供流動性基礎設施，使基金更容易同時配置兩類資產，而無需犧牲流動性或回報。",
+          "bullet1": "透過定制化流動性解決方案獲得智能多元化配置。",
+          "bullet2": "將穩定資產（如穩定幣）與增長型資產（如房地產或私募股權）結合。",
+          "bullet3": "在對沖加密波動的同時，捕捉加密資產的爆發式上行空間。"
+        },
+        "stablecoin": {
+          "title": "穩定幣結算：即時結算與無國界交易",
+          "intro": "YASBe 支持基於穩定幣的結算流程，幫助基金以更快的速度和更少的傳統銀行約束跨境移動資本。",
+          "bullet1": "跨時區快速結算投資相關交易。",
+          "bullet2": "減少銀行營業時間、截止時間和中介機構造成的延遲。",
+          "bullet3": "支持全球投資機會的無國界資本流動。"
+        },
+        "disruptiveTech": {
+          "title": "支持顛覆性技術與加密生態系統",
+          "intro": "希望保持領先的 VC 和投資基金，越來越關注支持加密領域中的顛覆性技術和創新者。YASBe 對顛覆性技術的積極支持，可以幫助 VC 機構接觸正在塑造未來金融的項目與機會。",
+          "bullet1": "與加密領域和數字金融中的創作者及創新者建立連接。",
+          "bullet2": "獲取推動行業發展的顛覆性技術投資機會。",
+          "bullet3": "保持在加密和數字金融演進前沿。"
+        }
+      }
+    },
+    "goals": {
+      "title": "從目標到成果",
+      "goalColumn": "業務目標",
+      "deliversColumn": "YASBe 交付",
+      "rows": {
+        "simplifiedPayments": "接入數字與傳統資產",
+        "improvedCashFlow": "提升流動性與資本靈活性",
+        "currencyRiskMitigation": "實現投資組合多元化",
+        "enhancedControl": "支持顛覆性技術投資策略",
+        "seamlessManagement": "擴大長期投資回報"
+      },
+      "delivers": {
+        "simplifiedPayments": "在一個平台上獲得機構級加密和傳統資產接入",
+        "improvedCashFlow": "為加密和傳統資產策略提供流動性基礎設施",
+        "currencyRiskMitigation": "覆蓋房地產、加密礦場、收益基金和數字資產的多元化組合",
+        "enhancedControl": "接觸正在塑造未來金融的項目和創新者",
+        "seamlessManagement": "連接加密市場與傳統金融，支持下一代投資策略"
+      }
+    },
+    "cases": {
+      "title": "示例場景",
+      "subtitle": "了解 VC 與投資基金如何在數字和傳統資產策略中使用 YASBe。",
+      "items": {
+        "liquiditySolutions": {
+          "title": "定制化流動性解決方案",
+          "text": "YASBe 的定制化流動性解決方案讓基金能夠進行智能多元化配置。透過將穩定資產（如穩定幣）與增長型資產（如房地產或私募股權）結合，基金可以在對沖加密波動的同時，捕捉加密資產的爆發式上行空間。"
+        },
+        "disruptiveOpportunities": {
+          "title": "顛覆性技術投資機會",
+          "text": "透過與創作者和創新者合作，YASBe 為 VC 和投資基金提供進入顛覆性技術投資機會的渠道，這些技術正在推動加密領域和數字金融發展，使其保持在行業演進前沿。"
+        }
+      }
+    },
+    "strategy": {
+      "title": "戰略願景",
+      "text": "YASBe 的解決方案旨在賦能下一代投資策略，為 VC 和投資基金提供在加密世界和傳統金融中蓬勃發展所需的工具。"
+    }
+  },
+  "cryptoPage": {
+    "cta": {
+      "tryForFree": "免費試用"
+    },
+    "hero": {
+      "titleLight": "全球現金管理",
+      "titleBold": "服務加密企業",
+      "subtitle": "YASBe 透過一個統一平台，為加密原生企業提供更智能的現金控制、無縫全球覆蓋和內建監管合規能力。",
+      "deviceAlt": "YASBe 資金管理平台儀表盤"
+    },
+    "challenges": {
+      "title": "加密原生公司的關鍵挑戰",
+      "subtitle": "加密原生公司在銀行、資金管理、合規和兌換方面面臨障礙——YASBe 幫助消除這些摩擦。",
+      "items": {
+        "bankingInfrastructure": {
+          "title": "傳統銀行基礎設施接入受限",
+          "text": "難以開立和維護銀行帳戶（尤其是以實體名義）。被拒絕接入法幣結算通道（如 SWIFT、SEPA、ACH）。因監管地位不明確面臨去銀行化風險。"
+        },
+        "fragmentedTreasury": {
+          "title": "碎片化支付與資金營運",
+          "text": "鏈上和鏈下交易需要手動對帳。即時財務可見性或報告工具有限。"
+        },
+        "offRampConstraints": {
+          "title": "入金/出金限制",
+          "text": "加密貨幣到法幣（反之亦然）的兌換基礎設施不完善。滑點高、合規摩擦大、處理時間不一致。資金在生態系統間流動的監管瓶頸。"
+        },
+        "complianceRisk": {
+          "title": "合規與風險管理",
+          "text": "需要 KYC、KYT、AML 和交易監控。許多司法管轄區的監管不確定性。財務報告和審計追蹤的營運負擔高。"
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe 解決方案",
+      "items": {
+        "virtualAccounts": {
+          "title": "EUR、USD、GBP 虛擬帳戶——以您的名義開立",
+          "intro": "以您的加密實體名義開立法幣帳戶，讓收款、付款和項目資金流更有序。",
+          "bullet1": "以加密實體名義開立命名帳戶，用於法幣收款和付款",
+          "bullet2": "通過虛擬 IBAN 簡化資金營運",
+          "bullet3": "分離項目特定流程並清晰追蹤支出"
+        },
+        "globalCollection": {
+          "title": "全球收款與付款",
+          "intro": "統一管理客戶、合作伙伴、供應商、貢獻者和受贈方之間的全球收付款。",
+          "bullet1": "接收來自全球客戶和合作伙伴的法幣款項",
+          "bullet2": "即時跨境支付供應商、貢獻者或受贈方",
+          "bullet3": "節省外匯費用，減少中間銀行，並加快結算速度"
+        },
+        "stablecoinAcceptance": {
+          "title": "穩定幣收款與法幣結算",
+          "intro": "接受穩定幣付款，並結算為法幣至命名帳戶或第三方供應商帳戶。",
+          "bullet1": "在主流鏈上接受穩定幣付款（USDC、USDT 等）",
+          "bullet2": "自動兌換為法幣，並結算到命名帳戶或第三方供應商帳戶",
+          "bullet3": "透過區塊鏈最終性啟用 24/7 支付基礎設施"
+        },
+        "cryptoOffRamps": {
+          "title": "一站式加密出金通道",
+          "intro": "透過受監管、合規的通道將加密貨幣轉換為法幣，減少交易所出金瓶頸。",
+          "bullet1": "透過受監管、合規的通道無縫將加密貨幣兌換為法幣",
+          "bullet2": "直接提現到您自己的或第三方銀行帳戶",
+          "bullet3": "避免交易所提現限額、延遲或繁重的人工 KYC"
+        },
+        "treasuryDiversification": {
+          "title": "更智能的資金多元化",
+          "intro": "讓閒置加密資金發揮作用，同時在加密原生生態之外實現多元化。",
+          "bullet1": "將閒置加密資金配置到收益型資產、穩定幣或現實世界資產",
+          "bullet2": "對沖波動，並在加密原生生態之外實現多元化",
+          "bullet3": "在市場週期和監管浪潮中保持靈活"
+        },
+        "complianceControls": {
+          "title": "嵌入式合規與風險控制",
+          "intro": "將交易監控和風險控制嵌入日常資金管理流程。",
+          "bullet1": "整合 KYT（了解您的交易）監控",
+          "bullet2": "對可疑付款進行即時提醒",
+          "bullet3": "輕鬆滿足機構級合規標準"
+        }
+      }
+    },
+    "goals": {
+      "title": "從挑戰到解決方案",
+      "goalColumn": "挑戰",
+      "deliversColumn": "YASBe 解決方案",
+      "rows": {
+        "noFiatAccounts": "無法幣帳戶",
+        "paymentFragmentation": "支付碎片化",
+        "onOffRampIssues": "入金/出金問題",
+        "treasuryInefficiency": "資金管理低效",
+        "crossBorderFriction": "跨境支付摩擦"
+      },
+      "delivers": {
+        "noFiatAccounts": "以您的名義開立 USD、EUR、GBP 虛擬帳戶",
+        "paymentFragmentation": "統一的加密與法幣全球平台",
+        "onOffRampIssues": "穩定幣結帳 + 合規法幣結算",
+        "treasuryInefficiency": "多元化進入法幣、穩定幣、RWA",
+        "crossBorderFriction": "全球付款和收款基礎設施"
+      }
+    },
+    "useCase": {
+      "title": "YASBe 如何解決加密資金管理挑戰",
+      "clientTitle": "客戶用例",
+      "clientText": "一個 DAO 以加密貨幣接收貢獻，以 USDC 支付貢獻者，並需要法幣帳戶來資助服務提供商和以 EUR 和 GBP 營運營銷。",
+      "solutionTitle": "YASBe 解決方案",
+      "solutionBullet1": "自動將 USDC 兌換為 EUR/GBP 並代表 DAO 向供應商付款",
+      "solutionBullet2": "通過 SEPA Instant 向歐盟供應商付款",
+      "solutionBullet3": "按項目追蹤資金流向，確保會計和透明度",
+      "solutionBullet4": "使用 YASBe 的嵌入式 KYT 進行交易篩查"
     }
   }
+}

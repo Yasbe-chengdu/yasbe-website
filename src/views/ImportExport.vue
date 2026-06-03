@@ -8,22 +8,22 @@
                 <div class="treasury-hero__pattern" aria-hidden="true"></div>
                 <div class="treasury-hero__content">
                     <h1 v-reveal="{ distance: 36 }" class="treasury-hero__title">
-                        <span>{{ $t('treasury.hero.titleLight') }}</span>
-                        <strong>{{ $t('treasury.hero.titleBold') }}</strong>
+                        <span>{{ $t('importExport.hero.titleLight') }}</span>
+                        <strong>{{ $t('importExport.hero.titleBold') }}</strong>
                     </h1>
                     <p v-reveal="{ delay: 80, distance: 28 }" class="treasury-hero__subtitle">
-                        {{ $t('treasury.hero.subtitle') }}
+                        {{ $t('importExport.hero.subtitle') }}
                     </p>
                     <a v-reveal="{ delay: 140, distance: 24 }" :href="customerBaseUrl" target="_blank" rel="noopener noreferrer" class="treasury-cta">
-                        <span>{{ $t('treasury.cta.tryForFree') }}</span>
+                        <span>{{ $t('importExport.cta.tryForFree') }}</span>
                         <span class="treasury-cta__icon" aria-hidden="true">
                             <img :src="arrowIcon" alt="" />
                         </span>
                     </a>
                     <div v-reveal="{ delay: 200, distance: 56, scale: 0.98 }" class="treasury-hero__visual">
-                        <img :src="heroBgImage" alt="" class="treasury-hero__visual-bg" aria-hidden="true" />
+                        <!-- <img :src="heroBgImage" alt="" class="treasury-hero__visual-bg" aria-hidden="true" /> -->
                         <!-- <img :src="heroCardImage" alt="" class="treasury-hero__visual-card" aria-hidden="true" /> -->
-                        <img :src="heroDeviceImage" :alt="$t('treasury.hero.deviceAlt')" class="treasury-hero__visual-device" />
+                        <img :src="heroDeviceImage" :alt="$t('importExport.hero.deviceAlt')" class="treasury-hero__visual-device" />
                     </div>
                 </div>
             </section>
@@ -32,16 +32,16 @@
             <section class="treasury-challenges">
                 <div class="treasury-challenges__content">
                     <div v-reveal class="treasury-section__header">
-                        <h2 class="treasury-heading treasury-heading--white">{{ challengesContent.title }}</h2>
-                        <p class="treasury-section__subtitle treasury-section__subtitle--white">{{ challengesContent.subtitle }}</p>
+                        <h2 class="treasury-heading treasury-heading--white">{{ $t('importExport.challenges.title') }}</h2>
+                        <p class="treasury-section__subtitle treasury-section__subtitle--white">{{ $t('importExport.challenges.subtitle') }}</p>
                     </div>
                     <div class="treasury-challenges__grid">
                         <article v-for="(challenge, index) in challenges" :key="challenge.key"
                             v-reveal="{ delay: index * 60, distance: 28 }"
                             class="treasury-challenge-card">
                             <img :src="challenge.icon" alt="" class="treasury-challenge-card__icon" aria-hidden="true" loading="lazy" decoding="async" />
-                            <h3>{{ challenge.title }}</h3>
-                            <p>{{ challenge.text }}</p>
+                            <h3>{{ $t(challenge.titleKey) }}</h3>
+                            <p>{{ $t(challenge.textKey) }}</p>
                         </article>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
             <!-- YASBe Solution Section (Accordion) -->
             <section class="treasury-solution">
                 <div class="treasury-section__inner">
-                    <h2 v-reveal class="treasury-heading">{{ solutionContent.title }}</h2>
+                    <h2 v-reveal class="treasury-heading">{{ $t('importExport.solution.title') }}</h2>
                     <div class="treasury-solution__accordion">
                         <article v-for="(item, index) in solutionItems" :key="item.number"
                             v-reveal="{ delay: index * 60, distance: 24 }"
@@ -64,7 +64,7 @@
                             @keydown.space.prevent="toggleAccordion(index)">
                             <div class="treasury-accordion-item__header">
                                 <span class="treasury-accordion-item__number">{{ item.number }}</span>
-                                <h3>{{ item.title }}</h3>
+                                <h3>{{ $t(item.titleKey) }}</h3>
                                 <span class="treasury-accordion-item__arrow" aria-hidden="true">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                         <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -73,9 +73,9 @@
                             </div>
                             <div class="treasury-accordion-item__content">
                                 <div class="treasury-accordion-item__content-inner">
-                                    <p class="treasury-accordion-item__intro">{{ item.intro }}</p>
+                                    <p class="treasury-accordion-item__intro">{{ $t(item.introKey) }}</p>
                                     <ul class="treasury-accordion-item__bullets">
-                                        <li v-for="bullet in item.bullets" :key="bullet">{{ bullet }}</li>
+                                        <li v-for="bullet in item.bullets" :key="bullet">{{ $t(bullet) }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -88,14 +88,14 @@
             <!-- From Goal to Outcome Section -->
             <section class="treasury-goals">
                 <div class="treasury-section__inner">
-                    <h2 v-reveal class="treasury-heading">{{ goalsContent.title }}</h2>
+                    <h2 v-reveal class="treasury-heading">{{ $t('importExport.goals.title') }}</h2>
                     <div v-reveal="{ delay: 80 }" class="treasury-goals__comparison">
                         <article class="treasury-goals-card treasury-goals-card--light">
-                            <h3>{{ goalsContent.goalColumn }}</h3>
+                            <h3>{{ $t('importExport.goals.goalColumn') }}</h3>
                             <ul class="treasury-goals__list">
-                                <li v-for="row in goalRows" :key="row.goal">
+                                <li v-for="row in goalRows" :key="row.goalKey">
                                     <span class="treasury-goals__check" aria-hidden="true"></span>
-                                    <span>{{ row.goal }}</span>
+                                    <span>{{ $t(row.goalKey) }}</span>
                                 </li>
                             </ul>
                         </article>
@@ -107,11 +107,11 @@
                             </svg>
                         </div>
                         <article class="treasury-goals-card treasury-goals-card--dark">
-                            <h3>{{ goalsContent.deliversColumn }}</h3>
+                            <h3>{{ $t('importExport.goals.deliversColumn') }}</h3>
                             <ul class="treasury-goals__list">
-                                <li v-for="row in goalRows" :key="row.deliver">
+                                <li v-for="row in goalRows" :key="row.deliverKey">
                                     <span class="treasury-goals__check" aria-hidden="true"></span>
-                                    <span>{{ row.deliver }}</span>
+                                    <span>{{ $t(row.deliverKey) }}</span>
                                 </li>
                             </ul>
                         </article>
@@ -123,15 +123,15 @@
             <section class="treasury-cases">
                 <div class="treasury-section__inner">
                     <div v-reveal class="treasury-cases__header">
-                        <h2 class="treasury-heading">{{ casesContent.title }}</h2>
-                        <p class="treasury-section__subtitle">{{ casesContent.subtitle }}</p>
+                        <h2 class="treasury-heading">{{ $t('importExport.cases.title') }}</h2>
+                        <p class="treasury-section__subtitle">{{ $t('importExport.cases.subtitle') }}</p>
                     </div>
                     <div class="treasury-cases__list">
                         <article v-for="(item, index) in useCases" :key="item.key"
                             v-reveal="{ delay: index * 80, distance: 28 }"
                             class="treasury-case-row">
-                            <h3>{{ item.title }}</h3>
-                            <p>{{ item.text }}</p>
+                            <h3>{{ $t(item.titleKey) }}</h3>
+                            <p>{{ $t(item.textKey) }}</p>
                         </article>
                     </div>
                 </div>
@@ -149,7 +149,11 @@ import Footer from '../components/Footer.vue'
 import arrowIcon from '../assets/images/stablecoin-icon-arrow.png?no-inline'
 import heroBgImage from '../assets/images/treasury/treasury-hero-bg.png'
 import heroCardImage from '../assets/images/treasury/treasury-hero-card.png'
-import heroDeviceImage from '../assets/images/treasury/treasury-hero-device.png'
+import heroDeviceImage from '../assets/images/import-hero-device.png'
+import paymentCardPlusIcon from '../assets/images/import-export/challenge-icons/payment-card-plus.png'
+import hourglassIcon from '../assets/images/import-export/challenge-icons/hourglass.png'
+import waveRiskIcon from '../assets/images/import-export/challenge-icons/wave-risk.png'
+import puzzleIcon from '../assets/images/import-export/challenge-icons/puzzle.png'
 
 const activeAccordion = ref(0)
 
@@ -157,153 +161,61 @@ const toggleAccordion = (index) => {
   activeAccordion.value = activeAccordion.value === index ? -1 : index
 }
 
-// Simple inline SVG icons as data URIs
-const createIcon = (name) => {
-    const icons = {
-        fragmentation: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M36 42C39.3137 42 42 39.3137 42 36C42 32.6863 39.3137 30 36 30C32.6863 30 30 32.6863 30 36C30 39.3137 32.6863 42 36 42Z" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 42V18C12 22.7739 13.8964 27.3523 17.2721 30.7279C20.6477 34.1036 25.2261 36 30 36" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-        payment: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 12V24L32 28" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-        reconciliation: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M31.6875 26.4844C29.3062 26.4844 27.375 28.4156 27.375 30.7969C27.375 33.1781 29.3062 35.1094 31.6875 35.1094C34.0688 35.1094 36 33.1781 36 30.7969C36 28.4156 34.0688 26.4844 31.6875 26.4844ZM31.6875 32.3906C30.8062 32.3906 30.0938 31.6781 30.0938 30.7969C30.0938 29.9156 30.8062 29.2031 31.6875 29.2031C32.5688 29.2031 33.2812 29.9156 33.2812 30.7969C33.2812 31.6781 32.5688 32.3906 31.6875 32.3906ZM41.25 7.875H31.3125C31.3125 6.42656 30.1359 5.25 28.6875 5.25H24.9375C23.4891 5.25 22.3125 6.42656 22.3125 7.875H12.375C11.5453 7.875 10.875 8.54531 10.875 9.375V18.75H6.75C5.92031 18.75 5.25 19.4203 5.25 20.25V41.25C5.25 42.0797 5.92031 42.75 6.75 42.75H22.5C23.3297 42.75 24 42.0797 24 41.25V40.5H41.25C42.0797 40.5 42.75 39.8297 42.75 39V9.375C42.75 8.54531 42.0797 7.875 41.25 7.875ZM21.9375 10.875H25.3125V8.25H28.3125V10.875H31.6875V13.125H21.9375V10.875ZM21 39.75H8.25V28.875H21V39.75ZM21 25.875H8.25V21.75H21V25.875ZM39.375 37.125H24V20.25C24 19.4203 23.3297 18.75 22.5 18.75H14.25V11.25H18.9375V16.125H34.6875V11.25H39.375V37.125ZM33 19.125V23.625C33 23.8312 33.1688 24 33.375 24H35.625C35.8312 24 36 23.8312 36 23.625V19.125C36 18.9187 35.8312 18.75 35.625 18.75H33.375C33.1688 18.75 33 18.9187 33 19.125ZM27.75 24H30C30.2062 24 30.375 23.8312 30.375 23.625V21C30.375 20.7937 30.2062 20.625 30 20.625H27.75C27.5438 20.625 27.375 20.7937 27.375 21V23.625C27.375 23.8312 27.5438 24 27.75 24Z" fill="#1D1D1F"/></svg>`,
-        access: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M38 22H10C7.79086 22 6 23.7909 6 26V40C6 42.2091 7.79086 44 10 44H38C40.2091 44 42 42.2091 42 40V26C42 23.7909 40.2091 22 38 22Z" stroke="#1D1D1F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 22V14C14 11.3478 15.0536 8.8043 16.9289 6.92893C18.8043 5.05357 21.3478 4 24 4C26.6522 4 29.1957 5.05357 31.0711 6.92893C32.9464 8.8043 34 11.3478 34 14V22" stroke="#1D1D1F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-        offramp: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M38 14V8C38 7.46957 37.7893 6.96086 37.4142 6.58579C37.0391 6.21071 36.5304 6 36 6H10C8.93913 6 7.92172 6.42143 7.17157 7.17157C6.42143 7.92172 6 8.93913 6 10C6 11.0609 6.42143 12.0783 7.17157 12.8284C7.92172 13.5786 8.93913 14 10 14H40C40.5304 14 41.0391 14.2107 41.4142 14.5858C41.7893 14.9609 42 15.4696 42 16V24M42 24H36C34.9391 24 33.9217 24.4214 33.1716 25.1716C32.4214 25.9217 32 26.9391 32 28C32 29.0609 32.4214 30.0783 33.1716 30.8284C33.9217 31.5786 34.9391 32 36 32H42C42.5304 32 43.0391 31.7893 43.4142 31.4142C43.7893 31.0391 44 30.5304 44 30V26C44 25.4696 43.7893 24.9609 43.4142 24.5858C43.0391 24.2107 42.5304 24 42 24Z" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10V38C6 39.0609 6.42143 40.0783 7.17157 40.8284C7.92172 41.5786 8.93913 42 10 42H40C40.5304 42 41.0391 41.7893 41.4142 41.4142C41.7893 41.0391 42 40.5304 42 40V32" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-        security: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M40 26.0009C40 36.0009 33 41.0009 24.68 43.9009C24.2443 44.0485 23.7711 44.0415 23.34 43.8809C15 41.0009 8 36.0009 8 26.0009V12.0009C8 11.4705 8.21071 10.9618 8.58579 10.5867C8.96086 10.2116 9.46957 10.0009 10 10.0009C14 10.0009 19 7.6009 22.48 4.5609C22.9037 4.1989 23.4427 4 24 4C24.5573 4 25.0963 4.1989 25.52 4.5609C29.02 7.6209 34 10.0009 38 10.0009C38.5304 10.0009 39.0391 10.2116 39.4142 10.5867C39.7893 10.9618 40 11.4705 40 12.0009V26.0009Z" stroke="#1D1D1D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-        globe: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z" stroke="#1D1D1D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 24C16 16.5535 18.8645 9.39231 24 4C29.1355 9.39231 32 16.5535 32 24C32 31.4465 29.1355 38.6077 24 44C18.8645 38.6077 16 31.4465 16 24Z" stroke="#1D1D1D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 24H44" stroke="#1D1D1D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-        stable: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z" stroke="#1D1D1D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 24L22 28L30 20" stroke="#1D1D1D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-        logistics: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="10" width="32" height="20" rx="4" stroke="#1D1D1F" stroke-width="2.5" opacity="0.3"/><circle cx="12" cy="30" r="4" stroke="#1D1D1F" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="30" r="4" stroke="#1D1D1F" stroke-width="2.5" opacity="0.5"/></svg>`,
-        saas: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="32" height="24" rx="4" stroke="#1D1D1F" stroke-width="2.5" opacity="0.3"/><rect x="10" y="10" width="20" height="12" rx="2" stroke="#1D1D1F" stroke-width="2" opacity="0.5"/><path d="M14 34h12" stroke="#1D1D1F" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/><path d="M20 28v6" stroke="#1D1D1F" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/></svg>`,
-        consulting: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 36H6V16L20 4L34 16v20H26" stroke="#1D1D1F" stroke-width="2.5" opacity="0.3"/><path d="M16 28h8M16 22h8" stroke="#1D1D1F" stroke-width="2" stroke-linecap="round" opacity="0.5"/><rect x="20" y="26" width="8" height="10" rx="2" stroke="#1D1D1F" stroke-width="2.5" opacity="0.5"/></svg>`,
-    }
-    return 'data:image/svg+xml,' + encodeURIComponent(icons[name] || icons.fragmentation)
-}
-
-const challengesContent = {
-    title: 'Key Challenges in Import & Export',
-    subtitle: "Cross-border complexity, delayed settlements, and currency risks are common hurdles—here's what global trade teams face every day.",
-}
-
 const challenges = [
-    {
-        key: 'crossBorderPayments',
-        icon: createIcon('fragmentation'),
-        title: 'Complex Cross-Border Payments',
-        text: 'Multiple currencies involved in payments and settlements. Delays in cross-border transfers due to banking hours, correspondent banking inefficiencies, and currency conversion.',
-    },
-    {
-        key: 'cashFlowInefficiencies',
-        icon: createIcon('payment'),
-        title: 'Cash Flow Inefficiencies',
-        text: 'Slow access to funds tied up in international bank accounts, impacting working capital. Difficulty in forecasting and managing liquidity across global markets.',
-    },
-    {
-        key: 'currencyRisks',
-        icon: createIcon('access'),
-        title: 'Currency Risks',
-        text: 'Exposure to exchange rate fluctuations can result in unpredictable costs for suppliers and buyers.',
-    },
-    {
-        key: 'reconciliationIssues',
-        icon: createIcon('reconciliation'),
-        title: 'Reconciliation Issues',
-        text: 'Complexities in reconciling payments and collections from different currencies and jurisdictions.',
-    },
+    { key: 'crossBorderPayments', icon: paymentCardPlusIcon, titleKey: 'importExport.challenges.items.crossBorderPayments.title', textKey: 'importExport.challenges.items.crossBorderPayments.text' },
+    { key: 'cashFlowInefficiencies', icon: hourglassIcon, titleKey: 'importExport.challenges.items.cashFlowInefficiencies.title', textKey: 'importExport.challenges.items.cashFlowInefficiencies.text' },
+    { key: 'currencyRisks', icon: waveRiskIcon, titleKey: 'importExport.challenges.items.currencyRisks.title', textKey: 'importExport.challenges.items.currencyRisks.text' },
+    { key: 'reconciliationIssues', icon: puzzleIcon, titleKey: 'importExport.challenges.items.reconciliationIssues.title', textKey: 'importExport.challenges.items.reconciliationIssues.text' },
 ]
-
-const solutionContent = {
-    title: 'YASBe Solution',
-}
 
 const solutionItems = [
     {
         number: '01',
-        title: 'Virtual Accounts: Simplifying Payment Flows and Enhancing Control',
-        intro: "YASBe's Virtual Accounts allow import and export companies to:",
+        titleKey: 'importExport.solution.items.virtualAccounts.title',
+        introKey: 'importExport.solution.items.virtualAccounts.intro',
         bullets: [
-            "Issue accounts in your business's name in multiple currencies (EUR, GBP, USD), eliminating the need to open multiple bank accounts in each region.",
-            'Track funds by project or sector, giving greater clarity on cash flow and simplifying financial reporting.',
-            'Segment and isolate funds for different customers, suppliers, or regions, reducing risk exposure and enabling better cash flow management.',
-            'Streamline reconciliation by having all collections and payments routed through dedicated virtual accounts.',
+            'importExport.solution.items.virtualAccounts.bullet1',
+            'importExport.solution.items.virtualAccounts.bullet2',
+            'importExport.solution.items.virtualAccounts.bullet3',
+            'importExport.solution.items.virtualAccounts.bullet4',
         ],
     },
     {
         number: '02',
-        title: 'Global Collection & Payout: Bridging the Gap Between Markets',
-        intro: "YASBe's global payment rails help import and export teams collect and pay across markets with fewer banking delays.",
+        titleKey: 'importExport.solution.items.globalCollection.title',
+        introKey: 'importExport.solution.items.globalCollection.intro',
         bullets: [
-            'Collect from international buyers and pay suppliers through connected local and cross-border rails.',
-            'Reduce reliance on separate regional bank accounts while maintaining visibility across markets.',
-            'Support multi-currency settlement flows for smoother supplier, buyer, and partner payments.',
-            'Monitor incoming and outgoing payments from a single platform for clearer operational control.',
+            'importExport.solution.items.globalCollection.bullet1',
+            'importExport.solution.items.globalCollection.bullet2',
+            'importExport.solution.items.globalCollection.bullet3',
+            'importExport.solution.items.globalCollection.bullet4',
         ],
     },
     {
         number: '03',
-        title: 'Stablecoin Check: Instant Settlements and Borderless Transactions',
-        intro: 'YASBe enables stablecoin-based settlement flows for faster cross-border transactions and improved payment flexibility.',
+        titleKey: 'importExport.solution.items.stablecoin.title',
+        introKey: 'importExport.solution.items.stablecoin.intro',
         bullets: [
-            'Settle transactions faster across time zones, including outside traditional banking hours.',
-            'Reduce delays caused by intermediary banks and cross-border payment cut-off times.',
-            'Convert stablecoin payments into fiat when funds need to move back into operating accounts.',
-            'Improve transaction transparency with blockchain-based payment records and screening.',
+            'importExport.solution.items.stablecoin.bullet1',
+            'importExport.solution.items.stablecoin.bullet2',
+            'importExport.solution.items.stablecoin.bullet3',
+            'importExport.solution.items.stablecoin.bullet4',
         ],
     },
 ]
 
-const benefits = [
-    { key: 'offramp', icon: createIcon('offramp'), titleKey: 'treasury.benefits.items.offramp.title', textKey: 'treasury.benefits.items.offramp.text' },
-    { key: 'security', icon: createIcon('security'), titleKey: 'treasury.benefits.items.security.title', textKey: 'treasury.benefits.items.security.text' },
-    { key: 'globe', icon: createIcon('globe'), titleKey: 'treasury.benefits.items.globe.title', textKey: 'treasury.benefits.items.globe.text' },
-    { key: 'stable', icon: createIcon('stable'), titleKey: 'treasury.benefits.items.stable.title', textKey: 'treasury.benefits.items.stable.text' },
-]
-
-const goalsContent = {
-    title: 'From Goal to Outcome',
-    goalColumn: 'Business Goal',
-    deliversColumn: 'YASBe Delivers',
-}
-
 const goalRows = [
-    {
-        goal: 'Simplify Cross-Border Payments',
-        deliver: 'Virtual Accounts in multiple currencies for seamless collections and payouts',
-    },
-    {
-        goal: 'Improve Cash Flow Management',
-        deliver: 'Near-instant settlements with Stablecoin checkout, allowing quicker access to working capital',
-    },
-    {
-        goal: 'Reduce Currency Risk',
-        deliver: 'Stablecoins pegged to fiat reduce volatility in international transactions',
-    },
-    {
-        goal: 'Streamline Reconciliation',
-        deliver: 'Dedicated virtual accounts for each region, simplifying accounting processes',
-    },
-    {
-        goal: 'Expand Global Operations',
-        deliver: 'Easy access to local payment rails and fiat off-ramps across borders',
-    },
+    { goalKey: 'importExport.goals.rows.simplifyPayments', deliverKey: 'importExport.goals.delivers.simplifyPayments' },
+    { goalKey: 'importExport.goals.rows.improveCashFlow', deliverKey: 'importExport.goals.delivers.improveCashFlow' },
+    { goalKey: 'importExport.goals.rows.reduceCurrencyRisk', deliverKey: 'importExport.goals.delivers.reduceCurrencyRisk' },
+    { goalKey: 'importExport.goals.rows.streamlineReconciliation', deliverKey: 'importExport.goals.delivers.streamlineReconciliation' },
+    { goalKey: 'importExport.goals.rows.expandGlobalOps', deliverKey: 'importExport.goals.delivers.expandGlobalOps' },
 ]
-
-const casesContent = {
-    title: 'Use Cases Across Industries',
-    subtitle: "See how organizations across sectors benefit from YASBe's platform.",
-}
 
 const useCases = [
-    {
-        key: 'importCompany',
-        title: 'Import Company',
-        text: 'An import company based in the US expands operations in South America and Africa, using YASBe to simplify payout and collections, and reduce the time and cost involved in transferring funds across borders.',
-    },
-    {
-        key: 'electronicsExporter',
-        title: 'Electronics Exporter',
-        text: 'A Hong Kong-based exporter of electronics adopts Stablecoin checkout to accept payments from global clients, enabling them to instantly settle transactions across time zones and reinvest in new inventory without waiting for bank processing.',
-    },
-    {
-        key: 'ecommerceCompany',
-        title: 'E-commerce Company',
-        text: 'An e-commerce company consolidates supplier payments and customer collections across APAC, EMEA, and the Americas, using YASBe to streamline treasury operations while reducing FX and bank fees.',
-    },
+    { key: 'importCompany', titleKey: 'importExport.cases.items.importCompany.title', textKey: 'importExport.cases.items.importCompany.text' },
+    { key: 'electronicsExporter', titleKey: 'importExport.cases.items.electronicsExporter.title', textKey: 'importExport.cases.items.electronicsExporter.text' },
+    { key: 'ecommerceCompany', titleKey: 'importExport.cases.items.ecommerceCompany.title', textKey: 'importExport.cases.items.ecommerceCompany.text' },
 ]
 
 const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'

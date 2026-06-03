@@ -635,5 +635,413 @@ export default {
         }
       }
     }
+  },
+  "importExport": {
+    "cta": {
+      "tryForFree": "免费试用"
+    },
+    "hero": {
+      "titleLight": "为全球贸易赋能",
+      "titleBold": "服务进出口企业",
+      "subtitle": "YASBe 帮助进出口企业克服结算延迟、管理货币风险，并以更强的财务掌控力开展运营。",
+      "deviceAlt": "YASBe 资金管理平台仪表盘"
+    },
+    "challenges": {
+      "title": "进出口行业的关键挑战",
+      "subtitle": "跨境复杂性、结算延迟和货币风险是常见障碍——以下是全球贸易团队每天面临的挑战。",
+      "items": {
+        "crossBorderPayments": {
+          "title": "复杂的跨境支付",
+          "text": "支付和结算涉及多种货币。由于银行营业时间、代理行效率低下和货币兑换，跨境转账出现延迟。"
+        },
+        "cashFlowInefficiencies": {
+          "title": "现金流低效",
+          "text": "国际银行账户中冻结的资金获取缓慢，影响营运资本。难以预测和管理全球市场的流动性。"
+        },
+        "currencyRisks": {
+          "title": "货币风险",
+          "text": "汇率波动可能导致供应商和买家的成本不可预测。"
+        },
+        "reconciliationIssues": {
+          "title": "对账问题",
+          "text": "不同货币和司法管辖区的付款和收款对账复杂。"
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe 解决方案",
+      "items": {
+        "virtualAccounts": {
+          "title": "虚拟账户：简化支付流程并增强控制",
+          "intro": "YASBe 的虚拟账户允许进出口公司：",
+          "bullet1": "以您的企业名义开立多种货币（EUR、GBP、USD）的账户，无需在每个地区开设多个银行账户。",
+          "bullet2": "按项目或部门追踪资金，更清晰地了解现金流并简化财务报告。",
+          "bullet3": "为不同客户、供应商或地区分割和隔离资金，降低风险敞口并实现更好的现金流管理。",
+          "bullet4": "通过专用虚拟账户路由所有收款和付款，简化对账流程。"
+        },
+        "globalCollection": {
+          "title": "全球收款与付款：统一的全球资金运营",
+          "intro": "YASBe 的全球支付通道支持 20 多个国家的收款与付款，帮助企业实现：",
+          "bullet1": "与上游供应商、商业伙伴和客户之间更快完成结算。",
+          "bullet2": "跨司法辖区统一资金运营，减少对本地银行的依赖。",
+          "bullet3": "通过多币种支持和本地支付通道优化外汇处理。",
+          "bullet4": "在单一平台上端到端查看所有收款和付款流。"
+        },
+        "stablecoin": {
+          "title": "稳定币 Checkout：7x24 流动性与无边界增长",
+          "intro": "YASBe 帮助企业接受稳定币（如 USDT、USDC、EURC 等）并即时结算为法币，实现：",
+          "bullet1": "实时获取资金，即使在周末和节假日也不受影响。",
+          "bullet2": "相比 SWIFT 或传统通道，更快完成跨境结算。",
+          "bullet3": "将资金直接出金为法币至自有或第三方银行账户。",
+          "bullet4": "通过区块链和 KYT 筛查提升安全性与透明度。"
+        }
+      }
+    },
+    "goals": {
+      "title": "从目标到成果",
+      "goalColumn": "业务目标",
+      "deliversColumn": "YASBe 交付",
+      "rows": {
+        "simplifyPayments": "简化跨境支付",
+        "improveCashFlow": "改善现金流管理",
+        "reduceCurrencyRisk": "降低货币风险",
+        "streamlineReconciliation": "简化对账流程",
+        "expandGlobalOps": "扩展全球运营"
+      },
+      "delivers": {
+        "simplifyPayments": "多币种虚拟账户实现无缝收款和付款",
+        "improveCashFlow": "稳定币结算近乎即时，更快获取营运资本",
+        "reduceCurrencyRisk": "锚定法币的稳定币降低国际交易的波动性",
+        "streamlineReconciliation": "每个地区的专用虚拟账户简化会计流程",
+        "expandGlobalOps": "轻松接入本地支付通道和跨境法币出金通道"
+      }
+    },
+    "cases": {
+      "title": "跨行业用例",
+      "subtitle": "了解各行业组织如何从 YASBe 平台受益。",
+      "items": {
+        "importCompany": {
+          "title": "进口公司",
+          "text": "一家总部位于美国的进口公司在南美和非洲扩展业务，使用 YASBe 简化付款和收款，减少跨境资金转移的时间和成本。"
+        },
+        "electronicsExporter": {
+          "title": "电子产品出口商",
+          "text": "一家总部位于香港的电子产品出口商采用稳定币结算接受全球客户付款，使其能够跨时区即时结算交易，无需等待银行处理即可投资新库存。"
+        },
+        "ecommerceCompany": {
+          "title": "电子商务公司",
+          "text": "一家电子商务公司在亚太、欧洲和中南美整合供应商付款和客户收款，使用 YASBe 简化资金运营，同时降低外汇和银行费用。"
+        }
+      }
+    }
+  },
+  "servicesPage": {
+    "cta": {
+      "tryForFree": "免费试用"
+    },
+    "hero": {
+      "titleLight": "简化财务管理，服务于",
+      "titleBold": "专业服务公司",
+      "subtitle": "从客户账单到全球现金流，YASBe 帮助专业服务公司轻松、透明、高效地管理财务运营。",
+      "deviceAlt": "YASBe 资金管理平台仪表盘"
+    },
+    "challenges": {
+      "title": "专业服务公司的关键挑战",
+      "subtitle": "从跨境账单到货币复杂性，以下是拖慢现代专业团队的障碍。",
+      "items": {
+        "crossBorderPaymentComplexity": {
+          "title": "跨境支付复杂性",
+          "text": "公司与多个地区的客户合作，以不同货币管理付款增加了交易流程的复杂性、成本和延迟。"
+        },
+        "slowAccessToFunds": {
+          "title": "资金获取缓慢",
+          "text": "传统银行系统速度慢，尤其是国际付款，延迟了收入确认并影响现金流。"
+        },
+        "currencyRiskExposure": {
+          "title": "货币风险敞口",
+          "text": "汇率波动使预测付款金额变得困难，影响国际合同和咨询服务的利润率。"
+        },
+        "reconciliationIssues": {
+          "title": "对账问题",
+          "text": "专业服务通常需要管理具有不同财务条款的多个客户，需要清晰跟踪项目特定预算和付款。"
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe 解决方案",
+      "items": {
+        "virtualAccounts": {
+          "title": "虚拟账户：简化支付流程并增强控制",
+          "intro": "YASBe 的虚拟账户允许进出口公司：",
+          "bullet1": "以您的企业名义开立多种货币（EUR、GBP、USD）的账户，无需在每个地区开设多个银行账户。",
+          "bullet2": "按项目或部门追踪资金，更清晰地了解现金流并简化财务报告。",
+          "bullet3": "为不同客户、供应商或地区分割和隔离资金，降低风险敞口并实现更好的现金流管理。",
+          "bullet4": "通过专用虚拟账户路由所有收款和付款，简化对账流程。"
+        },
+        "globalCollection": {
+          "title": "全球收款与付款：统一的全球资金运营",
+          "intro": "YASBe 的全球支付通道支持 20 多个国家的收款与付款，帮助企业实现：",
+          "bullet1": "与上游供应商、商业伙伴和客户之间更快完成结算。",
+          "bullet2": "跨司法辖区统一资金运营，减少对本地银行的依赖。",
+          "bullet3": "通过多币种支持和本地支付通道优化外汇处理。",
+          "bullet4": "在单一平台上端到端查看所有收款和付款流。"
+        },
+        "stablecoin": {
+          "title": "稳定币 Checkout：7x24 流动性与无边界增长",
+          "intro": "YASBe 帮助企业接受稳定币（如 USDT、USDC、EURC 等）并即时结算为法币，实现：",
+          "bullet1": "实时获取资金，即使在周末和节假日也不受影响。",
+          "bullet2": "相比 SWIFT 或传统通道，更快完成跨境结算。",
+          "bullet3": "将资金直接出金为法币至自有或第三方银行账户。",
+          "bullet4": "通过区块链和 KYT 筛查提升安全性与透明度。"
+        }
+      }
+    },
+    "goals": {
+      "title": "从目标到成果",
+      "goalColumn": "业务目标",
+      "deliversColumn": "YASBe 交付",
+      "rows": {
+        "simplifiedPayments": "简化跨境支付",
+        "improvedCashFlow": "改善现金流与资金获取",
+        "currencyRiskMitigation": "货币风险缓解",
+        "enhancedControl": "增强财务控制",
+        "seamlessManagement": "无缝项目财务管理"
+      },
+      "delivers": {
+        "simplifiedPayments": "全球收款与付款降低国际支付的复杂性和费用",
+        "improvedCashFlow": "稳定币结算近乎即时，更快获取营运资本",
+        "currencyRiskMitigation": "稳定币降低汇率波动敞口，确保稳定付款",
+        "enhancedControl": "按客户或项目设立虚拟账户，更清晰地追踪和报告资金",
+        "seamlessManagement": "专用虚拟账户关联客户发票，简化会计流程"
+      }
+    },
+    "cases": {
+      "title": "跨行业用例",
+      "subtitle": "了解各行业组织如何从 YASBe 平台受益。",
+      "items": {
+        "taxAdvisoryFirm": {
+          "title": "税务咨询公司",
+          "text": "一家税务咨询公司使用 YASBe 虚拟账户管理欧盟、英国和美国的客户付款。每个虚拟账户绑定特定司法管辖区，简化税务报告和对账，同时确保资金以正确的币种可用。"
+        },
+        "consultingFirm": {
+          "title": "咨询公司",
+          "text": "一家全球管理咨询公司使用 YASBe 的全球收款与付款管理来自亚洲、欧洲和美国客户的付款。公司可以以当地货币收款，消除跨境转账费用并实时获取资金。"
+        },
+        "accountingFirm": {
+          "title": "会计事务所",
+          "text": "一家与国际客户合作的会计事务所采用 YASBe 的稳定币支付接收服务费用。这使其能够在传统银行营业时间之外接收付款，减少延迟并为客户提供更灵活的发票支付方式。"
+        }
+      }
+    }
+  },
+  "vcPage": {
+    "cta": {
+      "tryForFree": "免费试用"
+    },
+    "hero": {
+      "titleLight": "跨越数字与传统资产的",
+      "titleBold": "更智能投资",
+      "subtitle": "专为 VC 与投资基金打造，YASBe 帮助您连接传统金融与数字资产未来，解锁新市场、管理风险并更快扩展。",
+      "deviceAlt": "YASBe 资金管理平台仪表盘"
+    },
+    "challenges": {
+      "title": "VC 与投资基金面临的挑战",
+      "subtitle": "从流动性锁定到交易竞争，当今的 VC 和投资公司面临越来越大的压力，需要明智地部署资本并确保长期回报。",
+      "items": {
+        "dueDiligenceRiskAssessment": {
+          "title": "尽职调查与风险评估",
+          "text": "识别高潜力投资同时最小化失败风险。确保对寻求融资的初创企业或企业进行彻底的审查流程。"
+        },
+        "liquidityConstraints": {
+          "title": "流动性约束",
+          "text": "VC 基金通常需要对投资进行较长期的承诺（通常 5-10 年），使流动性成为基金经理和投资者的挑战。"
+        },
+        "investmentCompetition": {
+          "title": "投资机会竞争",
+          "text": "随着更多 VC 公司进入市场，对优质交易的竞争加剧，往往导致更高的估值和更窄的利润空间。"
+        },
+        "exitStrategies": {
+          "title": "退出策略",
+          "text": "确定正确的退出策略（如 IPO、收购）和时机以确保回报最大化可能具有挑战性。"
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe 如何帮助 VC 与投资基金：",
+      "items": {
+        "digitalTraditionalAssets": {
+          "title": "无缝接入数字与传统资产",
+          "intro": "YASBe 平台提供机构级数字和传统资产（如房地产、加密矿场、收益基金）的接入。这使 VC 和投资基金能够创建跨越多个资产类别的多元化投资组合，而无需承担管理两者的复杂性。",
+          "bullets": []
+        },
+        "enhancedLiquidity": {
+          "title": "增强流动性与投资组合多元化",
+          "intro": "VC 通常在传统资产中面临流动性限制，尤其是投资周期较长时；而加密资产虽然可能带来更即时的回报，但往往波动较大。YASBe 为加密和传统资产提供流动性基础设施，使基金更容易同时配置两类资产，而无需牺牲流动性或回报。",
+          "bullet1": "通过定制化流动性解决方案获得智能多元化配置。",
+          "bullet2": "将稳定资产（如稳定币）与增长型资产（如房地产或私募股权）结合。",
+          "bullet3": "在对冲加密波动的同时，捕捉加密资产的爆发式上行空间。"
+        },
+        "stablecoin": {
+          "title": "稳定币结算：即时结算与无国界交易",
+          "intro": "YASBe 支持基于稳定币的结算流程，帮助基金以更快的速度和更少的传统银行约束跨境移动资本。",
+          "bullet1": "跨时区快速结算投资相关交易。",
+          "bullet2": "减少银行营业时间、截止时间和中介机构造成的延迟。",
+          "bullet3": "支持全球投资机会的无国界资本流动。"
+        },
+        "disruptiveTech": {
+          "title": "支持颠覆性技术与加密生态系统",
+          "intro": "希望保持领先的 VC 和投资基金，越来越关注支持加密领域中的颠覆性技术和创新者。YASBe 对颠覆性技术的积极支持，可以帮助 VC 机构接触正在塑造未来金融的项目与机会。",
+          "bullet1": "与加密领域和数字金融中的创作者及创新者建立连接。",
+          "bullet2": "获取推动行业发展的颠覆性技术投资机会。",
+          "bullet3": "保持在加密和数字金融演进前沿。"
+        }
+      }
+    },
+    "goals": {
+      "title": "从目标到成果",
+      "goalColumn": "业务目标",
+      "deliversColumn": "YASBe 交付",
+      "rows": {
+        "simplifiedPayments": "接入数字与传统资产",
+        "improvedCashFlow": "提升流动性与资本灵活性",
+        "currencyRiskMitigation": "实现投资组合多元化",
+        "enhancedControl": "支持颠覆性技术投资策略",
+        "seamlessManagement": "扩大长期投资回报"
+      },
+      "delivers": {
+        "simplifiedPayments": "在一个平台上获得机构级加密和传统资产接入",
+        "improvedCashFlow": "为加密和传统资产策略提供流动性基础设施",
+        "currencyRiskMitigation": "覆盖房地产、加密矿场、收益基金和数字资产的多元化组合",
+        "enhancedControl": "接触正在塑造未来金融的项目和创新者",
+        "seamlessManagement": "连接加密市场与传统金融，支持下一代投资策略"
+      }
+    },
+    "cases": {
+      "title": "示例场景",
+      "subtitle": "了解 VC 与投资基金如何在数字和传统资产策略中使用 YASBe。",
+      "items": {
+        "liquiditySolutions": {
+          "title": "定制化流动性解决方案",
+          "text": "YASBe 的定制化流动性解决方案让基金能够进行智能多元化配置。通过将稳定资产（如稳定币）与增长型资产（如房地产或私募股权）结合，基金可以在对冲加密波动的同时，捕捉加密资产的爆发式上行空间。"
+        },
+        "disruptiveOpportunities": {
+          "title": "颠覆性技术投资机会",
+          "text": "通过与创作者和创新者合作，YASBe 为 VC 和投资基金提供进入颠覆性技术投资机会的渠道，这些技术正在推动加密领域和数字金融发展，使其保持在行业演进前沿。"
+        }
+      }
+    },
+    "strategy": {
+      "title": "战略愿景",
+      "text": "YASBe 的解决方案旨在赋能下一代投资策略，为 VC 和投资基金提供在加密世界和传统金融中蓬勃发展所需的工具。"
+    }
+  },
+  "cryptoPage": {
+    "cta": {
+      "tryForFree": "免费试用"
+    },
+    "hero": {
+      "titleLight": "全球现金管理",
+      "titleBold": "服务加密企业",
+      "subtitle": "YASBe 通过一个统一平台，为加密原生企业提供更智能的现金控制、无缝全球覆盖和内置监管合规能力。",
+      "deviceAlt": "YASBe 资金管理平台仪表盘"
+    },
+    "challenges": {
+      "title": "加密原生公司的关键挑战",
+      "subtitle": "加密原生公司在银行、资金管理、合规和兑换方面面临障碍——YASBe 帮助消除这些摩擦。",
+      "items": {
+        "bankingInfrastructure": {
+          "title": "传统银行基础设施接入受限",
+          "text": "难以开立和维护银行账户（尤其是以实体名义）。被拒绝接入法币结算通道（如 SWIFT、SEPA、ACH）。因监管地位不明确面临去银行化风险。"
+        },
+        "fragmentedTreasury": {
+          "title": "碎片化支付与资金运营",
+          "text": "链上和链下交易需要手动对账。实时财务可见性或报告工具有限。"
+        },
+        "offRampConstraints": {
+          "title": "入金/出金限制",
+          "text": "加密货币到法币（反之亦然）的兑换基础设施不完善。滑点高、合规摩擦大、处理时间不一致。资金在生态系统间流动的监管瓶颈。"
+        },
+        "complianceRisk": {
+          "title": "合规与风险管理",
+          "text": "需要 KYC、KYT、AML 和交易监控。许多司法管辖区的监管不确定性。财务报告和审计追踪的运营负担高。"
+        }
+      }
+    },
+    "solution": {
+      "title": "YASBe 解决方案",
+      "items": {
+        "virtualAccounts": {
+          "title": "EUR、USD、GBP 虚拟账户——以您的名义开立",
+          "intro": "以您的加密实体名义开立法币账户，让收款、付款和项目资金流更有序。",
+          "bullet1": "以加密实体名义开立命名账户，用于法币收款和付款",
+          "bullet2": "通过虚拟 IBAN 简化资金运营",
+          "bullet3": "分离项目特定流程并清晰追踪支出"
+        },
+        "globalCollection": {
+          "title": "全球收款与付款",
+          "intro": "统一管理客户、合作伙伴、供应商、贡献者和受赠方之间的全球收付款。",
+          "bullet1": "接收来自全球客户和合作伙伴的法币款项",
+          "bullet2": "即时跨境支付供应商、贡献者或受赠方",
+          "bullet3": "节省外汇费用，减少中间银行，并加快结算速度"
+        },
+        "stablecoinAcceptance": {
+          "title": "稳定币收款与法币结算",
+          "intro": "接受稳定币付款，并结算为法币至命名账户或第三方供应商账户。",
+          "bullet1": "在主流链上接受稳定币付款（USDC、USDT 等）",
+          "bullet2": "自动兑换为法币，并结算到命名账户或第三方供应商账户",
+          "bullet3": "通过区块链最终性启用 24/7 支付基础设施"
+        },
+        "cryptoOffRamps": {
+          "title": "一站式加密出金通道",
+          "intro": "通过受监管、合规的通道将加密货币转换为法币，减少交易所出金瓶颈。",
+          "bullet1": "通过受监管、合规的通道无缝将加密货币兑换为法币",
+          "bullet2": "直接提现到您自己的或第三方银行账户",
+          "bullet3": "避免交易所提现限额、延迟或繁重的人工 KYC"
+        },
+        "treasuryDiversification": {
+          "title": "更智能的资金多元化",
+          "intro": "让闲置加密资金发挥作用，同时在加密原生生态之外实现多元化。",
+          "bullet1": "将闲置加密资金配置到收益型资产、稳定币或现实世界资产",
+          "bullet2": "对冲波动，并在加密原生生态之外实现多元化",
+          "bullet3": "在市场周期和监管浪潮中保持灵活"
+        },
+        "complianceControls": {
+          "title": "嵌入式合规与风险控制",
+          "intro": "将交易监控和风险控制嵌入日常资金管理流程。",
+          "bullet1": "集成 KYT（了解您的交易）监控",
+          "bullet2": "对可疑付款进行实时提醒",
+          "bullet3": "轻松满足机构级合规标准"
+        }
+      }
+    },
+    "goals": {
+      "title": "从挑战到解决方案",
+      "goalColumn": "挑战",
+      "deliversColumn": "YASBe 解决方案",
+      "rows": {
+        "noFiatAccounts": "无法币账户",
+        "paymentFragmentation": "支付碎片化",
+        "onOffRampIssues": "入金/出金问题",
+        "treasuryInefficiency": "资金管理低效",
+        "crossBorderFriction": "跨境支付摩擦"
+      },
+      "delivers": {
+        "noFiatAccounts": "以您的名义开立 USD、EUR、GBP 虚拟账户",
+        "paymentFragmentation": "统一的加密与法币全球平台",
+        "onOffRampIssues": "稳定币结账 + 合规法币结算",
+        "treasuryInefficiency": "多元化进入法币、稳定币、RWA",
+        "crossBorderFriction": "全球付款和收款基础设施"
+      }
+    },
+    "useCase": {
+      "title": "YASBe 如何解决加密资金管理挑战",
+      "clientTitle": "客户用例",
+      "clientText": "一个 DAO 以加密货币接收贡献，以 USDC 支付贡献者，并需要法币账户来资助服务提供商和以 EUR 和 GBP 运营营销。",
+      "solutionTitle": "YASBe 解决方案",
+      "solutionBullet1": "自动将 USDC 兑换为 EUR/GBP 并代表 DAO 向供应商付款",
+      "solutionBullet2": "通过 SEPA Instant 向欧盟供应商付款",
+      "solutionBullet3": "按项目追踪资金流向，确保会计和透明度",
+      "solutionBullet4": "使用 YASBe 的嵌入式 KYT 进行交易筛查"
+    }
   }
 }
