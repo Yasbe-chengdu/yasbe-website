@@ -118,7 +118,7 @@ import climbImage from '../assets/images/global-collection-payout/gcp-card-climb
 import arrowCircleIcon from '../assets/images/global-collection-payout/gcp-arrow-circle@4x.png?no-inline'
 import heroPoster from '../assets/images/hero-bg.png'
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://beeznis.com/'
 const { t } = useI18n()
 
 const videoRef = ref(null)

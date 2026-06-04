@@ -126,7 +126,7 @@ import valueIconThree from '../assets/images/careers/careers-value-icon-3@4x.png
 import accordionChevronIcon from '../assets/images/careers/careers-accordion-chevron@4x.png?no-inline'
 
 const { locale, tm } = useI18n()
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://beeznis.com/'
 const activeIndex = ref(0)
 
 const questions = computed(() => getCareersQuestions(locale.value))

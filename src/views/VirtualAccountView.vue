@@ -160,7 +160,7 @@ import controlIcon from '../assets/images/virtual-account/va-benefit-control@4x.
 import riskIcon from '../assets/images/virtual-account/va-benefit-risk@4x.png?no-inline'
 import cashflowIcon from '../assets/images/virtual-account/va-benefit-cashflow@4x.png?no-inline'
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://beeznis.com/'
 const { t } = useI18n()
 
 const networkCards = computed(() => [

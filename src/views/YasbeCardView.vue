@@ -201,7 +201,7 @@ import freezeIcon from '../assets/images/yasbe-card-icon-freeze.png?no-inline'
 import arrowIcon from '../assets/images/institutional-otc/otc-icon-arrow@4x.png'
 import chevronIcon from '../assets/images/yasbe-card-icon-chevron.png?no-inline'
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://beeznis.com/'
 
 const paymentCards = [
   {
