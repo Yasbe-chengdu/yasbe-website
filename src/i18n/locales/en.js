@@ -375,12 +375,43 @@ export default {
       }
     }
   },
+  "careersPage": {
+    "cta": {
+      "tryForFree": "Try For Free"
+    },
+    "hero": {
+      "titleLight": "Build Your",
+      "titleBold": "Future with Us",
+      "subtitle": "Join a forward-thinking company where your skills and ideas shape the future"
+    },
+    "media": {
+      "heroAlt": "Careers at YASBe"
+    },
+    "values": {
+      "cards": [
+        "We value everyone's unique strengths and foster a workplace where you can grow, be yourself, and do great work.",
+        "Collaboration, innovation, and diversity drive us. Join a community that values your voice and ideas.",
+        "Whether starting out or seeking a new challenge, we offer space to learn, grow, and make an impact."
+      ]
+    },
+    "questions": {
+      "title": "Questions?",
+      "subtitle": "Explore open roles and learn how your skills can help build the future of global finance.",
+      "about": "About the role",
+      "responsibilities": "Your roles & responsibilities",
+      "requirements": "Qualifications & Requirements",
+      "niceToHave": "Nice to have",
+      "workingWithUs": "Working with us",
+      "apply": "How to apply"
+    }
+  },
   "footer": {
     "copyright": "Copyright © YASBe 2026. All Rights Reserved",
     "company": {
       "heading": "Company",
       "about": "About Us",
       "careers": "Careers",
+      "bridgingEconomies": "Bridging Economies",
       "contact": "Contact Us"
     },
     "products": {

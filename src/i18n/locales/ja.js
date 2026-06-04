@@ -375,12 +375,43 @@ export default {
       }
     }
   },
+  "careersPage": {
+    "cta": {
+      "tryForFree": "無料で試す"
+    },
+    "hero": {
+      "titleLight": "私たちと",
+      "titleBold": "未来を築く",
+      "subtitle": "あなたのスキルとアイデアが未来を形づくる、先進的な企業に参加しませんか"
+    },
+    "media": {
+      "heroAlt": "YASBeの採用情報"
+    },
+    "values": {
+      "cards": [
+        "私たちは一人ひとりの強みを尊重し、成長し、自分らしく、優れた仕事ができる職場を育みます。",
+        "協業、革新、多様性が私たちを動かします。あなたの声とアイデアを大切にするコミュニティに参加してください。",
+        "キャリアの出発点でも新たな挑戦でも、学び、成長し、影響を生み出す場を提供します。"
+      ]
+    },
+    "questions": {
+      "title": "Questions?",
+      "subtitle": "募集中の職種を確認し、あなたのスキルがグローバル金融の未来づくりにどう貢献できるかをご覧ください。",
+      "about": "職務概要",
+      "responsibilities": "職務内容",
+      "requirements": "応募要件",
+      "niceToHave": "歓迎条件",
+      "workingWithUs": "働く環境",
+      "apply": "応募方法"
+    }
+  },
   "footer": {
     "copyright": "Copyright © YASBe 2026. All Rights Reserved",
     "company": {
       "heading": "会社情報",
       "about": "私たちについて",
       "careers": "採用情報",
+      "bridgingEconomies": "経済をつなぐ",
       "contact": "お問い合わせ"
     },
     "products": {

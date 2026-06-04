@@ -25,7 +25,8 @@
           <div v-reveal="{ delay: 60 }" class="footer__column">
             <h4 class="footer__heading">{{ $t('footer.company.heading') }}</h4>
             <span class="footer__link">{{ $t('footer.company.about') }}</span>
-            <span class="footer__link">{{ $t('footer.company.careers') }}</span>
+            <!-- <RouterLink :to="footerLinks.company.careers.to" class="footer__link">{{ $t('footer.company.careers') }}</RouterLink>
+            <RouterLink :to="footerLinks.company.bridgingEconomies.to" class="footer__link">{{ $t('footer.company.bridgingEconomies') }}</RouterLink> -->
             <RouterLink :to="footerLinks.company.contact.to" class="footer__link">{{ $t('footer.company.contact') }}</RouterLink>
           </div>
 
@@ -62,6 +63,8 @@
 const footerLinks = {
   company: {
     about: { to: '/about' },
+    careers: { to: '/careers' },
+    bridgingEconomies: { to: '/bridging-economies' },
     contact: { to: '/contact' },
   },
   products: {

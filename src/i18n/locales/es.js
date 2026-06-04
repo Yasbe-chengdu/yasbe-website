@@ -375,12 +375,43 @@ export default {
       }
     }
   },
+  "careersPage": {
+    "cta": {
+      "tryForFree": "Probar gratis"
+    },
+    "hero": {
+      "titleLight": "Construye tu",
+      "titleBold": "futuro con nosotros",
+      "subtitle": "Únete a una empresa visionaria donde tus habilidades e ideas dan forma al futuro"
+    },
+    "media": {
+      "heroAlt": "Carreras en YASBe"
+    },
+    "values": {
+      "cards": [
+        "Valoramos las fortalezas únicas de cada persona y fomentamos un lugar donde puedas crecer, ser tú mismo y hacer gran trabajo.",
+        "La colaboración, la innovación y la diversidad nos impulsan. Únete a una comunidad que valora tu voz e ideas.",
+        "Ya sea que estés empezando o buscando un nuevo reto, ofrecemos espacio para aprender, crecer y generar impacto."
+      ]
+    },
+    "questions": {
+      "title": "¿Preguntas?",
+      "subtitle": "Explora roles abiertos y descubre cómo tus habilidades pueden construir el futuro financiero global.",
+      "about": "Sobre el rol",
+      "responsibilities": "Responsabilidades",
+      "requirements": "Requisitos",
+      "niceToHave": "Deseable",
+      "workingWithUs": "Trabajar con nosotros",
+      "apply": "Cómo aplicar"
+    }
+  },
   "footer": {
     "copyright": "Copyright © YASBe 2026. Todos los derechos reservados",
     "company": {
       "heading": "Empresa",
       "about": "Sobre nosotros",
       "careers": "Carreras",
+      "bridgingEconomies": "Conectando economías",
       "contact": "Contáctanos"
     },
     "products": {

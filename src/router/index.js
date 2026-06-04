@@ -14,6 +14,16 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue'),
     },
     {
+      path: '/bridging-economies',
+      name: 'bridging-economies',
+      component: () => import('../views/BridgingEconomiesView.vue'),
+    },
+    {
+      path: '/careers',
+      name: 'careers',
+      component: () => import('../views/CareersView.vue'),
+    },
+    {
       path: '/stablecoin-checkout',
       name: 'stablecoin-checkout',
       component: () => import('../views/StablecoinCheckoutView.vue'),

@@ -375,12 +375,43 @@ export default {
       }
     }
   },
+  "careersPage": {
+    "cta": {
+      "tryForFree": "免费试用"
+    },
+    "hero": {
+      "titleLight": "与我们一起",
+      "titleBold": "共创未来",
+      "subtitle": "加入一家面向未来的公司，让你的技能与想法共同塑造全球金融的未来"
+    },
+    "media": {
+      "heroAlt": "YASBe 职业机会"
+    },
+    "values": {
+      "cards": [
+        "我们重视每个人独特的优势，打造一个让你成长、做自己并创造优秀成果的工作环境。",
+        "协作、创新与多元化驱动我们前进。加入一个重视你的声音和想法的团队。",
+        "无论你刚起步还是寻求新挑战，我们都提供学习、成长和产生影响的空间。"
+      ]
+    },
+    "questions": {
+      "title": "职位问题？",
+      "subtitle": "浏览开放岗位，了解你的能力如何参与建设全球金融的未来。",
+      "about": "职位概述",
+      "responsibilities": "岗位职责",
+      "requirements": "任职要求",
+      "niceToHave": "加分项",
+      "workingWithUs": "加入我们",
+      "apply": "如何申请"
+    }
+  },
   "footer": {
     "copyright": "Copyright © YASBe 2026. 保留所有权利",
     "company": {
       "heading": "公司",
       "about": "关于我们",
       "careers": "加入我们",
+      "bridgingEconomies": "连接经济",
       "contact": "联系我们"
     },
     "products": {

@@ -375,12 +375,43 @@ export default {
       }
     }
   },
+  "careersPage": {
+    "cta": {
+      "tryForFree": "무료로 시작하기"
+    },
+    "hero": {
+      "titleLight": "함께 만드는",
+      "titleBold": "미래",
+      "subtitle": "당신의 역량과 아이디어가 미래를 만드는 선도적인 회사에 합류하세요"
+    },
+    "media": {
+      "heroAlt": "YASBe 채용"
+    },
+    "values": {
+      "cards": [
+        "우리는 각자의 고유한 강점을 존중하며 성장하고, 자신답게 일하고, 훌륭한 성과를 만들 수 있는 환경을 지향합니다.",
+        "협업, 혁신, 다양성이 우리를 움직입니다. 당신의 목소리와 아이디어를 존중하는 커뮤니티에 함께하세요.",
+        "새롭게 시작하든 새로운 도전을 찾든, 배우고 성장하며 영향력을 만들 수 있는 공간을 제공합니다."
+      ]
+    },
+    "questions": {
+      "title": "Questions?",
+      "subtitle": "오픈 포지션을 살펴보고 당신의 역량이 글로벌 금융의 미래를 만드는 데 어떻게 기여할 수 있는지 확인하세요.",
+      "about": "역할 소개",
+      "responsibilities": "주요 업무",
+      "requirements": "자격 요건",
+      "niceToHave": "우대 사항",
+      "workingWithUs": "함께 일하는 방식",
+      "apply": "지원 방법"
+    }
+  },
   "footer": {
     "copyright": "Copyright © YASBe 2026. All Rights Reserved",
     "company": {
       "heading": "회사",
       "about": "회사 소개",
       "careers": "채용",
+      "bridgingEconomies": "경제를 연결하다",
       "contact": "문의하기"
     },
     "products": {
