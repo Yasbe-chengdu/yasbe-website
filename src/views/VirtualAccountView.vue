@@ -113,7 +113,7 @@
         <div class="va-benefits__inner">
           <div v-reveal class="va-benefits__top">
             <h2 class="va-heading">{{ t('virtualAccount.benefits.title') }}</h2>
-            <a href="https://customer.customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="va-cta va-cta--compact">
+            <a href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="va-cta va-cta--compact">
               <span>{{ t('virtualAccount.cta.findOutMore') }}</span>
               <img :src="arrowCircleIcon" alt="" aria-hidden="true" />
             </a>
