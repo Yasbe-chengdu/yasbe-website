@@ -119,7 +119,7 @@ const globalPaymentMenuRef = ref(null)
 const { locale } = useI18n()
 const route = useRoute()
 const isHome = computed(() => route.path === '/')
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://beeznis.com/'
 const customerLoginUrl = new URL('/login', customerBaseUrl).toString()
 const customerRegisterUrl = new URL('/register', customerBaseUrl).toString()
 
