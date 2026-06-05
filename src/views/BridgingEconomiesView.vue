@@ -160,7 +160,7 @@ import smbIcon from '../assets/images/bridging-economies/be-story-icon-smb@4x.pn
 import visionIcon from '../assets/images/bridging-economies/be-feature-icon-vision@4x.png?no-inline'
 import modernSmbIcon from '../assets/images/bridging-economies/be-feature-icon-modern-smb@4x.png?no-inline'
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://beeznis.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
 
 const storyCards = [
   {

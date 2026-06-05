@@ -190,7 +190,7 @@ import onboardingIcon from '../assets/images/institutional-otc/otc-icon-onboardi
 import prefundingIcon from '../assets/images/institutional-otc/otc-icon-prefunding@4x.png'
 import tradeIcon from '../assets/images/institutional-otc/otc-icon-trade@4x.png'
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://beeznis.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
 
 const benefits = [
   {

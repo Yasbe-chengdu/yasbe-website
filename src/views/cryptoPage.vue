@@ -263,7 +263,7 @@ const cryptoUseCase = {
     ],
 }
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://beeznis.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
 </script>
 
 <style scoped src="../styles/views/cryptoPage.css"></style>

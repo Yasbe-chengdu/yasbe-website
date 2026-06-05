@@ -124,7 +124,7 @@
                             {{ $t('stablecoinCheckout.why.titleLine1') }}<br />{{
                                 $t('stablecoinCheckout.why.titleLine2') }}
                         </h2>
-                        <a href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="stablecoin-cta stablecoin-cta--compact">
+                        <a href="https://customer.customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="stablecoin-cta stablecoin-cta--compact">
                             <span>{{ $t('stablecoinCheckout.cta.findOutMore') }}</span>
                             <span class="stablecoin-cta__icon" aria-hidden="true">
                                 <img :src="arrowIcon" alt="" />
@@ -167,7 +167,7 @@ import confidenceIcon from '../assets/images/stablecoin-icon-confidence.png?no-i
 import arrowIcon from '../assets/images/stablecoin-icon-arrow.png?no-inline'
 import solutionArrowIcon from '../assets/images/stablecoin-icon-solution-arrow.png?no-inline'
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://beeznis.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
 
 const globalFeatures = [
     {
