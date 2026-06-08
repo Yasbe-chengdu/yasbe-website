@@ -16,7 +16,7 @@ export const careersContent = {
   en: [
     {
       title: 'Payments Compliance Manager',
-      meta: 'Compliance · Remote',
+      meta: ' Remote / Onsite, Irvine City, California, USA',
       about:
         'The Compliance Department ensures that YASBe products and processes align with regulatory standards. This is a practical, hands-on role for someone excited to build compliance capabilities from the ground up and guide the business on regulatory requirements and controls.',
       responsibilities: [
@@ -38,7 +38,7 @@ export const careersContent = {
     },
     {
       title: 'Front-end (Web) Engineer',
-      meta: 'Technology · Remote',
+      meta: ' Remote / Onsite, Irvine City, California, USA  ',
       about:
         'The Technology Department builds financial products from the ground up for SMBs worldwide. This role owns client-facing and internal web assets, turning user and business needs into functional, responsive front-end experiences.',
       responsibilities: [
@@ -60,7 +60,7 @@ export const careersContent = {
     },
     {
       title: 'Full Stack Engineer',
-      meta: 'Technology · Remote',
+      meta: ' Remote / Onsite, Irvine City, California, USA  ',
       about:
         'We are looking for a Full Stack Engineer who enjoys learning new skills, experimenting with new methods, and building advanced financial products across front-end and backend systems.',
       responsibilities: [
@@ -82,7 +82,7 @@ export const careersContent = {
     },
     {
       title: 'Head of Engineering',
-      meta: 'Technology Leadership · Remote',
+      meta: ' Remote / Onsite, Irvine City, California, USA  ',
       about:
         'The Head of Engineering blends technical oversight with people leadership, building exceptional engineering teams and collaborating closely with Product Owners and Business Heads.',
       responsibilities: [
@@ -104,7 +104,7 @@ export const careersContent = {
     },
     {
       title: 'Partner Onboarding Associate',
-      meta: 'Operations · Remote',
+      meta: ' Remote / Onsite, Irvine City, California, USA  ',
       about:
         'The Partner Onboarding Associate helps build trading and operational relationships with global banking, payment, and trading partners, coordinating internal teams and preparing onboarding documents.',
       responsibilities: [
@@ -122,7 +122,7 @@ export const careersContent = {
     },
     {
       title: 'Sr. User Experience Designer',
-      meta: 'Design · Remote',
+      meta: ' Remote / Onsite, Irvine City, California, USA  ',
       about:
         'This role leads UX design for upcoming digital products across payment systems and Web3 user journeys, connecting digital assets with real-world usage in secure, compliant, and engaging ways.',
       responsibilities: [
@@ -142,7 +142,7 @@ export const careersContent = {
     },
     {
       title: 'Marketing Manager — YASBe Social & Community Incubator',
-      meta: 'Growth · Remote',
+      meta: ' Remote / Onsite, Irvine City, California, USA  ',
       about:
         'YASBe is seeking a Marketing Manager to scale our global social media presence and community ecosystem across X, LinkedIn, TikTok, and YouTube around PayFi, stablecoins, payments, and digital finance.',
       responsibilities: [
@@ -164,7 +164,7 @@ export const careersContent = {
     },
     {
       title: 'Product Director - Payment & Banking',
-      meta: 'Product · Remote',
+      meta: ' Remote / Onsite, Irvine City, California, USA  ',
       about:
         'This role owns payment and banking product initiatives from inception through execution, collaborating with engineering, design, analytics, marketing, and cross-functional teams to ship remarkable products.',
       responsibilities: [
@@ -184,7 +184,7 @@ export const careersContent = {
     },
     {
       title: 'Social Media & Community Manager',
-      meta: 'Growth / Community · Remote / USA',
+      meta: ' Remote / Onsite, Irvine City, California, USA  ',
       about:
         'YASBe is building global payments infrastructure powered by stablecoins, AI routing, and Web3 rails. We need someone who lives online, understands Web3 culture, and can turn product ideas into conversations across social and community channels.',
       responsibilities: [
