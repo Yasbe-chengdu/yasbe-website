@@ -130,7 +130,7 @@
 
 .bridging-hero__visual {
   position: absolute;
-  top: 397px;
+  top: 347px;
   left: 50%;
   width: 673px;
   max-width: calc(100vw - 40px);
@@ -447,7 +447,7 @@
 
   .bridging-hero__visual {
     top: auto;
-    bottom: 44px;
+    bottom: 40px;
     width: min(673px, 86vw);
   }
 
@@ -513,7 +513,7 @@
   }
 
   .bridging-hero__visual {
-    bottom: 56px;
+    bottom: 10px;
     width: min(673px, 92vw);
   }
 

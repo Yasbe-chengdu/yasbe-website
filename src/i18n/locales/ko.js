@@ -410,6 +410,8 @@ export default {
     "company": {
       "heading": "회사",
       "about": "회사 소개",
+      "blog": "블로그",
+      "news": "뉴스",
       "careers": "채용",
       "bridgingEconomies": "경제를 연결하다",
       "contact": "문의하기"
@@ -434,6 +436,25 @@ export default {
     "resources": {
       "heading": "리소스",
       "legal": "법률 및 컴플라이언스"
+    }
+  },
+  "newsPage": {
+    "heading": "뉴스룸",
+    "subtitle": "회사 발표",
+    "readMore": "더 보기",
+    "share": "공유",
+    "shareAria": "이 공지 공유"
+  },
+  "blogPage": {
+    "heading": "블로그",
+    "filters": {
+      "search": "검색",
+      "topics": "주제",
+      "industries": "산업",
+      "placeholder": "선택해 주세요",
+      "searchAria": "블로그 검색",
+      "topicAria": "주제 선택",
+      "industryAria": "산업 선택"
     }
   },
   "virtualAccount": {
@@ -1073,6 +1094,64 @@ export default {
       "solutionBullet2": "SEPA Instant를 통해 EU 기반 벤더에 지급",
       "solutionBullet3": "프로젝트별로 흐름을 추적하여 회계 및 투명성 확보",
       "solutionBullet4": "YASBe의 임베디드 KYT를 사용하여 거래 검증 실시"
+    }
+  },
+  "bridgingEconomies": {
+    "hero": {
+      "titleSpan": "기업을 위한 힘",
+      "titleStrong": "경제를 잇는 다리",
+      "subtitle": "글로벌 금융 솔루션으로 중소기업의 성장을 지원합니다.",
+      "ctaText": "무료로 사용해 보기"
+    },
+    "story": {
+      "headerTitle": "우리의 이야기와 목적",
+      "headerSubtitle": "중소기업을 세계 경제와 연결합니다",
+      "paragraphs": {
+        "collapse": "2023년 3월 이후 Silvergate, 실리콘밸리은행, Signature은행의 파산으로 많은 중소기업과 스타트업이 제대로 된 서비스를 받지 못하게 되었습니다.",
+        "impact": "은행이 파산하면 예금은 회복될 수 있어도 중요한 은행 관계, 결제 인프라, 성장 계획은 하룻밤 사이에 사라질 수 있습니다."
+      },
+      "cards": {
+        "banking": {
+          "title": "필수적인 은행 서비스 필요",
+          "text": "중소기업이 국경을 넘어 성장하려면 신뢰할 수 있는 계좌, 결제, 통화 도구 접근이 필요합니다."
+        },
+        "support": {
+          "title": "부족한 은행 지원",
+          "text": "기존 금융 파트너는 종종 중소기업에 느린 온보딩과 제한된 글로벌 서비스를 제공합니다."
+        },
+        "smb": {
+          "title": "중소기업을 위해 설계",
+          "text": "YASBe는 현대적인 결제, 자금관리, 스테이블코인 인프라를 하나의 접근 가능한 플랫폼으로 통합했습니다."
+        }
+      }
+    },
+    "team": {
+      "title": "공유된 비전으로 하나된 팀",
+      "intro": "우리는 은행, 기술, 기업가 정신 분야의 전문가로 구성된 팀이며, 중소기업이 글로벌 확장에 필요한 금융 서비스에 접근할 수 있도록 하는 하나의 목표로 결속되어 있습니다.",
+      "features": {
+        "vision": {
+          "title": "공유된 비전으로 하나된 팀",
+          "text": "우리 팀은 은행 업무, 컴플라이언스, 기술, 기업가 경험을 결합하여 실질적인 금융 장벽을 해결합니다."
+        },
+        "modernSmb": {
+          "title": "현대 중소기업을 위해 구축",
+          "text": "낡은 은행 시스템에 좌절감을 느끼고, 야심찬 기업이 더 빠르게 움직이고 글로벌로 운영할 수 있도록 YASBe를 구축했습니다."
+        }
+      }
+    },
+    "vision": {
+      "headerTitle": "비전과 미션",
+      "headerSubtitle": "실물 경제에 뿌리 둔 기업을 위한 금융 인프라 구축.",
+      "cards": {
+        "realEconomy": {
+          "title": "실물 경제에 뿌리 두고",
+          "text": "우리는 실제 산업에 적극적으로 투자하며 기업이 시장 간 자금, 결제, 성장 기회를 연결하도록 돕습니다."
+        },
+        "bridging": {
+          "title": "시장을 잇고 가치를 열다",
+          "text": "디지털 자산 거래와 전통 금융 서비스의 깊은 뿌리를 활용해 시장을 연결하고 기업이 글로벌 가치를 열 수 있도록 합니다."
+        }
+      }
     }
   }
 }

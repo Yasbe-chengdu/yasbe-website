@@ -410,6 +410,8 @@ export default {
     "company": {
       "heading": "公司",
       "about": "關於我們",
+      "blog": "部落格",
+      "news": "新聞",
       "careers": "加入我們",
       "bridgingEconomies": "連接經濟",
       "contact": "聯絡我們"
@@ -434,6 +436,25 @@ export default {
     "resources": {
       "heading": "資源",
       "legal": "法律與合規"
+    }
+  },
+  "newsPage": {
+    "heading": "新聞中心",
+    "subtitle": "公司公告",
+    "readMore": "閱讀更多",
+    "share": "分享",
+    "shareAria": "分享這篇公告"
+  },
+  "blogPage": {
+    "heading": "部落格",
+    "filters": {
+      "search": "搜尋",
+      "topics": "主題",
+      "industries": "產業",
+      "placeholder": "請選擇",
+      "searchAria": "搜尋部落格",
+      "topicAria": "選擇主題",
+      "industryAria": "選擇產業"
     }
   },
   "virtualAccount": {
@@ -1073,6 +1094,64 @@ export default {
       "solutionBullet2": "通過 SEPA Instant 向歐盟供應商付款",
       "solutionBullet3": "按項目追蹤資金流向，確保會計和透明度",
       "solutionBullet4": "使用 YASBe 的嵌入式 KYT 進行交易篩查"
+    }
+  },
+  "bridgingEconomies": {
+    "hero": {
+      "titleSpan": "賦能企業",
+      "titleStrong": "連接經濟體",
+      "subtitle": "透過全球金融解決方案助力中小企業成長。",
+      "ctaText": "免費試用"
+    },
+    "story": {
+      "headerTitle": "我們的故事與使命",
+      "headerSubtitle": "將中小企業與世界經濟連接起來",
+      "paragraphs": {
+        "collapse": "自 2023 年 3 月以來，由於 Silvergate、矽谷銀行和 Signature 銀行的倒閉，許多中小企業和初創公司失去了應有的服務。",
+        "impact": "當銀行倒閉時，存款或許可以追回，但關鍵的銀行關係、支付通道和成長計劃可能在一夜之間消失。"
+      },
+      "cards": {
+        "banking": {
+          "title": "基礎銀行服務需求",
+          "text": "中小企業需要可靠的帳戶、支付和貨幣工具，才能實現跨境成長。"
+        },
+        "support": {
+          "title": "銀行服務的缺失",
+          "text": "傳統金融合作夥伴往往讓中小企業面臨緩慢的開戶流程和有限的全球覆蓋。"
+        },
+        "smb": {
+          "title": "專為中小企業打造",
+          "text": "YASBe 將現代支付、資金管理和穩定幣基礎設施整合到一個易用平台。"
+        }
+      }
+    },
+    "team": {
+      "title": "以共同願景團結在一起",
+      "intro": "我們是一支由銀行、科技和創業領域的專家組成的團隊，共同目標是：為中小企業提供在全球範圍內擴展所需的金融服務。",
+      "features": {
+        "vision": {
+          "title": "以共同願景團結在一起",
+          "text": "我們的團隊結合了銀行、合規、技術和創業經驗，致力於解決實際的金融障礙。"
+        },
+        "modernSmb": {
+          "title": "為現代中小企業而建",
+          "text": "我們對過時的銀行系統感到沮喪，因此構建了 YASBe，幫助有抱負的企業更快地行動並在全球營運。"
+        }
+      }
+    },
+    "vision": {
+      "headerTitle": "願景與使命",
+      "headerSubtitle": "為植根於實體經濟的企業構建金融基礎設施。",
+      "cards": {
+        "realEconomy": {
+          "title": "植根於實體經濟",
+          "text": "我們積極投資於實體行業，幫助企業在各市場之間連接資金、結算和成長機會。"
+        },
+        "bridging": {
+          "title": "連接市場，釋放價值",
+          "text": "憑藉在數字資產交易和傳統金融服務方面的深厚根基，我們連接市場，幫助企業解鎖全球價值。"
+        }
+      }
     }
   }
 }
