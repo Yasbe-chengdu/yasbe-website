@@ -395,7 +395,7 @@ export default {
       ]
     },
     "questions": {
-      "title": "Questions?",
+      "title": "Open Positions",
       "subtitle": "Explore open roles and learn how your skills can help build the future of global finance.",
       "about": "About the role",
       "responsibilities": "Your roles & responsibilities",

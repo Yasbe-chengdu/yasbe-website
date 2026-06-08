@@ -44,7 +44,7 @@
         <div class="careers-questions__inner">
           <header v-reveal class="careers-section-header">
             <h2>{{ $t('careersPage.questions.title') }}</h2>
-            <p>{{ $t('careersPage.questions.subtitle') }}</p>
+            <!-- <p>{{ $t('careersPage.questions.subtitle') }}</p> -->
           </header>
 
           <div class="careers-accordion">
