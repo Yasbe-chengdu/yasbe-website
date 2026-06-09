@@ -8,14 +8,14 @@
         <div class="bridging-hero__inner">
           <div class="bridging-hero__copy">
             <h1 v-reveal class="bridging-hero__title">
-              <span>Empowering Businesses</span>
-              <strong>Bridging Economies</strong>
+              <span>{{ $t('bridgingEconomies.hero.titleSpan') }}</span>
+              <strong>{{ $t('bridgingEconomies.hero.titleStrong') }}</strong>
             </h1>
             <p v-reveal="{ delay: 80, distance: 24 }" class="bridging-hero__subtitle">
-              Helping SMBs grow through global financial solutions.
+              {{ $t('bridgingEconomies.hero.subtitle') }}
             </p>
             <a v-reveal="{ delay: 140, distance: 20 }" :href="customerBaseUrl" target="_blank" rel="noopener noreferrer" class="bridging-cta">
-              <span>Try For Free</span>
+              <span>{{ $t('bridgingEconomies.hero.ctaText') }}</span>
               <img :src="ctaArrowIcon" alt="" aria-hidden="true" />
             </a>
           </div>
@@ -35,18 +35,14 @@
       <section class="bridging-story">
         <div class="bridging-story__inner">
           <div v-reveal class="bridging-section-header bridging-section-header--dark">
-            <h2>Our Story &amp; Purpose</h2>
-            <p>Connect small and medium businesses (SMBs) with the world economy</p>
+            <h2>{{ $t('bridgingEconomies.story.headerTitle') }}</h2>
+            <p>{{ $t('bridgingEconomies.story.headerSubtitle') }}</p>
           </div>
 
           <div class="bridging-story__lead">
             <div v-reveal="{ distance: 30 }" class="bridging-story__copy">
-              <p>
-                Since March 2023, many SMBs and startup companies have been left unserved due to the collapse of Silvergate, Silicon Valley Bank, and Signature Bank.
-              </p>
-              <p>
-                When banks collapse, deposits might be recovered, but critical banking relationships, payment rails, and growth plans can disappear overnight.
-              </p>
+              <p>{{ $t('bridgingEconomies.story.paragraphs.collapse') }}</p>
+              <p>{{ $t('bridgingEconomies.story.paragraphs.impact') }}</p>
             </div>
             <img
               v-reveal="{ delay: 100, distance: 34, scale: 0.99 }"
@@ -61,13 +57,13 @@
           <div class="bridging-story__cards">
             <article
               v-for="card in storyCards"
-              :key="card.title"
+              :key="card.key"
               v-reveal="{ delay: card.delay, distance: 28 }"
               class="bridging-story-card"
             >
               <img :src="card.icon" alt="" class="bridging-story-card__icon" aria-hidden="true" loading="lazy" decoding="async" />
-              <h3>{{ card.title }}</h3>
-              <p>{{ card.text }}</p>
+              <h3>{{ $t(card.titleKey) }}</h3>
+              <p>{{ $t(card.textKey) }}</p>
             </article>
           </div>
         </div>
@@ -85,22 +81,22 @@
           />
 
           <div class="bridging-team__content">
-            <h2 v-reveal>United by a Shared Vision</h2>
+            <h2 v-reveal>{{ $t('bridgingEconomies.team.title') }}</h2>
             <p v-reveal="{ delay: 70, distance: 22 }" class="bridging-team__intro">
-              We're a team of experts in banking, tech, and entrepreneurship, united by one goal: to give SMBs the financial access they need to scale globally.
+              {{ $t('bridgingEconomies.team.intro') }}
             </p>
 
             <div class="bridging-feature-list">
               <article
                 v-for="feature in teamFeatures"
-                :key="feature.title"
+                :key="feature.key"
                 v-reveal="{ delay: feature.delay, distance: 26 }"
                 class="bridging-feature"
               >
                 <img :src="feature.icon" alt="" class="bridging-feature__icon" aria-hidden="true" loading="lazy" decoding="async" />
                 <div>
-                  <h3>{{ feature.title }}</h3>
-                  <p>{{ feature.text }}</p>
+                  <h3>{{ $t(feature.titleKey) }}</h3>
+                  <p>{{ $t(feature.textKey) }}</p>
                 </div>
               </article>
             </div>
@@ -111,21 +107,21 @@
       <section class="bridging-vision">
         <div class="bridging-vision__inner">
           <div v-reveal class="bridging-section-header">
-            <h2>The Vision &amp; Mission</h2>
-            <p>Building financial infrastructure for businesses grounded in the real economy.</p>
+            <h2>{{ $t('bridgingEconomies.vision.headerTitle') }}</h2>
+            <p>{{ $t('bridgingEconomies.vision.headerSubtitle') }}</p>
           </div>
 
           <div class="bridging-vision__grid">
             <div class="bridging-vision__cards">
               <article
                 v-for="(card, index) in visionCards"
-                :key="card.title"
+                :key="card.key"
                 v-reveal="{ delay: index * 80, distance: 28 }"
                 class="bridging-vision-card"
                 :class="{ 'bridging-vision-card--dark': card.dark }"
               >
-                <h3>{{ card.title }}</h3>
-                <p>{{ card.text }}</p>
+                <h3>{{ $t(card.titleKey) }}</h3>
+                <p>{{ $t(card.textKey) }}</p>
               </article>
             </div>
 
@@ -160,53 +156,60 @@ import smbIcon from '../assets/images/bridging-economies/be-story-icon-smb@4x.pn
 import visionIcon from '../assets/images/bridging-economies/be-feature-icon-vision@4x.png?no-inline'
 import modernSmbIcon from '../assets/images/bridging-economies/be-feature-icon-modern-smb@4x.png?no-inline'
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
 
 const storyCards = [
   {
+    key: 'banking',
     icon: bankingIcon,
-    title: 'Essential Banking Needs',
-    text: 'SMBs need reliable access to accounts, payments, and currency tools before they can grow across borders.',
+    titleKey: 'bridgingEconomies.story.cards.banking.title',
+    textKey: 'bridgingEconomies.story.cards.banking.text',
     delay: 40,
   },
   {
+    key: 'support',
     icon: supportIcon,
-    title: 'Broken Bank Support',
-    text: 'Traditional financial partners often leave smaller businesses with slow onboarding and limited global coverage.',
+    titleKey: 'bridgingEconomies.story.cards.support.title',
+    textKey: 'bridgingEconomies.story.cards.support.text',
     delay: 100,
   },
   {
+    key: 'smb',
     icon: smbIcon,
-    title: 'Purpose-Built for SMBs',
-    text: 'YASBe brings modern payment, treasury, and stablecoin infrastructure into one accessible platform.',
+    titleKey: 'bridgingEconomies.story.cards.smb.title',
+    textKey: 'bridgingEconomies.story.cards.smb.text',
     delay: 160,
   },
 ]
 
 const teamFeatures = [
   {
+    key: 'vision',
     icon: visionIcon,
-    title: 'United by a Shared Vision',
-    text: 'Our team combines banking, compliance, technology, and entrepreneurship experience to solve practical financial barriers.',
+    titleKey: 'bridgingEconomies.team.features.vision.title',
+    textKey: 'bridgingEconomies.team.features.vision.text',
     delay: 120,
   },
   {
+    key: 'modernSmb',
     icon: modernSmbIcon,
-    title: 'Built for Modern SMBs',
-    text: 'Frustrated by outdated banking systems, we built YASBe to help ambitious companies move faster and operate globally.',
+    titleKey: 'bridgingEconomies.team.features.modernSmb.title',
+    textKey: 'bridgingEconomies.team.features.modernSmb.text',
     delay: 190,
   },
 ]
 
 const visionCards = [
   {
-    title: 'Grounded in the Real Economy',
-    text: 'We actively invest in real-world sectors and help businesses connect capital, settlement, and growth opportunities across markets.',
+    key: 'realEconomy',
+    titleKey: 'bridgingEconomies.vision.cards.realEconomy.title',
+    textKey: 'bridgingEconomies.vision.cards.realEconomy.text',
     dark: false,
   },
   {
-    title: 'Bridging Markets, Unlocking Value',
-    text: 'With deep roots in digital asset trading and traditional financial services, we bridge markets so businesses can unlock global value.',
+    key: 'bridging',
+    titleKey: 'bridgingEconomies.vision.cards.bridging.title',
+    textKey: 'bridgingEconomies.vision.cards.bridging.text',
     dark: true,
   },
 ]

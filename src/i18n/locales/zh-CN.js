@@ -410,6 +410,8 @@ export default {
     "company": {
       "heading": "公司",
       "about": "关于我们",
+      "blog": "博客",
+      "news": "新闻",
       "careers": "加入我们",
       "bridgingEconomies": "连接经济",
       "contact": "联系我们"
@@ -434,6 +436,25 @@ export default {
     "resources": {
       "heading": "资源",
       "legal": "法律与合规"
+    }
+  },
+  "newsPage": {
+    "heading": "新闻中心",
+    "subtitle": "公司公告",
+    "readMore": "阅读更多",
+    "share": "分享",
+    "shareAria": "分享这篇公告"
+  },
+  "blogPage": {
+    "heading": "博客",
+    "filters": {
+      "search": "搜索",
+      "topics": "主题",
+      "industries": "行业",
+      "placeholder": "请选择",
+      "searchAria": "搜索博客",
+      "topicAria": "选择主题",
+      "industryAria": "选择行业"
     }
   },
   "virtualAccount": {
@@ -1073,6 +1094,43 @@ export default {
       "solutionBullet2": "通过 SEPA Instant 向欧盟供应商付款",
       "solutionBullet3": "按项目追踪资金流向，确保会计和透明度",
       "solutionBullet4": "使用 YASBe 的嵌入式 KYT 进行交易筛查"
+    }
+  },
+  "bridgingEconomies": {
+    "hero": {
+      "titleSpan": "赋能企业",
+      "titleStrong": "连接经济体",
+      "subtitle": "通过全球金融解决方案助力中小企业成长。",
+      "ctaText": "免费试用"
+    },
+    "story": {
+      "headerTitle": "我们的故事与使命",
+      "headerSubtitle": "将中小企业与世界经济连接起来",
+      "paragraphs": {
+        "collapse": "自 2023 年 3 月以来，由于 Silvergate、硅谷银行和 Signature 银行的倒闭，许多中小企业和初创公司失去了应有的服务。",
+        "impact": "当银行倒闭时，存款或许可以追回，但关键的银行关系、支付通道和增长计划可能在一夜之间消失。"
+      },
+      "cards": {
+        "banking": { "title": "基础银行服务需求", "text": "中小企业需要可靠的账户、支付和货币工具，才能实现跨境增长。" },
+        "support": { "title": "银行服务的缺失", "text": "传统金融合作伙伴往往让中小企业面临缓慢的开户流程和有限的全球覆盖。" },
+        "smb": { "title": "专为中小企业打造", "text": "YASBe 将现代支付、资金管理和稳定币基础设施整合到一个易用平台。" }
+      }
+    },
+    "team": {
+      "title": "以共同愿景团结在一起",
+      "intro": "我们是一支由银行、科技和创业领域的专家组成的团队，共同目标是：为中小企业提供在全球范围内扩展所需的金融服务。",
+      "features": {
+        "vision": { "title": "以共同愿景团结在一起", "text": "我们的团队结合了银行、合规、技术和创业经验，致力于解决实际的金融障碍。" },
+        "modernSmb": { "title": "为现代中小企业而建", "text": "我们对过时的银行系统感到沮丧，因此构建了 YASBe，帮助有抱负的企业更快地行动并在全球运营。" }
+      }
+    },
+    "vision": {
+      "headerTitle": "愿景与使命",
+      "headerSubtitle": "为植根于实体经济的企业构建金融基础设施。",
+      "cards": {
+        "realEconomy": { "title": "植根于实体经济", "text": "我们积极投资于实体行业，帮助企业在各市场之间连接资金、结算和增长机会。" },
+        "bridging": { "title": "连接市场，释放价值", "text": "凭借在数字资产交易和传统金融服务方面的深厚根基，我们连接市场，帮助企业解锁全球价值。" }
+      }
     }
   }
 }

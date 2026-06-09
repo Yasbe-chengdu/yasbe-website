@@ -410,6 +410,8 @@ export default {
     "company": {
       "heading": "Entreprise",
       "about": "À propos",
+      "blog": "Blog",
+      "news": "Actualités",
       "careers": "Carrières",
       "bridgingEconomies": "Relier les économies",
       "contact": "Nous contacter"
@@ -434,6 +436,25 @@ export default {
     "resources": {
       "heading": "Ressources",
       "legal": "Juridique et conformité"
+    }
+  },
+  "newsPage": {
+    "heading": "Salle de presse",
+    "subtitle": "Annonces de l'entreprise",
+    "readMore": "Lire la suite",
+    "share": "Partager",
+    "shareAria": "Partager cette annonce"
+  },
+  "blogPage": {
+    "heading": "Blog",
+    "filters": {
+      "search": "Rechercher",
+      "topics": "Sujets",
+      "industries": "Secteurs",
+      "placeholder": "Sélectionner",
+      "searchAria": "Rechercher dans le blog",
+      "topicAria": "Sélectionner un sujet",
+      "industryAria": "Sélectionner un secteur"
     }
   },
   "virtualAccount": {
@@ -1073,6 +1094,64 @@ export default {
       "solutionBullet2": "Payer les fournisseurs basés dans l'UE via SEPA Instant",
       "solutionBullet3": "Suivre les flux par projet pour la comptabilité et la transparence",
       "solutionBullet4": "Utiliser le KYT intégré de YASBe pour le filtrage des transactions"
+    }
+  },
+  "bridgingEconomies": {
+    "hero": {
+      "titleSpan": "Renforcer les Entreprises",
+      "titleStrong": "Connecter les Économies",
+      "subtitle": "Aider les PME à se développer grâce à des solutions financières mondiales.",
+      "ctaText": "Essayer gratuitement"
+    },
+    "story": {
+      "headerTitle": "Notre Histoire et Notre But",
+      "headerSubtitle": "Connecter les PME à l'économie mondiale",
+      "paragraphs": {
+        "collapse": "Depuis mars 2023, de nombreuses PME et jeunes pousses sont restées sans service suite à l'effondrement de Silvergate, de Silicon Valley Bank et de Signature Bank.",
+        "impact": "Quand les banques font faillite, les dépôts peuvent être récupérés, mais les relations bancaires essentielles, les systèmes de paiement et les plans de croissance peuvent disparaître du jour au lendemain."
+      },
+      "cards": {
+        "banking": {
+          "title": "Besoins Bancaires Essentiels",
+          "text": "Les PME ont besoin d'un accès fiable à des comptes, des paiements et des outils de change pour pouvoir se développer au-delà des frontières."
+        },
+        "support": {
+          "title": "Soutien Bancaire Insuffisant",
+          "text": "Les partenaires financiers traditionnels laissent souvent les plus petites entreprises avec des intégrations lentes et une couverture mondiale limitée."
+        },
+        "smb": {
+          "title": "Conçu pour les PME",
+          "text": "YASBe réunit une infrastructure moderne de paiement, de trésorerie et de stablecoins dans une seule plateforme accessible."
+        }
+      }
+    },
+    "team": {
+      "title": "Unis par une Vision Partagée",
+      "intro": "Nous sommes une équipe d'experts en banque, technologie et entrepreneuriat, unis par un but : donner aux PME l'accès financier dont elles ont besoin pour se développer à l'échelle mondiale.",
+      "features": {
+        "vision": {
+          "title": "Unis par une Vision Partagée",
+          "text": "Notre équipe combine de l'expérience en banque, conformité, technologie et entrepreneuriat pour résoudre des obstacles financiers pratiques."
+        },
+        "modernSmb": {
+          "title": "Conçu pour les PME Modernes",
+          "text": "Frustrés par des systèmes bancaires obsolètes, nous avons construit YASBe pour aider les entreprises ambitieuses à avancer plus vite et à opérer à l'échelle mondiale."
+        }
+      }
+    },
+    "vision": {
+      "headerTitle": "La Vision et la Mission",
+      "headerSubtitle": "Bâtir une infrastructure financière pour les entreprises ancrées dans l'économie réelle.",
+      "cards": {
+        "realEconomy": {
+          "title": "Ancrés dans l'Économie Réelle",
+          "text": "Nous investissons activement dans des secteurs réels et aidons les entreprises à connecter capital, liquidité et opportunités de croissance entre marchés."
+        },
+        "bridging": {
+          "title": "Connecter les Marchés, Libérer de la Valeur",
+          "text": "Forts de nos racines dans le trading d'actifs numériques et les services financiers traditionnels, nous connectons les marchés pour que les entreprises libèrent de la valeur mondiale."
+        }
+      }
     }
   }
 }

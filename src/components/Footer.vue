@@ -3,7 +3,9 @@
     <div class="footer__container">
       <div class="footer__main">
         <div v-reveal class="footer__brand">
-          <img src="../assets/images/logo-footer.png" alt="YASBe Logo" class="footer__logo" loading="lazy" decoding="async" />
+          <RouterLink to="/" class="footer__logo-link" aria-label="YASBe Home">
+            <img src="../assets/images/logo-footer.png" alt="YASBe Logo" class="footer__logo" loading="lazy" decoding="async" />
+          </RouterLink>
           <div class="footer__socials">
             <a href="javascript:void(0);" class="footer__social" @click="toPage('https://www.youtube.com/@YASBe-u9j')">
               <img src="../assets/images/social-twitter.svg" alt="Twitter" loading="lazy" decoding="async" />
@@ -24,9 +26,9 @@
         <div class="footer__links">
           <div v-reveal="{ delay: 60 }" class="footer__column">
             <h4 class="footer__heading">{{ $t('footer.company.heading') }}</h4>
-            <span class="footer__link">{{ $t('footer.company.about') }}</span>
-            <!-- <RouterLink :to="footerLinks.company.careers.to" class="footer__link">{{ $t('footer.company.careers') }}</RouterLink>
-            <RouterLink :to="footerLinks.company.bridgingEconomies.to" class="footer__link">{{ $t('footer.company.bridgingEconomies') }}</RouterLink> -->
+            <RouterLink :to="footerLinks.company.bridgingEconomies.to" class="footer__link">{{ $t('footer.company.about') }}</RouterLink>
+            <RouterLink to="/news" class="footer__link">{{ $t('footer.company.news') }}</RouterLink>
+            <RouterLink :to="footerLinks.company.careers.to" class="footer__link">{{ $t('footer.company.careers') }}</RouterLink>
             <RouterLink :to="footerLinks.company.contact.to" class="footer__link">{{ $t('footer.company.contact') }}</RouterLink>
           </div>
 
@@ -52,6 +54,7 @@
           <div v-reveal="{ delay: 240 }" class="footer__column">
             <h4 class="footer__heading">{{ $t('footer.resources.heading') }}</h4>
             <RouterLink to="/legal" class="footer__link">{{ $t('footer.resources.legal') }}</RouterLink>
+            <RouterLink to="/blog" class="footer__link">{{ $t('footer.company.blog') }}</RouterLink>
           </div>
         </div>
       </div>

@@ -395,7 +395,7 @@ export default {
       ]
     },
     "questions": {
-      "title": "Questions?",
+      "title": "Open Positions",
       "subtitle": "Explore open roles and learn how your skills can help build the future of global finance.",
       "about": "About the role",
       "responsibilities": "Your roles & responsibilities",
@@ -410,6 +410,8 @@ export default {
     "company": {
       "heading": "Company",
       "about": "About Us",
+      "blog": "Blog",
+      "news": "News",
       "careers": "Careers",
       "bridgingEconomies": "Bridging Economies",
       "contact": "Contact Us"
@@ -434,6 +436,25 @@ export default {
     "resources": {
       "heading": "Resources",
       "legal": "Legal and Compliance"
+    }
+  },
+  "newsPage": {
+    "heading": "Newsroom",
+    "subtitle": "Company Announcements",
+    "readMore": "Read more",
+    "share": "Share",
+    "shareAria": "Share this announcement"
+  },
+  "blogPage": {
+    "heading": "Blog",
+    "filters": {
+      "search": "Search",
+      "topics": "Topics",
+      "industries": "Industries",
+      "placeholder": "Please select",
+      "searchAria": "Search blog",
+      "topicAria": "Select topic",
+      "industryAria": "Select industry"
     }
   },
   "virtualAccount": {
@@ -1066,6 +1087,43 @@ export default {
       "solutionBullet2": "Pay EU-based vendors via SEPA Instant",
       "solutionBullet3": "Track flows per project for accounting and transparency",
       "solutionBullet4": "Use YASBe's embedded KYT for transaction screening"
+    }
+  },
+  "bridgingEconomies": {
+    "hero": {
+      "titleSpan": "Empowering Businesses",
+      "titleStrong": "Bridging Economies",
+      "subtitle": "Helping SMBs grow through global financial solutions.",
+      "ctaText": "Try For Free"
+    },
+    "story": {
+      "headerTitle": "Our Story & Purpose",
+      "headerSubtitle": "Connect small and medium businesses (SMBs) with the world economy",
+      "paragraphs": {
+        "collapse": "Since March 2023, many SMBs and startup companies have been left unserved due to the collapse of Silvergate, Silicon Valley Bank, and Signature Bank.",
+        "impact": "When banks collapse, deposits might be recovered, but critical banking relationships, payment rails, and growth plans can disappear overnight."
+      },
+      "cards": {
+        "banking": { "title": "Essential Banking Needs", "text": "SMBs need reliable access to accounts, payments, and currency tools before they can grow across borders." },
+        "support": { "title": "Broken Bank Support", "text": "Traditional financial partners often leave smaller businesses with slow onboarding and limited global coverage." },
+        "smb": { "title": "Purpose-Built for SMBs", "text": "YASBe brings modern payment, treasury, and stablecoin infrastructure into one accessible platform." }
+      }
+    },
+    "team": {
+      "title": "United by a Shared Vision",
+      "intro": "We're a team of experts in banking, tech, and entrepreneurship, united by one goal: to give SMBs the financial access they need to scale globally.",
+      "features": {
+        "vision": { "title": "United by a Shared Vision", "text": "Our team combines banking, compliance, technology, and entrepreneurship experience to solve practical financial barriers." },
+        "modernSmb": { "title": "Built for Modern SMBs", "text": "Frustrated by outdated banking systems, we built YASBe to help ambitious companies move faster and operate globally." }
+      }
+    },
+    "vision": {
+      "headerTitle": "The Vision & Mission",
+      "headerSubtitle": "Building financial infrastructure for businesses grounded in the real economy.",
+      "cards": {
+        "realEconomy": { "title": "Grounded in the Real Economy", "text": "We actively invest in real-world sectors and help businesses connect capital, settlement, and growth opportunities across markets." },
+        "bridging": { "title": "Bridging Markets, Unlocking Value", "text": "With deep roots in digital asset trading and traditional financial services, we bridge markets so businesses can unlock global value." }
+      }
     }
   }
 }

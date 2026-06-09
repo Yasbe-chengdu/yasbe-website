@@ -44,7 +44,7 @@
         <div class="careers-questions__inner">
           <header v-reveal class="careers-section-header">
             <h2>{{ $t('careersPage.questions.title') }}</h2>
-            <p>{{ $t('careersPage.questions.subtitle') }}</p>
+            <!-- <p>{{ $t('careersPage.questions.subtitle') }}</p> -->
           </header>
 
           <div class="careers-accordion">
@@ -126,7 +126,7 @@ import valueIconThree from '../assets/images/careers/careers-value-icon-3@4x.png
 import accordionChevronIcon from '../assets/images/careers/careers-accordion-chevron@4x.png?no-inline'
 
 const { locale, tm } = useI18n()
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
 const activeIndex = ref(0)
 
 const questions = computed(() => getCareersQuestions(locale.value))

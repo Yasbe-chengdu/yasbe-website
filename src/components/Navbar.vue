@@ -119,9 +119,9 @@ const globalPaymentMenuRef = ref(null)
 const { locale } = useI18n()
 const route = useRoute()
 const isHome = computed(() => route.path === '/')
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
-const customerLoginUrl = new URL('login', customerBaseUrl).toString()
-const customerRegisterUrl = new URL('register', customerBaseUrl).toString()
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
+const customerLoginUrl = new URL('/login', customerBaseUrl).toString()
+const customerRegisterUrl = new URL('/register', customerBaseUrl).toString()
 
 const globalPaymentSubnav = [
   {

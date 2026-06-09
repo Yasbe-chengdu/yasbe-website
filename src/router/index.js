@@ -24,6 +24,26 @@ const router = createRouter({
       component: () => import('../views/CareersView.vue'),
     },
     {
+      path: '/blog',
+      name: 'blog',
+      component: () => import('../views/BlogView.vue'),
+    },
+    {
+      path: '/blog/:slug',
+      name: 'blog-detail',
+      component: () => import('../views/BlogDetailView.vue'),
+    },
+    {
+      path: '/news',
+      name: 'news',
+      component: () => import('../views/NewsView.vue'),
+    },
+    {
+      path: '/news/:slug',
+      name: 'news-detail',
+      component: () => import('../views/NewsDetailView.vue'),
+    },
+    {
       path: '/stablecoin-checkout',
       name: 'stablecoin-checkout',
       component: () => import('../views/StablecoinCheckoutView.vue'),

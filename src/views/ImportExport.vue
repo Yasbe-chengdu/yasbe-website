@@ -218,7 +218,7 @@ const useCases = [
     { key: 'ecommerceCompany', titleKey: 'importExport.cases.items.ecommerceCompany.title', textKey: 'importExport.cases.items.ecommerceCompany.text' },
 ]
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
 </script>
 
 <style scoped src="../styles/views/ImportExport.css"></style>
