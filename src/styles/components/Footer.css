@@ -21,6 +21,11 @@
   flex: 1;
 }
 
+.footer__logo-link {
+  display: inline-flex;
+  width: fit-content;
+}
+
 .footer__logo {
   width: 52px;
   height: 57px;

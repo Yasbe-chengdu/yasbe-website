@@ -3,7 +3,9 @@
     <div class="footer__container">
       <div class="footer__main">
         <div v-reveal class="footer__brand">
-          <img src="../assets/images/logo-footer.png" alt="YASBe Logo" class="footer__logo" loading="lazy" decoding="async" />
+          <RouterLink to="/" class="footer__logo-link" aria-label="YASBe Home">
+            <img src="../assets/images/logo-footer.png" alt="YASBe Logo" class="footer__logo" loading="lazy" decoding="async" />
+          </RouterLink>
           <div class="footer__socials">
             <a href="javascript:void(0);" class="footer__social" @click="toPage('https://www.youtube.com/@YASBe-u9j')">
               <img src="../assets/images/social-twitter.svg" alt="Twitter" loading="lazy" decoding="async" />
