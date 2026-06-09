@@ -6,7 +6,7 @@ import { registerWeixinBridgeReplay } from '../utils/wechatVideoPlayback'
 const heroRef = ref(null)
 const heroVideoRef = ref(null)
 const heroMinHeight = ref(null)
-const customerUrl = new URL('customer', import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/').toString()
+const customerUrl = new URL('customer', import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/').toString()
 
 let resizeObserver
 let visibilityObserver

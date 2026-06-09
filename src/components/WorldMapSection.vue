@@ -43,7 +43,7 @@ import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import heroPoster from '../assets/images/hero-bg.png'
 import { registerViewportPlaybackReplay, registerWeixinBridgeReplay } from '../utils/wechatVideoPlayback'
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 
 const sectionRef = ref(null)
 const videoRef = ref(null)

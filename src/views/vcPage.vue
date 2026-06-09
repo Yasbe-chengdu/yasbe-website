@@ -242,7 +242,7 @@ const useCases = [
 
 const strategyIcon = createIcon('strategy')
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 </script>
 
 <style scoped src="../styles/views/vcPage.css"></style>

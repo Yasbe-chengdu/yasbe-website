@@ -113,7 +113,7 @@
         <div class="va-benefits__inner">
           <div v-reveal class="va-benefits__top">
             <h2 class="va-heading">{{ t('virtualAccount.benefits.title') }}</h2>
-            <a href="https://customer.beeznis.com/" target="_blank" rel="noopener noreferrer" class="va-cta va-cta--compact">
+            <a href="https://customer.yasbe.com/" target="_blank" rel="noopener noreferrer" class="va-cta va-cta--compact">
               <span>{{ t('virtualAccount.cta.findOutMore') }}</span>
               <img :src="arrowCircleIcon" alt="" aria-hidden="true" />
             </a>
@@ -160,7 +160,7 @@ import controlIcon from '../assets/images/virtual-account/va-benefit-control@4x.
 import riskIcon from '../assets/images/virtual-account/va-benefit-risk@4x.png?no-inline'
 import cashflowIcon from '../assets/images/virtual-account/va-benefit-cashflow@4x.png?no-inline'
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 const { t } = useI18n()
 
 const networkCards = computed(() => [
