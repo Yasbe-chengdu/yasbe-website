@@ -14,8 +14,8 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue'),
     },
     {
-      path: '/bridging-economies',
-      name: 'bridging-economies',
+      path: '/about-us',
+      name: 'about-us',
       component: () => import('../views/BridgingEconomiesView.vue'),
     },
     {
@@ -89,18 +89,18 @@ const router = createRouter({
       component: () => import('../views/ImportExport.vue'),
     },
     {
-      path: '/servicesPage',
-      name: 'servicesPage',
+      path: '/professioanl-services',
+      name: 'professioanl-services',
       component: () => import('../views/servicesPage.vue'),
     },
     {
-      path: '/vcPage',
-      name: 'vcPage',
+      path: '/venture-capital',
+      name: 'venture-capital',
       component: () => import('../views/vcPage.vue'),
     },
     {
-      path: '/cryptoPage',
-      name: 'cryptoPage',
+      path: '/crypto-native',
+      name: 'crypto-native',
       component: () => import('../views/cryptoPage.vue'),
     },
   ],

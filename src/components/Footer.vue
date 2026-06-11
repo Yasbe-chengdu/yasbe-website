@@ -46,9 +46,9 @@
             <h4 class="footer__heading">{{ $t('footer.useCases.heading') }}</h4>
             <RouterLink to="/treasury" class="footer__link">{{ $t('footer.useCases.treasury') }}</RouterLink>
             <RouterLink to="/importExport" class="footer__link">{{ $t('footer.useCases.importExport') }}</RouterLink>
-            <RouterLink to="/servicesPage" class="footer__link">{{ $t('footer.useCases.services') }}</RouterLink>
-            <RouterLink to="/vcPage" class="footer__link">{{ $t('footer.useCases.vc') }}</RouterLink>
-            <RouterLink to="/cryptoPage" class="footer__link">{{ $t('footer.useCases.crypto') }}</RouterLink>
+            <RouterLink to="/professioanl-services" class="footer__link">{{ $t('footer.useCases.services') }}</RouterLink>
+            <RouterLink to="/venture-capital" class="footer__link">{{ $t('footer.useCases.vc') }}</RouterLink>
+            <RouterLink to="/crypto-native" class="footer__link">{{ $t('footer.useCases.crypto') }}</RouterLink>
           </div>
 
           <div v-reveal="{ delay: 240 }" class="footer__column">
@@ -67,7 +67,7 @@ const footerLinks = {
   company: {
     about: { to: '/about' },
     careers: { to: '/careers' },
-    bridgingEconomies: { to: '/bridging-economies' },
+    bridgingEconomies: { to: '/about-us' },
     contact: { to: '/contact' },
   },
   products: {
