@@ -73,6 +73,7 @@
   border-radius: 22px;
   background: var(--color-white);
   color: #1d1d1f;
+  transition: box-shadow 0.28s ease;
 }
 
 .contact-overview__icon {
@@ -232,6 +233,12 @@
 .contact-form__submit:hover {
   background: #ffd633;
   transform: translateY(-2px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-overview__card:hover {
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+  }
 }
 
 @media (max-width: 1199px) {

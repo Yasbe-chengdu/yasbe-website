@@ -452,6 +452,7 @@
   border-radius: 24px;
   background: #f5f5f7;
   color: #1d1d1f;
+  transition: box-shadow 0.28s ease;
 }
 
 .treasury-benefit-card__icon {
@@ -512,6 +513,7 @@
   min-height: 368px;
   overflow: hidden;
   border-radius: 24px;
+  transition: box-shadow 0.28s ease;
 }
 
 .treasury-goals-card h3 {
@@ -648,6 +650,13 @@
   line-height: 1.2;
   letter-spacing: 0.2px;
   color: #1d1d1f;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .treasury-benefit-card:hover,
+  .treasury-goals-card:hover {
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+  }
 }
 
 /* ==================== Responsive ==================== */
