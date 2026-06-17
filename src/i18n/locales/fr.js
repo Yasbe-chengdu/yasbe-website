@@ -125,6 +125,9 @@ export default {
       "titleLine2": "entreprise ensemble",
       "subtitle": "Parlez-nous de vos objectifs ; nous vous aiderons à débloquer une nouvelle croissance grâce à un financement plus intelligent.",
       "submit": "Envoyer",
+      "submitting": "Envoi...",
+      "success": "Merci. Votre demande a bien été envoyée.",
+      "error": "Une erreur est survenue. Veuillez réessayer plus tard.",
       "fields": {
         "fullName": {
           "label": "Nom complet",

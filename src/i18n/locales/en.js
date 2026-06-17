@@ -125,6 +125,9 @@ export default {
       "titleLine2": "Business Together",
       "subtitle": "Tell us about your goals—we'll help you unlock new growth through smarter funding.",
       "submit": "Submit",
+      "submitting": "Submitting...",
+      "success": "Thank you. Your enquiry has been sent successfully.",
+      "error": "Something went wrong. Please try again later.",
       "fields": {
         "fullName": {
           "label": "Full Name",
