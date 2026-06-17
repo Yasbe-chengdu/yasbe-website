@@ -125,6 +125,9 @@ export default {
       "titleLine2": "성장시키세요",
       "subtitle": "목표를 알려주세요. 더 스마트한 자금 솔루션으로 새로운 성장을 지원하겠습니다.",
       "submit": "제출",
+      "submitting": "제출 중...",
+      "success": "문의가 성공적으로 접수되었습니다.",
+      "error": "제출에 실패했습니다. 잠시 후 다시 시도해 주세요.",
       "fields": {
         "fullName": {
           "label": "이름",

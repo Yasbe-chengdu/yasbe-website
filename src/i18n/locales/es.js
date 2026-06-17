@@ -125,6 +125,9 @@ export default {
       "titleLine2": "tu negocio juntos",
       "subtitle": "Cuéntanos tus objetivos; te ayudaremos a desbloquear nuevo crecimiento con financiación más inteligente.",
       "submit": "Enviar",
+      "submitting": "Enviando...",
+      "success": "Gracias. Tu consulta se ha enviado correctamente.",
+      "error": "Algo salió mal. Inténtalo de nuevo más tarde.",
       "fields": {
         "fullName": {
           "label": "Nombre completo",

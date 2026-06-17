@@ -125,6 +125,9 @@ export default {
       "titleLine2": "推動業務成長",
       "subtitle": "告訴我們你的目標，我們將協助你透過更智慧的資金方案釋放新成長。",
       "submit": "提交",
+      "submitting": "提交中...",
+      "success": "感謝諮詢，您的資訊已成功提交。",
+      "error": "提交失敗，請稍後再試。",
       "fields": {
         "fullName": {
           "label": "姓名",

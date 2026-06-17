@@ -125,6 +125,9 @@ export default {
       "titleLine2": "推动业务增长",
       "subtitle": "告诉我们你的目标，我们将帮助你通过更智能的资金方案释放新增长。",
       "submit": "提交",
+      "submitting": "提交中...",
+      "success": "感谢咨询，您的信息已成功提交。",
+      "error": "提交失败，请稍后重试。",
       "fields": {
         "fullName": {
           "label": "姓名",
