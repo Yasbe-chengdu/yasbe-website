@@ -3,7 +3,7 @@
     <div class="features__container">
       <h2 v-reveal class="features__title">{{ $t('features.title') }}</h2>
 
-      <div v-reveal="{ delay: 80, distance: 28 }" class="features__content">
+      <!-- <div v-reveal="{ delay: 80, distance: 28 }" class="features__content">
         <div class="features__track" :style="trackStyle">
           <div v-for="slide in featureSlides" :key="slide.key" class="features__slide">
             <div class="features__visual features__visual--dark">
@@ -227,7 +227,35 @@
           @next="nextSlide"
           @go-to-slide="goToSlide"
         />
+      </div> -->
+    
+      <div v-reveal="{ delay: 80, distance: 28 }" class="new-fetureas" @mouseleave="activeNewFeatureIndex = 0">
+        <article
+          v-for="(item, index) in newFeatureCards"
+          :key="item.title"
+          class="new-feature-card"
+          :class="{ 'new-feature-card--active': activeNewFeatureIndex === index }"
+          :style="newFeatureCardStyles[index]"
+          tabindex="0"
+          @mouseenter="activeNewFeatureIndex = index"
+          @focusin="activeNewFeatureIndex = index"
+        >
+          <div class="new-feature-card__copy">
+            <h3>{{ item.title }}</h3>
+            <div class="new-feature-card__description">
+              <p v-for="paragraph in item.description" :key="paragraph">{{ paragraph }}</p>
+            </div>
+          </div>
+          <img
+            :src="item.image"
+            :alt="item.title"
+            class="new-feature-card__image"
+            loading="lazy"
+            decoding="async"
+          />
+        </article>
       </div>
+    
     </div>
   </section>
 </template>
@@ -239,6 +267,10 @@ import img2 from '../assets/images/img2.png'
 const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
 import img3 from '../assets/images/img3.png'
 import img4 from '../assets/images/img4.png'
+import featureApiIntegration from '../assets/images/features/api-integration.webp'
+import featureMultiChainAsset from '../assets/images/features/multi-chain-asset.webp'
+import featurePaymentAi from '../assets/images/features/payment-ai.webp'
+import featureRegulatoryCompliance from '../assets/images/features/regulatory-compliance.webp'
 import btcIcon from '../assets/images/icon-btc.svg'
 import usdIcon from '../assets/images/icon-usd.svg'
 import chevronIcon from '../assets/images/icon-chevron-down.svg'
@@ -352,6 +384,7 @@ const featureSlides = [
 ]
 
 const currentSlide = ref(0)
+const activeNewFeatureIndex = ref(0)
 const totalSlides = featureSlides.length
 const allCurrencies = ref(buildInitialCurrencies())
 const fromCurrencyCode = ref('BTC')
@@ -362,6 +395,57 @@ const isRateLoading = ref(false)
 const openPicker = ref(null)
 const currencySearchTerm = ref('')
 let rateRequestId = 0
+
+const newFeatureCards = [
+  {
+    title: 'Multi-Chain, Multi-Asset Support',
+    image: featureMultiChainAsset,
+    description: [
+      'A unified PayFi infrastructure connecting fiat and digital asset ecosystems, enabling seamless value movement across banking networks, card schemes, and blockchains.',
+    ],
+  },
+  {
+    title: 'Regulatory Compliance',
+    image: featureRegulatoryCompliance,
+    description: [
+      'Built-in KYC/KYB, AML monitoring, Sanctions Screening, transaction monitoring across all payment rails, and KYT on-chain screening, ensuring continuous verification, monitoring, and global regulatory compliance.',
+    ],
+  },
+  {
+    title: 'Payment AI',
+    image: featurePaymentAi,
+    description: [
+      'Intelligent payment infrastructure designed to optimize routing, FX execution, and global money movement in real time.',
+      'Ensures payments are processed through the most efficient pathways across fiat and digital rails, enabling continuous, always-on financial operations where money never sleeps.',
+    ],
+  },
+  {
+    title: 'API Integration',
+    image: featureApiIntegration,
+    description: [
+      'Developer-first infrastructure designed for seamless embedding of financial services.',
+      'Our API-driven platform enables businesses to integrate banking, payments, and digital asset capabilities directly into their own products through a fully supported Developer Portal.',
+    ],
+  },
+]
+
+const newFeatureCardStyles = computed(() => {
+  const compactWidth = 248
+  const activeWidth = 408
+  const gap = 16
+
+  return newFeatureCards.map((_, index) => {
+    const x = newFeatureCards.slice(0, index).reduce((offset, __, previousIndex) => {
+      const width = activeNewFeatureIndex.value === previousIndex ? activeWidth : compactWidth
+      return offset + width + gap
+    }, 0)
+
+    return {
+      '--new-feature-x': `${x}px`,
+      '--new-feature-width': `${activeNewFeatureIndex.value === index ? activeWidth : compactWidth}px`,
+    }
+  })
+})
 
 const format2digits = (value) => {
   if (!Number.isFinite(value) || value === 0) {
