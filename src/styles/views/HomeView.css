@@ -1,3 +1,127 @@
 .home {
   min-height: 100vh;
 }
+
+.home__section {
+  background: var(--color-white);
+  padding: 12px var(--content-padding) 28px;
+  overflow: hidden;
+}
+
+.home__partners-viewport {
+  --partners-gap: 44px;
+  --partners-mask-width: 140px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: min(1200px, 100%);
+  height: 80px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.home__partners-viewport::before,
+.home__partners-viewport::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: min(var(--partners-mask-width), 18vw);
+  pointer-events: none;
+}
+
+.home__partners-viewport::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--color-white) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.home__partners-viewport::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--color-white) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.home__partners-track {
+  display: flex;
+  align-items: center;
+  gap: var(--partners-gap);
+  width: max-content;
+  will-change: transform;
+  animation: home-partners-marquee 24s linear infinite;
+}
+
+.home__partners-viewport:hover .home__partners-track {
+  animation-play-state: paused;
+}
+
+.home__partners-set {
+  display: flex;
+  align-items: center;
+  gap: var(--partners-gap);
+  flex: 0 0 auto;
+}
+
+.home__partner-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--partner-logo-width);
+  height: 30px;
+}
+
+.home__partner-logo img {
+  display: block;
+  max-width: 100%;
+  max-height: 30px;
+  object-fit: contain;
+}
+
+@keyframes home-partners-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(calc(-50% - 22px), 0, 0);
+  }
+}
+
+@media (max-width: 900px) {
+  .home__section {
+    padding: 8px var(--content-padding) 24px;
+  }
+
+  .home__partners-viewport {
+    --partners-gap: 34px;
+    height: 72px;
+    width: 100%;
+  }
+
+  .home__partners-track,
+  .home__partners-set {
+    gap: var(--partners-gap);
+  }
+
+  .home__partner-logo {
+    transform: scale(0.9);
+    transform-origin: center;
+  }
+
+  @keyframes home-partners-marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(calc(-50% - 17px), 0, 0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home__partners-track {
+    animation: none;
+    transform: translate3d(0, 0, 0);
+  }
+}
