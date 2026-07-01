@@ -44,12 +44,26 @@ import { getLegalContent, loadLegalContent } from '../data/legalContent/index.js
 
 const { locale } = useI18n()
 const activeTab = ref('termsAndConditions')
+const legalContentReady = ref(false)
+const legalContentVersion = ref(0)
+let legalContentRequestId = 0
 
 // Load legal content when locale changes (e.g. user switches language)
 watch(
   locale,
-  (newLocale) => {
-    loadLegalContent(newLocale)
+  async (newLocale) => {
+    // 用户连续切换语言时，较早的异步加载可能后完成；用 requestId 保证只采纳最后一次切换。
+    const requestId = ++legalContentRequestId
+    legalContentReady.value = false
+    try {
+      await loadLegalContent(newLocale)
+    } catch (error) {
+      console.error(error)
+    }
+    if (requestId !== legalContentRequestId) return
+    legalContentReady.value = true
+    // contentCache 不是 Vue 响应式对象，加载完成后用版本号触发 currentContent 重新计算。
+    legalContentVersion.value += 1
   },
   { immediate: true },
 )
@@ -70,9 +84,11 @@ const currentTabTitleKey = computed(() => {
 })
 
 const currentContent = computed(() => {
-  // locale.value creates reactive dependency so content re-computes on language switch
+  // locale.value creates reactive dependency so content re-computes on language switch.
   void locale.value
-  const content = getLegalContent()
+  void legalContentVersion.value
+  if (!legalContentReady.value) return []
+  const content = getLegalContent(locale.value)
   return content[activeTab.value] || content.termsAndConditions || []
 })
 </script>

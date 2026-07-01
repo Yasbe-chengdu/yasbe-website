@@ -37,7 +37,7 @@
 .contact-hero__title {
   display: flex;
   flex-direction: column;
-  margin: 0;
+  margin: 25px 0 0;
   color: #010101;
   font-size: clamp(64px, 5.55vw, 80px);
   font-weight: 400;

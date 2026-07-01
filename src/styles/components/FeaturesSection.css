@@ -638,12 +638,12 @@
   z-index: 1;
   right: -2px;
   bottom: -21px;
-  width: 320px;
-  height: 320px;
+  width: 306px;
+  height: 260px;
   object-fit: cover;
   mix-blend-mode: darken;
   transform-origin: right bottom;
-  transform: scale(0.625) translateZ(0);
+  transform: scale(0.725) translateZ(0);
   transition:
     right var(--new-feature-duration) var(--new-feature-ease),
     bottom var(--new-feature-duration) var(--new-feature-ease),
@@ -658,14 +658,19 @@
   transform: scale(1.06);
 }
 
+.new-feature-card:first-child .new-feature-card__image {
+  width: 380px;
+  height: 280px;
+}
+
 .new-feature-card:nth-child(2) .new-feature-card__image {
   right: -9px;
   bottom: -16px;
 }
 
 .new-feature-card:nth-child(4) .new-feature-card__image {
-  right: -36px;
-  bottom: -24px;
+  right: -0;
+  bottom: -0;
 }
 
 @media (max-width: 1199px) {

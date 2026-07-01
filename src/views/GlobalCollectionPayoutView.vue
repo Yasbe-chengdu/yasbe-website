@@ -38,9 +38,7 @@
         <div class="gcp-coverage__inner">
           <div v-reveal class="gcp-section-header">
             <h2>{{ t('globalCollectionPayout.coverage.title') }}</h2>
-            <p>
-              {{ t('globalCollectionPayout.coverage.subtitle') }}
-            </p>
+          
           </div>
 
           <div v-reveal="{ delay: 120, distance: 34, scale: 0.99 }" class="gcp-coverage__visual">

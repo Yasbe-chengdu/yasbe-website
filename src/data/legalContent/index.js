@@ -6,6 +6,7 @@ const STORAGE_KEY = 'yasbe-locale'
 
 const defaultLocale = 'en'
 const loadedLocales = new Set([defaultLocale])
+const localeLoadPromises = new Map()
 
 const contentLoaders = {
   en: () => Promise.resolve(enContent),
@@ -30,20 +31,32 @@ contentCache.set(defaultLocale, enContent)
 export async function loadLegalContent(locale) {
   const target = supportedLocales.has(locale) ? locale : defaultLocale
 
-  if (loadedLocales.has(target)) return
+  if (loadedLocales.has(target)) return contentCache.get(target)
 
-  const content = await contentLoaders[target]()
-  contentCache.set(target, content)
-  loadedLocales.add(target)
+  // 法律内容也是异步 chunk。频繁切换时复用同语言加载 promise，避免重复 import。
+  if (!localeLoadPromises.has(target)) {
+    const loadPromise = contentLoaders[target]()
+      .then((content) => {
+        contentCache.set(target, content)
+        loadedLocales.add(target)
+        return content
+      })
+      .finally(() => {
+        localeLoadPromises.delete(target)
+      })
+    localeLoadPromises.set(target, loadPromise)
+  }
+
+  return localeLoadPromises.get(target)
 }
 
 /**
  * Get legal content for the current active locale.
  * Returns English content if the locale hasn't been loaded yet.
  */
-export function getLegalContent() {
-  const locale = i18n.global.locale.value
-  return contentCache.get(locale) ?? contentCache.get(defaultLocale) ?? enContent
+export function getLegalContent(locale = i18n.global.locale.value) {
+  const target = supportedLocales.has(locale) ? locale : defaultLocale
+  return contentCache.get(target) ?? contentCache.get(defaultLocale) ?? enContent
 }
 
 /**

@@ -11,9 +11,9 @@
               <span>{{ $t('contactPage.hero.titleLine1') }}</span>
               <strong>{{ $t('contactPage.hero.titleLine2') }}</strong>
             </h1>
-            <p v-reveal="{ delay: 80, distance: 24 }" class="contact-hero__subtitle">
+            <!-- <p v-reveal="{ delay: 80, distance: 24 }" class="contact-hero__subtitle">
               {{ $t('contactPage.hero.subtitle') }}
-            </p>
+            </p> -->
           </div>
 
           <div class="contact-overview">

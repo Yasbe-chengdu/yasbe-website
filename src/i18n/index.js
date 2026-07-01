@@ -17,6 +17,8 @@ const supportedLocaleCodes = new Set(localeOptions.map((option) => option.code))
 
 const defaultLocale = 'en'
 const loadedLocaleCodes = new Set([defaultLocale])
+const localeLoadPromises = new Map()
+let localeSwitchRequestId = 0
 const localeLoaders = {
     en: () => Promise.resolve({ default: enMessages }),
     'zh-CN': () => import('./locales/zh-CN.js'),
@@ -58,9 +60,20 @@ export async function loadLocaleMessages(locale) {
         return
     }
 
-    const module = await localeLoaders[locale]()
-    i18n.global.setLocaleMessage(locale, module.default)
-    loadedLocaleCodes.add(locale)
+    // 多次快速切到同一个语言时复用同一个 import promise，避免重复加载同一 chunk。
+    if (!localeLoadPromises.has(locale)) {
+        const loadPromise = localeLoaders[locale]()
+            .then((module) => {
+                i18n.global.setLocaleMessage(locale, module.default)
+                loadedLocaleCodes.add(locale)
+            })
+            .finally(() => {
+                localeLoadPromises.delete(locale)
+            })
+        localeLoadPromises.set(locale, loadPromise)
+    }
+
+    return localeLoadPromises.get(locale)
 }
 
 export async function setupI18n() {
@@ -75,7 +88,12 @@ export async function setAppLocale(locale) {
         return
     }
 
+    // 语言包是异步 chunk。快速反复切换时，只允许最后一次选择真正更新全局 locale。
+    const requestId = ++localeSwitchRequestId
     await loadLocaleMessages(locale)
+    if (requestId !== localeSwitchRequestId) {
+        return
+    }
     i18n.global.locale.value = locale
     applyDocumentLanguage(locale)
 

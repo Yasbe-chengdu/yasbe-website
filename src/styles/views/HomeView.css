@@ -76,6 +76,14 @@
   max-height: 30px;
   object-fit: contain;
 }
+.homefont333{
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 130px;
+    letter-spacing: 0.48px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
 
 @keyframes home-partners-marquee {
   from {
@@ -90,6 +98,9 @@
 @media (max-width: 900px) {
   .home__section {
     padding: 8px var(--content-padding) 24px;
+  }
+  .homefont333{
+    line-height: 70px;
   }
 
   .home__partners-viewport {

@@ -76,6 +76,7 @@
   width: 100%;
   height: 582px;
   transition: transform 0.32s var(--motion-ease-emphasis);
+  margin-top: 50px;
 }
 
 .world-map__visual .hero-video {

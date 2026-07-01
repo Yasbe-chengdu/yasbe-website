@@ -115,7 +115,7 @@
 .yasbe-card-hero__visual-anchor {
   position: absolute;
   left: 50%;
-  top: 261px;
+  top: 331px;
   width: min(842px, 68vw);
   transform: translateX(-50%);
   pointer-events: none;
