@@ -29,14 +29,6 @@
               fetchpriority="high"
               decoding="async"
             />
-            <img
-              v-reveal="{ delay: 260, distance: 28, scale: 0.98 }"
-              :src="heroCardImage"
-              alt=""
-              class="va-hero__card"
-              loading="eager"
-              decoding="async"
-            />
           </div>
         </div>
       </section>
@@ -146,7 +138,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
-import heroDeviceImage from '../assets/images/virtual-account/va-hero-device@2x.png'
+import heroDeviceImage from '../assets/images/virtual-account/va-hero-device@2x.png?v=1'
 import heroCardImage from '../assets/images/virtual-account/va-hero-card@2x.png'
 import gbpNetworkImage from '../assets/images/virtual-account/va-network-gbp@2x.png'
 import usdNetworkImage from '../assets/images/virtual-account/va-network-usd@2x.png'

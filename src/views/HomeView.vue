@@ -7,6 +7,7 @@
       <GlobalPaymentsSection />
       <WorldMapSection />
       <div class="home__section" aria-label="Trusted technology partners">
+        <p class="homefont333">Partners</p>
         <div v-reveal="{ distance: 18 }" class="home__partners-viewport">
           <div class="home__partners-track">
             <div
@@ -60,7 +61,7 @@ const Footer = defineAsyncComponent(() => import('../components/Footer.vue'))
 
 const partnerLogos = [
   { name: 'Merkle Science', src: merkleScienceLogo, width: 192 },
-  { name: 'Circle', src: circleLogo, width: 117 },
+  { name: 'Circle', src: circleLogo, width: 202 },
   { name: 'Safeheron', src: safeheronLogo, width: 188 },
   { name: 'Comply Advantage', src: complyAdvantageLogo, width: 140 },
   { name: 'Cloudflare', src: cloudflareLogo, width: 209 },

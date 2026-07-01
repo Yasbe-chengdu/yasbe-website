@@ -220,15 +220,15 @@ export default {
         "text": "Utilize advanced transaction monitoring tools to protect your digital asset repayments and collateral."
       },
       "fraud": {
-        "title": "Advanced Fraud Prevention & Security Controls",
+        "title": "Fraud Prevention",
         "text": "Built with enterprise-grade fraud prevention and real-time risk monitoring to help protect users and businesses from unauthorized transactions, suspicious activity, and payment fraud."
       },
       "blocking": {
-        "title": "Smart Transaction Blocking & Risk Controls",
+        "title": "Transaction blocking",
         "text": "Includes intelligent transaction blocking capabilities designed to help prevent unauthorized, suspicious, or high-risk activities in real time."
       },
       "freeze": {
-        "title": "Instant Card Freeze & Unfreeze Controls",
+        "title": "Freeze cards",
         "text": "Allows users to instantly freeze or unfreeze their card at any time for enhanced security and spending control."
       }
     }

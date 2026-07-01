@@ -3,7 +3,7 @@
     <div class="global-payments__container">
       <div v-reveal class="global-payments__header">
         <h2 class="global-payments__title">{{ $t('globalPayments.title') }}</h2>
-        <p class="global-payments__subtitle">{{ $t('globalPayments.subtitle') }}</p>
+        <!-- <p class="global-payments__subtitle">{{ $t('globalPayments.subtitle') }}</p> -->
       </div>
       <div class="global-payments__cards">
         <div v-reveal="{ delay: 60, origin: 'left', distance: 36 }" class="global-payments__card global-payments__card--blue">
