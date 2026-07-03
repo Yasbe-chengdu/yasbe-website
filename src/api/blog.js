@@ -18,7 +18,7 @@ function unwrap(payload) {
  * @returns {Promise<{ content: any[], totalPages: number, totalElements: number, first: boolean, last: boolean, empty: boolean }>}
  */
 export async function getBlogList({ pageNum = 1, pageSize = 9, search, status = 'published' } = {}) {
-  const res = await apiClient.post('/apiAdmin/blog/list', {
+  const res = await apiClient.post('/api/blog/list', {
     pageNum,
     pageSize,
     search: search || undefined,
@@ -33,6 +33,6 @@ export async function getBlogList({ pageNum = 1, pageSize = 9, search, status = 
  * @returns {Promise<any>}
  */
 export async function getBlogDetail(id) {
-  const res = await apiClient.get(`/apiAdmin/blog/detail/${id}`)
+  const res = await apiClient.get(`/api/blog/detail/${id}`)
   return unwrap(res.data)
 }
