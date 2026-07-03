@@ -452,7 +452,7 @@ export default {
     "share": "Share",
     "shareAria": "Share this announcement",
     "loading": "Loading...",
-    "empty": "No news available",
+    "empty": "No news available.",
     "backToList": "Back to news"
   },
   "blogPage": {
