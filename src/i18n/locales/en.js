@@ -98,6 +98,10 @@ export default {
     "slide3": {
       "title": "Institutional OTC",
       "text": "Access institutional-grade over-the-counter trading services with deep liquidity and competitive pricing. Our OTC desk provides personalized service for large volume transactions with minimal market impact"
+    },
+    "slide4": {
+      "title": "YASBe Card",
+      "text": "Spend worldwide with a secure multi-currency card connected to your YASBe account. Enjoy global acceptance, real-time controls, and seamless payments across both fiat and digital asset ecosystems."
     }
   },
   "contactPage": {
@@ -446,7 +450,10 @@ export default {
     "subtitle": "Company Announcements",
     "readMore": "Read more",
     "share": "Share",
-    "shareAria": "Share this announcement"
+    "shareAria": "Share this announcement",
+    "loading": "Loading...",
+    "empty": "No news available",
+    "backToList": "Back to news"
   },
   "blogPage": {
     "heading": "Blog",
@@ -458,7 +465,10 @@ export default {
       "searchAria": "Search blog",
       "topicAria": "Select topic",
       "industryAria": "Select industry"
-    }
+    },
+    "loading": "Loading...",
+    "empty": "No articles available",
+    "backToList": "Back to blog"
   },
   "virtualAccount": {
     "cta": {

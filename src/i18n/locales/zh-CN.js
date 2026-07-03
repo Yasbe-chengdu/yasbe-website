@@ -98,6 +98,10 @@ export default {
     "slide3": {
       "title": "机构场外交易",
       "text": "利用机构级别的场外交易服务，尽享深度流动性与极具竞争力的定价优势。我们的场外交易部门为大额交易提供个性化服务，同时对市场影响极小。"
+    },
+    "slide4": {
+      "title": "YASBe 卡",
+      "text": "使用与 YASBe 账户绑定的安全多币种卡在全球范围内消费。享受全球通用、实时控制，以及在法币和数字资产生态系统中无缝支付。"
     }
   },
   "contactPage": {
@@ -446,7 +450,10 @@ export default {
     "subtitle": "公司公告",
     "readMore": "阅读更多",
     "share": "分享",
-    "shareAria": "分享这篇公告"
+    "shareAria": "分享这篇公告",
+    "loading": "加载中...",
+    "empty": "暂无新闻",
+    "backToList": "返回新闻列表"
   },
   "blogPage": {
     "heading": "博客",
@@ -458,7 +465,10 @@ export default {
       "searchAria": "搜索博客",
       "topicAria": "选择主题",
       "industryAria": "选择行业"
-    }
+    },
+    "loading": "加载中...",
+    "empty": "暂无文章",
+    "backToList": "返回博客"
   },
   "virtualAccount": {
     "cta": {

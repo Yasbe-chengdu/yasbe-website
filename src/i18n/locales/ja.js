@@ -98,6 +98,10 @@ export default {
     "slide3": {
       "title": "投資機会",
       "text": "伝統資産とデジタル資産の両方にまたがる一流の投資機会へアクセスできます。分散ポートフォリオや限定案件への機関投資家レベルのアクセスを提供します。"
+    },
+    "slide4": {
+      "title": "YASBe カード",
+      "text": "YASBe アカウントに接続された安全なマルチ通貨カードで世界中で決済。グローバルな利用可能性、リアルタイム管理、そして法定通貨とデジタル資産の両エコシステムにわたるシームレスな決済をお楽しみください。"
     }
   },
   "contactPage": {
@@ -446,7 +450,10 @@ export default {
     "subtitle": "企業発表",
     "readMore": "続きを読む",
     "share": "共有",
-    "shareAria": "このお知らせを共有"
+    "shareAria": "このお知らせを共有",
+    "loading": "読み込み中...",
+    "empty": "ニュースはありません",
+    "backToList": "ニュース一覧へ戻る"
   },
   "blogPage": {
     "heading": "ブログ",
@@ -458,7 +465,10 @@ export default {
       "searchAria": "ブログを検索",
       "topicAria": "トピックを選択",
       "industryAria": "業界を選択"
-    }
+    },
+    "loading": "読み込み中...",
+    "empty": "記事がありません",
+    "backToList": "ブログに戻る"
   },
   "virtualAccount": {
     "cta": {

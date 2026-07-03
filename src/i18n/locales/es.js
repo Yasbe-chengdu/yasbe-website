@@ -98,6 +98,10 @@ export default {
     "slide3": {
       "title": "Oportunidades de inversión",
       "text": "Accede a oportunidades de inversión de primer nivel en activos tradicionales y digitales. Nuestra plataforma ofrece acceso institucional a carteras diversificadas y oportunidades exclusivas."
+    },
+    "slide4": {
+      "title": "Tarjeta YASBe",
+      "text": "Gasta en todo el mundo con una tarjeta segura de múltiples monedas conectada a tu cuenta YASBe. Disfruta de aceptación global, control en tiempo real y pagos fluidos en los ecosistemas de activos fiat y digitales."
     }
   },
   "contactPage": {
@@ -446,7 +450,10 @@ export default {
     "subtitle": "Anuncios de la empresa",
     "readMore": "Leer más",
     "share": "Compartir",
-    "shareAria": "Compartir este anuncio"
+    "shareAria": "Compartir este anuncio",
+    "loading": "Cargando...",
+    "empty": "No hay noticias disponibles",
+    "backToList": "Volver a noticias"
   },
   "blogPage": {
     "heading": "Blog",
@@ -458,7 +465,10 @@ export default {
       "searchAria": "Buscar en el blog",
       "topicAria": "Seleccionar tema",
       "industryAria": "Seleccionar industria"
-    }
+    },
+    "loading": "Cargando...",
+    "empty": "No hay artículos disponibles",
+    "backToList": "Volver al blog"
   },
   "virtualAccount": {
     "cta": {

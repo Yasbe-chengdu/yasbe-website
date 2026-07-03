@@ -48,6 +48,7 @@ import { computed, ref } from 'vue'
 import macbookBase1 from '../assets/images/btm-banner2.png'
 import macbookBase2 from '../assets/images/btm-banner3.png'
 import macbookBase3 from '../assets/images/btm-banner1.png'
+import macbookBase4 from '../assets/images/btm-banner4.png'
 
 const getimg = (index) => {
     return require('../assets/images/btm-banner' + index + '.png')
@@ -68,6 +69,11 @@ const productSlides = [
         key: 'slide3',
         cardClass: 'products__card--light',
         baseImage: macbookBase3,
+    },
+     {
+        key: 'slide4',
+        cardClass: 'products__card--light',
+        baseImage: macbookBase4,
     },
 ]
 
