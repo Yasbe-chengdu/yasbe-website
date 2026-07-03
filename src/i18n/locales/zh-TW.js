@@ -98,6 +98,10 @@ export default {
     "slide3": {
       "title": "投資機會",
       "text": "掌握傳統資產與數位資產中的優質投資機會。平台提供機構級的多元投資組合與專屬機會准入。"
+    },
+    "slide4": {
+      "title": "YASBe 卡",
+      "text": "使用與 YASBe 帳戶連結的安全多幣種卡在全球消費。享受全球接受度、即時控制，以及在法幣與數位資產生態系統中無縫支付。"
     }
   },
   "contactPage": {
@@ -446,7 +450,10 @@ export default {
     "subtitle": "公司公告",
     "readMore": "閱讀更多",
     "share": "分享",
-    "shareAria": "分享這篇公告"
+    "shareAria": "分享這篇公告",
+    "loading": "載入中...",
+    "empty": "暫無新聞",
+    "backToList": "返回新聞列表"
   },
   "blogPage": {
     "heading": "部落格",
@@ -458,7 +465,10 @@ export default {
       "searchAria": "搜尋部落格",
       "topicAria": "選擇主題",
       "industryAria": "選擇產業"
-    }
+    },
+    "loading": "載入中...",
+    "empty": "暫無文章",
+    "backToList": "返回部落格"
   },
   "virtualAccount": {
     "cta": {

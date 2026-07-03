@@ -98,6 +98,10 @@ export default {
     "slide3": {
       "title": "투자 기회",
       "text": "전통 자산과 디지털 자산 전반의 우수한 투자 기회에 접근하세요. 플랫폼은 분산 포트폴리오와 독점 딜에 대한 기관급 접근을 제공합니다."
+    },
+    "slide4": {
+      "title": "YASBe 카드",
+      "text": "YASBe 계정에 연결된 안전한 다중 통화 카드로 전 세계에서 결제하세요. 글로벌 사용성, 실시간 제어, 그리고 법정화폐와 디지털 자산 생태계를 아우르는 원활한 결제를 즐기세요."
     }
   },
   "contactPage": {
@@ -446,7 +450,10 @@ export default {
     "subtitle": "회사 발표",
     "readMore": "더 보기",
     "share": "공유",
-    "shareAria": "이 공지 공유"
+    "shareAria": "이 공지 공유",
+    "loading": "로딩 중...",
+    "empty": "뉴스가 없습니다",
+    "backToList": "뉴스로 돌아가기"
   },
   "blogPage": {
     "heading": "블로그",
@@ -458,7 +465,10 @@ export default {
       "searchAria": "블로그 검색",
       "topicAria": "주제 선택",
       "industryAria": "산업 선택"
-    }
+    },
+    "loading": "로딩 중...",
+    "empty": "게시글이 없습니다",
+    "backToList": "블로그로 돌아가기"
   },
   "virtualAccount": {
     "cta": {

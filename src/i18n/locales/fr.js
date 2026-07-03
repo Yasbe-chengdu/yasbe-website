@@ -98,6 +98,10 @@ export default {
     "slide3": {
       "title": "Opportunités d'investissement",
       "text": "Accédez à des opportunités d’investissement de premier ordre sur les actifs traditionnels et numériques. Notre plateforme offre un accès institutionnel à des portefeuilles diversifiés et à des opérations exclusives."
+    },
+    "slide4": {
+      "title": "Carte YASBe",
+      "text": "Dépensez dans le monde entier avec une carte multi-devises sécurisée connectée à votre compte YASBe. Profitez d’une acceptation mondiale, d’un contrôle en temps réel et de paiements fluides à travers les écosystèmes d’actifs fiat et numériques."
     }
   },
   "contactPage": {
@@ -446,7 +450,10 @@ export default {
     "subtitle": "Annonces de l'entreprise",
     "readMore": "Lire la suite",
     "share": "Partager",
-    "shareAria": "Partager cette annonce"
+    "shareAria": "Partager cette annonce",
+    "loading": "Chargement...",
+    "empty": "Aucune actualité disponible",
+    "backToList": "Retour aux actualités"
   },
   "blogPage": {
     "heading": "Blog",
@@ -458,7 +465,10 @@ export default {
       "searchAria": "Rechercher dans le blog",
       "topicAria": "Sélectionner un sujet",
       "industryAria": "Sélectionner un secteur"
-    }
+    },
+    "loading": "Chargement...",
+    "empty": "Aucun article disponible",
+    "backToList": "Retour au blog"
   },
   "virtualAccount": {
     "cta": {

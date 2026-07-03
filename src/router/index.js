@@ -29,7 +29,7 @@ const router = createRouter({
       component: () => import('../views/BlogView.vue'),
     },
     {
-      path: '/blog/:slug',
+      path: '/blog/:id',
       name: 'blog-detail',
       component: () => import('../views/BlogDetailView.vue'),
     },
@@ -39,7 +39,7 @@ const router = createRouter({
       component: () => import('../views/NewsView.vue'),
     },
     {
-      path: '/news/:slug',
+      path: '/news/:id',
       name: 'news-detail',
       component: () => import('../views/NewsDetailView.vue'),
     },
