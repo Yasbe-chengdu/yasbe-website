@@ -18,7 +18,7 @@ function unwrap(payload) {
  * @returns {Promise<{ content: any[], totalPages: number, totalElements: number, number: number, size: number, first: boolean, last: boolean, empty: boolean }>}
  */
 export async function getNewsList({ pageNum = 1, pageSize = 10, status = 'published' } = {}) {
-  const res = await apiClient.post('/apiAdmin/news/list', {
+  const res = await apiClient.post('/api/news/list', {
     params: { pageNum, pageSize, status },
   })
   return unwrap(res.data)
@@ -30,6 +30,6 @@ export async function getNewsList({ pageNum = 1, pageSize = 10, status = 'publis
  * @returns {Promise<any>}
  */
 export async function getNewsDetail(id) {
-  const res = await apiClient.get(`/apiAdmin/news/detail/${id}`)
+  const res = await apiClient.get(`/api/news/detail/${id}`)
   return unwrap(res.data)
 }
