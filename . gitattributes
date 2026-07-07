@@ -1,0 +1,2 @@
+echo ".env.development merge=ours" >> .gitattributes
+echo ".env.production merge=ours" >> .gitattributes
