@@ -3,7 +3,8 @@ export default {
     "links": {
       "globalPayment": "글로벌 결제",
       "otc": "기관 OTC",
-      "contact": "문의하기"
+      "contact": "문의하기",
+      "faq": "자주 묻는 질문"
     },
     "globalPaymentSubnav": {
       "virtualAccount": "가상 계좌",
@@ -411,6 +412,36 @@ export default {
       "workingWithUs": "함께 일하는 방식",
       "apply": "지원 방법"
     }
+  },
+  "faqPage": {
+    "hero": { "title": "자주 묻는 질문", "subtitle": "YASBee에 대해 알아야 할 모든 내용을 확인하세요. 원하는 답을 찾지 못하셨나요?", "cta": "문의하기" },
+    "commonTitle": "자주 묻는 질문",
+    "searchPlaceholder": "답변 검색...",
+    "noResults": "일치하는 질문이 없습니다.",
+    "noData": "FAQ 데이터가 없습니다.",
+    "loadingQuestions": "질문을 불러오는 중...",
+    "loadingAnswer": "답변을 불러오는 중...",
+    "toc": "목차",
+    "categories": [
+      { "key": "all", "label": "전체" },
+      { "key": "general", "label": "일반" },
+      { "key": "account", "label": "계정" },
+      { "key": "payments", "label": "결제" },
+      { "key": "security", "label": "보안" },
+      { "key": "technical", "label": "기술" }
+    ],
+    "questions": [
+      { "id": "create-account", "category": "account", "question": "계정은 어떻게 만들 수 있나요?", "lead": "YASBee 계정 생성은 간단하고 무료입니다:", "steps": ["오른쪽 상단의 Get Started 버튼을 클릭합니다", "이메일 주소를 입력하고 안전한 비밀번호를 만듭니다", "확인 링크로 이메일을 인증합니다", "기본 정보를 입력해 프로필을 완성합니다"], "summary": "등록 후 즉시 YASBee PayFi 기능을 살펴볼 수 있습니다." },
+      { "id": "payment-methods", "category": "payments", "question": "어떤 결제 수단을 지원하나요?", "lead": "YASBee는 글로벌 비즈니스를 위한 현대적인 크로스보더 결제 흐름을 지원합니다.", "steps": ["가상 계좌로 현지 수금을 처리합니다", "지원되는 법정화폐 및 스테이블코인 레일로 정산합니다", "컴플라이언스 기반 글로벌 지급 채널로 자금을 이동합니다"], "summary": "사용 가능한 방식은 지역, 통화, 온보딩 상태에 따라 달라질 수 있습니다." },
+      { "id": "reset-password", "category": "account", "question": "비밀번호는 어떻게 재설정하나요?", "lead": "로그인 화면에서 언제든지 비밀번호를 재설정할 수 있습니다.", "steps": ["로그인 페이지에서 Forgot password를 선택합니다", "계정에 연결된 이메일을 입력합니다", "받은 보안 재설정 링크를 엽니다", "새 비밀번호를 만들고 다시 로그인합니다"], "summary": "보안을 위해 재설정 링크는 짧은 시간 후 자동 만료됩니다." },
+      { "id": "data-secure", "category": "security", "question": "내 데이터는 안전한가요?", "lead": "보안과 컴플라이언스는 YASBee 플랫폼의 기본 요소입니다.", "steps": ["민감한 접근은 계정 인증으로 보호됩니다", "결제 흐름은 컴플라이언스 요구 사항에 따라 모니터링됩니다", "운영 데이터는 통제된 플랫폼 프로세스로 처리됩니다"], "summary": "로그인 정보는 안전하게 보관하고 가능한 보호 기능을 활성화하세요." },
+      { "id": "transaction-fees", "category": "payments", "question": "거래 수수료는 얼마인가요?", "lead": "수수료는 상품, 통화, 결제 레일, 지역에 따라 달라집니다.", "steps": ["온보딩 중 제공된 가격 정보를 확인합니다", "큰 거래 전 수수료를 확인합니다", "맞춤형 요구 사항은 YASBee 팀에 문의합니다"], "summary": "최종 수수료는 계정 설정과 선택한 서비스에 따라 결정됩니다." },
+      { "id": "payfi-work", "category": "general", "question": "YASBee PayFi는 어떻게 작동하나요?", "lead": "YASBee PayFi는 전통 결제 수요와 현대 디지털 자산 인프라를 연결합니다.", "steps": ["지원되는 계정과 결제 레일로 자금을 수금합니다", "전환, 정산, 지급 흐름을 관리합니다", "크로스보더 비즈니스 결제를 조율합니다"], "summary": "글로벌 결제를 더 빠르고 명확하며 운영하기 쉽게 만드는 것이 목표입니다." },
+      { "id": "outside-country", "category": "general", "question": "해외에서도 YASBee를 사용할 수 있나요?", "lead": "YASBee는 여러 시장에서 운영하는 회사를 위해 설계되었습니다.", "steps": ["사용 가능 여부는 사업 소재지에 따라 다릅니다", "통화와 레일 접근은 국가마다 다를 수 있습니다", "전체 접근 권한에는 컴플라이언스 검토가 필요합니다"], "summary": "구체적인 운영 지역의 지원 여부는 팀에 문의하세요." },
+      { "id": "verify-identity", "category": "security", "question": "신원 인증은 어떻게 하나요?", "lead": "신원 인증은 계정과 거래의 컴플라이언스를 유지하는 데 도움이 됩니다.", "steps": ["회사 및 대표자 정보를 제출합니다", "요청된 증빙 서류를 제공합니다", "검토가 완료될 때까지 기다립니다"], "summary": "비즈니스 유형과 지역에 따라 추가 정보가 요청될 수 있습니다." },
+      { "id": "transaction-fails", "category": "technical", "question": "거래가 실패하면 어떻게 되나요?", "lead": "실패한 거래는 레일, 상태, 사유 코드에 따라 검토됩니다.", "steps": ["계정에서 거래 상태를 확인합니다", "반환된 오류 또는 컴플라이언스 알림을 확인합니다", "자금이 자동 반환 또는 정산되지 않으면 지원팀에 문의합니다"], "summary": "대부분의 실패 거래는 원인을 확인한 후 추적하고 해결할 수 있습니다." },
+      { "id": "customer-support", "category": "general", "question": "고객 지원팀에는 어떻게 문의하나요?", "lead": "YASBee 팀은 제품, 온보딩, 거래 관련 질문을 지원합니다.", "steps": ["문의 페이지를 통해 요청을 보냅니다", "회사명과 계정 이메일을 포함합니다", "결제 문제라면 관련 거래 정보를 공유합니다"], "summary": "요청 내용이 명확할수록 더 빠르게 응답할 수 있습니다." }
+    ]
   },
   "footer": {
     "copyright": "Copyright © YASBe 2026. All Rights Reserved",

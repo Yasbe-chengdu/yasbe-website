@@ -44,6 +44,11 @@ const router = createRouter({
       component: () => import('../views/NewsDetailView.vue'),
     },
     {
+      path: '/faq',
+      name: 'faq',
+      component: () => import('../views/FaqView.vue'),
+    },
+    {
       path: '/stablecoin-checkout',
       name: 'stablecoin-checkout',
       component: () => import('../views/StablecoinCheckoutView.vue'),

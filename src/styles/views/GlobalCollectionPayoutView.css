@@ -5,10 +5,6 @@
   color: #1d1d1f;
 }
 
-.gcp-page :deep(.navbar__logo) {
-  filter: brightness(0);
-}
-
 .gcp-hero {
   position: relative;
   min-height: 800px;

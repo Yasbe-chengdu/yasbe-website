@@ -14,10 +14,6 @@
   max-width: 1286px;
 }
 
-.news-page :deep(.navbar__logo) {
-  filter: none;
-}
-
 .news-page :deep(.navbar__menu) {
   margin-left: 80px;
 }

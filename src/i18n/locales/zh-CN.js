@@ -3,7 +3,8 @@ export default {
     "links": {
       "globalPayment": "全球支付",
       "otc": "机构 OTC",
-      "contact": "联系我们"
+      "contact": "联系我们",
+      "faq": "常见问题"
     },
     "globalPaymentSubnav": {
       "virtualAccount": "虚拟账户",
@@ -411,6 +412,40 @@ export default {
       "workingWithUs": "加入我们",
       "apply": "如何申请"
     }
+  },
+  "faqPage": {
+    "hero": {
+      "title": "常见问题",
+      "subtitle": "了解关于 YASBee 的所有重要信息。没有找到你想要的答案？",
+      "cta": "联系我们"
+    },
+    "commonTitle": "常见问题",
+    "searchPlaceholder": "搜索答案...",
+    "noResults": "没有匹配的问题。",
+    "noData": "暂无数据",
+    "loadingQuestions": "问题加载中...",
+    "loadingAnswer": "答案加载中...",
+    "toc": "目录",
+    "categories": [
+      { "key": "all", "label": "全部" },
+      { "key": "general", "label": "通用" },
+      { "key": "account", "label": "账户" },
+      { "key": "payments", "label": "支付" },
+      { "key": "security", "label": "安全" },
+      { "key": "technical", "label": "技术" }
+    ],
+    "questions": [
+      { "id": "create-account", "category": "account", "question": "如何创建账户？", "lead": "在 YASBee 创建账户简单且免费：", "steps": ["点击右上角的 Get Started 按钮", "输入你的邮箱并创建安全密码", "通过我们发送的确认链接验证邮箱", "填写基础资料完成账户信息"], "summary": "注册完成后，你可以立即开始探索 YASBee PayFi 功能。" },
+      { "id": "payment-methods", "category": "payments", "question": "支持哪些支付方式？", "lead": "YASBee 支持面向全球企业的现代跨境支付流程。", "steps": ["使用虚拟账户进行本地收款", "通过支持的法币和稳定币通道完成结算", "使用合规的全球付款通道转移资金"], "summary": "可用方式会因地区、币种和开户状态而有所不同。" },
+      { "id": "reset-password", "category": "account", "question": "如何重置密码？", "lead": "你可以随时在登录页面重置密码。", "steps": ["在登录页选择忘记密码", "输入与你账户关联的邮箱", "打开收件箱中的安全重置链接", "创建新密码并重新登录"], "summary": "出于安全考虑，密码重置链接会在短时间后自动失效。" },
+      { "id": "data-secure", "category": "security", "question": "我的数据安全吗？", "lead": "安全与合规是 YASBee 平台的基础能力。", "steps": ["敏感访问受到账户验证保护", "支付流程会按合规要求进行监控", "运营数据通过受控的平台流程处理"], "summary": "你仍应妥善保管登录凭据，并启用所有可用的账户保护措施。" },
+      { "id": "transaction-fees", "category": "payments", "question": "交易费用是多少？", "lead": "费用取决于产品、币种、支付通道和涉及地区。", "steps": ["查看开户过程中提供的价格信息", "发起大额交易前确认费用", "如有定制业务需求，请联系 YASBee 团队"], "summary": "最终费率会根据你的账户配置和所选支付服务确定。" },
+      { "id": "payfi-work", "category": "general", "question": "YASBee PayFi 如何运作？", "lead": "YASBee PayFi 连接传统支付需求与现代数字资产基础设施。", "steps": ["通过支持的账户和支付通道收款", "管理兑换、结算和付款流程", "使用平台工具协调跨境商业支付"], "summary": "目标是让全球商业支付更快、更清晰、更易运营。" },
+      { "id": "outside-country", "category": "general", "question": "我可以在本国以外使用 YASBee 吗？", "lead": "YASBee 面向跨市场经营的公司设计。", "steps": ["可用性取决于你的业务所在地", "币种和通道访问会因国家而异", "完整访问权限启用前需要完成合规检查"], "summary": "请联系团队确认你的具体经营地区是否覆盖。" },
+      { "id": "verify-identity", "category": "security", "question": "如何完成身份验证？", "lead": "身份验证有助于保障账户和交易合规。", "steps": ["提交所需的公司和代表人信息", "按要求提供支持文件", "等待审核流程完成"], "summary": "团队可能会根据你的业务类型和地区要求补充资料。" },
+      { "id": "transaction-fails", "category": "technical", "question": "交易失败会怎样？", "lead": "失败交易会根据通道、状态和原因码进行审核。", "steps": ["在账户中查看交易状态", "查看返回的错误或合规提示", "如果资金未自动退回或结算，请联系支持团队"], "summary": "大多数失败交易在确定原因后都可以追踪并处理。" },
+      { "id": "customer-support", "category": "general", "question": "如何联系客服支持？", "lead": "YASBee 团队可以协助处理产品、开户和交易问题。", "steps": ["通过联系页面提交请求", "包含公司名称和账户邮箱", "如是支付问题，请提供相关交易信息"], "summary": "清晰的请求信息有助于团队更快分配并回复你的问题。" }
+    ]
   },
   "footer": {
     "copyright": "Copyright © YASBe 2026. 保留所有权利",

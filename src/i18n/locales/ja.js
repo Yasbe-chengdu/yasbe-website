@@ -3,7 +3,8 @@ export default {
     "links": {
       "globalPayment": "グローバル決済",
       "otc": "機関投資家向け OTC",
-      "contact": "お問い合わせ"
+      "contact": "お問い合わせ",
+      "faq": "よくある質問"
     },
     "globalPaymentSubnav": {
       "virtualAccount": "バーチャル口座",
@@ -411,6 +412,36 @@ export default {
       "workingWithUs": "働く環境",
       "apply": "応募方法"
     }
+  },
+  "faqPage": {
+    "hero": { "title": "よくある質問", "subtitle": "YASBee について知っておくべき情報をまとめました。お探しの内容が見つかりませんか？", "cta": "お問い合わせ" },
+    "commonTitle": "よくある質問",
+    "searchPlaceholder": "回答を検索...",
+    "noResults": "一致する質問はありません。",
+    "noData": "FAQ データがありません。",
+    "loadingQuestions": "質問を読み込み中...",
+    "loadingAnswer": "回答を読み込み中...",
+    "toc": "目次",
+    "categories": [
+      { "key": "all", "label": "すべて" },
+      { "key": "general", "label": "一般" },
+      { "key": "account", "label": "アカウント" },
+      { "key": "payments", "label": "決済" },
+      { "key": "security", "label": "セキュリティ" },
+      { "key": "technical", "label": "技術" }
+    ],
+    "questions": [
+      { "id": "create-account", "category": "account", "question": "アカウントはどのように作成しますか？", "lead": "YASBee のアカウント作成は簡単で無料です：", "steps": ["右上の Get Started ボタンをクリックします", "メールアドレスを入力し、安全なパスワードを作成します", "確認リンクからメールを認証します", "基本情報を入力してプロフィールを完成させます"], "summary": "登録後すぐに YASBee PayFi の機能を利用できます。" },
+      { "id": "payment-methods", "category": "payments", "question": "どの支払い方法に対応していますか？", "lead": "YASBee はグローバル企業向けの現代的なクロスボーダー決済をサポートします。", "steps": ["仮想口座でローカル回収を行います", "対応する法定通貨とステーブルコインのレールで決済します", "コンプライアンス対応のグローバル支払いチャネルで資金を移動します"], "summary": "利用可能な方法は地域、通貨、オンボーディング状況によって異なります。" },
+      { "id": "reset-password", "category": "account", "question": "パスワードをリセットするには？", "lead": "ログイン画面からいつでもパスワードをリセットできます。", "steps": ["ログインページで Forgot password を選択します", "アカウントに紐づくメールアドレスを入力します", "受信した安全なリセットリンクを開きます", "新しいパスワードを作成して再ログインします"], "summary": "セキュリティのため、リセットリンクは短時間で期限切れになります。" },
+      { "id": "data-secure", "category": "security", "question": "データは安全ですか？", "lead": "セキュリティとコンプライアンスは YASBee の基盤です。", "steps": ["重要なアクセスはアカウント認証で保護されます", "決済フローはコンプライアンス要件に沿って監視されます", "運用データは管理されたプロセスで扱われます"], "summary": "ログイン情報は安全に保管し、利用可能な保護機能を有効にしてください。" },
+      { "id": "transaction-fees", "category": "payments", "question": "取引手数料はいくらですか？", "lead": "手数料は商品、通貨、決済レール、地域によって異なります。", "steps": ["オンボーディング時に共有される料金を確認します", "大口取引の前に手数料を確認します", "個別要件は YASBee チームにお問い合わせください"], "summary": "最終的な手数料はアカウント設定と選択サービスに基づきます。" },
+      { "id": "payfi-work", "category": "general", "question": "YASBee PayFi はどのように機能しますか？", "lead": "YASBee PayFi は従来型決済とデジタル資産インフラをつなぎます。", "steps": ["対応する口座と決済レールで資金を回収します", "換金、決済、支払いを管理します", "クロスボーダー商業決済を調整します"], "summary": "グローバル決済をより速く、明確で、運用しやすくすることを目指します。" },
+      { "id": "outside-country", "category": "general", "question": "国外でも YASBee を利用できますか？", "lead": "YASBee は複数市場で事業を行う企業向けに設計されています。", "steps": ["利用可否は事業所在地によって異なります", "通貨とレールの利用範囲は国ごとに異なります", "完全なアクセスにはコンプライアンス確認が必要です"], "summary": "対象地域についてはチームにお問い合わせください。" },
+      { "id": "verify-identity", "category": "security", "question": "本人確認はどのように行いますか？", "lead": "本人確認はアカウントと取引のコンプライアンスを保つために必要です。", "steps": ["会社と代表者の情報を提出します", "求められた書類を提出します", "審査完了を待ちます"], "summary": "事業タイプや地域により追加情報を求められる場合があります。" },
+      { "id": "transaction-fails", "category": "technical", "question": "取引が失敗した場合はどうなりますか？", "lead": "失敗した取引はレール、ステータス、理由コードに基づいて確認されます。", "steps": ["アカウントで取引ステータスを確認します", "エラーまたはコンプライアンス通知を確認します", "資金が戻らない場合はサポートに連絡します"], "summary": "多くの場合、原因が特定されれば追跡して解決できます。" },
+      { "id": "customer-support", "category": "general", "question": "カスタマーサポートへの連絡方法は？", "lead": "YASBee チームは商品、オンボーディング、取引に関する質問をサポートします。", "steps": ["お問い合わせページから依頼を送信します", "会社名とアカウントのメールを記載します", "決済関連の場合は取引詳細を共有します"], "summary": "明確な情報があるほど、より迅速に対応できます。" }
+    ]
   },
   "footer": {
     "copyright": "Copyright © YASBe 2026. All Rights Reserved",
