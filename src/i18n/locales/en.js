@@ -4,7 +4,7 @@ export default {
       "globalPayment": "Global Payment",
       "otc": "Institutional OTC",
       "contact": "Contact",
-      "faq": "FAQs"
+      "faq": "FAQ"
     },
     "globalPaymentSubnav": {
       "virtualAccount": "Virtual Account",
