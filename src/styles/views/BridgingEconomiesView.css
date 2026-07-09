@@ -11,10 +11,6 @@
   box-sizing: border-box;
 }
 
-.bridging-page :deep(.navbar__logo) {
-  filter: brightness(0);
-}
-
 .bridging-hero {
   position: relative;
   min-height: 800px;

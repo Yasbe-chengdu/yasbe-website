@@ -2,7 +2,7 @@
   <nav class="navbar" :class="{ 'navbar--scrolled': isScrolled, 'navbar--menu-open': isMenuOpen, 'navbar--home': isHome }">
     <div class="navbar__container">
       <RouterLink to="/" class="navbar__brand">
-        <img :src="logoSrc" alt="YASBe Logo" class="navbar__logo" />
+        <img :src="resolvedLogoSrc" alt="YASBe Logo" class="navbar__logo" />
       </RouterLink>
 
       <div class="navbar__menu" :class="{ 'navbar__menu--open': isMenuOpen }">
@@ -43,6 +43,7 @@
             {{ $t('nav.links.otc') }}
           </RouterLink>
           <RouterLink to="/contact" class="navbar__link" @click="closeMenu">{{ $t('nav.links.contact') }}</RouterLink>
+          <RouterLink to="/faq" class="navbar__link" @click="closeMenu">{{ $t('nav.links.faq') }}</RouterLink>
         </div>
 
         <div class="navbar__actions">
@@ -100,13 +101,14 @@ import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
-import defaultLogoSrc from '../assets/images/logo.svg'
+import blackLogoSrc from '../assets/images/logo-black.svg'
+import yellowLogoSrc from '../assets/images/logo.svg'
 import { localeOptions, setAppLocale } from '../i18n'
 
-defineProps({
+const props = defineProps({
   logoSrc: {
     type: String,
-    default: defaultLogoSrc,
+    default: '',
   },
 })
 
@@ -119,6 +121,7 @@ const globalPaymentMenuRef = ref(null)
 const { locale } = useI18n()
 const route = useRoute()
 const isHome = computed(() => route.path === '/')
+const resolvedLogoSrc = computed(() => props.logoSrc || (isHome.value ? yellowLogoSrc : blackLogoSrc))
 const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
 const customerLoginUrl = new URL('/login', customerBaseUrl).toString()
 const customerRegisterUrl = new URL('/register', customerBaseUrl).toString()

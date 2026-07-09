@@ -3,7 +3,8 @@ export default {
     "links": {
       "globalPayment": "Global Payment",
       "otc": "Institutional OTC",
-      "contact": "Contact"
+      "contact": "Contact",
+      "faq": "FAQs"
     },
     "globalPaymentSubnav": {
       "virtualAccount": "Virtual Account",
@@ -411,6 +412,152 @@ export default {
       "workingWithUs": "Working with us",
       "apply": "How to apply"
     }
+  },
+  "faqPage": {
+    "hero": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know about YASBee. Can't find what you're looking for?",
+      "cta": "Contact us"
+    },
+    "commonTitle": "Common Questions",
+    "searchPlaceholder": "Search for answers...",
+    "noResults": "No matching questions.",
+    "noData": "No FAQ data available.",
+    "loadingQuestions": "Loading questions...",
+    "loadingAnswer": "Loading answer...",
+    "toc": "Table of Contents",
+    "categories": [
+      { "key": "all", "label": "All" },
+      { "key": "general", "label": "General" },
+      { "key": "account", "label": "Account" },
+      { "key": "payments", "label": "Payments" },
+      { "key": "security", "label": "Security" },
+      { "key": "technical", "label": "Technical" }
+    ],
+    "questions": [
+      {
+        "id": "create-account",
+        "category": "account",
+        "question": "How do I create an account?",
+        "lead": "Creating an account on YASBee is simple and free:",
+        "steps": [
+          "Click the Get Started button on the top right",
+          "Enter your email address and create a secure password",
+          "Verify your email via the confirmation link we send you",
+          "Complete your profile with basic information"
+        ],
+        "summary": "Once registered, you can immediately start exploring YASBee PayFi features."
+      },
+      {
+        "id": "payment-methods",
+        "category": "payments",
+        "question": "What payment methods are supported?",
+        "lead": "YASBee supports modern cross-border payment workflows for global businesses.",
+        "steps": [
+          "Use virtual accounts for local collection",
+          "Settle with supported fiat and stablecoin rails",
+          "Move funds through compliant global payout channels"
+        ],
+        "summary": "Available methods may vary by region, currency, and onboarding status."
+      },
+      {
+        "id": "reset-password",
+        "category": "account",
+        "question": "How do I reset my password?",
+        "lead": "You can reset your password from the login screen at any time.",
+        "steps": [
+          "Choose Forgot password on the login page",
+          "Enter the email address linked to your account",
+          "Open the secure reset link sent to your inbox",
+          "Create a new password and sign in again"
+        ],
+        "summary": "For security, password reset links expire automatically after a short period."
+      },
+      {
+        "id": "data-secure",
+        "category": "security",
+        "question": "Is my data secure?",
+        "lead": "Security and compliance are built into the YASBee platform.",
+        "steps": [
+          "Sensitive access is protected by account verification",
+          "Payment workflows are monitored for compliance requirements",
+          "Operational data is handled through controlled platform processes"
+        ],
+        "summary": "You should still keep your login credentials private and enable all available account protections."
+      },
+      {
+        "id": "transaction-fees",
+        "category": "payments",
+        "question": "What are the transaction fees?",
+        "lead": "Fees depend on the products, currencies, payment rails, and regions involved.",
+        "steps": [
+          "Review the pricing shared during onboarding",
+          "Confirm fees before initiating large transactions",
+          "Contact the YASBee team for custom business requirements"
+        ],
+        "summary": "Your final fee schedule is based on your account setup and selected payment services."
+      },
+      {
+        "id": "payfi-work",
+        "category": "general",
+        "question": "How does YASBee PayFi work?",
+        "lead": "YASBee PayFi connects traditional payment needs with modern digital asset infrastructure.",
+        "steps": [
+          "Collect funds through supported account and payment rails",
+          "Manage conversion, settlement, and payout workflows",
+          "Use platform tools to coordinate cross-border business payments"
+        ],
+        "summary": "The goal is to make global business payments faster, clearer, and easier to operate."
+      },
+      {
+        "id": "outside-country",
+        "category": "general",
+        "question": "Can I use YASBee outside my country?",
+        "lead": "YASBee is designed for companies working across markets.",
+        "steps": [
+          "Supported availability depends on your business location",
+          "Currency and rail access may vary by country",
+          "Compliance checks are required before full access is enabled"
+        ],
+        "summary": "Contact the team to confirm coverage for your specific operating regions."
+      },
+      {
+        "id": "verify-identity",
+        "category": "security",
+        "question": "How do I verify my identity?",
+        "lead": "Identity verification helps keep accounts and transactions compliant.",
+        "steps": [
+          "Submit the requested company and representative information",
+          "Provide supporting documents when prompted",
+          "Wait for the review process to be completed"
+        ],
+        "summary": "The team may request additional details depending on your business type and region."
+      },
+      {
+        "id": "transaction-fails",
+        "category": "technical",
+        "question": "What happens if a transaction fails?",
+        "lead": "Failed transactions are reviewed based on the rail, status, and reason code.",
+        "steps": [
+          "Check the transaction status in your account",
+          "Review any returned error or compliance notice",
+          "Contact support if the funds do not automatically return or settle"
+        ],
+        "summary": "Most failed transactions can be traced and resolved once the underlying issue is identified."
+      },
+      {
+        "id": "customer-support",
+        "category": "general",
+        "question": "How do I contact customer support?",
+        "lead": "The YASBee team can help with product, onboarding, and transaction questions.",
+        "steps": [
+          "Use the Contact page to send your request",
+          "Include your company name and account email",
+          "Share relevant transaction details for payment issues"
+        ],
+        "summary": "Clear request details help the team route your question and respond faster."
+      }
+    ]
   },
   "footer": {
     "copyright": "Copyright © YASBe 2026. All Rights Reserved",

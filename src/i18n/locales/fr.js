@@ -3,7 +3,8 @@ export default {
     "links": {
       "globalPayment": "Paiement mondial",
       "otc": "OTC institutionnel",
-      "contact": "Contact"
+      "contact": "Contact",
+      "faq": "Questions fréquentes"
     },
     "globalPaymentSubnav": {
       "virtualAccount": "Compte virtuel",
@@ -411,6 +412,36 @@ export default {
       "workingWithUs": "Travailler avec nous",
       "apply": "Comment postuler"
     }
+  },
+  "faqPage": {
+    "hero": { "title": "Questions fréquentes", "subtitle": "Tout ce que vous devez savoir sur YASBee. Vous ne trouvez pas ce que vous cherchez ?", "cta": "Contactez-nous" },
+    "commonTitle": "Questions courantes",
+    "searchPlaceholder": "Rechercher des réponses...",
+    "noResults": "Aucune question correspondante.",
+    "noData": "Aucune donnée FAQ disponible.",
+    "loadingQuestions": "Chargement des questions...",
+    "loadingAnswer": "Chargement de la réponse...",
+    "toc": "Table des matières",
+    "categories": [
+      { "key": "all", "label": "Tout" },
+      { "key": "general", "label": "Général" },
+      { "key": "account", "label": "Compte" },
+      { "key": "payments", "label": "Paiements" },
+      { "key": "security", "label": "Sécurité" },
+      { "key": "technical", "label": "Technique" }
+    ],
+    "questions": [
+      { "id": "create-account", "category": "account", "question": "Comment créer un compte ?", "lead": "Créer un compte YASBee est simple et gratuit :", "steps": ["Cliquez sur Get Started en haut à droite", "Saisissez votre e-mail et créez un mot de passe sécurisé", "Vérifiez votre e-mail via le lien de confirmation", "Complétez votre profil avec les informations de base"], "summary": "Une fois inscrit, vous pouvez explorer les fonctionnalités YASBee PayFi." },
+      { "id": "payment-methods", "category": "payments", "question": "Quels moyens de paiement sont pris en charge ?", "lead": "YASBee prend en charge des flux de paiement transfrontaliers modernes.", "steps": ["Utilisez des comptes virtuels pour l'encaissement local", "Réglez via les rails fiat et stablecoin pris en charge", "Déplacez les fonds via des canaux globaux conformes"], "summary": "Les méthodes disponibles varient selon la région, la devise et l'onboarding." },
+      { "id": "reset-password", "category": "account", "question": "Comment réinitialiser mon mot de passe ?", "lead": "Vous pouvez le réinitialiser depuis l'écran de connexion.", "steps": ["Choisissez Forgot password", "Saisissez l'e-mail lié au compte", "Ouvrez le lien sécurisé reçu", "Créez un nouveau mot de passe"], "summary": "Les liens de réinitialisation expirent automatiquement pour des raisons de sécurité." },
+      { "id": "data-secure", "category": "security", "question": "Mes données sont-elles sécurisées ?", "lead": "La sécurité et la conformité sont intégrées à YASBee.", "steps": ["Les accès sensibles sont protégés par vérification", "Les flux de paiement sont surveillés pour la conformité", "Les données opérationnelles suivent des processus contrôlés"], "summary": "Gardez vos identifiants privés et activez les protections disponibles." },
+      { "id": "transaction-fees", "category": "payments", "question": "Quels sont les frais de transaction ?", "lead": "Les frais dépendent des produits, devises, rails et régions.", "steps": ["Consultez les tarifs partagés lors de l'onboarding", "Confirmez les frais avant les gros montants", "Contactez l'équipe pour des besoins spécifiques"], "summary": "Le barème final dépend de votre compte et des services choisis." },
+      { "id": "payfi-work", "category": "general", "question": "Comment fonctionne YASBee PayFi ?", "lead": "YASBee PayFi relie les paiements traditionnels à l'infrastructure d'actifs numériques.", "steps": ["Collectez via les comptes et rails pris en charge", "Gérez conversion, règlement et paiements", "Coordonnez les paiements commerciaux transfrontaliers"], "summary": "L'objectif est de rendre les paiements globaux plus rapides et plus clairs." },
+      { "id": "outside-country", "category": "general", "question": "Puis-je utiliser YASBee hors de mon pays ?", "lead": "YASBee est conçu pour les entreprises opérant sur plusieurs marchés.", "steps": ["La disponibilité dépend de votre localisation", "Les devises et rails varient selon le pays", "Des contrôles de conformité sont nécessaires"], "summary": "Contactez l'équipe pour confirmer la couverture de vos régions." },
+      { "id": "verify-identity", "category": "security", "question": "Comment vérifier mon identité ?", "lead": "La vérification aide à maintenir la conformité.", "steps": ["Soumettez les informations de l'entreprise et du représentant", "Fournissez les documents demandés", "Attendez la fin de l'examen"], "summary": "Des informations supplémentaires peuvent être demandées selon votre activité." },
+      { "id": "transaction-fails", "category": "technical", "question": "Que se passe-t-il si une transaction échoue ?", "lead": "Les transactions échouées sont examinées selon le rail, le statut et le motif.", "steps": ["Vérifiez le statut dans votre compte", "Consultez l'erreur ou l'avis de conformité", "Contactez le support si les fonds ne reviennent pas"], "summary": "La plupart peuvent être suivies et résolues après identification de la cause." },
+      { "id": "customer-support", "category": "general", "question": "Comment contacter le support client ?", "lead": "L'équipe YASBee aide sur le produit, l'onboarding et les transactions.", "steps": ["Utilisez la page Contact", "Indiquez l'entreprise et l'e-mail du compte", "Partagez les détails de transaction si nécessaire"], "summary": "Des détails clairs accélèrent la réponse." }
+    ]
   },
   "footer": {
     "copyright": "Copyright © YASBe 2026. Tous droits réservés",
