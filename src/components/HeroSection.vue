@@ -201,7 +201,7 @@ onBeforeUnmount(() => {
                         @canplay="replayHeroVideo"
                     >
                         <source src="../assets/images/hero-video.mp4" type="video/mp4" />
-                        <!-- <source src="../assets/images/hero-video.webm" type="video/webm" /> -->
+                        <source src="../assets/images/hero-video.webm" type="video/webm" />
                     </video>
                 </div>
             </div>
