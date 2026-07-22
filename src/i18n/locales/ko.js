@@ -1197,5 +1197,10 @@ export default {
         }
       }
     }
+  },
+  "pagination": {
+    "prev": "이전",
+    "next": "다음",
+    "goToPage": "페이지로 이동"
   }
 }
