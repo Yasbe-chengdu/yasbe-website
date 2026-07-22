@@ -89,8 +89,9 @@ async function fetchNews() {
       status: 'published',
     })
     newsList.value = Array.isArray(data.content) ? data.content : []
-    totalPages.value = data.totalPages ?? 0
-    totalElements.value = data.totalElements ?? 0
+    const page = data.page || {}
+    totalPages.value = page.totalPages ?? 0
+    totalElements.value = page.totalElements ?? 0
   } catch (e) {
     newsList.value = []
     totalPages.value = 0

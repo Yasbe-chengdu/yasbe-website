@@ -115,7 +115,7 @@ async function fetchBlog() {
       status: 'published',
     })
     blogList.value = Array.isArray(data.content) ? data.content : []
-    totalPages.value = data.totalPages ?? 0
+    totalPages.value = data.page?.totalPages ?? 0
   } catch (e) {
     blogList.value = []
     totalPages.value = 0
