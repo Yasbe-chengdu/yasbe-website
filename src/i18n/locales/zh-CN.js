@@ -1180,5 +1180,10 @@ export default {
         "bridging": { "title": "连接市场，释放价值", "text": "凭借在数字资产交易和传统金融服务方面的深厚根基，我们连接市场，帮助企业解锁全球价值。" }
       }
     }
+  },
+  "pagination": {
+    "prev": "上一页",
+    "next": "下一页",
+    "goToPage": "跳转到第"
   }
 }

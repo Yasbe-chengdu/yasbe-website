@@ -255,7 +255,7 @@ const useCases = [
     { key: 'consulting', icon: createIcon('consulting'), titleKey: 'treasury.cases.items.consulting.title', textKey: 'treasury.cases.items.consulting.text' },
 ]
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
 </script>
 
 <style scoped src="../styles/views/TreasuryView.css"></style>

@@ -1201,5 +1201,10 @@ export default {
         }
       }
     }
+  },
+  "pagination": {
+    "prev": "上一頁",
+    "next": "下一頁",
+    "goToPage": "跳轉到第"
   }
 }

@@ -264,7 +264,7 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import img2 from '../assets/images/img2.png'
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
 import img3 from '../assets/images/img3.png'
 import img4 from '../assets/images/img4.png'
 import featureApiIntegration from '../assets/images/features/api-integration.png'

@@ -167,7 +167,7 @@ import confidenceIcon from '../assets/images/stablecoin-icon-confidence.png?no-i
 import arrowIcon from '../assets/images/stablecoin-icon-arrow.png?no-inline'
 import solutionArrowIcon from '../assets/images/stablecoin-icon-solution-arrow.png?no-inline'
 
-const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.yasbe.com/'
+const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
 
 const globalFeatures = [
     {

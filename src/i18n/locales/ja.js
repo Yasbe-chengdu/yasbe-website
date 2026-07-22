@@ -1197,5 +1197,10 @@ export default {
         }
       }
     }
+  },
+  "pagination": {
+    "prev": "前へ",
+    "next": "次へ",
+    "goToPage": "ページへ移動"
   }
 }

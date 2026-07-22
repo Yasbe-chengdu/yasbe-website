@@ -1197,5 +1197,10 @@ export default {
         }
       }
     }
+  },
+  "pagination": {
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "goToPage": "Ir a la página"
   }
 }

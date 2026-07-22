@@ -1285,5 +1285,10 @@ export default {
         "bridging": { "title": "Bridging Markets, Unlocking Value", "text": "With deep roots in digital asset trading and traditional financial services, we bridge markets so businesses can unlock global value." }
       }
     }
+  },
+  "pagination": {
+    "prev": "Previous",
+    "next": "Next",
+    "goToPage": "Go to page"
   }
 }
