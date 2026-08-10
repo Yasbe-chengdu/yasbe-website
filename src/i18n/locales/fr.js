@@ -598,7 +598,9 @@ export default {
       "requestForInformation": "Demande d'Information (RFI)",
       "prohibitedBusinesses": "Activités Interdites",
       "restrictedJurisdiction": "Juridictions Restreintes",
-      "cookiesPolicy": "Politique de Cookies"
+      "cookiesPolicy": "Politique de Cookies",
+      "programPrivacyPolicy": "Politique de confidentialité du programme",
+      "programMobileWalletTerms": "Conditions générales du portefeuille mobile du programme"
     },
     "content": {
       "termsAndConditions": { "title": "Conditions Générales" },
@@ -607,7 +609,9 @@ export default {
       "requestForInformation": { "title": "Demande d'Information (RFI)" },
       "prohibitedBusinesses": { "title": "Activités Interdites" },
       "restrictedJurisdiction": { "title": "Juridictions Restreintes" },
-      "cookiesPolicy": { "title": "Politique de Cookies" }
+      "cookiesPolicy": { "title": "Politique de Cookies" },
+      "programPrivacyPolicy": { "title": "Politique de confidentialité du programme" },
+      "programMobileWalletTerms": { "title": "Conditions générales du portefeuille mobile du programme" }
     },
     "contentPlaceholder": "Contenu à venir..."
   },
