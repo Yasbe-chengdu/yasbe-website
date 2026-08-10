@@ -598,7 +598,9 @@ export default {
       "requestForInformation": "情報請求 (RFI)",
       "prohibitedBusinesses": "禁止事業",
       "restrictedJurisdiction": "制限地域",
-      "cookiesPolicy": "Cookie ポリシー"
+      "cookiesPolicy": "Cookie ポリシー",
+      "programPrivacyPolicy": "プログラムプライバシーポリシー",
+      "programMobileWalletTerms": "プログラムモバイルウォレット利用規約"
     },
     "content": {
       "termsAndConditions": { "title": "利用規約" },
@@ -607,7 +609,9 @@ export default {
       "requestForInformation": { "title": "情報請求 (RFI)" },
       "prohibitedBusinesses": { "title": "禁止事業" },
       "restrictedJurisdiction": { "title": "制限地域" },
-      "cookiesPolicy": { "title": "Cookie ポリシー" }
+      "cookiesPolicy": { "title": "Cookie ポリシー" },
+      "programPrivacyPolicy": { "title": "プログラムプライバシーポリシー" },
+      "programMobileWalletTerms": { "title": "プログラムモバイルウォレット利用規約" }
     },
     "contentPlaceholder": "コンテンツは近日公開..."
   },

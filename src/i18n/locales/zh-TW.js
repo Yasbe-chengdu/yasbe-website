@@ -602,7 +602,9 @@ export default {
       "requestForInformation": "資訊請求 (RFI)",
       "prohibitedBusinesses": "禁止業務",
       "restrictedJurisdiction": "限制地區",
-      "cookiesPolicy": "Cookie 政策"
+      "cookiesPolicy": "Cookie 政策",
+      "programPrivacyPolicy": "計畫隱私政策",
+      "programMobileWalletTerms": "計畫行動錢包條款與條件"
     },
     "content": {
       "termsAndConditions": { "title": "條款與條件" },
@@ -611,7 +613,9 @@ export default {
       "requestForInformation": { "title": "資訊請求 (RFI)" },
       "prohibitedBusinesses": { "title": "禁止業務" },
       "restrictedJurisdiction": { "title": "限制地區" },
-      "cookiesPolicy": { "title": "Cookie 政策" }
+      "cookiesPolicy": { "title": "Cookie 政策" },
+      "programPrivacyPolicy": { "title": "計畫隱私政策" },
+      "programMobileWalletTerms": { "title": "計畫行動錢包條款與條件" }
     },
     "contentPlaceholder": "內容即將推出..."
   },

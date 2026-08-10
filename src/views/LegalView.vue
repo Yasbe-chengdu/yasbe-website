@@ -76,6 +76,8 @@ const tabs = [
   { key: 'requestForInformation', labelKey: 'legalPage.sidebar.requestForInformation', titleKey: 'legalPage.content.requestForInformation.title' },
   { key: 'prohibitedBusinesses', labelKey: 'legalPage.sidebar.prohibitedBusinesses', titleKey: 'legalPage.content.prohibitedBusinesses.title' },
   { key: 'restrictedJurisdiction', labelKey: 'legalPage.sidebar.restrictedJurisdiction', titleKey: 'legalPage.content.restrictedJurisdiction.title' },
+  { key: 'programPrivacyPolicy', labelKey: 'legalPage.sidebar.programPrivacyPolicy', titleKey: 'legalPage.content.programPrivacyPolicy.title' },
+  { key: 'programMobileWalletTerms', labelKey: 'legalPage.sidebar.programMobileWalletTerms', titleKey: 'legalPage.content.programMobileWalletTerms.title' },
 ]
 
 const currentTabTitleKey = computed(() => {

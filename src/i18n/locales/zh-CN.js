@@ -602,7 +602,9 @@ export default {
       "requestForInformation": "信息请求 (RFI)",
       "prohibitedBusinesses": "禁止业务",
       "restrictedJurisdiction": "限制地区",
-      "cookiesPolicy": "Cookie 政策"
+      "cookiesPolicy": "Cookie 政策",
+      "programPrivacyPolicy": "计划隐私政策",
+      "programMobileWalletTerms": "计划移动钱包条款与条件"
     },
     "content": {
       "termsAndConditions": { "title": "条款与条件" },
@@ -611,7 +613,9 @@ export default {
       "requestForInformation": { "title": "信息请求 (RFI)" },
       "prohibitedBusinesses": { "title": "禁止业务" },
       "restrictedJurisdiction": { "title": "限制地区" },
-      "cookiesPolicy": { "title": "Cookie 政策" }
+      "cookiesPolicy": { "title": "Cookie 政策" },
+      "programPrivacyPolicy": { "title": "计划隐私政策" },
+      "programMobileWalletTerms": { "title": "计划移动钱包条款与条件" }
     },
     "contentPlaceholder": "内容即将推出..."
   },

@@ -598,7 +598,9 @@ export default {
       "requestForInformation": "정보 요청 (RFI)",
       "prohibitedBusinesses": "금지된 사업",
       "restrictedJurisdiction": "제한 지역",
-      "cookiesPolicy": "쿠키 정책"
+      "cookiesPolicy": "쿠키 정책",
+      "programPrivacyPolicy": "프로그램 개인정보처리방침",
+      "programMobileWalletTerms": "프로그램 모바일 지갑 이용약관"
     },
     "content": {
       "termsAndConditions": { "title": "이용약관" },
@@ -607,7 +609,9 @@ export default {
       "requestForInformation": { "title": "정보 요청 (RFI)" },
       "prohibitedBusinesses": { "title": "금지된 사업" },
       "restrictedJurisdiction": { "title": "제한 지역" },
-      "cookiesPolicy": { "title": "쿠키 정책" }
+      "cookiesPolicy": { "title": "쿠키 정책" },
+      "programPrivacyPolicy": { "title": "프로그램 개인정보처리방침" },
+      "programMobileWalletTerms": { "title": "프로그램 모바일 지갑 이용약관" }
     },
     "contentPlaceholder": "콘텐츠 준비 중..."
   },

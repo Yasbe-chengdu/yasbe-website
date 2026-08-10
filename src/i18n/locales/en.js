@@ -714,7 +714,9 @@ export default {
       "requestForInformation": "Request for Information (RFI)",
       "prohibitedBusinesses": "Prohibited Businesses",
       "restrictedJurisdiction": "Restricted Jurisdiction",
-      "cookiesPolicy": "Cookies Policy"
+      "cookiesPolicy": "Cookies Policy",
+      "programPrivacyPolicy": "Program Privacy Policy",
+      "programMobileWalletTerms": "Program Mobile Wallet Terms and Conditions"
     },
     "content": {
       "termsAndConditions": { "title": "Terms & Conditions" },
@@ -723,7 +725,9 @@ export default {
       "requestForInformation": { "title": "Request for Information (RFI)" },
       "prohibitedBusinesses": { "title": "Prohibited Businesses" },
       "restrictedJurisdiction": { "title": "Restricted Jurisdiction" },
-      "cookiesPolicy": { "title": "Cookies Policy" }
+      "cookiesPolicy": { "title": "Cookies Policy" },
+      "programPrivacyPolicy": { "title": "Program Privacy Policy" },
+      "programMobileWalletTerms": { "title": "Program Mobile Wallet Terms and Conditions" }
     },
     "contentPlaceholder": "Content coming soon..."
   },
