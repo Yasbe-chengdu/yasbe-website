@@ -76,6 +76,13 @@
   max-height: 30px;
   object-fit: contain;
 }
+
+.home__partner-logo:nth-child(3) img {
+  display: block;
+  max-width: 100%;
+  max-height: 60px;
+  object-fit: contain;
+}
 .homefont333{
     font-size: 36px;
     font-weight: 700;
