@@ -51,6 +51,7 @@ import complyAdvantageLogo from '../assets/images/partners/maq3.png'
 import merkleScienceLogo from '../assets/images/partners/maq4.png'
 import safeheronLogo from '../assets/images/partners/maq5.png'
 import sumsubLogo from '../assets/images/partners/maq6.png'
+import chuguolvyoulogo from '../assets/images/partners/maq7.png'
 
 const StatsSection = defineAsyncComponent(() => import('../components/StatsSection.vue'))
 const GlobalPaymentsSection = defineAsyncComponent(() => import('../components/GlobalPaymentsSection.vue'))
@@ -66,6 +67,7 @@ const partnerLogos = [
   { name: 'Comply Advantage', src: complyAdvantageLogo, width: 140 },
   { name: 'Cloudflare', src: cloudflareLogo, width: 209 },
   { name: 'Sumsub', src: sumsubLogo, width: 182 },
+  { name: 'Chuguolvyou', src: chuguolvyoulogo, width: 182 },
 ]
 </script>
 
