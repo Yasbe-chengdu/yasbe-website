@@ -39,6 +39,14 @@
   --content-padding-mobile: 20px;
 }
 
+/* 13~15 寸笔记本（1200px~1599px）：随视口宽度平滑缩放留白，
+   避免 max-width: 1440px 容器在 1280/1440px 屏幕上内容贴边 */
+@media (min-width: 1200px) and (max-width: 1599px) {
+  :root {
+    --content-padding: clamp(24px, calc((1600px - 100vw) / 8), 60px);
+  }
+}
+
 @media (max-width: 1199px) {
   :root {
     --content-padding: 60px;
