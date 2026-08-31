@@ -35,19 +35,6 @@
             <h2 id="faq-heading">{{ t('faqPage.commonTitle') }}</h2>
 
             <div class="faq-questions__controls">
-              <div class="faq-category-tabs" aria-label="FAQ categories">
-                <button
-                  v-for="category in categories"
-                  :key="category.key"
-                  type="button"
-                  class="faq-category-tabs__item"
-                  :class="{ 'faq-category-tabs__item--active': activeCategoryKey === category.key }"
-                  @click="selectCategory(category.key)"
-                >
-                  {{ category.label }}
-                </button>
-              </div>
-
               <label class="faq-search">
                 <img :src="searchIcon" alt="" aria-hidden="true" />
                 <input v-model.trim="searchQuery" type="search" :placeholder="t('faqPage.searchPlaceholder')" />
@@ -56,17 +43,24 @@
           </div>
 
           <div class="faq-layout">
-            <aside class="faq-sidebar" aria-label="Question list">
-              <button
-                v-for="question in filteredQuestions"
-                :key="question.id"
-                type="button"
-                class="faq-sidebar__item"
-                :class="{ 'faq-sidebar__item--active': activeQuestionId === question.id }"
-                @click="activeQuestionId = question.id"
-              >
-                {{ question.question }}
-              </button>
+            <aside class="faq-sidebar" aria-label="FAQ navigation">
+              <div v-for="category in filteredCategoryTree" :key="category.id" class="faq-menu__category">
+                <button type="button" class="faq-menu__category-button" :aria-expanded="isCategoryExpanded(category.id)" @click="toggleCategory(category.id)">
+                  <span>{{ category.label }}</span><span class="faq-menu__chevron" aria-hidden="true"></span>
+                </button>
+                <div v-show="isCategoryExpanded(category.id)" class="faq-menu__sections">
+                  <div v-for="section in category.sections" :key="section.id" class="faq-menu__section">
+                    <button type="button" class="faq-menu__section-button" :aria-expanded="isSectionExpanded(section.id)" @click="toggleSection(section.id)">
+                      <span>{{ section.name }}</span><span class="faq-menu__chevron" aria-hidden="true"></span>
+                    </button>
+                    <div v-show="isSectionExpanded(section.id)" class="faq-menu__questions">
+                      <button v-for="question in section.faqs" :key="question.id" type="button" class="faq-menu__question" :class="{ 'faq-menu__question--active': activeQuestionId === question.id }" @click="activeQuestionId = question.id">
+                        {{ question.question }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <p v-if="!filteredQuestions.length" class="faq-sidebar__empty">
                 {{ isFaqListLoading ? t('faqPage.loadingQuestions') : t('faqPage.noData') }}
               </p>
@@ -127,52 +121,59 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
-import { getFaqCategoryList, getFaqDetail, getFaqList } from '../api/faq.js'
+import { getFaqCategoryList, getFaqDetail, getFaqList, getFaqSectionList } from '../api/faq.js'
 import heroIllustration from '../assets/images/faq/faq-hero-illustration@2x.png'
 import searchIcon from '../assets/images/faq/faq-search-icon@4x.png?no-inline'
 import arrowIcon from '../assets/images/faq/faq-arrow-icon@4x.png?no-inline'
 
-const { t, tm } = useI18n()
-const activeCategoryKey = ref('all')
+const { t } = useI18n()
 const searchQuery = ref('')
 const activeQuestionId = ref('')
-const remoteQuestions = ref([])
-const hasLoadedRemoteQuestions = ref(false)
 const isFaqListLoading = ref(false)
 const remoteCategories = ref([])
+const sectionsByCategoryId = ref({})
+const expandedCategoryIds = ref([])
+const expandedSectionIds = ref([])
 const faqDetailsById = ref({})
 const detailLoadingById = ref({})
 let searchTimer
-let faqListRequestId = 0
+let faqTreeRequestId = 0
 
-const fallbackCategoryValues = {
-  general: 'General',
-  account: 'Account',
-  payments: 'Payments',
-  security: 'Security',
-  technical: 'Technical',
-}
+const categoryTree = computed(() => remoteCategories.value.map((category) => ({
+  ...category,
+  sections: sectionsByCategoryId.value[category.id] ?? [],
+})))
 
-const fallbackCategories = computed(() =>
-  tm('faqPage.categories').map((category) => ({
-    ...category,
-    value: category.key === 'all' ? '' : fallbackCategoryValues[category.key] || category.label,
-  })),
-)
-const allCategory = computed(() => fallbackCategories.value.find((category) => category.key === 'all') ?? { key: 'all', label: 'All', value: '' })
-const categories = computed(() => [allCategory.value, ...remoteCategories.value])
-const questions = computed(() => remoteQuestions.value)
+const questions = computed(() => categoryTree.value.flatMap((category) =>
+  category.sections.flatMap((section) => section.faqs),
+))
 
 const filteredQuestions = computed(() => {
   const normalizedQuery = searchQuery.value.toLowerCase()
 
   return questions.value.filter((question) => {
-    const matchesCategory = activeCategoryKey.value === 'all' || question.category === activeCategoryKey.value
     const detail = faqDetailsById.value[question.id]
-    const searchableText = `${question.question} ${question.lead} ${question.summary} ${detail?.answerText ?? ''}`.toLowerCase()
-    const matchesSearch = question.source === 'api' || !normalizedQuery || searchableText.includes(normalizedQuery)
-    return matchesCategory && matchesSearch
+    const searchableText = `${question.question} ${detail?.answerText ?? ''}`.toLowerCase()
+    return !normalizedQuery || searchableText.includes(normalizedQuery)
   })
+})
+
+const filteredCategoryTree = computed(() => {
+  const normalizedQuery = searchQuery.value.toLowerCase()
+  if (!normalizedQuery) return categoryTree.value
+
+  const matchedQuestionIds = new Set(filteredQuestions.value.map((question) => question.id))
+  return categoryTree.value.map((category) => {
+    const categoryMatches = category.label.toLowerCase().includes(normalizedQuery)
+    const sections = category.sections.map((section) => {
+      const sectionMatches = `${section.name} ${section.description}`.toLowerCase().includes(normalizedQuery)
+      const faqs = categoryMatches || sectionMatches
+        ? section.faqs
+        : section.faqs.filter((question) => matchedQuestionIds.has(question.id))
+      return { ...section, faqs }
+    }).filter((section) => categoryMatches || section.faqs.length)
+    return { ...category, sections }
+  }).filter((category) => category.sections.length)
 })
 
 const activeQuestion = computed(() => {
@@ -194,17 +195,10 @@ const tableOfContents = computed(() => {
     return []
   }
 
-  return filteredQuestions.value.slice(0, 4).map((question) => question.question)
+  const activeSection = categoryTree.value.flatMap((category) => category.sections)
+    .find((section) => section.id === activeQuestion.value.sectionId)
+  return (activeSection?.faqs ?? filteredQuestions.value).slice(0, 4).map((question) => question.question)
 })
-
-const selectCategory = (categoryKey) => {
-  if (activeCategoryKey.value === categoryKey) {
-    return
-  }
-
-  activeCategoryKey.value = categoryKey
-  loadFaqList(searchQuery.value, getSelectedCategoryName(categoryKey))
-}
 
 watch(filteredQuestions, (nextQuestions) => {
   if (!nextQuestions.some((question) => question.id === activeQuestionId.value)) {
@@ -221,47 +215,24 @@ watch(activeQuestion, (question) => {
 watch(searchQuery, (value) => {
   clearTimeout(searchTimer)
   searchTimer = setTimeout(() => {
-    loadFaqList(value, getSelectedCategoryName())
+    if (String(value || '').trim()) {
+      expandedCategoryIds.value = filteredCategoryTree.value.map((category) => category.id)
+      expandedSectionIds.value = filteredCategoryTree.value.flatMap((category) => category.sections.map((section) => section.id))
+    }
   }, 300)
 })
 
-watch(categories, (nextCategories) => {
-  if (!nextCategories.some((category) => category.key === activeCategoryKey.value)) {
-    activeCategoryKey.value = 'all'
-    loadFaqList(searchQuery.value, '')
-  }
-})
-
 onMounted(() => {
-  loadFaqList()
-  loadFaqCategories()
+  loadFaqTree()
 })
-
-function normalizeCategory(category) {
-  const normalized = String(category || '').trim().toLowerCase()
-  const categoryMap = {
-    general: 'general',
-    account: 'account',
-    payments: 'payments',
-    payment: 'payments',
-    security: 'security',
-    technical: 'technical',
-    tech: 'technical',
-  }
-
-  const categoryKey = categoryMap[normalized] ?? normalized.replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, '')
-  return categoryKey || 'general'
-}
 
 function normalizeListItem(item) {
   return {
     id: String(item.id),
     rawId: item.id,
-    category: normalizeCategory(item.category),
+    category: String(item.category || '').trim(),
+    sectionId: item.sectionId == null ? null : String(item.sectionId),
     question: item.question || '',
-    lead: '',
-    steps: [],
-    summary: '',
     answerHtml: '',
     answerText: '',
     sortOrder: Number.isFinite(Number(item.sortOrder)) ? Number(item.sortOrder) : 0,
@@ -273,11 +244,19 @@ function normalizeCategoryItem(item) {
   const label = String(item?.name || '').trim()
 
   return {
-    id: item.id,
-    key: normalizeCategory(label),
+    id: String(item.id),
     label,
-    value: label,
     sortOrder: Number.isFinite(Number(item.sortOrder)) ? Number(item.sortOrder) : 0,
+  }
+}
+
+function normalizeSectionItem(item, faqs) {
+  return {
+    id: String(item.id),
+    name: String(item?.name || '').trim(),
+    description: String(item?.description || '').trim(),
+    sortOrder: Number.isFinite(Number(item.sortOrder)) ? Number(item.sortOrder) : 0,
+    faqs,
   }
 }
 
@@ -286,84 +265,116 @@ function normalizeDetail(detail) {
 
   return {
     question: detail?.question || '',
-    category: normalizeCategory(detail?.category),
+    category: String(detail?.category || '').trim(),
+    sectionId: detail?.sectionId == null ? null : String(detail.sectionId),
     answerHtml,
     answerText: answerHtml.replace(/<[^>]*>/g, ' '),
   }
 }
 
-function getSelectedCategoryName(categoryKey = activeCategoryKey.value) {
-  return categories.value.find((category) => category.key === categoryKey)?.value || ''
+function isPublished(item) {
+  const status = String(item?.status || '').toLowerCase()
+  return !status || status === 'published'
 }
 
-async function loadFaqCategories() {
-  try {
-    const data = await getFaqCategoryList({ pageNum: 1, pageSize: 10 })
-    const list = Array.isArray(data?.content) ? data.content : []
-    const publishedCategories = list
-      .filter((item) => {
-        const status = String(item?.status || '').toLowerCase()
-        return item?.name && (!status || status === 'published')
-      })
-      .map(normalizeCategoryItem)
-      .filter((category) => category.key && category.key !== 'all')
-      .sort((a, b) => a.sortOrder - b.sortOrder)
-
-    const categoryMap = new Map()
-    publishedCategories.forEach((category) => {
-      if (!categoryMap.has(category.key)) {
-        categoryMap.set(category.key, category)
-      }
-    })
-
-    remoteCategories.value = Array.from(categoryMap.values())
-  } catch (error) {
-    console.warn('Failed to load FAQ categories', error)
-  }
+function isCategoryExpanded(categoryId) {
+  return expandedCategoryIds.value.includes(String(categoryId))
 }
 
-async function loadFaqList(search = searchQuery.value, category = getSelectedCategoryName()) {
-  const requestId = ++faqListRequestId
+function isSectionExpanded(sectionId) {
+  return expandedSectionIds.value.includes(String(sectionId))
+}
+
+function toggleExpanded(ids, id) {
+  const normalizedId = String(id)
+  return ids.includes(normalizedId)
+    ? ids.filter((item) => item !== normalizedId)
+    : [...ids, normalizedId]
+}
+
+function toggleCategory(categoryId) {
+  expandedCategoryIds.value = toggleExpanded(expandedCategoryIds.value, categoryId)
+}
+
+function toggleSection(sectionId) {
+  expandedSectionIds.value = toggleExpanded(expandedSectionIds.value, sectionId)
+}
+
+async function loadFaqTree() {
+  const requestId = ++faqTreeRequestId
   isFaqListLoading.value = true
 
   try {
-    const data = await getFaqList({
-      pageNum: 1,
-      pageSize: 100,
-      search: String(search || '').trim(),
-      category,
-    })
-    if (requestId !== faqListRequestId) {
-      return
-    }
-
-    const list = Array.isArray(data?.content) ? data.content : []
-    const publishedList = list
-      .filter((item) => {
-        const status = String(item?.status || '').toLowerCase()
-        const isPublished = !status || status === 'published'
-        const isTopLevel = item?.parentId == null
-        return item?.id != null && item?.question && isPublished && isTopLevel
-      })
-      .map(normalizeListItem)
+    const data = await getFaqCategoryList({ pageNum: 1, pageSize: 100 })
+    const categories = (Array.isArray(data?.content) ? data.content : [])
+      .filter((item) => item?.id != null && item?.name && isPublished(item))
+      .map(normalizeCategoryItem)
       .sort((a, b) => a.sortOrder - b.sortOrder)
 
-    hasLoadedRemoteQuestions.value = true
-    remoteQuestions.value = publishedList
+    const sections = await Promise.all(categories.map((category) => loadFaqSections(category)))
+    if (requestId !== faqTreeRequestId) return
 
-    if (publishedList.length) {
-      activeQuestionId.value = publishedList[0].id
-    }
+    remoteCategories.value = categories
+    sectionsByCategoryId.value = Object.fromEntries(sections)
+    selectFirstQuestion()
   } catch (error) {
-    if (requestId === faqListRequestId) {
-      hasLoadedRemoteQuestions.value = true
-      remoteQuestions.value = []
-      console.warn('Failed to load FAQ list', error)
+    if (requestId === faqTreeRequestId) {
+      remoteCategories.value = []
+      sectionsByCategoryId.value = {}
+      console.warn('Failed to load FAQ navigation', error)
     }
   } finally {
-    if (requestId === faqListRequestId) {
-      isFaqListLoading.value = false
-    }
+    if (requestId === faqTreeRequestId) isFaqListLoading.value = false
+  }
+}
+
+async function loadFaqSections(category) {
+  try {
+    const data = await getFaqSectionList(category.id)
+    const sections = (Array.isArray(data) ? data : [])
+      .filter((item) => item?.id != null && item?.name && isPublished(item))
+      .sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0))
+
+    const normalizedSections = await Promise.all(sections.map(async (section) => {
+      const fallbackFaqs = (Array.isArray(section.faqs) ? section.faqs : [])
+        .filter((item) => item?.id != null && item?.question && isPublished(item))
+        .map(normalizeListItem)
+        .sort((a, b) => a.sortOrder - b.sortOrder)
+
+      try {
+        const faqData = await getFaqList({
+          pageNum: 1,
+          pageSize: 100,
+          sectionId: section.id,
+          category: category.label,
+        })
+        const faqs = (Array.isArray(faqData?.content) ? faqData.content : [])
+          .filter((item) => item?.id != null && item?.question && isPublished(item))
+          .map(normalizeListItem)
+          .sort((a, b) => a.sortOrder - b.sortOrder)
+        return normalizeSectionItem(section, faqs)
+      } catch (error) {
+        console.warn(`Failed to load FAQs for section ${section.id}`, error)
+        return normalizeSectionItem(section, fallbackFaqs)
+      }
+    }))
+
+    return [category.id, normalizedSections]
+  } catch (error) {
+    console.warn(`Failed to load FAQ sections for category ${category.id}`, error)
+    return [category.id, []]
+  }
+}
+
+function selectFirstQuestion() {
+  const firstCategory = categoryTree.value[0]
+  const firstSection = firstCategory?.sections[0]
+  const firstQuestion = firstSection?.faqs[0]
+
+  if (firstCategory && !expandedCategoryIds.value.length) expandedCategoryIds.value = [firstCategory.id]
+  if (firstSection && !expandedSectionIds.value.length) expandedSectionIds.value = [firstSection.id]
+  if (!activeQuestionId.value || !questions.value.some((question) => question.id === activeQuestionId.value)) {
+    activeQuestionId.value = firstQuestion?.id ?? ''
   }
 }
 
