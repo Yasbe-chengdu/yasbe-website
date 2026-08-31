@@ -73,11 +73,11 @@ const tabs = [
   { key: 'websiteTermsOfUse', labelKey: 'legalPage.sidebar.websiteTermsOfUse', titleKey: 'legalPage.content.websiteTermsOfUse.title' },
   { key: 'privacyPolicy', labelKey: 'legalPage.sidebar.privacyPolicy', titleKey: 'legalPage.content.privacyPolicy.title' },
   { key: 'programPrivacyPolicy', labelKey: 'legalPage.sidebar.programPrivacyPolicy', titleKey: 'legalPage.content.programPrivacyPolicy.title' },
+  { key: 'programMobileWalletTerms', labelKey: 'legalPage.sidebar.programMobileWalletTerms', titleKey: 'legalPage.content.programMobileWalletTerms.title' },
   { key: 'cookiesPolicy', labelKey: 'legalPage.sidebar.cookiesPolicy', titleKey: 'legalPage.content.cookiesPolicy.title' },
   { key: 'requestForInformation', labelKey: 'legalPage.sidebar.requestForInformation', titleKey: 'legalPage.content.requestForInformation.title' },
   { key: 'prohibitedBusinesses', labelKey: 'legalPage.sidebar.prohibitedBusinesses', titleKey: 'legalPage.content.prohibitedBusinesses.title' },
   { key: 'restrictedJurisdiction', labelKey: 'legalPage.sidebar.restrictedJurisdiction', titleKey: 'legalPage.content.restrictedJurisdiction.title' },
-  { key: 'programMobileWalletTerms', labelKey: 'legalPage.sidebar.programMobileWalletTerms', titleKey: 'legalPage.content.programMobileWalletTerms.title' },
 ]
 
 const currentTabTitleKey = computed(() => {
