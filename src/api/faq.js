@@ -77,3 +77,18 @@ export async function getFaqDetail(id) {
   const res = await apiClient.get(`/api/faq/detail/${id}`)
   return unwrap(res.data)
 }
+
+/**
+ * 提交 FAQ 是否解决问题的反馈。
+ * @param {number|string} faqId FAQ 文章 ID
+ * @param {boolean} resolved true=已解决，false=未解决
+ * @returns {Promise<any>}
+ */
+export async function submitFaqFeedback(faqId, resolved) {
+  const res = await apiClient.post('/api/faq/feedback', {
+    faqId: Number(faqId),
+    resolved: Boolean(resolved),
+  })
+
+  return unwrap(res.data)
+}

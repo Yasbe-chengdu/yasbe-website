@@ -72,15 +72,18 @@
                   <h3>{{ activeQuestion.question }}</h3>
                   <div
                     v-if="activeQuestion.answerHtml"
+                    ref="answerBodyRef"
                     class="faq-answer-card__body"
                     :class="{ 'faq-answer-card__body--loading': activeQuestion.isDetailLoading }"
                     v-html="activeQuestion.answerHtml"
+                    @click="handleAnswerMediaClick"
+                    @keydown="handleAnswerMediaKeydown"
                   ></div>
                   <p v-else-if="activeQuestion.isDetailLoading" class="faq-answer-card__lead">
                     {{ t('faqPage.loadingAnswer') }}
                   </p>
                   <p v-else class="faq-answer-card__lead">{{ activeQuestion.lead }}</p>
-                  <ol v-if="!activeQuestion.answerHtml && activeQuestion.steps.length">
+                  <ol v-if="!activeQuestion.answerHtml && activeQuestion.steps?.length">
                     <li v-for="step in activeQuestion.steps" :key="step">{{ step }}</li>
                   </ol>
                   <p v-if="!activeQuestion.answerHtml && activeQuestion.summary" class="faq-answer-card__summary">
@@ -88,19 +91,41 @@
                   </p>
                 </div>
 
-                <nav class="faq-toc" :aria-label="t('faqPage.toc')">
-                  <h4>{{ t('faqPage.toc') }}</h4>
-                  <div class="faq-toc__list">
-                    <span
-                      v-for="item in tableOfContents"
-                      :key="item"
-                      class="faq-toc__item"
-                      :class="{ 'faq-toc__item--active': item === activeQuestion.question }"
+                <!-- 反馈区固定在内容卡片底部，不随长篇富文本一起滚走。 -->
+                <div class="faq-feedback" aria-live="polite">
+                  <div class="faq-feedback__row">
+                    <p>{{ t('faqPage.feedback.prompt') }}</p>
+                    <button
+                      type="button"
+                      class="faq-feedback__button"
+                      :class="{ 'faq-feedback__button--active': activeFeedback?.resolved === true }"
+                      :disabled="activeFeedback?.submitting"
+                      @click="sendFeedback(true)"
                     >
-                      {{ item }}
-                    </span>
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v11H3V10h4Zm4.2 11H9V10.2l3.1-6.8c.3-.7 1.1-1 1.8-.7.8.3 1.2 1.2.9 2l-1.1 3.1H19c1.6 0 2.7 1.5 2.2 3l-2.1 7.7A3.4 3.4 0 0 1 15.8 21h-4.6Z" /></svg>
+                      <span>{{ t('faqPage.feedback.resolved') }}</span>
+                    </button>
+                    <button
+                      type="button"
+                      class="faq-feedback__button"
+                      :class="{ 'faq-feedback__button--active': activeFeedback?.resolved === false }"
+                      :disabled="activeFeedback?.submitting"
+                      @click="sendFeedback(false)"
+                    >
+                      <svg class="is-dislike" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v11H3V3h4Zm4.2 0h4.6a3.4 3.4 0 0 1 3.3 2.5l2.1 7.7c.5 1.5-.6 3-2.2 3h-5.3l1.1 3.1c.3.8-.1 1.7-.9 2-.7.3-1.5 0-1.8-.7L9 13.8V3h2.2Z" /></svg>
+                      <span>{{ t('faqPage.feedback.unresolved') }}</span>
+                    </button>
                   </div>
-                </nav>
+
+                  <Transition name="faq-feedback-message">
+                    <p v-if="activeFeedback?.status === 'success'" class="faq-feedback__message faq-feedback__message--success">
+                      <span aria-hidden="true">✓</span>{{ t('faqPage.feedback.success') }}
+                    </p>
+                    <p v-else-if="activeFeedback?.status === 'error'" class="faq-feedback__message faq-feedback__message--error">
+                      {{ t('faqPage.feedback.error') }}
+                    </p>
+                  </Transition>
+                </div>
               </div>
               <div v-else class="faq-empty-state">
                 <div class="faq-empty-state__mark" aria-hidden="true"></div>
@@ -112,16 +137,36 @@
       </section>
     </main>
 
+    <!-- 图片查看器挂载到 body，避免被 FAQ 卡片的 overflow 裁切。 -->
+    <Teleport to="body">
+      <Transition name="faq-lightbox">
+        <div
+          v-if="previewImage"
+          class="faq-lightbox"
+          role="dialog"
+          aria-modal="true"
+          :aria-label="t('faqPage.feedback.imagePreview')"
+          @click.self="closeImagePreview"
+        >
+          <button ref="lightboxCloseRef" type="button" class="faq-lightbox__close" :aria-label="t('faqPage.feedback.closePreview')" @click="closeImagePreview">
+            <span aria-hidden="true"></span>
+          </button>
+          <img :src="previewImage.src" :alt="previewImage.alt" />
+          <p v-if="previewImage.alt">{{ previewImage.alt }}</p>
+        </div>
+      </Transition>
+    </Teleport>
+
     <Footer />
   </div>
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
-import { getFaqCategoryList, getFaqDetail, getFaqList, getFaqSectionList } from '../api/faq.js'
+import { getFaqCategoryList, getFaqDetail, getFaqList, getFaqSectionList, submitFaqFeedback } from '../api/faq.js'
 import heroIllustration from '../assets/images/faq/faq-hero-illustration@2x.png'
 import searchIcon from '../assets/images/faq/faq-search-icon@4x.png?no-inline'
 import arrowIcon from '../assets/images/faq/faq-arrow-icon@4x.png?no-inline'
@@ -136,6 +181,10 @@ const expandedCategoryIds = ref([])
 const expandedSectionIds = ref([])
 const faqDetailsById = ref({})
 const detailLoadingById = ref({})
+const feedbackByQuestionId = ref({})
+const answerBodyRef = ref(null)
+const lightboxCloseRef = ref(null)
+const previewImage = ref(null)
 let searchTimer
 let faqTreeRequestId = 0
 
@@ -190,14 +239,10 @@ const activeQuestion = computed(() => {
   }
 })
 
-const tableOfContents = computed(() => {
-  if (!activeQuestion.value) {
-    return []
-  }
-
-  const activeSection = categoryTree.value.flatMap((category) => category.sections)
-    .find((section) => section.id === activeQuestion.value.sectionId)
-  return (activeSection?.faqs ?? filteredQuestions.value).slice(0, 4).map((question) => question.question)
+// 每篇 FAQ 独立记录反馈结果，切换文章后仍能恢复按钮选中状态。
+const activeFeedback = computed(() => {
+  const questionId = activeQuestion.value?.id
+  return questionId ? feedbackByQuestionId.value[questionId] : null
 })
 
 watch(filteredQuestions, (nextQuestions) => {
@@ -212,6 +257,16 @@ watch(activeQuestion, (question) => {
   }
 }, { immediate: true })
 
+watch(() => activeQuestion.value?.answerHtml, async () => {
+  // v-html 渲染完成后补充键盘访问属性，点击仍由父容器统一代理。
+  await nextTick()
+  answerBodyRef.value?.querySelectorAll('img').forEach((image) => {
+    image.tabIndex = 0
+    image.setAttribute('role', 'button')
+    image.setAttribute('aria-label', image.alt || t('faqPage.feedback.imagePreview'))
+  })
+})
+
 watch(searchQuery, (value) => {
   clearTimeout(searchTimer)
   searchTimer = setTimeout(() => {
@@ -224,6 +279,13 @@ watch(searchQuery, (value) => {
 
 onMounted(() => {
   loadFaqTree()
+  document.addEventListener('keydown', handleGlobalKeydown)
+})
+
+onBeforeUnmount(() => {
+  clearTimeout(searchTimer)
+  document.removeEventListener('keydown', handleGlobalKeydown)
+  document.body.classList.remove('faq-lightbox-open')
 })
 
 function normalizeListItem(item) {
@@ -235,6 +297,9 @@ function normalizeListItem(item) {
     question: item.question || '',
     answerHtml: '',
     answerText: '',
+    lead: '',
+    steps: [],
+    summary: '',
     sortOrder: Number.isFinite(Number(item.sortOrder)) ? Number(item.sortOrder) : 0,
     source: 'api',
   }
@@ -401,6 +466,73 @@ async function loadFaqDetail(question) {
     delete nextLoading[question.id]
     detailLoadingById.value = nextLoading
   }
+}
+
+/**
+ * 提交当前文章反馈；接口成功后才更新选中态，失败时保留重新提交能力。
+ * @param {boolean} resolved 是否已解决问题
+ */
+async function sendFeedback(resolved) {
+  const question = activeQuestion.value
+  const faqId = Number(question?.rawId ?? question?.id)
+  if (!question || !Number.isFinite(faqId) || activeFeedback.value?.submitting) return
+
+  feedbackByQuestionId.value = {
+    ...feedbackByQuestionId.value,
+    [question.id]: { ...activeFeedback.value, submitting: true, status: '' },
+  }
+
+  try {
+    await submitFaqFeedback(faqId, resolved)
+    feedbackByQuestionId.value = {
+      ...feedbackByQuestionId.value,
+      [question.id]: { resolved, submitting: false, status: 'success' },
+    }
+  } catch (error) {
+    console.warn('Failed to submit FAQ feedback', error)
+    feedbackByQuestionId.value = {
+      ...feedbackByQuestionId.value,
+      [question.id]: { ...activeFeedback.value, submitting: false, status: 'error' },
+    }
+  }
+}
+
+// 富文本使用事件代理处理未知数量的图片，后台新增图片无需修改前端模板。
+function getImageFromEvent(event) {
+  const target = event.target
+  return target instanceof HTMLImageElement && answerBodyRef.value?.contains(target) ? target : null
+}
+
+function handleAnswerMediaClick(event) {
+  const image = getImageFromEvent(event)
+  if (image) openImagePreview(image)
+}
+
+function handleAnswerMediaKeydown(event) {
+  if (event.key !== 'Enter' && event.key !== ' ') return
+  const image = getImageFromEvent(event)
+  if (!image) return
+  event.preventDefault()
+  openImagePreview(image)
+}
+
+async function openImagePreview(image) {
+  previewImage.value = {
+    src: image.currentSrc || image.src,
+    alt: image.alt || '',
+  }
+  document.body.classList.add('faq-lightbox-open')
+  await nextTick()
+  lightboxCloseRef.value?.focus()
+}
+
+function closeImagePreview() {
+  previewImage.value = null
+  document.body.classList.remove('faq-lightbox-open')
+}
+
+function handleGlobalKeydown(event) {
+  if (event.key === 'Escape' && previewImage.value) closeImagePreview()
 }
 </script>
 
