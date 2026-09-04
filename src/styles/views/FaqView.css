@@ -10,7 +10,7 @@
 }
 
 .faq-page :deep(.navbar__container) {
-  max-width: 1288px;
+  max-width: 1440px;
 }
 
 .faq-hero {
@@ -138,7 +138,7 @@
   max-width: 1440px;
   min-height: 863px;
   margin: 0 auto;
-  padding: 40px 120px 0;
+  padding: 40px 0px 0;
 }
 
 .faq-questions__header {
