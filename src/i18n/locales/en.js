@@ -416,7 +416,7 @@ export default {
   "faqPage": {
     "hero": {
       "title": "Frequently Asked Questions",
-      "subtitle": "Everything you need to know about YASBee. Can't find what you're looking for?",
+      "subtitle": "Everything you need to know about YASBe. Can't find what you're looking for?",
       "cta": "Contact us"
     },
     "commonTitle": "Common Questions",
@@ -426,6 +426,15 @@ export default {
     "loadingQuestions": "Loading questions...",
     "loadingAnswer": "Loading answer...",
     "toc": "Table of Contents",
+    "feedback": {
+      "prompt": "Was this answer helpful?",
+      "resolved": "Resolved",
+      "unresolved": "Not resolved",
+      "success": "Thank you for your feedback",
+      "error": "Submission failed. Please try again.",
+      "imagePreview": "Image preview",
+      "closePreview": "Close image preview"
+    },
     "categories": [
       { "key": "all", "label": "All" },
       { "key": "general", "label": "General" },
@@ -439,20 +448,20 @@ export default {
         "id": "create-account",
         "category": "account",
         "question": "How do I create an account?",
-        "lead": "Creating an account on YASBee is simple and free:",
+        "lead": "Creating an account on YASBe is simple and free:",
         "steps": [
           "Click the Get Started button on the top right",
           "Enter your email address and create a secure password",
           "Verify your email via the confirmation link we send you",
           "Complete your profile with basic information"
         ],
-        "summary": "Once registered, you can immediately start exploring YASBee PayFi features."
+        "summary": "Once registered, you can immediately start exploring YASBe PayFi features."
       },
       {
         "id": "payment-methods",
         "category": "payments",
         "question": "What payment methods are supported?",
-        "lead": "YASBee supports modern cross-border payment workflows for global businesses.",
+        "lead": "YASBe supports modern cross-border payment workflows for global businesses.",
         "steps": [
           "Use virtual accounts for local collection",
           "Settle with supported fiat and stablecoin rails",
@@ -477,7 +486,7 @@ export default {
         "id": "data-secure",
         "category": "security",
         "question": "Is my data secure?",
-        "lead": "Security and compliance are built into the YASBee platform.",
+        "lead": "Security and compliance are built into the YASBe platform.",
         "steps": [
           "Sensitive access is protected by account verification",
           "Payment workflows are monitored for compliance requirements",
@@ -493,15 +502,15 @@ export default {
         "steps": [
           "Review the pricing shared during onboarding",
           "Confirm fees before initiating large transactions",
-          "Contact the YASBee team for custom business requirements"
+          "Contact the YASBe team for custom business requirements"
         ],
         "summary": "Your final fee schedule is based on your account setup and selected payment services."
       },
       {
         "id": "payfi-work",
         "category": "general",
-        "question": "How does YASBee PayFi work?",
-        "lead": "YASBee PayFi connects traditional payment needs with modern digital asset infrastructure.",
+        "question": "How does YASBe PayFi work?",
+        "lead": "YASBe PayFi connects traditional payment needs with modern digital asset infrastructure.",
         "steps": [
           "Collect funds through supported account and payment rails",
           "Manage conversion, settlement, and payout workflows",
@@ -512,8 +521,8 @@ export default {
       {
         "id": "outside-country",
         "category": "general",
-        "question": "Can I use YASBee outside my country?",
-        "lead": "YASBee is designed for companies working across markets.",
+        "question": "Can I use YASBe outside my country?",
+        "lead": "YASBe is designed for companies working across markets.",
         "steps": [
           "Supported availability depends on your business location",
           "Currency and rail access may vary by country",
@@ -549,7 +558,7 @@ export default {
         "id": "customer-support",
         "category": "general",
         "question": "How do I contact customer support?",
-        "lead": "The YASBee team can help with product, onboarding, and transaction questions.",
+        "lead": "The YASBe team can help with product, onboarding, and transaction questions.",
         "steps": [
           "Use the Contact page to send your request",
           "Include your company name and account email",

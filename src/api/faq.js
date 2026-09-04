@@ -14,19 +14,24 @@ function unwrap(payload) {
 
 /**
  * 获取 FAQ 列表
- * @param {{ pageNum?: number, pageSize?: number, search?: string, category?: string }} params
+ * @param {{ pageNum?: number, pageSize?: number, sectionId?: number|string, search?: string, category?: string }} params
  * @returns {Promise<{ content: any[], totalPages?: number, totalElements?: number, total?: number }>}
  */
-export async function getFaqList({ pageNum = 1, pageSize = 100, search = '', category = '' } = {}) {
+export async function getFaqList({ pageNum = 1, pageSize = 100, sectionId = '', search = '', category = '' } = {}) {
   const payload = {
     pageNum,
     pageSize,
     search,
   }
   const categoryName = String(category || '').trim()
+  const normalizedSectionId = String(sectionId || '').trim()
 
   if (categoryName) {
     payload.category = categoryName
+  }
+
+  if (normalizedSectionId) {
+    payload.sectionId = sectionId
   }
 
   const res = await apiClient.post('/api/faq/list', payload)
@@ -54,11 +59,36 @@ export async function getFaqCategoryList({ pageNum = 1, pageSize = 10, category 
 }
 
 /**
+ * 获取一级分类下的二级主题。
+ * @param {number|string} categoryId
+ * @returns {Promise<any[]>}
+ */
+export async function getFaqSectionList(categoryId) {
+  const res = await apiClient.get(`/api/faq/section/category/${categoryId}`)
+  return unwrap(res.data)
+}
+
+/**
  * 获取 FAQ 详情
  * @param {number|string} id
  * @returns {Promise<any>}
  */
 export async function getFaqDetail(id) {
   const res = await apiClient.get(`/api/faq/detail/${id}`)
+  return unwrap(res.data)
+}
+
+/**
+ * 提交 FAQ 是否解决问题的反馈。
+ * @param {number|string} faqId FAQ 文章 ID
+ * @param {boolean} resolved true=已解决，false=未解决
+ * @returns {Promise<any>}
+ */
+export async function submitFaqFeedback(faqId, resolved) {
+  const res = await apiClient.post('/api/faq/feedback', {
+    faqId: Number(faqId),
+    resolved: Boolean(resolved),
+  })
+
   return unwrap(res.data)
 }
