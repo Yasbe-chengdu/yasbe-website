@@ -11,7 +11,7 @@
 }
 
 .news-page :deep(.navbar__container) {
-  max-width: 1286px;
+  max-width: 1440px;
 }
 
 .news-page :deep(.navbar__menu) {
@@ -42,7 +42,7 @@
 }
 
 .news-page :deep(.footer__container) {
-  max-width: 1200px;
+  max-width: 1440px;
 }
 
 .news-page :deep(.footer__social) {
@@ -58,7 +58,7 @@
 
 .newsroom-list__inner,
 .newsroom-detail__inner {
-  width: min(1200px, calc(100vw - 48px));
+  width: min(1440px, calc(100vw - 48px));
   margin: 0 auto;
 }
 
@@ -191,7 +191,7 @@
 }
 
 .newsroom-article__header h2 {
-  max-width: 1200px;
+  max-width: 1440px;
   font-size: 40px;
   font-weight: 700;
   line-height: 1.2;
@@ -208,7 +208,7 @@
 
 .newsroom-article__body {
   margin-top: 56px;
-  max-width: 820px;
+  max-width: 1440px;
   color: #1d1d1f;
   font-size: 17px;
   line-height: 1.8;
@@ -218,17 +218,34 @@
 
 .newsroom-article__body :deep(p) {
   margin: 0;
+  color: rgba(29, 29, 31, 0.88);
+}
+
+/* 富文本里的空段落（<p><br></p>）仅作占位，收起避免多余留白 */
+.newsroom-article__body :deep(p:empty) {
+  display: none;
+}
+
+.newsroom-article__body :deep(p:has(> br:only-child)) {
+  display: none;
 }
 
 .newsroom-article__body :deep(p + p),
 .newsroom-article__body :deep(p + ul),
+.newsroom-article__body :deep(p + h1),
 .newsroom-article__body :deep(p + h2),
+.newsroom-article__body :deep(p + h3),
 .newsroom-article__body :deep(ul + p),
+.newsroom-article__body :deep(h1 + p),
 .newsroom-article__body :deep(h2 + p),
-.newsroom-article__body :deep(h2 + ul) {
+.newsroom-article__body :deep(h2 + ul),
+.newsroom-article__body :deep(h3 + p),
+.newsroom-article__body :deep(.newsroom-article__table-wrap + p),
+.newsroom-article__body :deep(hr + p) {
   margin-top: 22px;
 }
 
+.newsroom-article__body :deep(h1),
 .newsroom-article__body :deep(h2) {
   margin: 44px 0 14px;
   font-size: 26px;
@@ -237,7 +254,9 @@
   color: #1d1d1f;
 }
 
-.newsroom-article__body :deep(h2:first-child) {
+.newsroom-article__body :deep(h1:first-child),
+.newsroom-article__body :deep(h2:first-child),
+.newsroom-article__body :deep(p:first-child) {
   margin-top: 0;
 }
 
@@ -291,10 +310,12 @@
 }
 
 .newsroom-article__body :deep(img) {
+  display: block;
   max-width: 100%;
   height: auto;
-  margin: 28px 0;
+  margin: 28px auto;
   border-radius: 10px;
+  background: #f5f5f7;
 }
 
 .newsroom-article__body :deep(blockquote) {
@@ -304,6 +325,94 @@
   color: rgba(29, 29, 31, 0.8);
   font-size: 17px;
   line-height: 1.7;
+}
+
+/* ---- Table ---- */
+.newsroom-article__body :deep(.newsroom-article__table-wrap) {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 28px 0;
+  overflow-x: auto;
+  border: 1px solid rgba(29, 29, 31, 0.1);
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.newsroom-article__body :deep(table) {
+  width: 100% !important;
+  min-width: 720px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.newsroom-article__body :deep(th),
+.newsroom-article__body :deep(td) {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(29, 29, 31, 0.08);
+  vertical-align: top;
+  word-break: break-word;
+}
+
+.newsroom-article__body :deep(th) {
+  background: #f5f5f7;
+  color: #1d1d1f;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* 后台富文本会生成整行全空的表头（<th></th>），整行隐藏 */
+.newsroom-article__body :deep(tr:has(> th:empty):not(:has(> th:not(:empty))):not(:has(> td))) {
+  display: none;
+}
+
+.newsroom-article__body :deep(tbody tr:nth-child(even)) {
+  background: rgba(245, 245, 247, 0.5);
+}
+
+.newsroom-article__body :deep(tbody tr) {
+  transition: background 0.2s ease;
+}
+
+.newsroom-article__body :deep(tbody tr:hover) {
+  background: rgba(255, 202, 0, 0.1);
+}
+
+.newsroom-article__body :deep(tbody tr:last-child th),
+.newsroom-article__body :deep(tbody tr:last-child td) {
+  border-bottom: 0;
+}
+
+.newsroom-article__body :deep(hr) {
+  height: 0;
+  margin: 36px 0;
+  border: 0;
+  border-top: 1px solid rgba(29, 29, 31, 0.1);
+}
+
+.newsroom-article__body :deep(code) {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #f5f5f7;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92em;
+}
+
+.newsroom-article__body :deep(pre) {
+  margin: 24px 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  border-radius: 10px;
+  background: #f5f5f7;
+}
+
+.newsroom-article__body :deep(pre code) {
+  padding: 0;
+  background: transparent;
 }
 
 .news-share {
@@ -419,6 +528,35 @@
 
   .newsroom-article__body {
     margin-top: 44px;
+    font-size: 16px;
+  }
+
+  .newsroom-article__body :deep(h1),
+  .newsroom-article__body :deep(h2) {
+    margin: 36px 0 12px;
+    font-size: 23px;
+  }
+
+  .newsroom-article__body :deep(h3) {
+    font-size: 19px;
+  }
+
+  .newsroom-article__body :deep(.newsroom-article__table-wrap) {
+    margin: 24px 0;
+  }
+
+  .newsroom-article__body :deep(table) {
+    min-width: 560px;
+    font-size: 14px;
+  }
+
+  .newsroom-article__body :deep(th),
+  .newsroom-article__body :deep(td) {
+    padding: 12px 14px;
+  }
+
+  .newsroom-article__body :deep(img) {
+    margin: 24px auto;
   }
 
   .news-pagination--detail {
