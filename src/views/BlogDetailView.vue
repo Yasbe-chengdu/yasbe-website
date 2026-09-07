@@ -38,12 +38,12 @@
               <p class="blog-detail__date">Published on {{ formatPostDate(post.createdAt) }}</p>
               <h1>{{ post.title }}</h1>
 
-              <div v-if="post.author" class="blog-author">
+              <!-- <div v-if="post.author" class="blog-author">
                 <span class="blog-author__avatar" aria-hidden="true">{{ (post.author || 'Y').charAt(0).toUpperCase() }}</span>
                 <span>
                   <strong>{{ post.author }}</strong>
                 </span>
-              </div>
+              </div> -->
             </div>
 
             <div v-if="post.coverImage" v-reveal="{ delay: 120, distance: 28, scale: 0.98 }" class="blog-detail__image">
@@ -52,7 +52,7 @@
           </div>
         </section>
 
-        <article class="blog-detail__article" v-html="post.content"></article>
+        <article class="blog-detail__article" v-html="articleHtml"></article>
 
         <nav class="blog-back" aria-label="Back to blog list">
           <RouterLink to="/blog">{{ $t('blogPage.backToList') }}</RouterLink>
@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
@@ -95,6 +95,18 @@ async function fetchDetail(id) {
     loading.value = false
   }
 }
+
+const articleHtml = computed(() => {
+  const html = post.value?.content || ''
+  return html.replace(
+    /<table\b([^>]*)>([\s\S]*?)<\/table>/gi,
+    (_match, attrs = '', inner = '') => {
+      // 去掉影响布局的内联 width 样式，让外层 CSS 接管
+      const cleanedAttrs = attrs.replace(/\sstyle\s*=\s*"(?:[^"]*\s)?width\s*:\s*[^;"]+;?[^"]*"/gi, '')
+      return `<div class="blog-article__table-wrap"><table${cleanedAttrs}>${inner}</table></div>`
+    },
+  )
+})
 
 watch(
   () => route.params.id,

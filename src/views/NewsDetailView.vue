@@ -72,7 +72,17 @@ const route = useRoute()
 const post = ref(null)
 const loading = ref(false)
 
-const contentHtml = computed(() => post.value?.content || '')
+const contentHtml = computed(() => {
+  const html = post.value?.content || ''
+  return html.replace(
+    /<table\b([^>]*)>([\s\S]*?)<\/table>/gi,
+    (_match, attrs = '', inner = '') => {
+      // 去掉影响布局的内联 width 样式，让外层 CSS 接管
+      const cleanedAttrs = attrs.replace(/\sstyle\s*=\s*"(?:[^"]*\s)?width\s*:\s*[^;"]+;?[^"]*"/gi, '')
+      return `<div class="newsroom-article__table-wrap"><table${cleanedAttrs}>${inner}</table></div>`
+    },
+  )
+})
 
 async function fetchDetail(id) {
   if (!id) {
