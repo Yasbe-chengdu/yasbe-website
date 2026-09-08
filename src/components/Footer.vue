@@ -10,7 +10,7 @@
             <a href="javascript:void(0);" class="footer__social" @click="toPage('https://www.youtube.com/@YASBe-u9j')">
               <img src="../assets/images/social-twitter.svg" alt="Twitter" loading="lazy" decoding="async" />
             </a>
-            <a href="javascript:void(0);" class="footer__social" @click="toPage('https://x.com/YASBeGlobal')">
+            <a href="javascript:void(0);" class="footer__social" @click="toPage('https://x.com/yasbeinfo?s=11')">
               <img src="../assets/images/social-linkedin.svg" alt="LinkedIn" loading="lazy" decoding="async" />
             </a>
             <a href="javascript:void(0);" class="footer__social" @click="toPage(' https://www.linkedin.com/company/yasbe/posts/?feedView=all')">
