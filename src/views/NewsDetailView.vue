@@ -62,13 +62,16 @@
 
 <script setup>
 import { ref, computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
 import { getNewsDetail } from '../api/news.js'
+import { localeOptions, setAppLocale } from '../i18n'
 import { formatNewsDate } from '../utils/format.js'
 
 const route = useRoute()
+const { locale } = useI18n()
 const post = ref(null)
 const loading = ref(false)
 
@@ -84,26 +87,55 @@ const contentHtml = computed(() => {
   )
 })
 
+let lastFetchKey = ''
+
 async function fetchDetail(id) {
   if (!id) {
     post.value = null
     return
   }
+  // URL 的 language 参数和 locale 监听可能先后触发同一篇文章的拉取：
+  // 用「语言 + 文章 id」作为请求标识去重，并丢弃等待期间已过期的响应。
+  const fetchKey = `${locale.value}:${id}`
+  if (fetchKey === lastFetchKey) return
+  lastFetchKey = fetchKey
   loading.value = true
   try {
-    post.value = await getNewsDetail(id)
+    const data = await getNewsDetail(id)
+    if (lastFetchKey === fetchKey) post.value = data
   } catch (e) {
-    post.value = null
+    if (lastFetchKey === fetchKey) post.value = null
   } finally {
-    loading.value = false
+    if (lastFetchKey === fetchKey) loading.value = false
+  }
+}
+
+// 外部链接会带 language 参数进入（如 https://beeznis.com/news/9?language=zh-TW）。
+// 进入页面时先切换语言再拉数据，保证首次请求头 lang 与 URL 参数一致；
+// Navbar 的语言菜单读取 i18n 的 locale，切换后会自动高亮对应语言。
+async function applyQueryLanguage() {
+  const language = route.query.language
+  if (typeof language !== 'string' || !language) return
+  // 兼容大小写不一致的语言码，如 ?language=zh-tw
+  const option = localeOptions.find((item) => item.code.toLowerCase() === language.toLowerCase())
+  if (option && option.code !== locale.value) {
+    await setAppLocale(option.code)
   }
 }
 
 watch(
   () => route.params.id,
-  (id) => fetchDetail(id),
+  async (id) => {
+    // 首次进入先进入加载态，等语言应用完再发首次请求，避免语言包加载期间空态闪现。
+    if (!lastFetchKey && id) loading.value = true
+    await applyQueryLanguage()
+    fetchDetail(id)
+  },
   { immediate: true },
 )
+
+// 新闻详情按语言由接口返回，切换语言后重新拉取当前文章，拿到对应语种的内容。
+watch(locale, () => fetchDetail(route.params.id))
 </script>
 
 <style scoped src="../styles/views/NewsView.css"></style>
