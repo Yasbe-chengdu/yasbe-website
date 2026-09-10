@@ -92,11 +92,14 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
 import Pagination from '../components/Pagination.vue'
 import { getBlogList } from '../api/blog.js'
 import { formatPostDate } from '../utils/format.js'
+
+const { locale } = useI18n()
 
 const blogList = ref([])
 const loading = ref(false)
@@ -137,6 +140,16 @@ watch(searchQuery, () => {
     currentPage.value = 1
     fetchBlog()
   }, 400)
+})
+
+// 博客列表按语言由接口返回，切换语言后重新拉取最新数据。
+// 监听注册在组件内，离开页面时自动销毁，因此只在博客列表页生效。
+watch(locale, () => {
+  // 取消搜索防抖里未执行的请求，避免切换语言时重复拉取。
+  clearTimeout(searchTimer)
+  // 不同语言的数据量不同，回到第一页再请求，避免停留在已经越界的页码上。
+  currentPage.value = 1
+  fetchBlog()
 })
 
 onMounted(fetchBlog)

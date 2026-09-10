@@ -171,7 +171,7 @@ import heroIllustration from '../assets/images/faq/faq-hero-illustration@2x.png'
 import searchIcon from '../assets/images/faq/faq-search-icon@4x.png?no-inline'
 import arrowIcon from '../assets/images/faq/faq-arrow-icon@4x.png?no-inline'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const searchQuery = ref('')
 const activeQuestionId = ref('')
 const isFaqListLoading = ref(false)
@@ -275,6 +275,13 @@ watch(searchQuery, (value) => {
       expandedSectionIds.value = filteredCategoryTree.value.flatMap((category) => category.sections.map((section) => section.id))
     }
   }, 300)
+})
+
+// 问答数据按语言由接口返回，切换语言后重新拉取分类树。
+// 监听注册在组件内，离开本页面时自动销毁，因此只在 FAQ 页生效。
+watch(locale, () => {
+  faqDetailsById.value = {}
+  loadFaqTree()
 })
 
 onMounted(() => {

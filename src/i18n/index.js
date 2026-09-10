@@ -7,10 +7,11 @@ export const localeOptions = [
     { code: 'en', label: 'English', shortLabel: 'EN' },
     { code: 'zh-CN', label: '简体中文', shortLabel: '简' },
     { code: 'zh-TW', label: '繁體中文', shortLabel: '繁' },
-    { code: 'ja', label: '日本語', shortLabel: '日' },
-    { code: 'ko', label: '한국어', shortLabel: '한' },
-    { code: 'es', label: 'Español', shortLabel: 'ES' },
-    { code: 'fr', label: 'Français', shortLabel: 'FR' },
+    // 其他语言暂时隐藏掉，不需要
+    // { code: 'ja', label: '日本語', shortLabel: '日' },
+    // { code: 'ko', label: '한국어', shortLabel: '한' },
+    // { code: 'es', label: 'Español', shortLabel: 'ES' },
+    // { code: 'fr', label: 'Français', shortLabel: 'FR' },
 ]
 
 const supportedLocaleCodes = new Set(localeOptions.map((option) => option.code))

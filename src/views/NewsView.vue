@@ -67,11 +67,14 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
 import Pagination from '../components/Pagination.vue'
 import { getNewsList } from '../api/news.js'
 import { formatNewsDate } from '../utils/format.js'
+
+const { locale } = useI18n()
 
 const newsList = ref([])
 const loading = ref(false)
@@ -108,6 +111,17 @@ function goToPage(page) {
 
 onMounted(fetchNews)
 watch(currentPage, fetchNews)
+
+// 新闻列表按语言由接口返回，切换语言后需要重新拉取最新数据。
+// 监听注册在组件内，离开页面时自动销毁，因此只在新闻列表页生效。
+watch(locale, () => {
+  // 不同语言的数据量不同，回到第一页再请求，避免停留在已经越界的页码上。
+  if (currentPage.value === 1) {
+    fetchNews()
+  } else {
+    currentPage.value = 1 // 由上面的 watch(currentPage) 触发重新拉取
+  }
+})
 </script>
 
 <style scoped src="../styles/views/NewsView.css"></style>
