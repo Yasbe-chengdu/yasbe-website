@@ -42,9 +42,9 @@
           <RouterLink to="/institutional-otc" class="navbar__link" @click="closeMenu">
             {{ $t('nav.links.otc') }}
           </RouterLink>
+          <RouterLink to="/api" class="navbar__link" @click="closeMenu">Developer</RouterLink>
           <RouterLink to="/contact" class="navbar__link" @click="closeMenu">{{ $t('nav.links.contact') }}</RouterLink>
           <RouterLink to="/faq" class="navbar__link" @click="closeMenu">{{ $t('nav.links.faq') }}</RouterLink>
-          <RouterLink to="/api" class="navbar__link" @click="closeMenu">API</RouterLink>
         </div>
 
         <div class="navbar__actions">
@@ -102,8 +102,8 @@ import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
-import blackLogoSrc from '../assets/images/logo-black.svg'
-import yellowLogoSrc from '../assets/images/logo.svg'
+import blackLogoSrc from '../assets/images/new-logo1.svg'
+import yellowLogoSrc from '../assets/images/new-logo2.svg'
 import { localeOptions, setAppLocale } from '../i18n'
 
 const props = defineProps({

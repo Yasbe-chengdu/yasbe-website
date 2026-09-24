@@ -27,8 +27,11 @@
 }
 
 .footer__logo {
-  width: 52px;
-  height: 57px;
+  --logo-size: 112px;
+  display: block;
+  width: var(--logo-size);
+  height: auto;
+  max-width: 100%;
 }
 
 .footer__socials {
@@ -162,8 +165,7 @@
   }
 
   .footer__logo {
-    width: 64px;
-    height: auto;
+    --logo-size: 68px;
   }
 
   .footer__socials {

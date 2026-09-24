@@ -1,6 +1,6 @@
 <template>
   <div class="yasbe-card-page">
-    <Navbar :logo-src="pageLogo" />
+    <Navbar  />
 
     <main>
       <section class="yasbe-card-hero">

@@ -4,7 +4,7 @@
       <div class="footer__main">
         <div v-reveal class="footer__brand">
           <RouterLink to="/" class="footer__logo-link" aria-label="YASBe Home">
-            <img src="../assets/images/logo-footer.png" alt="YASBe Logo" class="footer__logo" loading="lazy" decoding="async" />
+            <img src="../assets/images/new-logo2.svg" alt="YASBe Logo" class="footer__logo" loading="lazy" decoding="async" />
           </RouterLink>
           <div class="footer__socials">
             <a href="javascript:void(0);" class="footer__social" @click="toPage('https://www.youtube.com/@YASBe-u9j')">
@@ -53,6 +53,7 @@
 
           <div v-reveal="{ delay: 240 }" class="footer__column">
             <h4 class="footer__heading">{{ $t('footer.resources.heading') }}</h4>
+            <RouterLink to="/api" class="footer__link">Developer</RouterLink>
             <RouterLink to="/legal" class="footer__link">{{ $t('footer.resources.legal') }}</RouterLink>
             <RouterLink to="/blog" class="footer__link">{{ $t('footer.company.blog') }}</RouterLink>
             <RouterLink to="/faq" class="footer__link">{{ $t('nav.links.faq') }}</RouterLink>
