@@ -49,6 +49,11 @@ const router = createRouter({
       component: () => import('../views/FaqView.vue'),
     },
     {
+      path: '/api',
+      name: 'api-docs',
+      component: () => import('../views/ApiDocsView.vue'),
+    },
+    {
       path: '/stablecoin-checkout',
       name: 'stablecoin-checkout',
       component: () => import('../views/StablecoinCheckoutView.vue'),
