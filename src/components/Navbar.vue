@@ -44,6 +44,7 @@
           </RouterLink>
           <RouterLink to="/contact" class="navbar__link" @click="closeMenu">{{ $t('nav.links.contact') }}</RouterLink>
           <RouterLink to="/faq" class="navbar__link" @click="closeMenu">{{ $t('nav.links.faq') }}</RouterLink>
+          <RouterLink to="/api" class="navbar__link" @click="closeMenu">API</RouterLink>
         </div>
 
         <div class="navbar__actions">
