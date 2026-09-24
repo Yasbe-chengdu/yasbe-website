@@ -42,7 +42,7 @@
           <RouterLink to="/institutional-otc" class="navbar__link" @click="closeMenu">
             {{ $t('nav.links.otc') }}
           </RouterLink>
-          <RouterLink to="/api" class="navbar__link" @click="closeMenu">Developer</RouterLink>
+          <!-- <RouterLink to="/api" class="navbar__link" @click="closeMenu">Developer</RouterLink> -->
           <RouterLink to="/contact" class="navbar__link" @click="closeMenu">{{ $t('nav.links.contact') }}</RouterLink>
           <RouterLink to="/faq" class="navbar__link" @click="closeMenu">{{ $t('nav.links.faq') }}</RouterLink>
         </div>

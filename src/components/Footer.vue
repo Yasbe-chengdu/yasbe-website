@@ -53,7 +53,7 @@
 
           <div v-reveal="{ delay: 240 }" class="footer__column">
             <h4 class="footer__heading">{{ $t('footer.resources.heading') }}</h4>
-            <RouterLink to="/api" class="footer__link">Developer</RouterLink>
+            <!-- <RouterLink to="/api" class="footer__link">Developer</RouterLink> -->
             <RouterLink to="/legal" class="footer__link">{{ $t('footer.resources.legal') }}</RouterLink>
             <RouterLink to="/blog" class="footer__link">{{ $t('footer.company.blog') }}</RouterLink>
             <RouterLink to="/faq" class="footer__link">{{ $t('nav.links.faq') }}</RouterLink>
