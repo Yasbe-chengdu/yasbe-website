@@ -3,6 +3,7 @@ export default {
     "links": {
       "globalPayment": "Global Payment",
       "otc": "Institutional OTC",
+      "developer": "Developer",
       "contact": "Contact",
       "faq": "FAQ"
     },
