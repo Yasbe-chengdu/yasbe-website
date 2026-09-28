@@ -2,6 +2,15 @@
   <div class="api-docs">
     <div class="api-docs__topbar">
       <RouterLink to="/" class="api-docs__wordmark">YASBe <span>{{ copy.documentation }}</span></RouterLink>
+      <div ref="langMenuRef" class="api-docs__lang-switcher">
+        <button type="button" class="api-docs__lang-btn" :aria-expanded="isLangMenuOpen" @click="isLangMenuOpen = !isLangMenuOpen">
+          <span>{{ currentLangLabel }}</span>
+          <span class="api-docs__lang-chevron" aria-hidden="true">⌄</span>
+        </button>
+        <div v-if="isLangMenuOpen" class="api-docs__lang-menu" role="menu">
+          <button v-for="opt in localeOptions" :key="opt.code" type="button" role="menuitem" class="api-docs__lang-option" :class="{ 'api-docs__lang-option--active': locale === opt.code }" @click="selectLang(opt.code)">{{ opt.label }}</button>
+        </div>
+      </div>
     </div>
 
     <main class="api-docs__layout">
@@ -109,11 +118,13 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { localeOptions, setAppLocale } from '../i18n'
 import fiatIcon from '../assets/images/api-fiat-icon.svg'
 import { cardCopy, cardEndpoints } from '../data/apiDocsCards.js'
 import { cryptoCopy, cryptoEndpoints } from '../data/apiDocsCrypto.js'
+import { bridgeCopy, bridgeEndpoints } from '../data/apiDocsBridge.js'
 
 const { locale } = useI18n()
 const languageCopy = {
@@ -125,6 +136,7 @@ const copy = computed(() => languageCopy[locale.value] ?? languageCopy.en)
 const fiatLabel = computed(() => ({ en: 'FIAT', 'zh-CN': '法币', 'zh-TW': '法幣' }[locale.value] ?? 'FIAT'))
 const modules = [
   { id: 'fiat', group: 'fiat', icon: '€', available: true, name: 'EUR & GBP' },
+  { id: 'usd', group: 'fiat', icon: '$', available: true, name: 'USD' },
   { id: 'cards', icon: '▣', available: true, name: 'Cards' },
   { id: 'digital-assets', icon: '◇', available: true, name: 'Digital assets' },
 ]
@@ -229,7 +241,7 @@ const fiatEndpoints = [
   { id: 'webhook-public-key', label: 'Download webhook public key', method: 'GET', path: '/v1/webhooks/platform-public-key', title: 'Download the platform webhook public key', description: 'Download the PEM public key used to verify platform webhook signatures.', requiresAuth: false, successStatus: '200', fields: [], example: {}, responseExample: '-----BEGIN PUBLIC KEY-----\\n…\\n-----END PUBLIC KEY-----', errors: [{ code: 'WEBHOOK_KEY_UNAVAILABLE', status: 500, description: 'The platform public key cannot be loaded.' }] },
 ]
 
-const endpoints = computed(() => ({ cards: cardEndpoints, 'digital-assets': cryptoEndpoints }[selectedModule.value] ?? fiatEndpoints))
+const endpoints = computed(() => ({ cards: cardEndpoints, 'digital-assets': cryptoEndpoints, usd: bridgeEndpoints }[selectedModule.value] ?? fiatEndpoints))
 
 const baseUrl = ref(import.meta.env.VITE_PLATFORM_API_BASE_URL ?? '')
 const activeEndpoint = ref(fiatEndpoints[0])
@@ -244,7 +256,7 @@ const isSending = ref(false)
 const twoFactorLabel = computed(() => ({ en: 'X-2FA-Token (when enabled)', 'zh-CN': 'X-2FA-Token（已启用 2FA 时）', 'zh-TW': 'X-2FA-Token（已啟用 2FA 時）' }[locale.value] ?? 'X-2FA-Token'))
 const twoFactorPlaceholder = computed(() => ({ en: 'Paste the short-lived 2FA token', 'zh-CN': '粘贴短期 2FA Token', 'zh-TW': '貼上短期 2FA Token' }[locale.value] ?? 'Paste 2FA token'))
 const contractLabel = computed(() => ({ en: 'CONTRACT', 'zh-CN': '接口契约', 'zh-TW': '介面契約' }[locale.value] ?? 'CONTRACT'))
-const isUserApiModule = computed(() => selectedModule.value === 'digital-assets' || selectedModule.value === 'cards')
+const isUserApiModule = computed(() => selectedModule.value === 'digital-assets' || selectedModule.value === 'cards' || selectedModule.value === 'usd')
 const tryButtonLabel = computed(() => {
   if (isSending.value) return copy.value.sending
   if (activeEndpoint.value.tryEnabled === false) {
@@ -265,13 +277,14 @@ const errorResponseExample = computed(() => isUserApiModule.value
   : { code: activeEndpoint.value.errors[0]?.code ?? 'INTERNAL_ERROR', message: 'Human-readable error message', traceId: 'trc_01J…' })
 
 function endpointCopy(endpoint) {
-  const localized = cardCopy[locale.value]?.[endpoint.id] ?? cryptoCopy[locale.value]?.[endpoint.id] ?? apiCopy[locale.value]?.[endpoint.id]
+  const localized = bridgeCopy[locale.value]?.[endpoint.id] ?? cardCopy[locale.value]?.[endpoint.id] ?? cryptoCopy[locale.value]?.[endpoint.id] ?? apiCopy[locale.value]?.[endpoint.id]
   return localized ? { ...endpoint, ...localized } : endpoint
 }
 
 const currencyNotice = computed(() => {
   const notices = {
     fiat: { en: 'This module supports EUR and GBP payments. Use IBAN for EUR/SEPA beneficiaries; use account number and sort code for GBP payments.', 'zh-CN': '该模块同时支持 EUR 和 GBP 支付。EUR/SEPA 受益人使用 IBAN；GBP 支付使用账号和 Sort Code。', 'zh-TW': '此模組同時支援 EUR 和 GBP 支付。EUR/SEPA 受益人使用 IBAN；GBP 支付使用帳號和 Sort Code。' },
+    usd: { en: 'This module covers Bridge USD off-ramp: KYC onboarding, virtual USD accounts (receive wire/ACH), external bank accounts, and USDC→USD transfers. KYC must be active and the base endorsement approved before transfers.', 'zh-CN': '该模块覆盖 Bridge USD 出金全流程：KYC 开户、USD 虚拟账户（接收电汇/ACH）、外部银行账户绑定与 USDC→USD 转账。转账前需完成 KYC 且 base 背书已批准。', 'zh-TW': '此模組涵蓋 Bridge USD 出金全流程：KYC 開戶、USD 虛擬帳戶（接收電匯/ACH）、外部銀行帳戶綁定與 USDC→USD 轉帳。轉帳前需完成 KYC 且 base 背書已批准。' },
     'digital-assets': { en: 'Wallet creation is idempotent: an existing Safeheron account is reused and only missing asset/network addresses are provisioned. Supported assets and networks come from API configuration.', 'zh-CN': '钱包创建采用幂等设计：复用已有 Safeheron 账户，只补建缺失的币种/网络地址；支持的币种和网络以 API 配置为准。', 'zh-TW': '錢包建立採用冪等設計：重用既有 Safeheron 帳戶，只補建缺失的幣種／網路地址；支援的幣種和網路以 API 設定為準。' },
     cards: { en: 'Card availability, fees, funding assets, and wallet support vary by product. Always use the latest values returned by the available-card endpoint.', 'zh-CN': '卡片可用性、费用、充值资产及钱包支持因产品而异，请始终以可开卡片接口返回的最新值为准。', 'zh-TW': '卡片可用性、費用、儲值資產及錢包支援因產品而異，請始終以可開卡片介面回傳的最新值為準。' },
   }
@@ -289,6 +302,11 @@ const moduleOverview = computed(() => {
     }
   }
   const overviews = {
+    usd: {
+      en: { heroTitle: 'USD off-ramp, powered by Bridge.', heroIntro: 'Complete KYC onboarding, receive USD via wire or ACH, bind US bank accounts, and execute USDC→USD transfers with a single integrated API.', beforeStartBody: 'Sign in to YASBe and copy the returned JWT. Begin with the ToS link endpoint, then submit KYC. Once approved, add bank accounts and create transfers.', authTitle: 'Bearer JWT', authBody: 'Bridge endpoints use the JWT returned by the YASBe sign-in flow. Send it as Authorization: Bearer {token} on every request.' },
+      'zh-CN': { heroTitle: '基于 Bridge 的 USD 出金通道。', heroIntro: '完成 KYC 开户、通过电汇或 ACH 接收 USD、绑定美国银行账户，并通过一套集成 API 执行 USDC→USD 转账。', beforeStartBody: '登录 YASBe 获取 JWT；先调用 ToS 链接接口，再提交 KYC；审核通过后即可绑定银行账户并发起转账。', authTitle: 'Bearer JWT', authBody: 'Bridge 接口使用 YASBe 登录流程返回的 JWT，通过 Authorization: Bearer {token} 携带，每次请求均需提供。' },
+      'zh-TW': { heroTitle: '基於 Bridge 的 USD 出金通道。', heroIntro: '完成 KYC 開戶、透過電匯或 ACH 接收 USD、綁定美國銀行帳戶，並透過一套整合 API 執行 USDC→USD 轉帳。', beforeStartBody: '登入 YASBe 取得 JWT；先呼叫 ToS 連結介面，再提交 KYC；審核通過後即可綁定銀行帳戶並發起轉帳。', authTitle: 'Bearer JWT', authBody: 'Bridge 介面使用 YASBe 登入流程回傳的 JWT，透過 Authorization: Bearer {token} 攜帶，每次請求均需提供。' },
+    },
     'digital-assets': {
       en: { heroTitle: 'Create and move digital assets with confidence.', heroIntro: 'Discover supported assets and networks, provision wallets and deposit addresses, read balances and pricing, review transactions, and create withdrawals.', beforeStartBody: 'Sign in to YASBe and copy the returned JWT. The gateway is configured by the deployment environment. Endpoints marked Contract require the matching backend controller implementation.', authTitle: 'Bearer JWT', authBody: 'Crypto endpoints use the JWT returned by the YASBe sign-in flow. Send it with every request as Authorization: Bearer {token}. Never expose the token in public client code.' },
       'zh-CN': { heroTitle: '安全创建和流转数字资产。', heroIntro: '查询支持的币种和网络、创建钱包和充值地址，并完成余额、价格、交易与提现管理。', beforeStartBody: '请先登录 YASBe 获取 JWT；网关地址由部署环境统一配置。标记为“接口契约”的接口仍需后端提供对应 Controller 实现。', authTitle: 'Bearer JWT', authBody: '数币接口使用 YASBe 登录流程返回的 JWT。每次请求都需要携带 Authorization: Bearer {token}，请勿在公开的客户端代码中暴露令牌。' },
@@ -304,16 +322,16 @@ const moduleOverview = computed(() => {
 })
 
 function endpointDetail(endpoint) {
-  return endpointDetails[locale.value]?.[endpoint.id] ?? endpointDetails.en[endpoint.id] ?? endpoint.detail
+  return endpointDetails[locale.value]?.[endpoint.id] ?? endpointDetails.en[endpoint.id] ?? bridgeCopy[locale.value]?.[endpoint.id]?.detail ?? endpoint.detail
 }
 
 function fieldDescription(field) {
-  return cardCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? cryptoCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? apiCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? field.description
+  return bridgeCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? cardCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? cryptoCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? apiCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? field.description
 }
 
 const errorTranslations = {
-  'zh-CN': { AUTH_MISSING_TOKEN: '缺少 Bearer Token。', AUTH_INVALID_TOKEN: 'Token 无效或已过期。', AUTH_INVALID_CLIENT_CREDENTIALS: '客户端 ID 或密钥不正确。', CLIENT_DISABLED: 'API 客户端已停用。', INTERNAL_ERROR: '服务内部错误。', UNSUPPORTED_COUNTRY: '开户国家/地区不受支持。', ACCOUNT_ALREADY_EXISTS: '该客户和币种的账户已存在。', REQUEST_VALIDATION_FAILED: '请求缺少必填字段或字段值不符合要求。', PLATFORM_VALIDATION_FAILED: '平台拒绝了该请求，请查看返回信息。', PLATFORM_UNAVAILABLE: '平台不可用或未返回所需结果。', ACCOUNT_NOT_FOUND: '未找到客户账户。', BENEFICIARY_ACCOUNT_INVALID: 'IBAN、账号或 Sort Code 无效。', UNSUPPORTED_CURRENCY: '当前仅支持 EUR 和 GBP。', IDEMPOTENCY_KEY_REQUIRED: '必须提供 Idempotency-Key 请求头。', BENEFICIARY_NOT_FOUND: '未找到受益人，或其不属于该客户。', SWEEP_SOURCE_ACCOUNT_NOT_CONFIGURED: '未配置该币种的出金来源账户。', TRANSACTION_NOT_FOUND: '交易不存在或不属于当前客户端。', TRANSACTION_NOT_CANCELLABLE: '交易已完成、失败、取消或不是出金，无法撤销。', WEBHOOK_KEY_UNAVAILABLE: '平台 Webhook 公钥不可用。' },
-  'zh-TW': { AUTH_MISSING_TOKEN: '缺少 Bearer 權杖。', AUTH_INVALID_TOKEN: '權杖無效或已過期。', AUTH_INVALID_CLIENT_CREDENTIALS: '用戶端 ID 或密鑰不正確。', CLIENT_DISABLED: 'API 用戶端已停用。', INTERNAL_ERROR: '服務內部錯誤。', UNSUPPORTED_COUNTRY: '開戶國家／地區不受支援。', ACCOUNT_ALREADY_EXISTS: '該客戶和幣別的帳戶已存在。', REQUEST_VALIDATION_FAILED: '請求缺少必填欄位或欄位值不符合要求。', PLATFORM_VALIDATION_FAILED: '平台拒絕了此請求，請查看回傳資訊。', PLATFORM_UNAVAILABLE: '平台不可用或未回傳所需結果。', ACCOUNT_NOT_FOUND: '未找到客戶帳戶。', BENEFICIARY_ACCOUNT_INVALID: 'IBAN、帳號或 Sort Code 無效。', UNSUPPORTED_CURRENCY: '目前僅支援 EUR 和 GBP。', IDEMPOTENCY_KEY_REQUIRED: '必須提供 Idempotency-Key 請求標頭。', BENEFICIARY_NOT_FOUND: '未找到受益人，或其不屬於該客戶。', SWEEP_SOURCE_ACCOUNT_NOT_CONFIGURED: '未設定該幣別的出金來源帳戶。', TRANSACTION_NOT_FOUND: '交易不存在或不屬於目前用戶端。', TRANSACTION_NOT_CANCELLABLE: '交易已完成、失敗、取消或不是出金，無法撤銷。', WEBHOOK_KEY_UNAVAILABLE: '平台 Webhook 公鑰不可用。' },
+  'zh-CN': { AUTH_MISSING_TOKEN: '缺少 Bearer Token。', AUTH_INVALID_TOKEN: 'Token 无效或已过期。', AUTH_INVALID_CLIENT_CREDENTIALS: '客户端 ID 或密钥不正确。', CLIENT_DISABLED: 'API 客户端已停用。', INTERNAL_ERROR: '服务内部错误。', SYSTEM_ERROR: '服务内部错误。', UNSUPPORTED_COUNTRY: '开户国家/地区不受支持。', ACCOUNT_ALREADY_EXISTS: '该客户和币种的账户已存在。', REQUEST_VALIDATION_FAILED: '请求缺少必填字段或字段值不符合要求。', PLATFORM_VALIDATION_FAILED: '平台拒绝了该请求，请查看返回信息。', PLATFORM_UNAVAILABLE: '平台不可用或未返回所需结果。', ACCOUNT_NOT_FOUND: '未找到客户账户。', BENEFICIARY_ACCOUNT_INVALID: 'IBAN、账号或 Sort Code 无效。', UNSUPPORTED_CURRENCY: '当前仅支持 EUR 和 GBP。', IDEMPOTENCY_KEY_REQUIRED: '必须提供 Idempotency-Key 请求头。', BENEFICIARY_NOT_FOUND: '未找到受益人，或其不属于该客户。', SWEEP_SOURCE_ACCOUNT_NOT_CONFIGURED: '未配置该币种的出金来源账户。', TRANSACTION_NOT_FOUND: '交易不存在或不属于当前客户端。', TRANSACTION_NOT_CANCELLABLE: '交易已完成、失败、取消或不是出金，无法撤销。', WEBHOOK_KEY_UNAVAILABLE: '平台 Webhook 公钥不可用。', BRIDGE_SERVICE_ERROR: 'Bridge 服务返回错误或暂时不可用。', KYC_NOT_ACTIVE: 'KYC 尚未完成或 base 背书尚未批准。', CUSTOMER_NOT_FOUND: '该用户尚未创建 Bridge 账户。', FILE_INVALID: '文件缺失、不是图片或超出 5 MB 限制。', BRIDGE_FIELDS_MISSING: '请求体缺少必填字段。', BRIDGE_VALIDATION_ERROR: '字段验证失败，例如该邮箱已注册。' },
+  'zh-TW': { AUTH_MISSING_TOKEN: '缺少 Bearer 權杖。', AUTH_INVALID_TOKEN: '權杖無效或已過期。', AUTH_INVALID_CLIENT_CREDENTIALS: '用戶端 ID 或密鑰不正確。', CLIENT_DISABLED: 'API 用戶端已停用。', INTERNAL_ERROR: '服務內部錯誤。', SYSTEM_ERROR: '服務內部錯誤。', UNSUPPORTED_COUNTRY: '開戶國家／地區不受支援。', ACCOUNT_ALREADY_EXISTS: '該客戶和幣別的帳戶已存在。', REQUEST_VALIDATION_FAILED: '請求缺少必填欄位或欄位值不符合要求。', PLATFORM_VALIDATION_FAILED: '平台拒絕了此請求，請查看回傳資訊。', PLATFORM_UNAVAILABLE: '平台不可用或未回傳所需結果。', ACCOUNT_NOT_FOUND: '未找到客戶帳戶。', BENEFICIARY_ACCOUNT_INVALID: 'IBAN、帳號或 Sort Code 無效。', UNSUPPORTED_CURRENCY: '目前僅支援 EUR 和 GBP。', IDEMPOTENCY_KEY_REQUIRED: '必須提供 Idempotency-Key 請求標頭。', BENEFICIARY_NOT_FOUND: '未找到受益人，或其不屬於該客戶。', SWEEP_SOURCE_ACCOUNT_NOT_CONFIGURED: '未設定該幣別的出金來源帳戶。', TRANSACTION_NOT_FOUND: '交易不存在或不屬於目前用戶端。', TRANSACTION_NOT_CANCELLABLE: '交易已完成、失敗、取消或不是出金，無法撤銷。', WEBHOOK_KEY_UNAVAILABLE: '平台 Webhook 公鑰不可用。', BRIDGE_SERVICE_ERROR: 'Bridge 服務回傳錯誤或暫時不可用。', KYC_NOT_ACTIVE: 'KYC 尚未完成或 base 背書尚未批准。', CUSTOMER_NOT_FOUND: '該用戶尚未建立 Bridge 帳戶。', FILE_INVALID: '檔案缺失、不是圖片或超出 5 MB 限制。', BRIDGE_FIELDS_MISSING: '請求內容缺少必填欄位。', BRIDGE_VALIDATION_ERROR: '欄位驗證失敗，例如該電子郵件已注冊。' },
 }
 
 function errorDescription(error) {
@@ -360,6 +378,22 @@ function currencyExample(example, currency) {
   }
   return value
 }
+
+const isLangMenuOpen = ref(false)
+const langMenuRef = ref(null)
+const currentLangLabel = computed(() => localeOptions.find((o) => o.code === locale.value)?.shortLabel ?? 'EN')
+
+async function selectLang(code) {
+  await setAppLocale(code)
+  isLangMenuOpen.value = false
+}
+
+function handleLangOutsideClick(e) {
+  if (!langMenuRef.value?.contains(e.target)) isLangMenuOpen.value = false
+}
+
+onMounted(() => document.addEventListener('click', handleLangOutsideClick))
+onUnmounted(() => document.removeEventListener('click', handleLangOutsideClick))
 
 async function sendRequest() {
   requestError.value = ''
