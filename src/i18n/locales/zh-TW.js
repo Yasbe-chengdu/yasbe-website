@@ -3,6 +3,7 @@ export default {
     "links": {
       "globalPayment": "全球支付",
       "otc": "機構 OTC",
+      "developer": "開發者中心",
       "contact": "聯絡我們",
       "faq": "常見問題"
     },
