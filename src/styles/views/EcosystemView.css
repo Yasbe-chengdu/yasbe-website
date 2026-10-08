@@ -1,0 +1,512 @@
+/* ============================================
+   EcosystemView – YASBe Ecosystem 文案展示页
+   ============================================ */
+
+/* ---------- 页面骨架 ---------- */
+.ecosystem-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--color-white);
+}
+
+.ecosystem-page__body {
+  flex: 1;
+  padding-top: 90px; /* navbar 高度 */
+}
+
+/* ---------- Hero ---------- */
+.ecosystem-hero {
+  background: var(--color-bg-gray);
+  padding: 72px 0 64px 0;
+}
+
+.ecosystem-hero__content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  text-align: center;
+}
+
+.ecosystem-hero__title {
+  font-family: var(--font-family);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.15;
+  margin: 0 0 16px 0;
+}
+
+.ecosystem-hero__tagline {
+  font-family: var(--font-family);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.4;
+  margin: 0 0 32px 0;
+}
+
+.ecosystem-hero__intro {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.06px;
+  line-height: 1.7;
+}
+
+.ecosystem-hero__intro p {
+  margin: 0 0 16px 0;
+}
+
+.ecosystem-hero__intro p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- 通用 Section ---------- */
+.ecosystem-section {
+  padding: 56px 0;
+}
+
+.ecosystem-section--gray {
+  background: var(--color-bg-gray);
+}
+
+.ecosystem-section__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+.ecosystem-section__heading {
+  font-family: var(--font-family);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.3;
+  margin: 0 0 20px 0;
+}
+
+.ecosystem-section__paragraph {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.7;
+  margin: 0 0 16px 0;
+}
+
+.ecosystem-section__note {
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.06px;
+  line-height: 1.7;
+  margin: 16px 0 0 0;
+}
+
+/* ---------- 列表 ---------- */
+.ecosystem-list {
+  list-style: none;
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+
+.ecosystem-list__item {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.7;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+
+.ecosystem-list__item:last-child {
+  margin-bottom: 0;
+}
+
+.ecosystem-list:not(.ecosystem-list--ordered) > .ecosystem-list__item::before {
+  content: '•';
+  position: absolute;
+  left: 4px;
+  color: var(--color-text-primary);
+}
+
+/* 双列列表（较窄项目） */
+.ecosystem-list--cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 32px;
+}
+
+/* 有序列表 */
+.ecosystem-list--ordered {
+  counter-reset: ecosystem-counter;
+  margin: 0 0 16px 0;
+}
+
+.ecosystem-list--ordered > .ecosystem-list__item {
+  counter-increment: ecosystem-counter;
+  padding-left: 28px;
+}
+
+.ecosystem-list--ordered > .ecosystem-list__item::before {
+  content: counter(ecosystem-counter) '.';
+  position: absolute;
+  left: 4px;
+  font-weight: 600;
+}
+
+/* ---------- 卡片 ---------- */
+.ecosystem-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.ecosystem-cards--three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.ecosystem-card {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: 32px;
+}
+
+.ecosystem-card--bordered {
+  border: 1px solid rgba(1, 1, 1, 0.08);
+}
+
+.ecosystem-card__title {
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+}
+
+.ecosystem-card__lead {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.7;
+  margin: 0 0 12px 0;
+}
+
+.ecosystem-card__text {
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.06px;
+  line-height: 1.7;
+  margin: 0 0 12px 0;
+}
+
+.ecosystem-card__text:last-child {
+  margin-bottom: 0;
+}
+
+.ecosystem-card .ecosystem-list {
+  margin: 0 0 12px 0;
+}
+
+.ecosystem-card .ecosystem-list__item {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+}
+
+.ecosystem-card__note {
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.06px;
+  line-height: 1.7;
+  margin: 12px 0 0 0;
+}
+
+/* ---------- 合作伙伴类型标签 ---------- */
+.ecosystem-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px 0;
+}
+
+.ecosystem-chips__item {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background: var(--color-bg-gray);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.4;
+}
+
+/* ---------- CTA ---------- */
+.ecosystem-cta {
+  background: var(--color-bg-dark);
+  padding: 72px 0;
+}
+
+.ecosystem-cta__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  text-align: center;
+}
+
+.ecosystem-cta__heading {
+  font-family: var(--font-family);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-text-white);
+  letter-spacing: 0.06px;
+  line-height: 1.3;
+  margin: 0 0 16px 0;
+}
+
+.ecosystem-cta__subtitle {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.06px;
+  line-height: 1.7;
+  margin: 0 0 32px 0;
+}
+
+.ecosystem-cta__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.ecosystem-cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 280px;
+  padding: 14px 32px;
+  background: var(--color-accent-yellow);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.06px;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.ecosystem-cta__button:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.ecosystem-cta__button--outline {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--color-text-white);
+}
+
+.ecosystem-cta__button--outline:hover {
+  border-color: var(--color-accent-yellow);
+  color: var(--color-accent-yellow);
+  opacity: 1;
+}
+
+.ecosystem-cta__link {
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-accent-yellow);
+  letter-spacing: 0.06px;
+  line-height: 1.6;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.ecosystem-cta__link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ---------- 免责声明 ---------- */
+.ecosystem-disclaimer {
+  background: var(--color-bg-dark);
+  padding: 0 0 48px 0;
+}
+
+.ecosystem-disclaimer__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px var(--content-padding) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ecosystem-disclaimer__inner p {
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.06px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ============================================
+   平板端 (768px - 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+  .ecosystem-page__body {
+    padding-top: 80px;
+  }
+
+  .ecosystem-hero {
+    padding: 56px 0 48px 0;
+  }
+
+  .ecosystem-hero__title {
+    font-size: 38px;
+  }
+
+  .ecosystem-hero__tagline {
+    font-size: 18px;
+  }
+
+  .ecosystem-section {
+    padding: 48px 0;
+  }
+
+  .ecosystem-section__heading {
+    font-size: 24px;
+  }
+
+  .ecosystem-cards--three {
+    grid-template-columns: 1fr;
+  }
+
+  .ecosystem-cta {
+    padding: 56px 0;
+  }
+
+  .ecosystem-cta__heading {
+    font-size: 28px;
+  }
+}
+
+/* ============================================
+   移动端 (320px - 767px)
+   ============================================ */
+@media (max-width: 767px) {
+  .ecosystem-page__body {
+    padding-top: 70px;
+  }
+
+  .ecosystem-hero {
+    padding: 40px 0 40px 0;
+  }
+
+  .ecosystem-hero__title {
+    font-size: 30px;
+    margin-bottom: 12px;
+  }
+
+  .ecosystem-hero__tagline {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .ecosystem-hero__intro,
+  .ecosystem-section__paragraph {
+    font-size: 14px;
+  }
+
+  .ecosystem-section {
+    padding: 40px 0;
+  }
+
+  .ecosystem-section__heading {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .ecosystem-list--cols {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  .ecosystem-list__item {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .ecosystem-section__note {
+    font-size: 13px;
+  }
+
+  .ecosystem-cards {
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .ecosystem-card {
+    padding: 24px;
+  }
+
+  .ecosystem-card__title {
+    font-size: 16px;
+  }
+
+  .ecosystem-card__lead,
+  .ecosystem-card__text,
+  .ecosystem-card .ecosystem-list__item {
+    font-size: 14px;
+  }
+
+  .ecosystem-cta {
+    padding: 48px 0;
+  }
+
+  .ecosystem-cta__heading {
+    font-size: 24px;
+  }
+
+  .ecosystem-cta__subtitle {
+    font-size: 14px;
+  }
+
+  .ecosystem-cta__button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .ecosystem-cta__link {
+    font-size: 14px;
+  }
+}

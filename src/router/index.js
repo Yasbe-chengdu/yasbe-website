@@ -113,6 +113,11 @@ const router = createRouter({
       name: 'crypto-native',
       component: () => import('../views/cryptoPage.vue'),
     },
+    {
+      path: '/ecosystem',
+      name: 'ecosystem',
+      component: () => import('../views/EcosystemView.vue'),
+    },
   ],
   scrollBehavior(to) {
     if (to.hash) {
