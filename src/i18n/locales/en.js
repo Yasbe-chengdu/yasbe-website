@@ -1304,5 +1304,136 @@ export default {
     "prev": "Previous",
     "next": "Next",
     "goToPage": "Go to page"
+  },
+  "ecosystem": {
+    "hero": {
+      "title": "YASBe Ecosystem",
+      "tagline": "Connect. Participate. Grow.",
+      "intro1": "The YASBe Ecosystem brings together global financial technology, businesses, customers, referral partners, merchants, and service providers in one connected network.",
+      "intro2": "Built around YASBe’s financial technology platform, the Ecosystem gives eligible participants access to YASBe products and services, preferential pricing, referral opportunities, rewards, and exclusive offers from participating partners.",
+      "intro3": "Whether you are a customer, business, merchant, or referral partner, there are multiple ways to participate and benefit."
+    },
+    "oneEcosystem": {
+      "heading": "One Ecosystem. More Possibilities.",
+      "text": "The YASBe Ecosystem connects our platform products and services with a growing network of partners and benefits."
+    },
+    "platform": {
+      "heading": "YASBe Platform",
+      "intro": "Access eligible YASBe products and services, which may include:",
+      "items": {
+        "namedAccounts": "Named Accounts",
+        "globalCollectionPayout": "Global Collection & Payout",
+        "globalPaymentRails": "Global Payment Rails",
+        "stablecoinOnOffRamp": "Stablecoin On & Off-Ramp",
+        "digitalAssetTradingOtc": "Digital Asset Trading & OTC",
+        "card": "YASBe Card",
+        "digitalWallet": "Digital Wallet Services",
+        "apisEmbedded": "APIs & Embedded Financial Technology"
+      },
+      "note": "Product availability is subject to jurisdiction, eligibility, onboarding requirements, and applicable product terms."
+    },
+    "rewards": {
+      "heading": "Rewards & Benefits",
+      "intro": "Eligible participants may receive access to benefits such as:",
+      "items": {
+        "preferentialPricing": "Preferential or discounted pricing on selected YASBe products and services",
+        "rewardsPoints": "YASBe rewards, points, credits, or promotional incentives",
+        "campaignsOffers": "Special campaigns and member-only offers",
+        "giftVouchers": "Gift vouchers and promotional benefits",
+        "merchantDiscounts": "Merchant discounts and preferential offers",
+        "travelLifestyle": "Travel and lifestyle benefits from participating partners"
+      },
+      "note": "Benefits may vary by program, eligibility, location, and availability."
+    },
+    "partnerOffers": {
+      "heading": "Partner Offers",
+      "text1": "The YASBe Ecosystem is designed to extend beyond financial services.",
+      "intro": "Participating Partner Merchants and service providers may offer exclusive benefits to eligible YASBe customers, including:",
+      "items": {
+        "shoppingVouchers": "Shopping and merchant vouchers",
+        "diningOffers": "Dining and lifestyle offers",
+        "airlineTravel": "Airline and travel benefits",
+        "hotelResort": "Hotel and resort offers",
+        "businessServices": "Business and professional service benefits",
+        "promotions": "Special promotions and experiences"
+      },
+      "note": "Partner Offers are provided subject to the applicable partner’s terms, availability, eligibility requirements, and restrictions."
+    },
+    "participate": {
+      "heading": "Participate in the YASBe Ecosystem",
+      "intro": "There are different ways to become part of the YASBe Ecosystem.",
+      "customer": {
+        "heading": "Become a YASBe Customer",
+        "lead": "Start by becoming a verified YASBe customer.",
+        "text1": "Individual customers must successfully complete applicable Know Your Customer (KYC) requirements, while business customers must successfully complete applicable Know Your Business (KYB) requirements, together with any other onboarding and compliance checks required for the relevant YASBe products or services.",
+        "text2": "Once successfully onboarded, eligible customers can access applicable YASBe products, Ecosystem benefits, rewards, preferential offers, and partner promotions."
+      },
+      "referral": {
+        "heading": "Join the YASBe Referral Program",
+        "text1": "The YASBe Referral Program is available to eligible verified YASBe customers.",
+        "text2": "To participate, you must first:",
+        "step1": "Become a YASBe customer;",
+        "step2": "Successfully complete the applicable KYC or KYB verification process; and",
+        "step3": "Apply for and be accepted into the YASBe Referral Program.",
+        "text3": "Approved Referral Partners may introduce eligible individuals and businesses to YASBe and participate in applicable referral incentive programs.",
+        "text4": "Depending on the applicable program, Referral Partners may receive:",
+        "items": {
+          "commissions": "Referral commissions",
+          "transactionIncentives": "Transaction-based incentives",
+          "promotionalRewards": "Promotional rewards",
+          "preferentialPricing": "Preferential pricing on selected YASBe products and services",
+          "campaignsOpportunities": "Partner campaigns and business opportunities"
+        },
+        "note": "Participation, qualification, referral activities, and compensation are subject to the applicable YASBe Referral Program Terms."
+      },
+      "partner": {
+        "heading": "Become an Ecosystem Partner",
+        "text1": "We welcome businesses and brands that want to bring additional value to the YASBe community.",
+        "text2": "Potential Ecosystem Partners may include:",
+        "types": {
+          "merchants": "Merchants",
+          "airlines": "Airlines",
+          "hotelsResorts": "Hotels & Resorts",
+          "travelProviders": "Travel Providers",
+          "technology": "Technology Companies",
+          "professionalServices": "Professional Services",
+          "financialInstitutions": "Financial Institutions",
+          "payments": "Payment Companies",
+          "lifestyle": "Lifestyle Brands"
+        },
+        "text3": "Partners can work with YASBe to create exclusive offers, customer benefits, joint campaigns, referral opportunities, technology integrations, and other commercial collaborations."
+      }
+    },
+    "why": {
+      "heading": "Why Join the YASBe Ecosystem?",
+      "customers": {
+        "heading": "For Customers",
+        "lead": "Access more than financial technology.",
+        "text": "Use YASBe products while unlocking eligible rewards, preferential pricing, merchant offers, travel benefits, and other Ecosystem privileges."
+      },
+      "referral": {
+        "heading": "For Referral Partners",
+        "lead": "Turn your network into opportunity.",
+        "text": "As a verified YASBe customer, you may apply to become a Referral Partner, introduce qualified customers to YASBe, and participate in applicable referral and incentive programs."
+      },
+      "partners": {
+        "heading": "For Ecosystem Partners",
+        "lead": "Connect your products and services with YASBe customers and businesses.",
+        "text": "Create targeted offers, increase brand exposure, reach new customer segments, and explore joint commercial opportunities through the YASBe Ecosystem."
+      }
+    },
+    "grow": {
+      "heading": "Grow With YASBe",
+      "text1": "The YASBe Ecosystem is built to grow with its participants.",
+      "text2": "As YASBe expands its platform, products, markets, and partner network, we aim to create more ways for customers and partners to connect, transact, participate, and benefit."
+    },
+    "cta": {
+      "heading": "Join the YASBe Ecosystem",
+      "subtitle": "Start as a YASBe customer. Complete your verification. Unlock more ways to participate.",
+      "customerButton": "Become a YASBe Customer",
+      "referralButton": "Join the Referral Program",
+      "partnerLabel": "Become an Ecosystem Partner:"
+    },
+    "disclaimer": "YASBe products, services, rewards, discounts, referral incentives, and partner offers are subject to eligibility, jurisdiction, availability, applicable KYC/KYB and compliance requirements, and applicable terms and conditions. Third-party offers are provided by participating partners and may be modified or discontinued from time to time."
   }
 }

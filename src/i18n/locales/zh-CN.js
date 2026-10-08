@@ -1199,5 +1199,136 @@ export default {
     "prev": "上一页",
     "next": "下一页",
     "goToPage": "跳转到第"
+  },
+  "ecosystem": {
+    "hero": {
+      "title": "YASBe Ecosystem",
+      "tagline": "连接。参与。成长。",
+      "intro1": "YASBe Ecosystem 将全球金融科技、企业、客户、推荐合作伙伴、商户及服务提供商汇聚于一个互联互通的网络。",
+      "intro2": "生态系统以 YASBe 金融科技平台为核心，为符合条件的参与者提供 YASBe 产品与服务、优惠价格、推荐机会、奖励，以及来自参与合作伙伴的专属优惠。",
+      "intro3": "无论您是客户、企业、商户还是推荐合作伙伴，都有多种方式可以参与并受益。"
+    },
+    "oneEcosystem": {
+      "heading": "一个生态系统，更多可能。",
+      "text": "YASBe Ecosystem 将我们的平台产品与服务，同不断壮大的合作伙伴及权益网络连接在一起。"
+    },
+    "platform": {
+      "heading": "YASBe 平台",
+      "intro": "可使用符合条件的 YASBe 产品与服务，包括：",
+      "items": {
+        "namedAccounts": "实名账户",
+        "globalCollectionPayout": "全球收款与付款",
+        "globalPaymentRails": "全球支付网络",
+        "stablecoinOnOffRamp": "稳定币出入金",
+        "digitalAssetTradingOtc": "数字资产交易与 OTC",
+        "card": "YASBe 卡",
+        "digitalWallet": "数字钱包服务",
+        "apisEmbedded": "API 与嵌入式金融科技"
+      },
+      "note": "产品可用性取决于司法辖区、资格条件、开户要求及适用的产品条款。"
+    },
+    "rewards": {
+      "heading": "奖励与权益",
+      "intro": "符合条件的参与者可获得以下权益：",
+      "items": {
+        "preferentialPricing": "特定 YASBe 产品与服务的优惠或折扣价格",
+        "rewardsPoints": "YASBe 奖励、积分、额度或促销激励",
+        "campaignsOffers": "专项活动与会员专属优惠",
+        "giftVouchers": "礼品券及促销权益",
+        "merchantDiscounts": "商户折扣与优惠",
+        "travelLifestyle": "来自参与合作伙伴的旅行及生活权益"
+      },
+      "note": "权益可能因计划、资格、所在地区及供应情况而异。"
+    },
+    "partnerOffers": {
+      "heading": "合作伙伴优惠",
+      "text1": "YASBe Ecosystem 的设计不止于金融服务。",
+      "intro": "参与的合作伙伴商户及服务提供商可为符合条件的 YASBe 客户提供专属权益，包括：",
+      "items": {
+        "shoppingVouchers": "购物及商户代金券",
+        "diningOffers": "餐饮及生活优惠",
+        "airlineTravel": "航空及旅行权益",
+        "hotelResort": "酒店及度假村优惠",
+        "businessServices": "商业及专业服务权益",
+        "promotions": "特别促销与体验"
+      },
+      "note": "合作伙伴优惠须遵循相关合作伙伴的条款、供应情况、资格要求及限制。"
+    },
+    "participate": {
+      "heading": "参与 YASBe Ecosystem",
+      "intro": "成为 YASBe Ecosystem 的一员有多种方式。",
+      "customer": {
+        "heading": "成为 YASBe 客户",
+        "lead": "首先成为通过验证的 YASBe 客户。",
+        "text1": "个人客户须成功完成适用的客户身份验证（KYC），企业客户须成功完成适用的企业身份验证（KYB），并满足相关 YASBe 产品或服务所需的其他开户与合规审查。",
+        "text2": "成功开户后，符合条件的客户即可使用适用的 YASBe 产品、生态系统权益、奖励、优惠及合作伙伴促销活动。"
+      },
+      "referral": {
+        "heading": "加入 YASBe 推荐计划",
+        "text1": "YASBe 推荐计划面向符合条件且已通过验证的 YASBe 客户开放。",
+        "text2": "如需参与，您必须首先：",
+        "step1": "成为 YASBe 客户；",
+        "step2": "成功完成适用的 KYC 或 KYB 验证流程；并且",
+        "step3": "申请并获准加入 YASBe 推荐计划。",
+        "text3": "获批的推荐合作伙伴可向 YASBe 推荐符合条件的个人和企业，并参与适用的推荐激励计划。",
+        "text4": "根据适用计划，推荐合作伙伴可获得：",
+        "items": {
+          "commissions": "推荐佣金",
+          "transactionIncentives": "基于交易的激励",
+          "promotionalRewards": "促销奖励",
+          "preferentialPricing": "特定 YASBe 产品与服务的优惠价格",
+          "campaignsOpportunities": "合作伙伴活动与商业机会"
+        },
+        "note": "参与、资格、推荐活动及报酬均须遵循适用的 YASBe 推荐计划条款。"
+      },
+      "partner": {
+        "heading": "成为生态系统合作伙伴",
+        "text1": "我们欢迎愿意为 YASBe 社区创造更多价值的企业与品牌。",
+        "text2": "潜在的生态系统合作伙伴包括：",
+        "types": {
+          "merchants": "商户",
+          "airlines": "航空公司",
+          "hotelsResorts": "酒店与度假村",
+          "travelProviders": "旅游服务商",
+          "technology": "科技公司",
+          "professionalServices": "专业服务",
+          "financialInstitutions": "金融机构",
+          "payments": "支付公司",
+          "lifestyle": "生活方式品牌"
+        },
+        "text3": "合作伙伴可与 YASBe 合作打造专属优惠、客户权益、联合活动、推荐机会、技术集成及其他商业合作。"
+      }
+    },
+    "why": {
+      "heading": "为什么加入 YASBe Ecosystem？",
+      "customers": {
+        "heading": "对于客户",
+        "lead": "获得的远不止金融科技。",
+        "text": "在使用 YASBe 产品的同时，解锁符合条件的奖励、优惠价格、商户优惠、旅行权益及其他生态系统特权。"
+      },
+      "referral": {
+        "heading": "对于推荐合作伙伴",
+        "lead": "将您的人脉转化为机遇。",
+        "text": "作为已通过验证的 YASBe 客户，您可以申请成为推荐合作伙伴，向 YASBe 推荐符合条件的客户，并参与适用的推荐及激励计划。"
+      },
+      "partners": {
+        "heading": "对于生态系统合作伙伴",
+        "lead": "将您的产品和服务与 YASBe 客户及企业连接起来。",
+        "text": "通过 YASBe Ecosystem 打造精准优惠、提升品牌曝光、触达新客户群体，并探索联合商业机会。"
+      }
+    },
+    "grow": {
+      "heading": "与 YASBe 共同成长",
+      "text1": "YASBe Ecosystem 旨在与参与者共同成长。",
+      "text2": "随着 YASBe 不断扩展其平台、产品、市场和合作伙伴网络，我们将为客户与合作伙伴创造更多连接、交易、参与和受益的方式。"
+    },
+    "cta": {
+      "heading": "加入 YASBe Ecosystem",
+      "subtitle": "从 YASBe 客户开始。完成验证。解锁更多参与方式。",
+      "customerButton": "成为 YASBe 客户",
+      "referralButton": "加入推荐计划",
+      "partnerLabel": "成为生态系统合作伙伴："
+    },
+    "disclaimer": "YASBe 的产品、服务、奖励、折扣、推荐激励及合作伙伴优惠均取决于资格条件、司法辖区、供应情况、适用的 KYC/KYB 及合规要求，并受适用条款和条件约束。第三方优惠由参与的合作伙伴提供，可能会不时修改或终止。"
   }
 }
