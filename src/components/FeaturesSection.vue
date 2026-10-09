@@ -232,7 +232,7 @@
       <div v-reveal="{ delay: 80, distance: 28 }" class="new-fetureas" @mouseleave="activeNewFeatureIndex = 0">
         <article
           v-for="(item, index) in newFeatureCards"
-          :key="item.title"
+          :key="item.key"
           class="new-feature-card"
           :class="{ 'new-feature-card--active': activeNewFeatureIndex === index }"
           :style="newFeatureCardStyles[index]"
@@ -241,14 +241,19 @@
           @focusin="activeNewFeatureIndex = index"
         >
           <div class="new-feature-card__copy">
-            <h3>{{ item.title }}</h3>
+            <h3>{{ $t(`features.newFeatures.${item.key}.title`) }}</h3>
             <div class="new-feature-card__description">
-              <p v-for="paragraph in item.description" :key="paragraph">{{ paragraph }}</p>
+              <p
+                v-for="(paragraph, paragraphIndex) in $tm(`features.newFeatures.${item.key}.description`)"
+                :key="paragraphIndex"
+              >
+                {{ $rt(paragraph) }}
+              </p>
             </div>
           </div>
           <img
             :src="item.image"
-            :alt="item.title"
+            :alt="$t(`features.newFeatures.${item.key}.title`)"
             class="new-feature-card__image"
             loading="lazy"
             decoding="async"
@@ -398,34 +403,20 @@ let rateRequestId = 0
 
 const newFeatureCards = [
   {
-    title: 'Multi-Chain, Multi-Asset Support',
+    key: 'multiChain',
     image: featureMultiChainAsset,
-    description: [
-      'A unified PayFi infrastructure connecting fiat and digital asset ecosystems, enabling seamless value movement across banking networks, card schemes, and blockchains.',
-    ],
   },
   {
-    title: 'Regulatory Compliance',
+    key: 'regulatory',
     image: featureRegulatoryCompliance,
-    description: [
-      'Built-in KYC/KYB, AML monitoring, Sanctions Screening, transaction monitoring across all payment rails, and KYT on-chain screening, ensuring continuous verification, monitoring, and global regulatory compliance.',
-    ],
   },
   {
-    title: 'Payment AI',
+    key: 'paymentAi',
     image: featurePaymentAi,
-    description: [
-      'Intelligent payment infrastructure designed to optimize routing, FX execution, and global money movement in real time.',
-      'Ensures payments are processed through the most efficient pathways across fiat and digital rails, enabling continuous, always-on financial operations where money never sleeps.',
-    ],
   },
   {
-    title: 'API Integration',
+    key: 'apiIntegration',
     image: featureApiIntegration,
-    description: [
-      'Developer-first infrastructure designed for seamless embedding of financial services.',
-      'Our API-driven platform enables businesses to integrate banking, payments, and digital asset capabilities directly into their own products through a fully supported Developer Portal.',
-    ],
   },
 ]
 
