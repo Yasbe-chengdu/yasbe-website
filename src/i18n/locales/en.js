@@ -85,6 +85,34 @@ export default {
       "listTitle": "We're not just observing the financial revolution, we're building it with bold, like-minded partners. Beyond just investing, we actively:",
       "listItems": "Back disruptive technologies reshaping finance<br />Support innovators advancing the cryptosphere<br />Build infrastructure for tomorrow's asset landscape",
       "cta": "Find Out More"
+    },
+    "newFeatures": {
+      "multiChain": {
+        "title": "Multi-Chain, Multi-Asset Support",
+        "description": [
+          "A unified PayFi infrastructure connecting fiat and digital asset ecosystems, enabling seamless value movement across banking networks, card schemes, and blockchains."
+        ]
+      },
+      "regulatory": {
+        "title": "Regulatory Compliance",
+        "description": [
+          "Built-in KYC/KYB, AML monitoring, Sanctions Screening, transaction monitoring across all payment rails, and KYT on-chain screening, ensuring continuous verification, monitoring, and global regulatory compliance."
+        ]
+      },
+      "paymentAi": {
+        "title": "Payment AI",
+        "description": [
+          "Intelligent payment infrastructure designed to optimize routing, FX execution, and global money movement in real time.",
+          "Ensures payments are processed through the most efficient pathways across fiat and digital rails, enabling continuous, always-on financial operations where money never sleeps."
+        ]
+      },
+      "apiIntegration": {
+        "title": "API Integration",
+        "description": [
+          "Developer-first infrastructure designed for seamless embedding of financial services.",
+          "Our API-driven platform enables businesses to integrate banking, payments, and digital asset capabilities directly into their own products through a fully supported Developer Portal."
+        ]
+      }
     }
   },
   "products": {
