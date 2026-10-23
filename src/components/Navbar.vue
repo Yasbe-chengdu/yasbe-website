@@ -76,8 +76,8 @@
           </div>
 
           <div class="navbar__auth">
-            <a :href="customerRegisterUrl" target="_blank" rel="noopener noreferrer" class="navbar__btn navbar__btn--text">{{ $t('nav.auth.signUp') }}</a>
-            <a :href="customerLoginUrl" target="_blank" rel="noopener noreferrer" class="navbar__btn navbar__btn--primary">{{ $t('nav.auth.login') }}</a>
+            <a :href="portalRegisterUrl" :target="portalLinkTarget" rel="noopener noreferrer" class="navbar__btn navbar__btn--text">{{ $t('nav.auth.signUp') }}</a>
+            <a :href="portalLoginUrl" :target="portalLinkTarget" rel="noopener noreferrer" class="navbar__btn navbar__btn--primary">{{ $t('nav.auth.login') }}</a>
           </div>
         </div>
       </div>
@@ -124,8 +124,14 @@ const route = useRoute()
 const isHome = computed(() => route.path === '/')
 const resolvedLogoSrc = computed(() => props.logoSrc || (isHome.value ? yellowLogoSrc : blackLogoSrc))
 const customerBaseUrl = import.meta.env.VITE_CUSTOMER_BASE_URL ?? 'https://customer.beeznis.com/'
-const customerLoginUrl = new URL('/login', customerBaseUrl).toString()
-const customerRegisterUrl = new URL('/register', customerBaseUrl).toString()
+const mobileBaseUrl = import.meta.env.VITE_MOBILE_BASE_URL ?? 'https://mobile.beeznis.com/'
+const isMobileBrowser =
+  window.matchMedia('(max-width: 768px)').matches ||
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+const portalBaseUrl = isMobileBrowser ? mobileBaseUrl : customerBaseUrl
+const portalLoginUrl = new URL('/login', portalBaseUrl).toString()
+const portalRegisterUrl = new URL('/register', portalBaseUrl).toString()
+const portalLinkTarget = isMobileBrowser ? '_self' : '_blank'
 
 const globalPaymentSubnav = [
   {
