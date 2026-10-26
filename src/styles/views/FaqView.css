@@ -744,7 +744,8 @@
   cursor: zoom-out;
 }
 
-.faq-lightbox > img {
+.faq-lightbox > img,
+.faq-lightbox__plate img {
   display: block;
   max-width: 94vw;
   max-height: 86vh;
@@ -752,6 +753,22 @@
   border-radius: 6px;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
   cursor: default;
+}
+
+/* 客服二维码是透明底，深色蒙层上会透出页面，放大时垫一块白底。 */
+.faq-lightbox__plate {
+  padding: 28px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
+}
+
+.faq-lightbox__plate img {
+  width: min(480px, 70vw);
+  height: auto;
+  max-height: 70vh;
+  background: #fff;
+  box-shadow: none;
 }
 
 .faq-lightbox > p {
@@ -817,7 +834,9 @@
 }
 
 .faq-lightbox-enter-active > img,
-.faq-lightbox-leave-active > img {
+.faq-lightbox-leave-active > img,
+.faq-lightbox-enter-active > .faq-lightbox__plate,
+.faq-lightbox-leave-active > .faq-lightbox__plate {
   transition: transform 0.22s var(--motion-ease-emphasis);
 }
 
@@ -827,7 +846,9 @@
 }
 
 .faq-lightbox-enter-from > img,
-.faq-lightbox-leave-to > img {
+.faq-lightbox-leave-to > img,
+.faq-lightbox-enter-from > .faq-lightbox__plate,
+.faq-lightbox-leave-to > .faq-lightbox__plate {
   transform: scale(0.96);
 }
 

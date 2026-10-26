@@ -175,8 +175,11 @@
           <button ref="lightboxCloseRef" type="button" class="faq-lightbox__close" :aria-label="t('faqPage.feedback.closePreview')" @click="closeImagePreview">
             <span aria-hidden="true"></span>
           </button>
-          <img :src="previewImage.src" :alt="previewImage.alt" />
-          <p v-if="previewImage.alt">{{ previewImage.alt }}</p>
+          <div v-if="previewImage.framed" class="faq-lightbox__plate">
+            <img :src="previewImage.src" :alt="previewImage.alt" />
+          </div>
+          <img v-else :src="previewImage.src" :alt="previewImage.alt" />
+          <p v-if="previewImage.alt && !previewImage.framed">{{ previewImage.alt }}</p>
         </div>
       </Transition>
     </Teleport>
@@ -619,6 +622,7 @@ async function openImagePreview(image) {
   previewImage.value = {
     src: image.currentSrc || image.src,
     alt: image.alt || '',
+    framed: image.classList?.contains('faq-contact__qr') ?? false,
   }
   document.body.classList.add('faq-lightbox-open')
   await nextTick()
