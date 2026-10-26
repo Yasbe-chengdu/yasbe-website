@@ -422,6 +422,13 @@ export default {
     "loadingQuestions": "Cargando preguntas...",
     "loadingAnswer": "Cargando respuesta...",
     "toc": "Tabla de contenido",
+    "contact": {
+      "title": "Contacta con nuestro servicio de atención al cliente",
+      "telegram": "Escanea para contactar con atención al cliente en Telegram",
+      "qrAlt": "Código QR de atención al cliente en Telegram",
+      "copyEmail": "Copiar correo electrónico",
+      "copied": "Copiado"
+    },
     "feedback": {
       "prompt": "¿Esta respuesta resolvió tu problema?",
       "resolved": "Resuelto",

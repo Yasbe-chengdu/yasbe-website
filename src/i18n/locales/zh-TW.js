@@ -455,6 +455,13 @@ export default {
     "loadingQuestions": "問題載入中...",
     "loadingAnswer": "答案載入中...",
     "toc": "目錄",
+    "contact": {
+      "title": "聯絡我們的客服",
+      "telegram": "掃碼透過 Telegram 聯絡客服",
+      "qrAlt": "Telegram 客服二維碼",
+      "copyEmail": "複製郵箱",
+      "copied": "複製成功"
+    },
     "feedback": {
       "prompt": "這個問題對你有幫助嗎？",
       "resolved": "已解決",

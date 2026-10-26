@@ -455,6 +455,13 @@ export default {
     "loadingQuestions": "问题加载中...",
     "loadingAnswer": "答案加载中...",
     "toc": "目录",
+    "contact": {
+      "title": "联系我们的客服",
+      "telegram": "扫码通过 Telegram 联系客服",
+      "qrAlt": "Telegram 客服二维码",
+      "copyEmail": "复制邮箱",
+      "copied": "复制成功"
+    },
     "feedback": {
       "prompt": "这个问题对你有帮助吗？",
       "resolved": "已解决",

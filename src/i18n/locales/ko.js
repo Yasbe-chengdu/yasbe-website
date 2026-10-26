@@ -422,6 +422,13 @@ export default {
     "loadingQuestions": "질문을 불러오는 중...",
     "loadingAnswer": "답변을 불러오는 중...",
     "toc": "목차",
+    "contact": {
+      "title": "고객 서비스에 문의하기",
+      "telegram": "Telegram에서 고객 서비스에 연락하려면 스캔하세요",
+      "qrAlt": "Telegram 고객 서비스 QR 코드",
+      "copyEmail": "이메일 복사",
+      "copied": "복사되었습니다"
+    },
     "feedback": {
       "prompt": "이 답변으로 문제가 해결되었나요?",
       "resolved": "해결됨",

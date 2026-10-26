@@ -492,21 +492,14 @@
   max-width: none;
   padding: 0 16px 28px 0;
   overflow-y: auto;
-  scrollbar-color: rgba(29, 29, 31, 0.24) transparent;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .faq-answer-card__main::-webkit-scrollbar {
-  width: 7px;
-}
-
-.faq-answer-card__main::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.faq-answer-card__main::-webkit-scrollbar-thumb {
-  border-radius: var(--radius-full);
-  background: rgba(29, 29, 31, 0.22);
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .faq-answer-card__main h3 {
@@ -836,6 +829,74 @@
 .faq-lightbox-enter-from > img,
 .faq-lightbox-leave-to > img {
   transform: scale(0.96);
+}
+
+.faq-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  padding: 36px 12px 8px;
+  border-top: 1px solid rgba(29, 29, 31, 0.08);
+  text-align: center;
+}
+
+.faq-contact__title,
+.faq-contact__scan {
+  margin: 0;
+  color: #1d1d1f;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.16px;
+}
+
+.faq-contact__email {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  min-height: 44px;
+  margin: 18px 0 28px;
+  padding: 8px 28px;
+  border: 1px solid #c5daf2;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: #1d1d1f;
+  cursor: pointer;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.faq-contact__email:hover {
+  border-color: #8eb6de;
+  background: #f5f9fd;
+}
+
+.faq-contact__email--copied,
+.faq-contact__email--copied:hover {
+  border-color: #42c979;
+  background: #d7f5e2;
+  color: #1f8a4d;
+}
+
+.faq-contact__email:focus-visible,
+.faq-contact__qr:focus-visible {
+  outline: 3px solid #ffca00;
+  outline-offset: 3px;
+}
+
+.faq-contact__qr {
+  width: 138px;
+  height: auto;
+  margin-top: 20px;
+  background: #fff;
+  cursor: zoom-in;
 }
 
 .faq-answer-card__main ol {

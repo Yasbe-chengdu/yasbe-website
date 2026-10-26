@@ -455,6 +455,13 @@ export default {
     "loadingQuestions": "Loading questions...",
     "loadingAnswer": "Loading answer...",
     "toc": "Table of Contents",
+    "contact": {
+      "title": "Contact our customer service",
+      "telegram": "Scan to contact customer service on Telegram",
+      "qrAlt": "Telegram customer service QR code",
+      "copyEmail": "Copy email address",
+      "copied": "Copied"
+    },
     "feedback": {
       "prompt": "Was this answer helpful?",
       "resolved": "Resolved",
