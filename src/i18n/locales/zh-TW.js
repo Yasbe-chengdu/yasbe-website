@@ -457,7 +457,7 @@ export default {
     "toc": "目錄",
     "contact": {
       "title": "聯絡我們的客服",
-      "telegram": "掃碼透過 Telegram 聯絡客服",
+      "telegram": "掃碼通過 Telegram 聯絡客服",
       "qrAlt": "Telegram 客服二維碼",
       "copyEmail": "複製郵箱",
       "copied": "複製成功"
