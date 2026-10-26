@@ -197,7 +197,8 @@ import arrowIcon from '../assets/images/faq/faq-arrow-icon@4x.png?no-inline'
 import contactQr from '../assets/images/faq/con-qrcode.png'
 
 const { t, locale } = useI18n()
-const contactEmail = 'card@yasbe.com'
+const CARD_CONTACT_EMAIL = 'card@yasbe.com'
+const DEFAULT_CONTACT_EMAIL = 'cs@yasbe.com'
 const searchQuery = ref('')
 const activeQuestionId = ref('')
 const isFaqListLoading = ref(false)
@@ -265,6 +266,21 @@ const activeQuestion = computed(() => {
     ...(faqDetailsById.value[baseQuestion.id] ?? {}),
     isDetailLoading: Boolean(detailLoadingById.value[baseQuestion.id]),
   }
+})
+
+// YASBe Card 菜单用卡片客服邮箱，其余菜单用通用客服邮箱。分类名随语言变化，按名称识别。
+function isCardMenu(label) {
+  const normalized = String(label || '').toLowerCase().replace(/\s+/g, '')
+  return normalized.includes('yasbecard') || normalized.includes('yasbe卡')
+}
+
+const contactEmail = computed(() => (
+  isCardMenu(activeQuestion.value?.categoryLabel) ? CARD_CONTACT_EMAIL : DEFAULT_CONTACT_EMAIL
+))
+
+watch(contactEmail, () => {
+  emailCopied.value = false
+  clearTimeout(emailCopiedTimer)
 })
 
 // 每篇 FAQ 独立记录反馈结果，切换文章后仍能恢复按钮选中状态。
@@ -350,10 +366,10 @@ function copyText(text) {
 
 async function copyContactEmail() {
   window.focus()
-  let copied = copyText(contactEmail)
+  let copied = copyText(contactEmail.value)
   if (!copied && navigator.clipboard?.writeText) {
     try {
-      await navigator.clipboard.writeText(contactEmail)
+      await navigator.clipboard.writeText(contactEmail.value)
       copied = true
     } catch (error) {
       console.warn('Failed to copy contact email', error)
@@ -368,11 +384,14 @@ async function copyContactEmail() {
   }, 1600)
 }
 
-function normalizeListItem(item) {
+function normalizeListItem(item, categoryLabel = '') {
+  const menuLabel = String(categoryLabel || item.category || '').trim()
+
   return {
     id: String(item.id),
     rawId: item.id,
-    category: String(item.category || '').trim(),
+    category: String(item.category || menuLabel).trim(),
+    categoryLabel: menuLabel,
     sectionId: item.sectionId == null ? null : String(item.sectionId),
     question: item.question || '',
     answerHtml: '',
@@ -483,7 +502,7 @@ async function loadFaqSections(category) {
     const normalizedSections = await Promise.all(sections.map(async (section) => {
       const fallbackFaqs = (Array.isArray(section.faqs) ? section.faqs : [])
         .filter((item) => item?.id != null && item?.question && isPublished(item))
-        .map(normalizeListItem)
+        .map((item) => normalizeListItem(item, category.label))
         .sort((a, b) => a.sortOrder - b.sortOrder)
 
       try {
@@ -495,7 +514,7 @@ async function loadFaqSections(category) {
         })
         const faqs = (Array.isArray(faqData?.content) ? faqData.content : [])
           .filter((item) => item?.id != null && item?.question && isPublished(item))
-          .map(normalizeListItem)
+          .map((item) => normalizeListItem(item, category.label))
           .sort((a, b) => a.sortOrder - b.sortOrder)
         return normalizeSectionItem(section, faqs)
       } catch (error) {
