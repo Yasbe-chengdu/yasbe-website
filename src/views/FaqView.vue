@@ -89,6 +89,30 @@
                   <p v-if="!activeQuestion.answerHtml && activeQuestion.summary" class="faq-answer-card__summary">
                     {{ activeQuestion.summary }}
                   </p>
+
+                  <div class="faq-contact">
+                    <p class="faq-contact__title">{{ t('faqPage.contact.title') }}</p>
+                    <button
+                      type="button"
+                      class="faq-contact__email"
+                      :class="{ 'faq-contact__email--copied': emailCopied }"
+                      :aria-label="emailCopied ? t('faqPage.contact.copied') : t('faqPage.contact.copyEmail')"
+                      @click="copyContactEmail"
+                    >
+                      {{ emailCopied ? t('faqPage.contact.copied') : contactEmail }}
+                    </button>
+                    <p class="faq-contact__scan">{{ t('faqPage.contact.telegram') }}</p>
+                    <img
+                      class="faq-contact__qr"
+                      :src="contactQr"
+                      :alt="t('faqPage.contact.qrAlt')"
+                      tabindex="0"
+                      role="button"
+                      @click="openImagePreview($event.currentTarget)"
+                      @keydown.enter.prevent="openImagePreview($event.currentTarget)"
+                      @keydown.space.prevent="openImagePreview($event.currentTarget)"
+                    />
+                  </div>
                 </div>
 
                 <!-- 反馈区固定在内容卡片底部，不随长篇富文本一起滚走。 -->
@@ -170,8 +194,10 @@ import { getFaqCategoryList, getFaqDetail, getFaqList, getFaqSectionList, submit
 import heroIllustration from '../assets/images/faq/faq-hero-illustration@2x.png'
 import searchIcon from '../assets/images/faq/faq-search-icon@4x.png?no-inline'
 import arrowIcon from '../assets/images/faq/faq-arrow-icon@4x.png?no-inline'
+import contactQr from '../assets/images/faq/con-qrcode.png'
 
 const { t, locale } = useI18n()
+const contactEmail = 'card@yasbe.com'
 const searchQuery = ref('')
 const activeQuestionId = ref('')
 const isFaqListLoading = ref(false)
@@ -185,7 +211,9 @@ const feedbackByQuestionId = ref({})
 const answerBodyRef = ref(null)
 const lightboxCloseRef = ref(null)
 const previewImage = ref(null)
+const emailCopied = ref(false)
 let searchTimer
+let emailCopiedTimer
 let faqTreeRequestId = 0
 
 const categoryTree = computed(() => remoteCategories.value.map((category) => ({
@@ -291,9 +319,54 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   clearTimeout(searchTimer)
+  clearTimeout(emailCopiedTimer)
   document.removeEventListener('keydown', handleGlobalKeydown)
   document.body.classList.remove('faq-lightbox-open')
 })
+
+function copyText(text) {
+  const input = document.createElement('textarea')
+  input.value = text
+  input.setAttribute('readonly', '')
+  input.style.position = 'fixed'
+  input.style.top = '0'
+  input.style.left = '0'
+  input.style.width = '1px'
+  input.style.height = '1px'
+  input.style.opacity = '0'
+  document.body.appendChild(input)
+  input.focus()
+  input.select()
+  input.setSelectionRange(0, text.length)
+  let copied = false
+  try {
+    copied = document.execCommand('copy')
+  } catch {
+    copied = false
+  }
+  document.body.removeChild(input)
+  return copied
+}
+
+async function copyContactEmail() {
+  window.focus()
+  let copied = copyText(contactEmail)
+  if (!copied && navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(contactEmail)
+      copied = true
+    } catch (error) {
+      console.warn('Failed to copy contact email', error)
+    }
+  }
+  if (!copied) return
+
+  emailCopied.value = true
+  clearTimeout(emailCopiedTimer)
+  emailCopiedTimer = setTimeout(() => {
+    emailCopied.value = false
+  }, 1600)
+}
 
 function normalizeListItem(item) {
   return {

@@ -422,6 +422,13 @@ export default {
     "loadingQuestions": "Chargement des questions...",
     "loadingAnswer": "Chargement de la réponse...",
     "toc": "Table des matières",
+    "contact": {
+      "title": "Contactez notre service client",
+      "telegram": "Scannez pour contacter le service client sur Telegram",
+      "qrAlt": "QR code du service client Telegram",
+      "copyEmail": "Copier l’adresse e-mail",
+      "copied": "Copié"
+    },
     "feedback": {
       "prompt": "Cette réponse a-t-elle résolu votre problème ?",
       "resolved": "Résolu",

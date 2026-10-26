@@ -422,6 +422,13 @@ export default {
     "loadingQuestions": "質問を読み込み中...",
     "loadingAnswer": "回答を読み込み中...",
     "toc": "目次",
+    "contact": {
+      "title": "カスタマーサービスにお問い合わせ",
+      "telegram": "Telegram でカスタマーサービスに連絡するにはスキャンしてください",
+      "qrAlt": "Telegram カスタマーサービスの QR コード",
+      "copyEmail": "メールアドレスをコピー",
+      "copied": "コピーしました"
+    },
     "feedback": {
       "prompt": "この回答で問題は解決しましたか？",
       "resolved": "解決した",
