@@ -105,7 +105,11 @@
         </div>
         <label v-if="activeEndpoint.requiresAuth" class="api-docs__input-label">{{ copy.bearerToken }}<input v-model.trim="accessToken" type="password" :placeholder="copy.tokenPlaceholder" autocomplete="off" /></label>
         <label v-if="activeEndpoint.id === 'crypto-withdraw'" class="api-docs__input-label">{{ twoFactorLabel }}<input v-model.trim="twoFactorToken" type="password" :placeholder="twoFactorPlaceholder" autocomplete="one-time-code" /></label>
-        <label class="api-docs__input-label">{{ copy.requestBody }}<textarea v-model="requestBody" rows="13" spellcheck="false" :aria-label="copy.requestBody"></textarea></label>
+        <label v-for="field in interactiveFields" :key="`${activeEndpoint.id}-${field.location}-${field.name}`" class="api-docs__input-label">
+          {{ field.name }} ({{ field.location }})
+          <input v-model.trim="parameterValues[field.name]" type="text" :placeholder="field.required ? copy.required : copy.no" autocomplete="off" />
+        </label>
+        <label v-if="hasRequestBody" class="api-docs__input-label">{{ copy.requestBody }}<textarea v-model="requestBody" rows="13" spellcheck="false" :aria-label="copy.requestBody"></textarea></label>
         <p v-if="requestError" class="api-docs__request-error">{{ requestError }}</p>
         <button type="button" class="api-docs__try-button" :disabled="isSending || activeEndpoint.tryEnabled === false" @click="sendRequest"><span>{{ tryButtonLabel }}</span><span aria-hidden="true">→</span></button>
         <div class="api-docs__response">
@@ -125,6 +129,7 @@ import fiatIcon from '../assets/images/api-fiat-icon.svg'
 import { cardCopy, cardEndpoints } from '../data/apiDocsCards.js'
 import { cryptoCopy, cryptoEndpoints } from '../data/apiDocsCrypto.js'
 import { bridgeCopy, bridgeEndpoints } from '../data/apiDocsBridge.js'
+import { partnerCopy, partnerEndpoints } from '../data/apiDocsPartner.js'
 
 const { locale } = useI18n()
 const languageCopy = {
@@ -135,6 +140,7 @@ const languageCopy = {
 const copy = computed(() => languageCopy[locale.value] ?? languageCopy.en)
 const fiatLabel = computed(() => ({ en: 'FIAT', 'zh-CN': '法币', 'zh-TW': '法幣' }[locale.value] ?? 'FIAT'))
 const modules = [
+  { id: 'partner', icon: '⌘', available: true, name: 'Partner API' },
   { id: 'fiat', group: 'fiat', icon: '€', available: true, name: 'EUR & GBP' },
   { id: 'usd', group: 'fiat', icon: '$', available: true, name: 'USD' },
   { id: 'cards', icon: '▣', available: true, name: 'Cards' },
@@ -143,10 +149,10 @@ const modules = [
 const fiatModules = computed(() => modules.filter((module) => module.group === 'fiat'))
 const productModules = computed(() => modules.filter((module) => module.group !== 'fiat'))
 const moduleTranslations = {
-  'zh-CN': { fiat: 'EUR & GBP', cards: '卡片', 'digital-assets': '数字资产' },
-  'zh-TW': { fiat: 'EUR & GBP', cards: '卡片', 'digital-assets': '數位資產' },
+  'zh-CN': { partner: '白标 Partner API', fiat: 'EUR & GBP', cards: '卡片', 'digital-assets': '数字资产' },
+  'zh-TW': { partner: '白標 Partner API', fiat: 'EUR & GBP', cards: '卡片', 'digital-assets': '數位資產' },
 }
-const selectedModule = ref('fiat')
+const selectedModule = ref('partner')
 const isFiatExpanded = ref(true)
 const selectedModuleData = computed(() => modules.find((module) => module.id === selectedModule.value) ?? modules[0])
 const isAvailableModule = computed(() => selectedModuleData.value.available)
@@ -162,8 +168,11 @@ const apiCopy = {
     'deposit-instructions': { label: '获取入金指引', title: '获取入金指引', description: '返回客户指定币种账户的收款资料。', fields: {} },
     transaction: { label: '查询交易', title: '查询交易状态', description: '返回本地记录的最新交易状态。', fields: {} },
     'cancel-payout': { label: '撤销出金', title: '撤销待处理出金', description: '对尚未进入终态的出金发起撤销请求。', fields: {} },
-    'webhook-subscription': { label: '创建 Webhook 订阅', title: '创建或更新 Webhook 订阅', description: '登记安全回调地址以及接入方希望接收的事件。', fields: { callbackUrl: '接收事件推送的 HTTPS 地址。', eventTypes: '订阅事件类型的 JSON 数组。', encryptionPublicKey: '用于加密事件正文的 PEM 公钥。' } },
+    'webhook-subscription': { label: '创建 Webhook 订阅', title: '创建客户级 Webhook 订阅', description: '登记安全回调地址，可通过 externalCustomerId 将端点绑定到指定下游客户。', fields: { url: '接收事件推送的公网 HTTPS 地址。', subscribedEvents: '订阅事件类型数组。', externalCustomerId: '可选；绑定后只接收该下游客户的事件。' } },
+    'webhook-credential-download': { label: '下载 Webhook 密钥包', title: '创建并下载一次性 Webhook 密钥包', description: '以 JSON 或 TXT 附件返回一次性 HMAC Secret 和 YASBe RSA 验签公钥。', fields: {} },
+    'webhook-payload-encryption': { label: '配置 Webhook 正文加密', title: '配置下游回调正文加密', description: '只上传下游 RSA 公钥，YASBe 使用 RSA-OAEP-SHA256 与 AES-256-GCM 加密正文。', fields: {} },
     'webhook-public-key': { label: '下载 Webhook 公钥', title: '下载平台 Webhook 验签公钥', description: '下载用于验证平台 Webhook 签名的 PEM 公钥。', fields: {} },
+    'webhook-public-key-pem': { label: '下载 PEM 公钥', title: '下载平台 Webhook 验签公钥文件', description: '下载不可缓存的 PEM 公钥文件；平台私钥永不下发。', fields: {} },
   },
   'zh-TW': {
     token: { label: '取得存取權杖', title: '取得存取權杖', description: '使用用戶端憑證換取短期存取權杖。', fields: { clientId: '你的串接用戶端識別碼。', clientSecret: '你的串接密鑰；僅在建立時顯示一次。' } },
@@ -176,8 +185,11 @@ const apiCopy = {
     'deposit-instructions': { label: '取得入金指引', title: '取得入金指引', description: '回傳客戶指定幣別帳戶的收款資料。', fields: {} },
     transaction: { label: '查詢交易', title: '查詢交易狀態', description: '回傳本地記錄的最新交易狀態。', fields: {} },
     'cancel-payout': { label: '撤銷出金', title: '撤銷待處理出金', description: '對尚未進入終態的出金發起撤銷請求。', fields: {} },
-    'webhook-subscription': { label: '建立 Webhook 訂閱', title: '建立或更新 Webhook 訂閱', description: '登記安全回呼地址以及接入方希望接收的事件。', fields: { callbackUrl: '接收事件推送的 HTTPS 位址。', eventTypes: '訂閱事件類型的 JSON 陣列。', encryptionPublicKey: '用於加密事件內容的 PEM 公鑰。' } },
+    'webhook-subscription': { label: '建立 Webhook 訂閱', title: '建立客戶級 Webhook 訂閱', description: '登記安全回呼位址，可透過 externalCustomerId 將端點綁定到指定下游客戶。', fields: { url: '接收事件推送的公網 HTTPS 位址。', subscribedEvents: '訂閱事件類型陣列。', externalCustomerId: '選填；綁定後只接收該下游客戶的事件。' } },
+    'webhook-credential-download': { label: '下載 Webhook 密鑰包', title: '建立並下載一次性 Webhook 密鑰包', description: '以 JSON 或 TXT 附件回傳一次性 HMAC Secret 和 YASBe RSA 驗簽公鑰。', fields: {} },
+    'webhook-payload-encryption': { label: '設定 Webhook 內容加密', title: '設定下游回呼內容加密', description: '只上傳下游 RSA 公鑰，YASBe 使用 RSA-OAEP-SHA256 與 AES-256-GCM 加密內容。', fields: {} },
     'webhook-public-key': { label: '下載 Webhook 公鑰', title: '下載平台 Webhook 驗簽公鑰', description: '下載用於驗證平台 Webhook 簽名的 PEM 公鑰。', fields: {} },
+    'webhook-public-key-pem': { label: '下載 PEM 公鑰', title: '下載平台 Webhook 驗簽公鑰檔案', description: '下載不可快取的 PEM 公鑰檔案；平台私鑰永不下發。', fields: {} },
   },
 }
 
@@ -193,8 +205,8 @@ const endpointDetails = {
     'deposit-instructions': 'Show the returned account details and status to the customer before they make a bank transfer. This endpoint does not create a deposit.',
     transaction: 'Poll this endpoint or process webhook events to follow a payout from PENDING to its final state.',
     'cancel-payout': 'Cancellation is only available while the payout remains non-final. A successful request means cancellation was requested, not necessarily completed.',
-    'webhook-subscription': 'Use an HTTPS endpoint you control. Keep the returned key ID and verify every incoming event using the platform public key.',
-    'webhook-public-key': 'Download and cache this PEM key to verify webhook signatures. Refresh it when your webhook configuration or key ID changes.',
+    'webhook-subscription': 'Use an HTTPS endpoint you control. The signing secret is shown once. Verify HMAC-SHA256 from X-YASBe-Signature and RSA-SHA256 from X-YASBe-RSA-Signature over timestamp.rawBody before parsing; select the public key with X-YASBe-Key-Id. Return any 2xx within 10 seconds. Customer events contain externalCustomerId and are isolated by tenant and customer before delivery.',
+    'webhook-public-key': 'The YASBe private key never leaves the platform. Download this tenant-and-environment-specific PEM public key and verify X-YASBe-RSA-Signature over timestamp.payload.',
   },
   'zh-CN': {
     token: '请先调用此接口。访问令牌应仅安全地保存在服务端；过期后重新获取，不要暴露给浏览器或移动端。',
@@ -207,8 +219,8 @@ const endpointDetails = {
     'deposit-instructions': '应向客户展示返回的收款信息和账户状态后再发起银行转账；本接口不会创建入金交易。',
     transaction: '可轮询此接口，或处理 Webhook 事件，追踪出金从 PENDING 到最终状态的变化。',
     'cancel-payout': '仅非终态出金可撤销。成功响应表示已提交撤销请求，并不代表渠道已经完成撤销。',
-    'webhook-subscription': '请使用由你控制的 HTTPS 地址。保存返回的 key ID，并通过平台公钥校验每一条入站事件。',
-    'webhook-public-key': '下载并缓存该 PEM 公钥以验证 Webhook 签名；更新回调配置或 key ID 后应重新获取。',
+    'webhook-subscription': '请使用由你控制的 HTTPS 地址。签名 Secret 仅展示一次；解析正文前，使用 X-YASBe-Signature 验证 timestamp.rawBody 的 HMAC-SHA256，并使用 X-YASBe-Key-Id 对应公钥验证 X-YASBe-RSA-Signature。请在 10 秒内返回任意 2xx。客户事件携带 externalCustomerId，投递前会同时校验租户与客户归属。',
+    'webhook-public-key': 'YASBe 私钥不会离开平台。请下载当前租户与环境专属的 PEM 公钥，并对 timestamp.payload 验证 X-YASBe-RSA-Signature。',
   },
   'zh-TW': {
     token: '請先呼叫此介面。存取權杖應僅安全地保存在伺服器端；過期後重新取得，不要暴露給瀏覽器或行動端。',
@@ -221,8 +233,8 @@ const endpointDetails = {
     'deposit-instructions': '應向客戶顯示回傳的收款資料和帳戶狀態後再進行銀行轉帳；本介面不會建立入金交易。',
     transaction: '可輪詢此介面，或處理 Webhook 事件，追蹤出金從 PENDING 到最終狀態的變化。',
     'cancel-payout': '僅非終態出金可撤銷。成功回應表示已提交撤銷請求，並不代表渠道已完成撤銷。',
-    'webhook-subscription': '請使用由你控制的 HTTPS 位址。保存回傳的 key ID，並透過平台公鑰驗證每一條入站事件。',
-    'webhook-public-key': '下載並快取該 PEM 公鑰以驗證 Webhook 簽名；更新回呼設定或 key ID 後應重新取得。',
+    'webhook-subscription': '請使用由你控制的 HTTPS 位址。簽名 Secret 僅顯示一次；解析內容前，使用 X-YASBe-Signature 驗證 timestamp.rawBody 的 HMAC-SHA256，並使用 X-YASBe-Key-Id 對應公鑰驗證 X-YASBe-RSA-Signature。請在 10 秒內回傳任意 2xx。客戶事件攜帶 externalCustomerId，投遞前會同時驗證租戶與客戶歸屬。',
+    'webhook-public-key': 'YASBe 私鑰不會離開平台。請下載目前租戶與環境專屬的 PEM 公鑰，並對 timestamp.payload 驗證 X-YASBe-RSA-Signature。',
   },
 }
 
@@ -237,26 +249,38 @@ const fiatEndpoints = [
   { id: 'deposit-instructions', label: 'Get deposit instructions', method: 'GET', path: '/v1/accounts/{customerId}/{currency}/deposit-instructions', title: 'Get deposit instructions', description: 'Return the receiving details for a customer account and currency.', requiresAuth: true, successStatus: '200', fields: [{ name: 'customerId', location: 'Path', required: true, description: 'External customer ID.' }, { name: 'currency', location: 'Path', required: true, description: 'Currency code, for example EUR.' }, { name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token.' }], example: {}, responseExample: { data: { iban: 'MT84…', bic: '...', internalAccountId: 'int_01J…', status: 'ACTIVE' } }, errors: [{ code: 'ACCOUNT_NOT_FOUND', status: 404, description: 'The customer account was not found.' }, { code: 'AUTH_MISSING_TOKEN', status: 401, description: 'Bearer token is missing.' }, { code: 'AUTH_INVALID_TOKEN', status: 401, description: 'Token is invalid or expired.' }] },
   { id: 'transaction', label: 'Get transaction', method: 'GET', path: '/v1/transactions/{transactionId}', title: 'Get transaction status', description: 'Return the latest locally recorded transaction status.', requiresAuth: true, successStatus: '200', fields: [{ name: 'transactionId', location: 'Path', required: true, description: 'Platform transaction ID.' }, { name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token.' }], example: {}, responseExample: { data: { transactionId: 'txn_01J…', direction: 'PAYOUT', currency: 'EUR', amount: 10, status: 'PENDING', createdAt: '2026-09-15T10:00:00Z', updatedAt: '2026-09-15T10:01:00Z' } }, errors: [{ code: 'TRANSACTION_NOT_FOUND', status: 404, description: 'The transaction does not exist or is not owned by the client.' }, { code: 'AUTH_MISSING_TOKEN', status: 401, description: 'Bearer token is missing.' }, { code: 'AUTH_INVALID_TOKEN', status: 401, description: 'Token is invalid or expired.' }] },
   { id: 'cancel-payout', label: 'Cancel payout', method: 'POST', path: '/v1/transactions/{transactionId}/cancel', title: 'Cancel a pending payout', description: 'Request cancellation for a payout that has not reached a final state.', requiresAuth: true, successStatus: '200', fields: [{ name: 'transactionId', location: 'Path', required: true, description: 'Platform transaction ID.' }, { name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token.' }], example: {}, responseExample: { data: { transactionId: 'txn_01J…', status: 'CANCEL_REQUESTED' } }, errors: [{ code: 'TRANSACTION_NOT_FOUND', status: 404, description: 'The transaction does not exist or is not owned by the client.' }, { code: 'TRANSACTION_NOT_CANCELLABLE', status: 409, description: 'The transaction is completed, failed, cancelled, or not a payout.' }, { code: 'PLATFORM_VALIDATION_FAILED', status: 422, description: 'The platform rejected the cancellation request.' }, { code: 'PLATFORM_UNAVAILABLE', status: 502, description: 'The platform is unavailable.' }] },
-  { id: 'webhook-subscription', label: 'Create webhook subscription', method: 'POST', path: '/v1/webhooks/subscription', title: 'Create or update a webhook subscription', description: 'Register a secure callback URL and the events your integration wants to receive.', requiresAuth: true, successStatus: '200', fields: [{ name: 'callbackUrl', required: true, description: 'HTTPS endpoint that receives event deliveries.' }, { name: 'eventTypes', required: true, description: 'JSON array of subscribed event types.' }, { name: 'encryptionPublicKey', required: false, description: 'PEM public key used to encrypt event payloads.' }], example: { callbackUrl: 'https://example.com/webhooks/yasbe', eventTypes: ['payout.updated', 'account.updated'], encryptionPublicKey: '-----BEGIN PUBLIC KEY-----…' }, responseExample: { keyId: 'key_01J…', platformPublicKeyUrl: '/v1/webhooks/platform-public-key' }, errors: [{ code: 'REQUEST_VALIDATION_FAILED', status: 400, description: 'callbackUrl must use HTTPS and eventTypes is required.' }, { code: 'AUTH_MISSING_TOKEN', status: 401, description: 'Bearer token is missing.' }, { code: 'AUTH_INVALID_TOKEN', status: 401, description: 'Token is invalid or expired.' }] },
-  { id: 'webhook-public-key', label: 'Download webhook public key', method: 'GET', path: '/v1/webhooks/platform-public-key', title: 'Download the platform webhook public key', description: 'Download the PEM public key used to verify platform webhook signatures.', requiresAuth: false, successStatus: '200', fields: [], example: {}, responseExample: '-----BEGIN PUBLIC KEY-----\\n…\\n-----END PUBLIC KEY-----', errors: [{ code: 'WEBHOOK_KEY_UNAVAILABLE', status: 500, description: 'The platform public key cannot be loaded.' }] },
+  { id: 'webhook-subscription', label: 'Create webhook subscription', method: 'POST', path: '/apiTenant/developer/webhooks', title: 'Create a customer-scoped webhook subscription', description: 'Creates an endpoint and returns the HMAC secret once together with the YASBe RSA verification public key.', detail: 'Each delivery sends X-YASBe-Signature as t=<unixSeconds>,v1=<hex HMAC-SHA256>, X-YASBe-Key-Id, and a Base64 X-YASBe-RSA-Signature. Both signatures cover <unixSeconds>.<exact raw HTTP body>. When payload encryption is enabled, verify the encrypted raw body before decrypting. Return any 2xx within 10 seconds; other responses are retried with exponential backoff.', requiresAuth: true, successStatus: '200', fields: [{ name: 'name', required: true, description: 'Endpoint display name.' }, { name: 'environment', required: true, description: 'TEST or LIVE; must match the current deployment.' }, { name: 'url', required: true, description: 'Public HTTPS endpoint that receives event deliveries.' }, { name: 'externalCustomerId', required: false, description: 'Optional stable downstream customer ID.' }, { name: 'subscribedEvents', required: true, description: 'Subscribed event names.' }, { name: 'payloadEncryptionEnabled', required: false, description: 'Enable RSA-OAEP-256 + AES-256-GCM payload encryption.' }, { name: 'encryptionPublicKeyPem', required: false, description: 'Downstream RSA public key PEM; required when encryption is enabled. Never upload the private key.' }, { name: 'totpCode', required: false, description: 'Required when Webhook operation 2FA is enabled.' }], example: { name: 'Customer cus_001', environment: 'TEST', url: 'https://example.com/webhooks/yasbe/cus_001', externalCustomerId: 'cus_001', subscribedEvents: ['transaction.updated'], payloadEncryptionEnabled: false }, responseExample: { success: true, data: { id: 51, signingSecret: 'shown-once-secret', environment: 'TEST', keyId: 'whk_01J…', signatureAlgorithm: 'RSA-SHA256', hmacAlgorithm: 'HMAC-SHA256', publicKeyPem: '-----BEGIN PUBLIC KEY-----\\n…\\n-----END PUBLIC KEY-----', payloadEncryptionEnabled: false, createdAt: '2026-10-23T12:00:00' } }, errors: [{ code: 'CUSTOMER_NOT_FOUND', status: 404, description: 'externalCustomerId does not exist in the authenticated tenant.' }, { code: 'ENVIRONMENT_MISMATCH', status: 403, description: 'The endpoint environment does not match this deployment.' }, { code: 'WEBHOOK_ENCRYPTION_KEY_INVALID', status: 400, description: 'The downstream encryption key is not a valid RSA public key PEM.' }] },
+  { id: 'webhook-public-key', label: 'Download webhook public key', method: 'GET', path: '/apiTenant/developer/public-keys/{environment}', title: 'Download the tenant webhook verification key', description: 'Returns the tenant-and-environment-specific RSA public key. YASBe signs timestamp.payload with its private key; the receiver verifies the signature with this public key.', requiresAuth: true, successStatus: '200', fields: [{ name: 'environment', location: 'Path', required: true, description: 'TEST or LIVE.' }], example: {}, responseExample: { success: true, data: { environment: 'TEST', keyId: 'whk_01J…', algorithm: 'RSA-SHA256', publicKeyPem: '-----BEGIN PUBLIC KEY-----\\n…\\n-----END PUBLIC KEY-----' } }, errors: [{ code: 'ENVIRONMENT_MISMATCH', status: 403, description: 'The requested key environment does not match this deployment.' }] },
+  { id: 'webhook-credential-download', label: 'Download webhook credential package', method: 'POST', path: '/apiTenant/developer/webhooks/download?format=json|txt', title: 'Create a webhook and download one-time credentials', description: 'Creates the endpoint and returns a non-cacheable attachment containing the one-time HMAC secret and YASBe RSA public key. Do not call both create endpoints for the same webhook.', requiresAuth: true, successStatus: '200', fields: [{ name: 'format', location: 'Query', required: true, description: 'json or txt.' }, { name: 'payloadEncryptionEnabled', required: false, description: 'Enable RSA-OAEP-256 + AES-256-GCM payload encryption.' }, { name: 'encryptionPublicKeyPem', required: false, description: 'Downstream RSA public key PEM; never upload the private key.' }], example: { name: 'Customer cus_001', environment: 'TEST', url: 'https://example.com/webhooks/yasbe/cus_001', subscribedEvents: ['transaction.updated'] }, responseExample: { webhookEndpointId: 51, environment: 'TEST', keyId: 'whk_01J…', webhookSecret: 'shown-once-secret', signatureAlgorithm: 'RSA-SHA256', hmacAlgorithm: 'HMAC-SHA256' }, errors: [{ code: 'INVALID_DOWNLOAD_FORMAT', status: 400, description: 'Only json and txt are supported.' }] },
+  { id: 'webhook-payload-encryption', label: 'Configure webhook payload encryption', method: 'PUT', path: '/apiTenant/developer/webhooks/{id}/payload-encryption', title: 'Configure downstream payload encryption', description: 'Uploads only the downstream RSA public key. YASBe encrypts with RSA-OAEP-SHA256 and AES-256-GCM; the private key never leaves the downstream system.', requiresAuth: true, successStatus: '200', fields: [{ name: 'id', location: 'Path', required: true, description: 'Webhook endpoint ID.' }, { name: 'enabled', required: true, description: 'Enable or disable encryption.' }, { name: 'publicKeyPem', required: false, description: 'RSA public key PEM, at least 2048 bits.' }, { name: 'totpCode', required: false, description: 'Required when Webhook 2FA is enabled.' }], example: { enabled: true, publicKeyPem: '-----BEGIN PUBLIC KEY-----\\n…\\n-----END PUBLIC KEY-----' }, responseExample: { success: true, data: null }, errors: [{ code: 'WEBHOOK_ENCRYPTION_KEY_REQUIRED', status: 400, description: 'A public key is required when encryption is enabled.' }, { code: 'WEBHOOK_ENCRYPTION_KEY_WEAK', status: 400, description: 'RSA keys must be at least 2048 bits.' }] },
+  { id: 'webhook-public-key-pem', label: 'Download webhook public key PEM', method: 'GET', path: '/apiTenant/developer/public-keys/{environment}/download', title: 'Download the verification key as PEM', description: 'Returns a non-cacheable PEM attachment. The YASBe private signing key is never downloadable.', requiresAuth: true, successStatus: '200', fields: [{ name: 'environment', location: 'Path', required: true, description: 'TEST or LIVE.' }], example: {}, responseExample: '-----BEGIN PUBLIC KEY-----\\n…\\n-----END PUBLIC KEY-----', errors: [{ code: 'ENVIRONMENT_MISMATCH', status: 403, description: 'The requested key environment does not match this deployment.' }] },
 ]
 
-const endpoints = computed(() => ({ cards: cardEndpoints, 'digital-assets': cryptoEndpoints, usd: bridgeEndpoints }[selectedModule.value] ?? fiatEndpoints))
+const endpoints = computed(() => ({ partner: partnerEndpoints, cards: cardEndpoints, 'digital-assets': cryptoEndpoints, usd: bridgeEndpoints }[selectedModule.value] ?? fiatEndpoints))
 
-const baseUrl = ref(import.meta.env.VITE_PLATFORM_API_BASE_URL ?? '')
-const activeEndpoint = ref(fiatEndpoints[0])
+const partnerBaseUrl = typeof window !== 'undefined' && (window.location.hostname === 'beeznis.com' || window.location.hostname.endsWith('.beeznis.com'))
+  ? 'https://api.beeznis.com'
+  : (import.meta.env.VITE_PARTNER_API_BASE_URL ?? '')
+const baseUrl = computed(() => selectedModule.value === 'partner'
+  ? partnerBaseUrl
+  : (import.meta.env.VITE_PLATFORM_API_BASE_URL ?? ''))
+const activeEndpoint = ref(partnerEndpoints[0])
 const activeSection = ref('overview')
 const accessToken = ref('')
 const twoFactorToken = ref('')
 const requestBody = ref(JSON.stringify(activeEndpoint.value.example, null, 2))
+const parameterValues = ref(buildParameterValues(activeEndpoint.value))
 const responseText = ref('')
 const responseStatus = ref(null)
 const requestError = ref('')
 const isSending = ref(false)
+const interactiveFields = computed(() => activeEndpoint.value.fields.filter((field) =>
+  ['Path', 'Query', 'Header'].includes(field.location) && field.name !== 'Authorization'))
+const hasRequestBody = computed(() => activeEndpoint.value.fields.some((field) => !field.location || field.location === 'Body'))
 const twoFactorLabel = computed(() => ({ en: 'X-2FA-Token (when enabled)', 'zh-CN': 'X-2FA-Token（已启用 2FA 时）', 'zh-TW': 'X-2FA-Token（已啟用 2FA 時）' }[locale.value] ?? 'X-2FA-Token'))
 const twoFactorPlaceholder = computed(() => ({ en: 'Paste the short-lived 2FA token', 'zh-CN': '粘贴短期 2FA Token', 'zh-TW': '貼上短期 2FA Token' }[locale.value] ?? 'Paste 2FA token'))
 const contractLabel = computed(() => ({ en: 'CONTRACT', 'zh-CN': '接口契约', 'zh-TW': '介面契約' }[locale.value] ?? 'CONTRACT'))
-const isUserApiModule = computed(() => selectedModule.value === 'digital-assets' || selectedModule.value === 'cards' || selectedModule.value === 'usd')
+const isUserApiModule = computed(() => selectedModule.value === 'partner' || selectedModule.value === 'digital-assets' || selectedModule.value === 'cards' || selectedModule.value === 'usd')
 const tryButtonLabel = computed(() => {
   if (isSending.value) return copy.value.sending
   if (activeEndpoint.value.tryEnabled === false) {
@@ -277,13 +301,14 @@ const errorResponseExample = computed(() => isUserApiModule.value
   : { code: activeEndpoint.value.errors[0]?.code ?? 'INTERNAL_ERROR', message: 'Human-readable error message', traceId: 'trc_01J…' })
 
 function endpointCopy(endpoint) {
-  const localized = bridgeCopy[locale.value]?.[endpoint.id] ?? cardCopy[locale.value]?.[endpoint.id] ?? cryptoCopy[locale.value]?.[endpoint.id] ?? apiCopy[locale.value]?.[endpoint.id]
+  const localized = partnerCopy[locale.value]?.[endpoint.id] ?? bridgeCopy[locale.value]?.[endpoint.id] ?? cardCopy[locale.value]?.[endpoint.id] ?? cryptoCopy[locale.value]?.[endpoint.id] ?? apiCopy[locale.value]?.[endpoint.id]
   return localized ? { ...endpoint, ...localized } : endpoint
 }
 
 const currencyNotice = computed(() => {
   const notices = {
     fiat: { en: 'This module supports EUR and GBP payments. Use IBAN for EUR/SEPA beneficiaries; use account number and sort code for GBP payments.', 'zh-CN': '该模块同时支持 EUR 和 GBP 支付。EUR/SEPA 受益人使用 IBAN；GBP 支付使用账号和 Sort Code。', 'zh-TW': '此模組同時支援 EUR 和 GBP 支付。EUR/SEPA 受益人使用 IBAN；GBP 支付使用帳號和 Sort Code。' },
+    partner: { en: 'Partner API supports tenant-scoped USD, EUR, and GBP virtual accounts. TEST and LIVE credentials are isolated; amounts are strings in minor units.', 'zh-CN': '白标 Partner API 支持租户隔离的 USD、EUR、GBP 虚拟账户；TEST 与 LIVE 密钥严格隔离，金额以最小货币单位字符串返回。', 'zh-TW': '白標 Partner API 支援租戶隔離的 USD、EUR、GBP 虛擬帳戶；TEST 與 LIVE 密鑰嚴格隔離，金額以最小貨幣單位字串回傳。' },
     usd: { en: 'This module covers Bridge USD off-ramp: KYC onboarding, virtual USD accounts (receive wire/ACH), external bank accounts, and USDC→USD transfers. KYC must be active and the base endorsement approved before transfers.', 'zh-CN': '该模块覆盖 Bridge USD 出金全流程：KYC 开户、USD 虚拟账户（接收电汇/ACH）、外部银行账户绑定与 USDC→USD 转账。转账前需完成 KYC 且 base 背书已批准。', 'zh-TW': '此模組涵蓋 Bridge USD 出金全流程：KYC 開戶、USD 虛擬帳戶（接收電匯/ACH）、外部銀行帳戶綁定與 USDC→USD 轉帳。轉帳前需完成 KYC 且 base 背書已批准。' },
     'digital-assets': { en: 'Wallet creation is idempotent: an existing Safeheron account is reused and only missing asset/network addresses are provisioned. Supported assets and networks come from API configuration.', 'zh-CN': '钱包创建采用幂等设计：复用已有 Safeheron 账户，只补建缺失的币种/网络地址；支持的币种和网络以 API 配置为准。', 'zh-TW': '錢包建立採用冪等設計：重用既有 Safeheron 帳戶，只補建缺失的幣種／網路地址；支援的幣種和網路以 API 設定為準。' },
     cards: { en: 'Card availability, fees, funding assets, and wallet support vary by product. Always use the latest values returned by the available-card endpoint.', 'zh-CN': '卡片可用性、费用、充值资产及钱包支持因产品而异，请始终以可开卡片接口返回的最新值为准。', 'zh-TW': '卡片可用性、費用、儲值資產及錢包支援因產品而異，請始終以可開卡片介面回傳的最新值為準。' },
@@ -302,6 +327,11 @@ const moduleOverview = computed(() => {
     }
   }
   const overviews = {
+    partner: {
+      en: { heroTitle: 'Build your white-label fiat experience.', heroIntro: 'Create tenant-scoped customers, open independent virtual accounts, and reconcile transactions and invoices through the versioned Partner API.', beforeStartBody: 'Create a TEST or LIVE API Key in the tenant console. Exchange the key and one-time API Secret for a 3,600-second token. Never embed either credential in browser or mobile code.', authTitle: 'API Key to Bearer token', authBody: 'Call POST /partner-api/v1/oauth/token with apiKey and apiSecret, then send Authorization: Bearer {accessToken}. TEST and LIVE credentials cannot cross environments.' },
+      'zh-CN': { heroTitle: '构建你的白标法币业务。', heroIntro: '通过版本化 Partner API 创建租户隔离的终端客户、开立独立虚拟账户，并查询交易与账单。', beforeStartBody: '先在租户业务台创建 TEST 或 LIVE API Key，再用 Key 与仅展示一次的 API Secret 换取 3,600 秒访问令牌。不要把任何密钥写入浏览器或移动端。', authTitle: 'API Key 换取 Bearer Token', authBody: '调用 POST /partner-api/v1/oauth/token 提交 apiKey 与 apiSecret，再通过 Authorization: Bearer {accessToken} 调用业务接口；TEST 与 LIVE 不可跨环境。' },
+      'zh-TW': { heroTitle: '建構你的白標法幣業務。', heroIntro: '透過版本化 Partner API 建立租戶隔離的終端客戶、開立獨立虛擬帳戶，並查詢交易與帳單。', beforeStartBody: '先在租戶業務台建立 TEST 或 LIVE API Key，再用 Key 與僅顯示一次的 API Secret 換取 3,600 秒存取權杖。不要把任何密鑰寫入瀏覽器或行動端。', authTitle: 'API Key 換取 Bearer Token', authBody: '呼叫 POST /partner-api/v1/oauth/token 提交 apiKey 與 apiSecret，再透過 Authorization: Bearer {accessToken} 呼叫業務介面；TEST 與 LIVE 不可跨環境。' },
+    },
     usd: {
       en: { heroTitle: 'USD off-ramp, powered by Bridge.', heroIntro: 'Complete KYC onboarding, receive USD via wire or ACH, bind US bank accounts, and execute USDC→USD transfers with a single integrated API.', beforeStartBody: 'Sign in to YASBe and copy the returned JWT. Begin with the ToS link endpoint, then submit KYC. Once approved, add bank accounts and create transfers.', authTitle: 'Bearer JWT', authBody: 'Bridge endpoints use the JWT returned by the YASBe sign-in flow. Send it as Authorization: Bearer {token} on every request.' },
       'zh-CN': { heroTitle: '基于 Bridge 的 USD 出金通道。', heroIntro: '完成 KYC 开户、通过电汇或 ACH 接收 USD、绑定美国银行账户，并通过一套集成 API 执行 USDC→USD 转账。', beforeStartBody: '登录 YASBe 获取 JWT；先调用 ToS 链接接口，再提交 KYC；审核通过后即可绑定银行账户并发起转账。', authTitle: 'Bearer JWT', authBody: 'Bridge 接口使用 YASBe 登录流程返回的 JWT，通过 Authorization: Bearer {token} 携带，每次请求均需提供。' },
@@ -322,11 +352,11 @@ const moduleOverview = computed(() => {
 })
 
 function endpointDetail(endpoint) {
-  return endpointDetails[locale.value]?.[endpoint.id] ?? endpointDetails.en[endpoint.id] ?? bridgeCopy[locale.value]?.[endpoint.id]?.detail ?? endpoint.detail
+  return partnerCopy[locale.value]?.[endpoint.id]?.detail ?? endpointDetails[locale.value]?.[endpoint.id] ?? endpointDetails.en[endpoint.id] ?? bridgeCopy[locale.value]?.[endpoint.id]?.detail ?? endpoint.detail
 }
 
 function fieldDescription(field) {
-  return bridgeCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? cardCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? cryptoCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? apiCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? field.description
+  return partnerCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? bridgeCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? cardCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? cryptoCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? apiCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? field.description
 }
 
 const errorTranslations = {
@@ -342,12 +372,19 @@ function moduleCopy(module) {
   return { ...module, name: moduleTranslations[locale.value]?.[module.id] ?? module.name }
 }
 
+function buildParameterValues(endpoint) {
+  return Object.fromEntries(endpoint.fields
+    .filter((field) => ['Path', 'Query', 'Header'].includes(field.location) && field.name !== 'Authorization')
+    .map((field) => [field.name, field.autoGenerate ? crypto.randomUUID() : (field.defaultValue ?? '')]))
+}
+
 function selectModule(moduleId) {
   selectedModule.value = moduleId
   if (!selectedModuleData.value.available) return
   activeEndpoint.value = endpoints.value[0]
   activeSection.value = 'overview'
   requestBody.value = JSON.stringify(currencyExample(activeEndpoint.value.example, 'EUR'), null, 2)
+  parameterValues.value = buildParameterValues(activeEndpoint.value)
   responseText.value = ''
   responseStatus.value = null
   requestError.value = ''
@@ -357,6 +394,7 @@ function selectEndpoint(endpoint) {
   activeEndpoint.value = endpoint
   activeSection.value = endpoint.id
   requestBody.value = JSON.stringify(currencyExample(endpoint.example, 'EUR'), null, 2)
+  parameterValues.value = buildParameterValues(endpoint)
   responseText.value = ''
   responseStatus.value = null
   requestError.value = ''
@@ -402,20 +440,49 @@ async function sendRequest() {
   if (activeEndpoint.value.tryEnabled === false) return
   if (!baseUrl.value) { requestError.value = copy.value.gatewayRequired; return }
   let payload
-  try { payload = activeEndpoint.value.method === 'GET' ? undefined : JSON.parse(requestBody.value) } catch { requestError.value = copy.value.invalidJson; return }
-  const headers = { Accept: 'application/json' }
-  if (payload) headers['Content-Type'] = 'application/json'
+  try { payload = hasRequestBody.value ? JSON.parse(requestBody.value) : undefined } catch { requestError.value = copy.value.invalidJson; return }
+  const headers = { Accept: activeEndpoint.value.responseType === 'pdf' ? 'application/pdf' : 'application/json' }
+  if (payload !== undefined) headers['Content-Type'] = 'application/json'
   if (activeEndpoint.value.requiresAuth && accessToken.value) headers.Authorization = `Bearer ${accessToken.value}`
-  if (activeEndpoint.value.id === 'payouts') headers['Idempotency-Key'] = crypto.randomUUID()
+  for (const field of interactiveFields.value.filter((item) => item.location === 'Header')) {
+    let value = parameterValues.value[field.name]
+    if (!value && field.name === 'Idempotency-Key') {
+      value = crypto.randomUUID()
+      parameterValues.value[field.name] = value
+    }
+    if (field.required && !value) { requestError.value = `${field.name}: ${copy.value.required}`; return }
+    if (value) headers[field.name] = value
+  }
   if (activeEndpoint.value.id === 'crypto-withdraw' && twoFactorToken.value) headers['X-2FA-Token'] = twoFactorToken.value
   if (isUserApiModule.value) headers.Lang = locale.value
+  const [rawPath, rawQuery = ''] = (activeEndpoint.value.tryPath ?? activeEndpoint.value.path).split('?')
+  let requestPath = rawPath
+  const query = new URLSearchParams(rawQuery)
+  for (const field of interactiveFields.value.filter((item) => item.location === 'Path' || item.location === 'Query')) {
+    const value = parameterValues.value[field.name]
+    if (field.required && !value) { requestError.value = `${field.name}: ${copy.value.required}`; return }
+    if (field.location === 'Path') requestPath = requestPath.replaceAll(`{${field.name}}`, encodeURIComponent(value))
+    else if (value) query.set(field.name, value)
+    else query.delete(field.name)
+  }
+  const queryString = query.toString()
+  if (queryString) requestPath += `?${queryString}`
   isSending.value = true
   try {
-    const requestPath = activeEndpoint.value.tryPath ?? activeEndpoint.value.path
-    const response = await fetch(`${baseUrl.value.replace(/\/$/, '')}${requestPath}`, { method: activeEndpoint.value.method, headers, body: payload ? JSON.stringify(payload) : undefined })
+    const response = await fetch(`${baseUrl.value.replace(/\/$/, '')}${requestPath}`, { method: activeEndpoint.value.method, headers, body: payload !== undefined ? JSON.stringify(payload) : undefined })
     responseStatus.value = response.status
+    const contentType = response.headers.get('content-type') ?? ''
+    if (contentType.includes('application/pdf')) {
+      const blob = await response.blob()
+      responseText.value = `PDF received (${blob.size} bytes)`
+      return
+    }
     const text = await response.text()
-    try { responseText.value = JSON.stringify(JSON.parse(text), null, 2) } catch { responseText.value = text || `${response.status} ${response.statusText}` }
+    try {
+      const json = JSON.parse(text)
+      responseText.value = JSON.stringify(json, null, 2)
+      if (activeEndpoint.value.id === 'partner-token' && response.ok && json.data?.accessToken) accessToken.value = json.data.accessToken
+    } catch { responseText.value = text || `${response.status} ${response.statusText}` }
   } catch (error) {
     requestError.value = copy.value.sendFailed.replace('{message}', error.message)
   } finally { isSending.value = false }
