@@ -209,11 +209,11 @@ export default {
       "subtitle": "We bridge the gap between traditional and modern payments, enabling your business to transact effortlessly across borders. With our global network, you can scale confidently and thrive worldwide.",
       "crypto": {
         "title": "Pay with Crypto Easily",
-        "text": "Easily make blockchain payments using your crypto, including BTC, ETH, USDC, USDT, and more."
+        "text": "Easily make blockchain payments using your crypto, including USDC, USDT, and more."
       },
       "chain": {
         "title": "Deposit via Top Blockchains",
-        "text": "Deposit via top blockchains like Bitcoin, Ethereum, Solana, BSC, Polygon, Tron, and more."
+        "text": "Deposit via top blockchains like Solana, BSC, Polygon, Tron, and more."
       }
     },
     "repayment": {

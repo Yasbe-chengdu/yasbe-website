@@ -180,11 +180,11 @@ export default {
       "subtitle": "Conectamos los pagos tradicionales y modernos para que tu empresa opere sin fricción a través de fronteras. Con nuestra red global, puedes escalar con confianza.",
       "crypto": {
         "title": "Paga fácilmente con cripto",
-        "text": "Realiza pagos blockchain con BTC, ETH, USDC, USDT y más."
+        "text": "Realiza pagos blockchain con USDC, USDT y más."
       },
       "chain": {
         "title": "Deposita desde blockchains líderes",
-        "text": "Deposita desde redes como Bitcoin, Ethereum, Solana, BSC, Polygon, Tron y más."
+        "text": "Deposita desde redes como Solana, BSC, Polygon, Tron y más."
       }
     },
     "repayment": {

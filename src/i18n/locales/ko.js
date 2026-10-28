@@ -180,11 +180,11 @@ export default {
       "subtitle": "전통 결제와 최신 결제를 연결해 기업이 국경을 넘어 손쉽게 거래할 수 있도록 지원합니다. 글로벌 네트워크를 통해 자신 있게 확장할 수 있습니다.",
       "crypto": {
         "title": "암호화폐로 간편 결제",
-        "text": "BTC, ETH, USDC, USDT 등 암호화폐를 사용해 블록체인 결제를 쉽게 진행하세요."
+        "text": "USDC, USDT 등 암호화폐를 사용해 블록체인 결제를 쉽게 진행하세요."
       },
       "chain": {
         "title": "주요 블록체인으로 입금",
-        "text": "Bitcoin, Ethereum, Solana, BSC, Polygon, Tron 등 주요 체인을 통한 입금을 지원합니다."
+        "text": "Solana, BSC, Polygon, Tron 등 주요 체인을 통한 입금을 지원합니다."
       }
     },
     "repayment": {
