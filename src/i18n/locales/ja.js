@@ -180,11 +180,11 @@ export default {
       "subtitle": "従来型決済と最新決済をつなぎ、国境を越えた取引をスムーズにします。グローバルネットワークにより、安心して事業を拡大できます。",
       "crypto": {
         "title": "暗号資産で簡単に支払い",
-        "text": "BTC、ETH、USDC、USDT などの暗号資産で、ブロックチェーン決済を簡単に行えます。"
+        "text": "USDC、USDT などの暗号資産で、ブロックチェーン決済を簡単に行えます。"
       },
       "chain": {
         "title": "主要ブロックチェーンから入金",
-        "text": "Bitcoin、Ethereum、Solana、BSC、Polygon、Tron など主要チェーンから入金できます。"
+        "text": "Solana、BSC、Polygon、Tron など主要チェーンから入金できます。"
       }
     },
     "repayment": {

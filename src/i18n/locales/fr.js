@@ -180,11 +180,11 @@ export default {
       "subtitle": "Nous relions les paiements traditionnels et modernes pour permettre à votre entreprise de traiter facilement au-delà des frontières. Avec notre réseau mondial, vous pouvez évoluer en confiance.",
       "crypto": {
         "title": "Payez facilement en crypto",
-        "text": "Effectuez facilement des paiements blockchain avec BTC, ETH, USDC, USDT et plus encore."
+        "text": "Effectuez facilement des paiements blockchain avec USDC, USDT et plus encore."
       },
       "chain": {
         "title": "Déposez via les principales blockchains",
-        "text": "Déposez via Bitcoin, Ethereum, Solana, BSC, Polygon, Tron et d'autres réseaux majeurs."
+        "text": "Déposez via Solana, BSC, Polygon, Tron et d'autres réseaux majeurs."
       }
     },
     "repayment": {

@@ -209,11 +209,11 @@ export default {
       "subtitle": "我們連接傳統支付與現代支付，協助你的企業跨境順暢交易。依託全球網路，你可以更有信心地擴展業務。",
       "crypto": {
         "title": "輕鬆使用加密資產支付",
-        "text": "使用 BTC、ETH、USDC、USDT 等加密資產，輕鬆完成區塊鏈支付。"
+        "text": "使用 USDC、USDT 等加密資產，輕鬆完成區塊鏈支付。"
       },
       "chain": {
         "title": "透過主流區塊鏈入金",
-        "text": "支援 Bitcoin、Ethereum、Solana、BSC、Polygon、Tron 等主流區塊鏈入金。"
+        "text": "支援 Solana、BSC、Polygon、Tron 等主流區塊鏈入金。"
       }
     },
     "repayment": {
