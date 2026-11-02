@@ -30,6 +30,7 @@
         <p class="api-docs__sidebar-label">{{ copy.gettingStarted }}</p>
         <a href="#overview" :class="{ active: activeSection === 'overview' }" @click="activeSection = 'overview'">{{ copy.overview }}</a>
         <a href="#authentication" :class="{ active: activeSection === 'authentication' }" @click="activeSection = 'authentication'">{{ copy.authentication }}</a>
+        <a v-if="isFiatModule" href="#webhooks" @click="activeSection = 'webhooks'">{{ webhookGuide.title }}</a>
         <template v-for="group in endpointGroups" :key="group.label">
         <p class="api-docs__sidebar-label">{{ group.label }}</p>
         <button v-for="endpoint in group.items" :key="endpoint.id" type="button" :class="{ active: activeEndpoint.id === endpoint.id }" @click="selectEndpoint(endpoint)">
@@ -58,6 +59,11 @@
           <p>{{ moduleOverview.authBody }}</p>
           <ol v-if="isFiatModule"><li v-for="step in fiatWorkflow" :key="step">{{ step }}</li></ol>
           <p v-if="isFiatModule">{{ nestedFieldNotice }}</p>
+        </section>
+
+        <section v-if="isFiatModule" id="webhooks" class="api-docs__section">
+          <h2>{{ webhookGuide.title }}</h2>
+          <ol><li v-for="step in webhookGuide.steps" :key="step">{{ step }}</li></ol>
         </section>
 
         <section :id="activeEndpoint.id" class="api-docs__endpoint">
@@ -140,7 +146,7 @@ import { localeOptions, setAppLocale } from '../i18n'
 import fiatIcon from '../assets/images/api-fiat-icon.svg'
 import { cardCopy, cardEndpoints } from '../data/apiDocsCards.js'
 import { cryptoCopy, cryptoEndpoints } from '../data/apiDocsCrypto.js'
-import { memberRequestExample, updateFiatDocsSession } from '../utils/fiatDocsSession.js'
+import { fiatWebhookGuide } from '../data/apiDocsFiatWebhooks.js'
 import { fiatCopy, getFiatEndpoints } from '../data/apiDocsFiat.js'
 
 const { locale } = useI18n()
@@ -181,47 +187,34 @@ const activeEndpoint = ref(endpoints.value[0])
 const activeSection = ref('overview')
 const accessToken = ref('')
 const fiatAccessToken = ref('')
-const memberAccessToken = ref('')
-const accountAccessToken = ref('')
-// 三类凭证分别保存，账户Token只填入账户接口请求体，成员和API Token分别发送。
+// 法币开放API只接收API Key换取的Token，与其他产品凭证分别保存。
 const activeAccessToken = computed({
-  get: () => isFiatModule.value ? (activeEndpoint.value.authType === 'member' ? memberAccessToken.value : fiatAccessToken.value) : accessToken.value,
+  get: () => isFiatModule.value ? fiatAccessToken.value : accessToken.value,
   set: value => {
     const token = value.trim().replace(/^Bearer\s+/i, '')
     if (!isFiatModule.value) accessToken.value = token
-    else if (activeEndpoint.value.authType === 'member') memberAccessToken.value = token
     else fiatAccessToken.value = token
   },
 })
 const bearerTokenLabel = computed(() => !isFiatModule.value ? copy.value.bearerToken
-  : activeEndpoint.value.authType === 'member'
-    ? ({ en: 'Member session token (current tenant)', 'zh-CN': '成员登录 Token（当前租户）', 'zh-TW': '成員登入Token（目前租戶）' }[locale.value] ?? 'Member session token')
-    : ({ en: 'API Key access token (fiat business)', 'zh-CN': 'API Key 访问 Token（法币业务）', 'zh-TW': 'API Key 存取Token（法幣業務）' }[locale.value] ?? 'API Key access token'))
+  : ({ en: 'API Key access token', 'zh-CN': 'API Key 访问 Token', 'zh-TW': 'API Key 存取Token' }[locale.value] ?? 'API Key access token'))
 const fieldTypeLabel = computed(() => locale.value === 'en' ? 'Type' : '类型')
 const nestedFieldNotice = computed(() => locale.value === 'en' ? 'Nested required fields apply when their parent object is present. Conditional requirements and role checks also apply; follow the field descriptions. Samples contain placeholders and do not guarantee bank approval.' : '嵌套字段的必填标记指父对象存在时的要求，还须满足字段说明中的条件必填及角色授权。示例中的客户、文件key和密钥须替换为真实值；示例不代表通道已审批通过。')
+const webhookGuide = computed(() => fiatWebhookGuide[locale.value] ?? fiatWebhookGuide['zh-CN'])
 const fiatWorkflow = computed(() => locale.value === 'en' ? [
-  'First activation: invitation → /apiTenant/auth/activate/totp/setup → scan otpauthUri → /apiTenant/auth/activate with password and totpCode. An existing account uses its existing password and authenticator.',
-  'Sign in: /apiTenant/auth/account/login with email, password and totpCode (plus emailCode if enabled) → accountToken and tenants → /apiTenant/auth/account/select-tenant → member accessToken. No tenant code is required at account login.',
-  'Within the console: GET /apiTenant/account/tenants → POST /apiTenant/account/switch-tenant. Replace the member accessToken and clear data from the previous tenant; no repeat login or 2FA.',
-  'Page operations use /apiTenant/* with member accessToken. Server integrations use /partner-api/v1/* with an API Key token. The document console stores these separately in memory only.',
-  'Create customer → upload identity, address proof and bank statement → apply for account → register a same-name external account → obtain deposit instructions for an offline transfer, request a withdrawal or transfer. Member operation 2FA follows security preferences; login and password recovery always require 2FA.',
-  'Configure keys and webhooks using a member session: TEST/LIVE keys are separate. Callback IP updates replace the entire comma-separated list. Secrets appear once, RSA signing private keys remain on the server; downstream payload decryption private keys remain downstream.',
-  'Lost authenticator: contact YASBe to reset it, then use /auth/login/totp/email-code, /setup and /confirm to rebind. Reset and password changes revoke sessions; direct 2FA disable is forbidden.',
+  'Create a TEST or LIVE API Key in the tenant console and exchange apiKey + apiSecret for an access token. Send Authorization: Bearer {accessToken} with business requests. TEST and LIVE credentials are isolated.',
+  'Create customer → upload identity files, address proof and bank statement → apply for an account → add a same-name external bank account → get offline deposit instructions, submit a withdrawal or transfer.',
+  'Use the same Idempotency-Key when retrying the same account application or payment. Query transactions or consume webhooks for final status.',
+  'Configure webhook endpoints, callback IP allowlists and credentials in the tenant console. Download the one-time secret and public verification key there; keep your own payload decryption private key downstream.',
+  'Invoices describe billing between the authenticated tenant and YASBe and require invoices:read. They are not the end-customer billing API.',
 ] : [
-  '首次激活：邀请链接 → /apiTenant/auth/activate/totp/setup → 扫描 otpauthUri → /apiTenant/auth/activate 提交密码与 totpCode。已有统一账户使用原密码和同一个验证器接受新租户邀请。',
-  '登录：/apiTenant/auth/account/login 提交邮箱、密码、totpCode（开启邮箱验证时另传 emailCode）→ accountToken 和租户列表 → /apiTenant/auth/account/select-tenant → 当前租户成员 accessToken；账户登录不需要租户编号。',
-  '系统内切换：GET /apiTenant/account/tenants → POST /apiTenant/account/switch-tenant，使用当前成员 accessToken；成功后替换 Token 并清空旧租户页面缓存，无需重新登录或重复2FA。',
-  '页面操作使用 /apiTenant/* 和成员 accessToken；服务端开放 API 使用 /partner-api/v1/* 和 API Key 换取的 Token。accountToken 只能用于账户会话操作。文档调试台将凭证分别保存在当前页面内存。',
-  '业务顺序：创建客户 → 上传证件、地址证明、银行流水 → 申请开户 → 添加同名外部账户 → 获取入金指引后线下打款，或发起出金、账户划转。页面出入金2FA取决于安全偏好；登录、修改和找回密码始终验证2FA。',
-  '密钥和回调使用成员登录 Token 配置：TEST/LIVE 分开；回调 IP 白名单逗号分隔且每次全量覆盖；Secret 仅展示一次，平台签名私钥不下发；下游只上传内容加密公钥，自己的解密私钥自行保管。',
-  '丢失验证器：由 YASBe 核验后重置，再调用 /auth/login/totp/email-code、/setup、/confirm 补绑。重置及密码变更会撤销会话，必须重新登录；禁止直接解绑2FA。',
+  '在租户业务台创建 TEST 或 LIVE API Key，使用 apiKey 与 apiSecret 换取访问 Token；业务请求携带 Authorization: Bearer {accessToken}。测试与生产凭证分开使用。',
+  '业务顺序：创建客户 → 上传证件、地址证明、银行流水 → 申请开户 → 添加同名外部账户 → 获取线下打款指引，或发起出金、账户划转。',
+  '同一开户申请或付款重试使用相同 Idempotency-Key；最终结果通过交易查询或 Webhook 获取。',
+  'Webhook 地址、回调 IP 白名单与密钥在租户业务台配置；在那里获取仅展示一次的 Secret 和验签公钥。用于内容解密的下游私钥自行保管。',
+  '账单描述当前租户与 YASBe 的结算费用，要求 invoices:read 权限，不是终端客户的账单接口。',
 ])
-const endpointGroups = computed(() => isFiatModule.value ? [
-  { label: ({ en: 'FIAT BUSINESS', 'zh-CN': '法币业务接口', 'zh-TW': '法幣業務接口' }[locale.value] ?? 'FIAT BUSINESS'), items: endpoints.value.filter(item => item.path.startsWith('/partner-api/')) },
-  { label: ({ en: 'KEYS & WEBHOOK SECURITY', 'zh-CN': '密钥与回调安全', 'zh-TW': '密鑰與回調安全' }[locale.value] ?? 'KEYS & WEBHOOK SECURITY'), items: endpoints.value.filter(item => item.path.startsWith('/apiTenant/developer/')) },
-  { label: ({ en: 'ACCOUNT & TENANT SESSION', 'zh-CN': '账户登录与租户切换', 'zh-TW': '帳戶登入與租戶切換' }[locale.value] ?? 'ACCOUNT & TENANT SESSION'), items: endpoints.value.filter(item => item.category === 'account') },
-  { label: ({ en: 'CONSOLE OPERATIONS', 'zh-CN': '客户端页面业务', 'zh-TW': '用戶端頁面業務' }[locale.value] ?? 'CONSOLE OPERATIONS'), items: endpoints.value.filter(item => item.category === 'console') },
-] : [{ label: copy.value.apiReference, items: endpoints.value }])
+const endpointGroups = computed(() => [{ label: copy.value.apiReference, items: endpoints.value }])
 const twoFactorToken = ref('')
 const uploadFile = ref(null)
 const uploadInput = ref(null)
@@ -275,9 +268,9 @@ const currencyNotice = computed(() => {
 const moduleOverview = computed(() => {
   if (isFiatModule.value) {
     const descriptions = {
-      en: { heroTitle: `${selectedFiatCurrency.value} accounts and payments.`, heroIntro: 'One fiat API for account opening, deposits, payouts, transfers, transactions and billing, with API Key and webhook security in the same documentation.', beforeStartBody: 'Create a TEST or LIVE API Key in your console and exchange apiKey + apiSecret for a business token. Security configuration endpoints require a separate member session token.', authTitle: 'API Key and member authentication', authBody: 'Business requests use POST /partner-api/v1/oauth/token, then Authorization: Bearer {accessToken}. Key and webhook settings use the member token from your console login; the two token types are not interchangeable. TEST and LIVE credentials remain isolated.' },
-      'zh-CN': { heroTitle: `${selectedFiatCurrency.value} 法币账户与支付。`, heroIntro: '开户、入金指引、出金、账户划转、交易和账单共用一套法币 API，API Key、Webhook 与回调安全配置统一在这里对接。', beforeStartBody: '在业务台创建 TEST 或 LIVE API Key，用 apiKey 与 apiSecret 换取业务访问 Token。密钥及回调配置接口另用成员登录 Token，接口旁会明确标注。', authTitle: 'API Key 与成员鉴权', authBody: '业务接口先调用 POST /partner-api/v1/oauth/token，再携带 Authorization: Bearer {accessToken}。密钥和 Webhook 配置使用业务台登录后的成员 Token，两类 Token 不能混用；TEST、LIVE 密钥与令牌按环境隔离。' },
-      'zh-TW': { heroTitle: `${selectedFiatCurrency.value} 法幣帳戶與支付。`, heroIntro: '開戶、入金指引、出金、帳戶劃轉、交易及帳單共用一套法幣API，API Key與回調安全統一對接。', beforeStartBody: '在業務台建立TEST或LIVE API Key，使用apiKey及apiSecret換取業務Token；密鑰及回調設定使用成員登入Token。', authTitle: 'API Key與成員驗證', authBody: '業務接口先呼叫POST /partner-api/v1/oauth/token，再攜帶Bearer Token；安全設定使用業務台成員Token，兩者不可混用，TEST及LIVE按環境隔離。' },
+      en: { heroTitle: `${selectedFiatCurrency.value} accounts and payments.`, heroIntro: 'One fiat API for account opening, deposits, payouts, transfers, transactions and billing, with API Key and webhook security in the same documentation.', beforeStartBody: 'Create a TEST or LIVE API Key in your console and exchange apiKey + apiSecret for a business token. Configure keys and callback settings in the tenant console.', authTitle: 'API Key authentication', authBody: 'Business requests use POST /partner-api/v1/oauth/token, then Authorization: Bearer {accessToken}. Manage keys and webhook settings in the tenant console. TEST and LIVE credentials remain isolated.' },
+      'zh-CN': { heroTitle: `${selectedFiatCurrency.value} 法币账户与支付。`, heroIntro: '开户、入金指引、出金、账户划转、交易和账单共用一套法币 API，通过 API Key 接入，并通过 Webhook 接收业务结果。', beforeStartBody: '在业务台创建 TEST 或 LIVE API Key，用 apiKey 与 apiSecret 换取业务访问 Token。密钥与回调配置在租户业务台操作。', authTitle: 'API Key 鉴权', authBody: '业务接口先调用 POST /partner-api/v1/oauth/token，再携带 Authorization: Bearer {accessToken}。密钥和 Webhook 在租户业务台配置；TEST、LIVE 密钥与令牌按环境隔离。' },
+      'zh-TW': { heroTitle: `${selectedFiatCurrency.value} 法幣帳戶與支付。`, heroIntro: '開戶、入金指引、出金、帳戶劃轉、交易及帳單共用一套法幣API，API Key與回調安全統一對接。', beforeStartBody: '在業務台建立TEST或LIVE API Key，使用apiKey及apiSecret換取業務Token；密鑰及回調設定在租戶業務台操作。', authTitle: 'API Key驗證', authBody: '業務接口先呼叫POST /partner-api/v1/oauth/token，再攜帶Bearer Token；密鑰及Webhook在租戶業務台設定，TEST及LIVE按環境隔離。' },
     }
     return descriptions[locale.value] ?? descriptions.en
   }
@@ -346,7 +339,7 @@ function selectEndpoint(endpoint) {
   clearUpload()
   activeEndpoint.value = endpoint
   activeSection.value = endpoint.id
-  requestBody.value = JSON.stringify(memberRequestExample(endpoint, accountAccessToken.value), null, 2)
+  requestBody.value = JSON.stringify(endpoint.example, null, 2)
   parameterValues.value = buildParameterValues(endpoint)
   responseText.value = ''
   responseStatus.value = null
@@ -439,12 +432,7 @@ async function sendRequest() {
     try {
       const json = JSON.parse(text)
       responseText.value = JSON.stringify(json, null, 2)
-      if (isFiatModule.value && response.ok) {
-        const updated = updateFiatDocsSession({ apiToken: fiatAccessToken.value, memberToken: memberAccessToken.value, accountToken: accountAccessToken.value }, requestEndpoint, json)
-        fiatAccessToken.value = updated.apiToken
-        memberAccessToken.value = updated.memberToken
-        accountAccessToken.value = updated.accountToken
-      }
+      if (isFiatModule.value && requestEndpoint.id === 'fiat-token' && response.ok && json.success === true && json.data?.accessToken) fiatAccessToken.value = json.data.accessToken
     } catch { responseText.value = text || `${response.status} ${response.statusText}` }
   } catch (error) {
     requestError.value = copy.value.sendFailed.replace('{message}', error.message)

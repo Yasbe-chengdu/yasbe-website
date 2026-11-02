@@ -1,23 +1,23 @@
-# 法币文档与客户端操作对齐
+# 法币开放API文档范围
 
 更新日期：2026-11-02。
 
-官网继续使用“法币 → EUR & GBP / USD”入口，不新增独立白标产品，也不修改后端路由。
+官网继续使用“法币 → EUR & GBP / USD”入口。公开目录仅包含23个 `/partner-api/v1` 操作，以及Webhook接收协议说明。
 
-## 契约与操作
+## 公开范围
 
-- 法币业务：23个开放API操作，使用API Key换取的Token。
-- 密钥与回调：22个开发者操作，使用选择租户后的成员accessToken；仅租户管理员或开发者可操作。
-- 客户端：60个账户与页面操作，覆盖激活、账户统一2FA、邮箱登录、选择租户、系统内切换、修改/找回密码、设备会话、成员邀请、开户及文件上传、同名外部账户、入金指引、出金、划转和账单导出。
-- 账户Token只用于账户会话接口的请求体；页面业务使用成员accessToken。两者与开放API Token分别保存在调试台内存，退出或密码变更成功后清空成员与账户凭证。
-- 首次激活必须绑定2FA；已有账户共用验证器；丢失后由平台重置再走邮箱验证补绑；禁止直接解绑。
-- 入金为线下打款，到账由上游回调确认；开户须上传相应证件、地址证明及流水；外部账户需同名。页面敏感业务按成员偏好校验TOTP，LIVE API Key操作强制校验。
+- API Key换取访问Token、客户管理、开户文件上传、开户与账户查询。
+- 同名外部账户、入金指引、出金、账户划转、交易查询。
+- 当前租户与YASBe的账单查询和PDF下载，要求invoices:read；文档明确这些不是终端客户的账单接口。
+- Webhook事件接收、HMAC和RSA验签、时间戳检查、事件幂等去重、加密信封解密及投递重试处理。
 
-参数与响应表来自当前客户端OpenAPI，包含中文说明、类型、格式、枚举及条件必填说明。开户、支付、回调的示例标识和文件key必须替换为真实值。金额单位遵循字段定义，付款走廊受实际账户与通道能力约束。
+## 移出公开目录
 
-## 维护和验证
+82个客户端操作已移除：35个账户及成员操作、25个页面业务操作、22个开发者配置操作。移除范围包括激活、登录、密码、2FA、租户切换、设备会话、成员邀请、页面出入金、API Key管理、Webhook配置、白名单、投递重试及签名密钥轮换。
 
-同步来源：YasbeeTenant/docs/white-label-client-apifox.openapi.json。
+客户端接口仍由YasbeeTenant的 `docs/white-label-client-apifox.openapi.json` 及客户端前端对接文档维护。官网调试台只保存开放API访问Token，客户端操作契约不进入官网浏览器构建产物。同步脚本只接受 `/partner-api/v1/` 契约，并排除共享DTO中仅用于页面操作的totpCode字段。
+
+## 验证与维护
 
 ```sh
 node scripts/sync-fiat-client-docs.mjs /path/to/white-label-client-apifox.openapi.json
@@ -26,16 +26,19 @@ npm run test:api-docs
 npm run build
 ```
 
-本次检查：105/105个契约路由覆盖（客户端健康检查不放入操作文档）；10项测试通过；英语、简体中文及繁体中文SSR渲染通过。未发送实际开户、付款或邮件请求；本次修改仅涉及官网文档与调试台。
+检查内容：EUR/GBP/USD共用23条开放操作；无客户端和管理端路由；中文参数、类型、响应字段保留；开户文件引用及各币种付款示例保持一致；Webhook协议依据当前投递和加密代码核对。
 
-## 修改文件
+本次仅更新官网公开文档与调试台，未修改后端或执行真实业务请求。
+
+## 本次修改文件
 
 - package.json
 - scripts/sync-fiat-client-docs.mjs
 - src/data/apiDocsFiat.js
 - src/data/apiDocsFiatClient.js
+- src/data/apiDocsFiatWebhooks.js（新增）
 - src/views/ApiDocsView.vue
-- src/utils/fiatDocsSession.js
+- src/utils/fiatDocsSession.js（删除）
 - tests/fiat-api-docs.test.mjs
-- tests/fiat-docs-session.test.mjs
+- tests/fiat-docs-session.test.mjs（删除）
 - docs/fiat-client-alignment.md

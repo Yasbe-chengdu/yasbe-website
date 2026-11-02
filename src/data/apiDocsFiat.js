@@ -1,5 +1,4 @@
-import { fiatContracts, fiatClientEndpoints } from './apiDocsFiatClient.js'
-import { fiatSecurityEndpoints, fiatSecurityCopy } from './apiDocsFiatSecurity.js'
+import { fiatContracts } from './apiDocsFiatClient.js'
 
 const authField = { name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token returned by the token endpoint.' }
 const pageFields = [
@@ -321,17 +320,17 @@ export const fiatCopy = {
   },
 }
 
-Object.assign(fiatCopy['zh-CN'], fiatSecurityCopy['zh-CN'])
 
 // 同一套法币业务和安全契约按币种展示，后端路由及鉴权方式保持不变。
 export function getFiatEndpoints(currency = 'EUR') {
-  return [...fiatBusinessEndpoints, ...fiatSecurityEndpoints, ...fiatClientEndpoints].map(source => {
+  // 公开目录采用开放API白名单，客户端接口由客户端自身文档维护。
+  return fiatBusinessEndpoints.filter(endpoint => endpoint.path.startsWith('/partner-api/v1/')).map(source => {
     const endpoint = structuredClone(source)
     endpoint.path = endpoint.path.split('?')[0]
     // 字段定义以客户端契约为准，保留业务说明及可读示例。
     const contract = fiatContracts[`${endpoint.method} ${endpoint.path}`]
     if (contract) Object.assign(endpoint, structuredClone(contract))
-    if (endpoint.category === 'account' || endpoint.path.startsWith('/apiTenant/developer/')) return endpoint
+    endpoint.fields = endpoint.fields.filter(field => field.name !== 'totpCode')
     const rewrite = value => {
       if (Array.isArray(value)) return value.map(rewrite)
       if (!value || typeof value !== 'object') return value
