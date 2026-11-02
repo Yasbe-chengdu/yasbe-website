@@ -30,11 +30,13 @@
         <p class="api-docs__sidebar-label">{{ copy.gettingStarted }}</p>
         <a href="#overview" :class="{ active: activeSection === 'overview' }" @click="activeSection = 'overview'">{{ copy.overview }}</a>
         <a href="#authentication" :class="{ active: activeSection === 'authentication' }" @click="activeSection = 'authentication'">{{ copy.authentication }}</a>
-        <p class="api-docs__sidebar-label">{{ copy.apiReference }}</p>
-        <button v-for="endpoint in endpoints" :key="endpoint.id" type="button" :class="{ active: activeEndpoint.id === endpoint.id }" @click="selectEndpoint(endpoint)">
+        <template v-for="group in endpointGroups" :key="group.label">
+        <p class="api-docs__sidebar-label">{{ group.label }}</p>
+        <button v-for="endpoint in group.items" :key="endpoint.id" type="button" :class="{ active: activeEndpoint.id === endpoint.id }" @click="selectEndpoint(endpoint)">
           <span :class="['api-docs__method', `api-docs__method--${endpoint.method.toLowerCase()}`]">{{ endpoint.method }}</span>
           <span>{{ endpointCopy(endpoint).label }}</span>
         </button>
+        </template>
         </template>
       </aside>
 
@@ -43,6 +45,9 @@
           <p class="api-docs__eyebrow">YASBE PLATFORM API</p>
           <h1>{{ moduleOverview.heroTitle }}</h1>
           <p class="api-docs__intro">{{ moduleOverview.heroIntro }}</p>
+          <label v-if="selectedModule === 'fiat'" class="api-docs__input-label">EUR / GBP
+            <select v-model="eurGbpCurrency" @change="selectFiatCurrency"><option value="EUR">EUR</option><option value="GBP">GBP</option></select>
+          </label>
           <p class="api-docs__currency-note">{{ currencyNotice }}</p>
           <div class="api-docs__notice"><strong>{{ copy.beforeStart }}</strong><span>{{ moduleOverview.beforeStartBody }}</span></div>
         </section>
@@ -103,7 +108,7 @@
           <span :class="['api-docs__method', `api-docs__method--${activeEndpoint.method.toLowerCase()}`]">{{ activeEndpoint.method }}</span>
           <code>{{ activeEndpoint.path }}</code>
         </div>
-        <label v-if="activeEndpoint.requiresAuth" class="api-docs__input-label">{{ copy.bearerToken }}<input v-model.trim="accessToken" type="password" :placeholder="copy.tokenPlaceholder" autocomplete="off" /></label>
+        <label v-if="activeEndpoint.requiresAuth" class="api-docs__input-label">{{ bearerTokenLabel }}<input v-model.trim="activeAccessToken" type="password" :placeholder="copy.tokenPlaceholder" autocomplete="off" /></label>
         <label v-if="activeEndpoint.id === 'crypto-withdraw'" class="api-docs__input-label">{{ twoFactorLabel }}<input v-model.trim="twoFactorToken" type="password" :placeholder="twoFactorPlaceholder" autocomplete="one-time-code" /></label>
         <label v-for="field in interactiveFields" :key="`${activeEndpoint.id}-${field.location}-${field.name}`" class="api-docs__input-label">
           {{ field.name }} ({{ field.location }})
@@ -129,8 +134,7 @@ import { localeOptions, setAppLocale } from '../i18n'
 import fiatIcon from '../assets/images/api-fiat-icon.svg'
 import { cardCopy, cardEndpoints } from '../data/apiDocsCards.js'
 import { cryptoCopy, cryptoEndpoints } from '../data/apiDocsCrypto.js'
-import { bridgeCopy, bridgeEndpoints } from '../data/apiDocsBridge.js'
-import { partnerCopy, partnerEndpoints } from '../data/apiDocsPartner.js'
+import { fiatCopy, getFiatEndpoints } from '../data/apiDocsFiat.js'
 
 const { locale } = useI18n()
 const languageCopy = {
@@ -141,7 +145,6 @@ const languageCopy = {
 const copy = computed(() => languageCopy[locale.value] ?? languageCopy.en)
 const fiatLabel = computed(() => ({ en: 'FIAT', 'zh-CN': '法币', 'zh-TW': '法幣' }[locale.value] ?? 'FIAT'))
 const modules = [
-  { id: 'partner', icon: '⌘', available: true, name: 'Partner API' },
   { id: 'fiat', group: 'fiat', icon: '€', available: true, name: 'EUR & GBP' },
   { id: 'usd', group: 'fiat', icon: '$', available: true, name: 'USD' },
   { id: 'cards', icon: '▣', available: true, name: 'Cards' },
@@ -150,124 +153,46 @@ const modules = [
 const fiatModules = computed(() => modules.filter((module) => module.group === 'fiat'))
 const productModules = computed(() => modules.filter((module) => module.group !== 'fiat'))
 const moduleTranslations = {
-  'zh-CN': { partner: '白标 Partner API', fiat: 'EUR & GBP', cards: '卡片', 'digital-assets': '数字资产' },
-  'zh-TW': { partner: '白標 Partner API', fiat: 'EUR & GBP', cards: '卡片', 'digital-assets': '數位資產' },
+  'zh-CN': { fiat: 'EUR & GBP', cards: '卡片', 'digital-assets': '数字资产' },
+  'zh-TW': { fiat: 'EUR & GBP', cards: '卡片', 'digital-assets': '數位資產' },
 }
-const selectedModule = ref('partner')
+const selectedModule = ref('fiat')
+const eurGbpCurrency = ref('EUR')
+const isFiatModule = computed(() => ['fiat', 'usd'].includes(selectedModule.value))
+const selectedFiatCurrency = computed(() => selectedModule.value === 'usd' ? 'USD' : eurGbpCurrency.value)
 const isFiatExpanded = ref(true)
 const selectedModuleData = computed(() => modules.find((module) => module.id === selectedModule.value) ?? modules[0])
 const isAvailableModule = computed(() => selectedModuleData.value.available)
-const apiCopy = {
-  'zh-CN': {
-    token: { label: '获取访问令牌', title: '获取访问令牌', description: '使用客户端凭据换取短期访问令牌。', fields: { clientId: '你的接入客户端标识。', clientSecret: '你的接入密钥；仅在创建时展示一次。' } },
-    countries: { label: '查询国家', title: '查询支持的国家/地区', description: '返回允许开户的 ISO 3166-1 alpha-2 国家代码。', fields: {} },
-    accounts: { label: '创建账户', title: '创建账户', description: '为个人或企业客户创建币种账户。', fields: { externalCustomerId: '接入方系统中的客户唯一标识。', currency: 'ISO 4217 币种，例如 EUR。', country: '允许开户的国家/地区。', customerType: 'INDIVIDUAL 或 COMPANY。', friendlyName: '账户展示名称。' } },
-    beneficiaries: { label: '创建受益人', title: '创建外部账户', description: '在出金前登记受益人。EUR/SEPA 使用 IBAN；GBP/FPS 或 CHAPS 使用账号和 Sort Code。', fields: { externalCustomerId: '你的客户标识。', currency: '受益人账户币种。', paymentType: '支付网络，例如 SEPA。', beneficiaryType: '受益人类型，例如 RETAIL。', iban: 'EUR/SEPA 支付时必填。' } },
-    'list-beneficiaries': { label: '查询受益人', title: '查询客户受益人', description: '返回指定客户已创建的全部外部银行账户，可按币种筛选。', fields: {} },
-    payouts: { label: '发起出金', title: '发起出金', description: '向受益人发送资金。请提供 Idempotency-Key 请求头以安全重试。', fields: { externalCustomerId: '你的客户标识。', beneficiaryId: '创建受益人时返回的 ID。', currency: '出金币种。', amount: '出金金额。', reference: '付款附言。' } },
-    'list-accounts': { label: '查询客户账户', title: '查询客户账户', description: '返回已认证接入方下该客户的所有账户。', fields: {} },
-    'deposit-instructions': { label: '获取入金指引', title: '获取入金指引', description: '返回客户指定币种账户的收款资料。', fields: {} },
-    transaction: { label: '查询交易', title: '查询交易状态', description: '返回本地记录的最新交易状态。', fields: {} },
-    'cancel-payout': { label: '撤销出金', title: '撤销待处理出金', description: '对尚未进入终态的出金发起撤销请求。', fields: {} },
-    'webhook-subscription': { label: '创建 Webhook 订阅', title: '创建客户级 Webhook 订阅', description: '登记安全回调地址，可通过 externalCustomerId 将端点绑定到指定下游客户。', fields: { url: '接收事件推送的公网 HTTPS 地址。', subscribedEvents: '订阅事件类型数组。', externalCustomerId: '可选；绑定后只接收该下游客户的事件。' } },
-    'webhook-credential-download': { label: '下载 Webhook 密钥包', title: '创建并下载一次性 Webhook 密钥包', description: '以 JSON 或 TXT 附件返回一次性 HMAC Secret 和 YASBe RSA 验签公钥。', fields: {} },
-    'webhook-payload-encryption': { label: '配置 Webhook 正文加密', title: '配置下游回调正文加密', description: '只上传下游 RSA 公钥，YASBe 使用 RSA-OAEP-SHA256 与 AES-256-GCM 加密正文。', fields: {} },
-    'webhook-public-key': { label: '下载 Webhook 公钥', title: '下载平台 Webhook 验签公钥', description: '下载用于验证平台 Webhook 签名的 PEM 公钥。', fields: {} },
-    'webhook-public-key-pem': { label: '下载 PEM 公钥', title: '下载平台 Webhook 验签公钥文件', description: '下载不可缓存的 PEM 公钥文件；平台私钥永不下发。', fields: {} },
-  },
-  'zh-TW': {
-    token: { label: '取得存取權杖', title: '取得存取權杖', description: '使用用戶端憑證換取短期存取權杖。', fields: { clientId: '你的串接用戶端識別碼。', clientSecret: '你的串接密鑰；僅在建立時顯示一次。' } },
-    countries: { label: '查詢國家', title: '查詢支援的國家／地區', description: '回傳允許開戶的 ISO 3166-1 alpha-2 國家代碼。', fields: {} },
-    accounts: { label: '建立帳戶', title: '建立帳戶', description: '為個人或企業客戶建立幣別帳戶。', fields: { externalCustomerId: '接入方系統中的客戶唯一識別碼。', currency: 'ISO 4217 幣別，例如 EUR。', country: '允許開戶的國家／地區。', customerType: 'INDIVIDUAL 或 COMPANY。', friendlyName: '帳戶顯示名稱。' } },
-    beneficiaries: { label: '建立受益人', title: '建立外部帳戶', description: '在出金前登記受益人。EUR/SEPA 使用 IBAN；GBP/FPS 或 CHAPS 使用帳號和 Sort Code。', fields: { externalCustomerId: '你的客戶識別碼。', currency: '受益人帳戶幣別。', paymentType: '付款網路，例如 SEPA。', beneficiaryType: '受益人類型，例如 RETAIL。', iban: 'EUR/SEPA 付款時必填。' } },
-    'list-beneficiaries': { label: '查詢受益人', title: '查詢客戶受益人', description: '回傳指定客戶已建立的全部外部銀行帳戶，可依幣別篩選。', fields: {} },
-    payouts: { label: '發起出金', title: '發起出金', description: '向受益人發送資金。請提供 Idempotency-Key 請求標頭以安全重試。', fields: { externalCustomerId: '你的客戶識別碼。', beneficiaryId: '建立受益人時回傳的 ID。', currency: '出金幣別。', amount: '出金金額。', reference: '付款附言。' } },
-    'list-accounts': { label: '查詢客戶帳戶', title: '查詢客戶帳戶', description: '回傳已驗證接入方下該客戶的所有帳戶。', fields: {} },
-    'deposit-instructions': { label: '取得入金指引', title: '取得入金指引', description: '回傳客戶指定幣別帳戶的收款資料。', fields: {} },
-    transaction: { label: '查詢交易', title: '查詢交易狀態', description: '回傳本地記錄的最新交易狀態。', fields: {} },
-    'cancel-payout': { label: '撤銷出金', title: '撤銷待處理出金', description: '對尚未進入終態的出金發起撤銷請求。', fields: {} },
-    'webhook-subscription': { label: '建立 Webhook 訂閱', title: '建立客戶級 Webhook 訂閱', description: '登記安全回呼位址，可透過 externalCustomerId 將端點綁定到指定下游客戶。', fields: { url: '接收事件推送的公網 HTTPS 位址。', subscribedEvents: '訂閱事件類型陣列。', externalCustomerId: '選填；綁定後只接收該下游客戶的事件。' } },
-    'webhook-credential-download': { label: '下載 Webhook 密鑰包', title: '建立並下載一次性 Webhook 密鑰包', description: '以 JSON 或 TXT 附件回傳一次性 HMAC Secret 和 YASBe RSA 驗簽公鑰。', fields: {} },
-    'webhook-payload-encryption': { label: '設定 Webhook 內容加密', title: '設定下游回呼內容加密', description: '只上傳下游 RSA 公鑰，YASBe 使用 RSA-OAEP-SHA256 與 AES-256-GCM 加密內容。', fields: {} },
-    'webhook-public-key': { label: '下載 Webhook 公鑰', title: '下載平台 Webhook 驗簽公鑰', description: '下載用於驗證平台 Webhook 簽名的 PEM 公鑰。', fields: {} },
-    'webhook-public-key-pem': { label: '下載 PEM 公鑰', title: '下載平台 Webhook 驗簽公鑰檔案', description: '下載不可快取的 PEM 公鑰檔案；平台私鑰永不下發。', fields: {} },
-  },
-}
+const endpoints = computed(() => isFiatModule.value ? getFiatEndpoints(selectedFiatCurrency.value)
+  : ({ cards: cardEndpoints, 'digital-assets': cryptoEndpoints }[selectedModule.value] ?? []))
 
-const endpointDetails = {
-  en: {
-    token: 'Use this first. Store the access token securely on your server and request a new one after it expires.',
-    countries: 'Use this list to validate the country sent when opening an account; do not offer countries outside the returned list.',
-    accounts: 'An account is unique per customer and currency. This fiat module currently supports EUR and GBP accounts only.',
-    beneficiaries: 'Create the beneficiary once, then retain the returned local ID. The account currency and payment rail must match the payout.',
-    'list-beneficiaries': 'Use this to load a customer’s saved beneficiaries before a payout. Filter by currency when the payment flow has already selected EUR or GBP.',
-    payouts: 'Use a new Idempotency-Key for each intended payout. Reusing the same key safely returns the original result rather than creating a duplicate.',
-    'list-accounts': 'Use this after onboarding or when refreshing a customer profile. Results are scoped to the authenticated API client.',
-    'deposit-instructions': 'Show the returned account details and status to the customer before they make a bank transfer. This endpoint does not create a deposit.',
-    transaction: 'Poll this endpoint or process webhook events to follow a payout from PENDING to its final state.',
-    'cancel-payout': 'Cancellation is only available while the payout remains non-final. A successful request means cancellation was requested, not necessarily completed.',
-    'webhook-subscription': 'Use an HTTPS endpoint you control. The signing secret is shown once. Verify HMAC-SHA256 from X-YASBe-Signature and RSA-SHA256 from X-YASBe-RSA-Signature over timestamp.rawBody before parsing; select the public key with X-YASBe-Key-Id. Return any 2xx within 10 seconds. Customer events contain externalCustomerId and are isolated by tenant and customer before delivery.',
-    'webhook-public-key': 'The YASBe private key never leaves the platform. Download this tenant-and-environment-specific PEM public key and verify X-YASBe-RSA-Signature over timestamp.payload.',
-  },
-  'zh-CN': {
-    token: '请先调用此接口。访问令牌应仅安全地保存在服务端；过期后重新获取，不要暴露给浏览器或移动端。',
-    countries: '开户前请用此列表校验 country；不要让最终用户选择未在响应中返回的国家或地区。',
-    accounts: '同一客户和币种只能创建一个账户。当前法币模块仅支持 EUR 与 GBP 账户。',
-    beneficiaries: '受益人只需创建一次，请保存返回的本地 ID。账户币种与支付网络必须和出金请求一致。',
-    'list-beneficiaries': '在客户发起出金前可调用此接口获取已保存的受益人。若流程已选择 EUR 或 GBP，建议使用币种筛选。',
-    payouts: '每笔计划出金都应使用新的 Idempotency-Key。重复使用同一键会安全返回首次结果，不会重复付款。',
-    'list-accounts': '适用于开户后或刷新客户资料时查询。结果只会返回当前已认证 API 客户端所属的账户。',
-    'deposit-instructions': '应向客户展示返回的收款信息和账户状态后再发起银行转账；本接口不会创建入金交易。',
-    transaction: '可轮询此接口，或处理 Webhook 事件，追踪出金从 PENDING 到最终状态的变化。',
-    'cancel-payout': '仅非终态出金可撤销。成功响应表示已提交撤销请求，并不代表渠道已经完成撤销。',
-    'webhook-subscription': '请使用由你控制的 HTTPS 地址。签名 Secret 仅展示一次；解析正文前，使用 X-YASBe-Signature 验证 timestamp.rawBody 的 HMAC-SHA256，并使用 X-YASBe-Key-Id 对应公钥验证 X-YASBe-RSA-Signature。请在 10 秒内返回任意 2xx。客户事件携带 externalCustomerId，投递前会同时校验租户与客户归属。',
-    'webhook-public-key': 'YASBe 私钥不会离开平台。请下载当前租户与环境专属的 PEM 公钥，并对 timestamp.payload 验证 X-YASBe-RSA-Signature。',
-  },
-  'zh-TW': {
-    token: '請先呼叫此介面。存取權杖應僅安全地保存在伺服器端；過期後重新取得，不要暴露給瀏覽器或行動端。',
-    countries: '開戶前請用此清單驗證 country；不要讓使用者選擇未在回應中回傳的國家或地區。',
-    accounts: '同一客戶和幣別只能建立一個帳戶。目前法幣模組僅支援 EUR 與 GBP 帳戶。',
-    beneficiaries: '受益人只需建立一次，請保存回傳的本地 ID。帳戶幣別與付款網路必須和出金請求一致。',
-    'list-beneficiaries': '在客戶發起出金前可呼叫此介面取得已保存的受益人。若流程已選擇 EUR 或 GBP，建議使用幣別篩選。',
-    payouts: '每筆預定出金都應使用新的 Idempotency-Key。重複使用同一鍵會安全回傳首次結果，不會重複付款。',
-    'list-accounts': '適用於開戶後或重新整理客戶資料時查詢。結果只會回傳目前已驗證 API 用戶端所屬的帳戶。',
-    'deposit-instructions': '應向客戶顯示回傳的收款資料和帳戶狀態後再進行銀行轉帳；本介面不會建立入金交易。',
-    transaction: '可輪詢此介面，或處理 Webhook 事件，追蹤出金從 PENDING 到最終狀態的變化。',
-    'cancel-payout': '僅非終態出金可撤銷。成功回應表示已提交撤銷請求，並不代表渠道已完成撤銷。',
-    'webhook-subscription': '請使用由你控制的 HTTPS 位址。簽名 Secret 僅顯示一次；解析內容前，使用 X-YASBe-Signature 驗證 timestamp.rawBody 的 HMAC-SHA256，並使用 X-YASBe-Key-Id 對應公鑰驗證 X-YASBe-RSA-Signature。請在 10 秒內回傳任意 2xx。客戶事件攜帶 externalCustomerId，投遞前會同時驗證租戶與客戶歸屬。',
-    'webhook-public-key': 'YASBe 私鑰不會離開平台。請下載目前租戶與環境專屬的 PEM 公鑰，並對 timestamp.payload 驗證 X-YASBe-RSA-Signature。',
-  },
-}
-
-const fiatEndpoints = [
-  { id: 'token', label: 'Get access token', method: 'POST', path: '/v1/auth/token', title: 'Get an access token', description: 'Exchange your client credentials for a short-lived access token.', requiresAuth: false, successStatus: '200', fields: [{ name: 'clientId', required: true, description: 'Your integration client identifier.' }, { name: 'clientSecret', required: true, description: 'Your integration secret. Displayed only once when created.' }], example: { clientId: 'your-client-id', clientSecret: 'your-client-secret' }, responseExample: { accessToken: 'eyJ…', tokenType: 'Bearer', expiresIn: 3600 }, errors: [{ code: 'AUTH_INVALID_CLIENT_CREDENTIALS', status: 401, description: 'Client ID or secret is invalid.' }, { code: 'CLIENT_DISABLED', status: 403, description: 'The API client is disabled.' }, { code: 'INTERNAL_ERROR', status: 500, description: 'Internal service error.' }] },
-  { id: 'countries', label: 'List countries', method: 'GET', path: '/v1/countries', title: 'List supported countries', description: 'Return ISO 3166-1 alpha-2 country codes eligible for account opening.', requiresAuth: true, successStatus: '200', fields: [{ name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token.' }], example: {}, responseExample: { data: ['GB', 'MT', 'DE'] }, errors: [{ code: 'AUTH_MISSING_TOKEN', status: 401, description: 'Bearer token is missing.' }, { code: 'AUTH_INVALID_TOKEN', status: 401, description: 'Token is invalid or expired.' }, { code: 'INTERNAL_ERROR', status: 500, description: 'Internal service error.' }] },
-  { id: 'accounts', label: 'Create account', method: 'POST', path: '/v1/accounts', title: 'Create an account', description: 'Create a currency account for an individual or company customer.', requiresAuth: true, successStatus: '200', fields: [{ name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token.' }, { name: 'externalCustomerId', required: true, description: 'Unique customer ID in your system.' }, { name: 'currency', required: true, description: 'ISO 4217 currency, for example EUR.' }, { name: 'country', required: true, description: 'Supported account-opening country.' }, { name: 'customerType', required: true, description: 'INDIVIDUAL or BUSINESS.' }, { name: 'friendlyName', required: true, description: 'Account display name.' }, { name: 'individual', required: false, description: 'Required object when customerType is INDIVIDUAL; contains customer identity and address data.' }, { name: 'company', required: false, description: 'Required object when customerType is BUSINESS; contains company and registered-address data.' }], example: { externalCustomerId: 'customer-001', currency: 'EUR', country: 'MT', customerType: 'INDIVIDUAL', friendlyName: 'John Smith', individual: { email: 'john@example.com', firstName: 'John', lastName: 'Smith', address: { addressLine1: '1 London Street', city: 'London', country: 'GB' } } }, responseExample: { data: { externalCustomerId: 'customer-001', accountId: 'acc_01J…', status: 'PENDING', currency: 'EUR' } }, errors: [{ code: 'UNSUPPORTED_COUNTRY', status: 422, description: 'The account-opening country is not supported.' }, { code: 'ACCOUNT_ALREADY_EXISTS', status: 409, description: 'An account for this customer and currency already exists.' }, { code: 'REQUEST_VALIDATION_FAILED', status: 400, description: 'Required data is missing or customerType is invalid.' }, { code: 'PLATFORM_VALIDATION_FAILED', status: 422, description: 'The platform rejected the request.' }, { code: 'PLATFORM_UNAVAILABLE', status: 502, description: 'The platform did not return an account-holder ID or is unavailable.' }] },
-  { id: 'beneficiaries', label: 'Create beneficiary', method: 'POST', path: '/v1/beneficiaries', title: 'Create an external account', description: 'Register a beneficiary before sending a payout. EUR/SEPA uses an IBAN; GBP/FPS or CHAPS uses account number and sort code.', requiresAuth: true, successStatus: '200', fields: [{ name: 'externalCustomerId', required: true, description: 'Your customer identifier.' }, { name: 'currency', required: true, description: 'Beneficiary account currency.' }, { name: 'paymentType', required: true, description: 'Payment rail, for example SEPA.' }, { name: 'beneficiaryType', required: true, description: 'Beneficiary type, for example RETAIL.' }, { name: 'iban', required: false, description: 'Required for EUR/SEPA payments.' }], example: { externalCustomerId: 'customer-001', currency: 'EUR', paymentType: 'SEPA', beneficiaryType: 'RETAIL', bankAccountHolderName: 'Jane Doe', beneficiaryCountry: 'GB', beneficiaryAddressLine: '1 London Street', beneficiaryCity: 'London', beneficiaryPostalCode: 'SW1A 1AA', bankAccountCountry: 'GB', iban: 'GB84SEOU00994400026127' }, responseExample: { data: { id: 10, providerBeneficiaryId: 'ben_01J…', status: 'CREATED' } }, errors: [{ code: 'ACCOUNT_NOT_FOUND', status: 404, description: 'The customer account was not found.' }, { code: 'BENEFICIARY_ACCOUNT_INVALID', status: 400, description: 'IBAN, account number, or sort code is invalid.' }, { code: 'UNSUPPORTED_CURRENCY', status: 422, description: 'Only EUR and GBP are currently supported.' }, { code: 'REQUEST_VALIDATION_FAILED', status: 400, description: 'A required beneficiary field is missing.' }, { code: 'PLATFORM_VALIDATION_FAILED', status: 422, description: 'The platform rejected the beneficiary.' }] },
-  { id: 'list-beneficiaries', label: 'List beneficiaries', method: 'GET', path: '/v1/beneficiaries/{customerId}?currency={currency}', title: 'List customer beneficiaries', description: 'Return every beneficiary created for a customer. Optionally filter the list by EUR or GBP.', requiresAuth: true, successStatus: '200', fields: [{ name: 'customerId', location: 'Path', required: true, description: 'External customer ID.' }, { name: 'currency', location: 'Query', required: false, description: 'Optional ISO 4217 filter: EUR or GBP.' }, { name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token.' }], example: {}, responseExample: { data: [{ id: 10, providerBeneficiaryId: 'ben_01J…', currency: 'EUR', name: 'Jane Doe', iban: 'GB84SEOU00994400026127', accountNumber: null, sortCode: null, verificationStatus: 'CREATED', createdAt: '2026-09-16T10:00:00Z' }] }, errors: [{ code: 'AUTH_MISSING_TOKEN', status: 401, description: 'Bearer token is missing.' }, { code: 'AUTH_INVALID_TOKEN', status: 401, description: 'Token is invalid or expired.' }, { code: 'INTERNAL_ERROR', status: 500, description: 'Internal service error.' }] },
-  { id: 'payouts', label: 'Create payout', method: 'POST', path: '/v1/payouts', title: 'Create a payout', description: 'Send funds to a beneficiary. Supply an Idempotency-Key request header for safe retries.', requiresAuth: true, successStatus: '200', fields: [{ name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token.' }, { name: 'Idempotency-Key', location: 'Header', required: true, description: 'Unique key used to safely retry this payout.' }, { name: 'externalCustomerId', required: true, description: 'Your customer identifier.' }, { name: 'beneficiaryId', required: true, description: 'Beneficiary ID returned when created.' }, { name: 'currency', required: true, description: 'Payout currency.' }, { name: 'amount', required: true, description: 'Payout amount; must be greater than zero.' }, { name: 'reference', required: true, description: 'Payment reference.' }, { name: 'paymentType', required: true, description: 'Payment rail, for example SEPA.' }], example: { externalCustomerId: 'customer-001', beneficiaryId: 10, currency: 'EUR', amount: 10, reference: 'Customer withdrawal', paymentType: 'SEPA' }, responseExample: { data: { transactionId: 'txn_01J…', status: 'PENDING', idempotentReplay: false } }, errors: [{ code: 'IDEMPOTENCY_KEY_REQUIRED', status: 400, description: 'Idempotency-Key request header is required.' }, { code: 'ACCOUNT_NOT_FOUND', status: 404, description: 'The customer account was not found.' }, { code: 'BENEFICIARY_NOT_FOUND', status: 404, description: 'The beneficiary does not exist or does not belong to the customer.' }, { code: 'REQUEST_VALIDATION_FAILED', status: 400, description: 'Amount must be greater than zero or a required field is missing.' }, { code: 'SWEEP_SOURCE_ACCOUNT_NOT_CONFIGURED', status: 500, description: 'No payout source account is configured for this currency.' }, { code: 'PLATFORM_UNAVAILABLE', status: 502, description: 'The platform is unavailable or did not return a transaction ID.' }] },
-  { id: 'list-accounts', label: 'List customer accounts', method: 'GET', path: '/v1/accounts/{customerId}', title: 'List customer accounts', description: 'Return every account belonging to a customer under the authenticated API client.', requiresAuth: true, successStatus: '200', fields: [{ name: 'customerId', location: 'Path', required: true, description: 'External customer ID to query.' }, { name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token.' }], example: {}, responseExample: { data: [{ externalCustomerId: 'customer-001', currency: 'EUR', country: 'MT', status: 'ACTIVE', iban: 'MT84…', bic: '...', internalAccountId: 'int_01J…' }] }, errors: [{ code: 'AUTH_MISSING_TOKEN', status: 401, description: 'Bearer token is missing.' }, { code: 'AUTH_INVALID_TOKEN', status: 401, description: 'Token is invalid or expired.' }, { code: 'INTERNAL_ERROR', status: 500, description: 'Internal service error.' }] },
-  { id: 'deposit-instructions', label: 'Get deposit instructions', method: 'GET', path: '/v1/accounts/{customerId}/{currency}/deposit-instructions', title: 'Get deposit instructions', description: 'Return the receiving details for a customer account and currency.', requiresAuth: true, successStatus: '200', fields: [{ name: 'customerId', location: 'Path', required: true, description: 'External customer ID.' }, { name: 'currency', location: 'Path', required: true, description: 'Currency code, for example EUR.' }, { name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token.' }], example: {}, responseExample: { data: { iban: 'MT84…', bic: '...', internalAccountId: 'int_01J…', status: 'ACTIVE' } }, errors: [{ code: 'ACCOUNT_NOT_FOUND', status: 404, description: 'The customer account was not found.' }, { code: 'AUTH_MISSING_TOKEN', status: 401, description: 'Bearer token is missing.' }, { code: 'AUTH_INVALID_TOKEN', status: 401, description: 'Token is invalid or expired.' }] },
-  { id: 'transaction', label: 'Get transaction', method: 'GET', path: '/v1/transactions/{transactionId}', title: 'Get transaction status', description: 'Return the latest locally recorded transaction status.', requiresAuth: true, successStatus: '200', fields: [{ name: 'transactionId', location: 'Path', required: true, description: 'Platform transaction ID.' }, { name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token.' }], example: {}, responseExample: { data: { transactionId: 'txn_01J…', direction: 'PAYOUT', currency: 'EUR', amount: 10, status: 'PENDING', createdAt: '2026-09-15T10:00:00Z', updatedAt: '2026-09-15T10:01:00Z' } }, errors: [{ code: 'TRANSACTION_NOT_FOUND', status: 404, description: 'The transaction does not exist or is not owned by the client.' }, { code: 'AUTH_MISSING_TOKEN', status: 401, description: 'Bearer token is missing.' }, { code: 'AUTH_INVALID_TOKEN', status: 401, description: 'Token is invalid or expired.' }] },
-  { id: 'cancel-payout', label: 'Cancel payout', method: 'POST', path: '/v1/transactions/{transactionId}/cancel', title: 'Cancel a pending payout', description: 'Request cancellation for a payout that has not reached a final state.', requiresAuth: true, successStatus: '200', fields: [{ name: 'transactionId', location: 'Path', required: true, description: 'Platform transaction ID.' }, { name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token.' }], example: {}, responseExample: { data: { transactionId: 'txn_01J…', status: 'CANCEL_REQUESTED' } }, errors: [{ code: 'TRANSACTION_NOT_FOUND', status: 404, description: 'The transaction does not exist or is not owned by the client.' }, { code: 'TRANSACTION_NOT_CANCELLABLE', status: 409, description: 'The transaction is completed, failed, cancelled, or not a payout.' }, { code: 'PLATFORM_VALIDATION_FAILED', status: 422, description: 'The platform rejected the cancellation request.' }, { code: 'PLATFORM_UNAVAILABLE', status: 502, description: 'The platform is unavailable.' }] },
-  { id: 'webhook-subscription', label: 'Create webhook subscription', method: 'POST', path: '/apiTenant/developer/webhooks', title: 'Create a customer-scoped webhook subscription', description: 'Creates an endpoint and returns the HMAC secret once together with the YASBe RSA verification public key.', detail: 'Each delivery sends X-YASBe-Signature as t=<unixSeconds>,v1=<hex HMAC-SHA256>, X-YASBe-Key-Id, and a Base64 X-YASBe-RSA-Signature. Both signatures cover <unixSeconds>.<exact raw HTTP body>. When payload encryption is enabled, verify the encrypted raw body before decrypting. Return any 2xx within 10 seconds; other responses are retried with exponential backoff.', requiresAuth: true, successStatus: '200', fields: [{ name: 'allowedIps', required: true, description: 'Required callback destination IP allowlist (up to 32 public IPv4/IPv6 addresses). Replace the example IP with the real callback server IP. Empty or mismatched lists block all deliveries; redirects are not followed.' }, { name: 'name', required: true, description: 'Endpoint display name.' }, { name: 'environment', required: true, description: 'TEST or LIVE; must match the current deployment.' }, { name: 'url', required: true, description: 'Public HTTPS endpoint that receives event deliveries.' }, { name: 'externalCustomerId', required: false, description: 'Optional stable downstream customer ID.' }, { name: 'subscribedEvents', required: true, description: 'Subscribed event names.' }, { name: 'payloadEncryptionEnabled', required: false, description: 'Enable RSA-OAEP-256 + AES-256-GCM payload encryption.' }, { name: 'encryptionPublicKeyPem', required: false, description: 'Downstream RSA public key PEM; required when encryption is enabled. Never upload the private key.' }, { name: 'totpCode', required: false, description: 'Required when Webhook operation 2FA is enabled.' }], example: { name: 'Customer cus_001', environment: 'TEST', url: 'https://example.com/webhooks/yasbe/cus_001', allowedIps: ['203.0.113.10'], externalCustomerId: 'cus_001', subscribedEvents: ['transaction.updated'], payloadEncryptionEnabled: false }, responseExample: { success: true, data: { id: 51, signingSecret: 'shown-once-secret', environment: 'TEST', keyId: 'whk_01J…', signatureAlgorithm: 'RSA-SHA256', hmacAlgorithm: 'HMAC-SHA256', publicKeyPem: '-----BEGIN PUBLIC KEY-----\\n…\\n-----END PUBLIC KEY-----', payloadEncryptionEnabled: false, createdAt: '2026-10-23T12:00:00' } }, errors: [{ code: 'CUSTOMER_NOT_FOUND', status: 404, description: 'externalCustomerId does not exist in the authenticated tenant.' }, { code: 'ENVIRONMENT_MISMATCH', status: 403, description: 'The endpoint environment does not match this deployment.' }, { code: 'WEBHOOK_ENCRYPTION_KEY_INVALID', status: 400, description: 'The downstream encryption key is not a valid RSA public key PEM.' }] },
-  { id: 'webhook-public-key', label: 'Download webhook public key', method: 'GET', path: '/apiTenant/developer/public-keys/{environment}', title: 'Download the tenant webhook verification key', description: 'Returns the tenant-and-environment-specific RSA public key. YASBe signs timestamp.payload with its private key; the receiver verifies the signature with this public key.', requiresAuth: true, successStatus: '200', fields: [{ name: 'environment', location: 'Path', required: true, description: 'TEST or LIVE.' }], example: {}, responseExample: { success: true, data: { environment: 'TEST', keyId: 'whk_01J…', algorithm: 'RSA-SHA256', publicKeyPem: '-----BEGIN PUBLIC KEY-----\\n…\\n-----END PUBLIC KEY-----' } }, errors: [{ code: 'ENVIRONMENT_MISMATCH', status: 403, description: 'The requested key environment does not match this deployment.' }] },
-  { id: 'webhook-credential-download', label: 'Download webhook credential package', method: 'POST', path: '/apiTenant/developer/webhooks/download?format=json|txt', title: 'Create a webhook and download one-time credentials', description: 'Creates the endpoint and returns a non-cacheable attachment containing the one-time HMAC secret and YASBe RSA public key. Do not call both create endpoints for the same webhook.', requiresAuth: true, successStatus: '200', fields: [{ name: 'allowedIps', required: true, description: 'Required callback destination IP allowlist (up to 32 public IPv4/IPv6 addresses). Replace the example IP with the real callback server IP. Empty or mismatched lists block all deliveries; redirects are not followed.' }, { name: 'format', location: 'Query', required: true, description: 'json or txt.' }, { name: 'payloadEncryptionEnabled', required: false, description: 'Enable RSA-OAEP-256 + AES-256-GCM payload encryption.' }, { name: 'encryptionPublicKeyPem', required: false, description: 'Downstream RSA public key PEM; never upload the private key.' }], example: { name: 'Customer cus_001', environment: 'TEST', url: 'https://example.com/webhooks/yasbe/cus_001', allowedIps: ['203.0.113.10'], subscribedEvents: ['transaction.updated'] }, responseExample: { webhookEndpointId: 51, environment: 'TEST', keyId: 'whk_01J…', webhookSecret: 'shown-once-secret', signatureAlgorithm: 'RSA-SHA256', hmacAlgorithm: 'HMAC-SHA256' }, errors: [{ code: 'INVALID_DOWNLOAD_FORMAT', status: 400, description: 'Only json and txt are supported.' }] },
-  { id: 'webhook-payload-encryption', label: 'Configure webhook payload encryption', method: 'PUT', path: '/apiTenant/developer/webhooks/{id}/payload-encryption', title: 'Configure downstream payload encryption', description: 'Uploads only the downstream RSA public key. YASBe encrypts with RSA-OAEP-SHA256 and AES-256-GCM; the private key never leaves the downstream system.', requiresAuth: true, successStatus: '200', fields: [{ name: 'id', location: 'Path', required: true, description: 'Webhook endpoint ID.' }, { name: 'enabled', required: true, description: 'Enable or disable encryption.' }, { name: 'publicKeyPem', required: false, description: 'RSA public key PEM, at least 2048 bits.' }, { name: 'totpCode', required: false, description: 'Required when Webhook 2FA is enabled.' }], example: { enabled: true, publicKeyPem: '-----BEGIN PUBLIC KEY-----\\n…\\n-----END PUBLIC KEY-----' }, responseExample: { success: true, data: null }, errors: [{ code: 'WEBHOOK_ENCRYPTION_KEY_REQUIRED', status: 400, description: 'A public key is required when encryption is enabled.' }, { code: 'WEBHOOK_ENCRYPTION_KEY_WEAK', status: 400, description: 'RSA keys must be at least 2048 bits.' }] },
-  { id: 'webhook-public-key-pem', label: 'Download webhook public key PEM', method: 'GET', path: '/apiTenant/developer/public-keys/{environment}/download', title: 'Download the verification key as PEM', description: 'Returns a non-cacheable PEM attachment. The YASBe private signing key is never downloadable.', requiresAuth: true, successStatus: '200', fields: [{ name: 'environment', location: 'Path', required: true, description: 'TEST or LIVE.' }], example: {}, responseExample: '-----BEGIN PUBLIC KEY-----\\n…\\n-----END PUBLIC KEY-----', errors: [{ code: 'ENVIRONMENT_MISMATCH', status: 403, description: 'The requested key environment does not match this deployment.' }] },
-]
-
-const endpoints = computed(() => ({ partner: partnerEndpoints, cards: cardEndpoints, 'digital-assets': cryptoEndpoints, usd: bridgeEndpoints }[selectedModule.value] ?? fiatEndpoints))
-
-const partnerBaseUrl = typeof window !== 'undefined' && (window.location.hostname === 'beeznis.com' || window.location.hostname.endsWith('.beeznis.com'))
+const fiatBaseUrl = typeof window !== 'undefined' && (window.location.hostname === 'beeznis.com' || window.location.hostname.endsWith('.beeznis.com'))
   ? 'https://api.beeznis.com'
-  : (import.meta.env.VITE_PARTNER_API_BASE_URL ?? '')
-const baseUrl = computed(() => selectedModule.value === 'partner'
-  ? partnerBaseUrl
-  : (import.meta.env.VITE_PLATFORM_API_BASE_URL ?? ''))
-const activeEndpoint = ref(partnerEndpoints[0])
+  : (import.meta.env.VITE_PLATFORM_API_BASE_URL || import.meta.env.VITE_PARTNER_API_BASE_URL || import.meta.env.VITE_API_BASE_URL || '')
+const baseUrl = computed(() => isFiatModule.value ? fiatBaseUrl : (import.meta.env.VITE_PLATFORM_API_BASE_URL ?? ''))
+const activeEndpoint = ref(endpoints.value[0])
 const activeSection = ref('overview')
 const accessToken = ref('')
+const fiatAccessToken = ref('')
+const memberAccessToken = ref('')
+// 两类Token分别保存，避免把业务API令牌误发给成员安全配置接口。
+const activeAccessToken = computed({
+  get: () => isFiatModule.value ? (activeEndpoint.value.authType === 'member' ? memberAccessToken.value : fiatAccessToken.value) : accessToken.value,
+  set: value => {
+    const token = value.trim().replace(/^Bearer\s+/i, '')
+    if (!isFiatModule.value) accessToken.value = token
+    else if (activeEndpoint.value.authType === 'member') memberAccessToken.value = token
+    else fiatAccessToken.value = token
+  },
+})
+const bearerTokenLabel = computed(() => !isFiatModule.value ? copy.value.bearerToken
+  : activeEndpoint.value.authType === 'member'
+    ? ({ en: 'Member session token (security settings)', 'zh-CN': '成员登录 Token（安全配置）', 'zh-TW': '成員登入Token（安全設定）' }[locale.value] ?? 'Member session token')
+    : ({ en: 'API Key access token (fiat business)', 'zh-CN': 'API Key 访问 Token（法币业务）', 'zh-TW': 'API Key 存取Token（法幣業務）' }[locale.value] ?? 'API Key access token'))
+const endpointGroups = computed(() => isFiatModule.value ? [
+  { label: ({ en: 'FIAT BUSINESS', 'zh-CN': '法币业务接口', 'zh-TW': '法幣業務接口' }[locale.value] ?? 'FIAT BUSINESS'), items: endpoints.value.filter(item => item.authType !== 'member') },
+  { label: ({ en: 'KEYS & WEBHOOK SECURITY', 'zh-CN': '密钥与回调安全', 'zh-TW': '密鑰與回調安全' }[locale.value] ?? 'KEYS & WEBHOOK SECURITY'), items: endpoints.value.filter(item => item.authType === 'member') },
+] : [{ label: copy.value.apiReference, items: endpoints.value }])
 const twoFactorToken = ref('')
 const uploadFile = ref(null)
 const uploadInput = ref(null)
@@ -283,7 +208,7 @@ const hasRequestBody = computed(() => activeEndpoint.value.fields.some((field) =
 const twoFactorLabel = computed(() => ({ en: 'X-2FA-Token (when enabled)', 'zh-CN': 'X-2FA-Token（已启用 2FA 时）', 'zh-TW': 'X-2FA-Token（已啟用 2FA 時）' }[locale.value] ?? 'X-2FA-Token'))
 const twoFactorPlaceholder = computed(() => ({ en: 'Paste the short-lived 2FA token', 'zh-CN': '粘贴短期 2FA Token', 'zh-TW': '貼上短期 2FA Token' }[locale.value] ?? 'Paste 2FA token'))
 const contractLabel = computed(() => ({ en: 'CONTRACT', 'zh-CN': '接口契约', 'zh-TW': '介面契約' }[locale.value] ?? 'CONTRACT'))
-const isUserApiModule = computed(() => selectedModule.value === 'partner' || selectedModule.value === 'digital-assets' || selectedModule.value === 'cards' || selectedModule.value === 'usd')
+const isUserApiModule = computed(() => isFiatModule.value || selectedModule.value === 'digital-assets' || selectedModule.value === 'cards')
 const tryButtonLabel = computed(() => {
   if (isSending.value) return copy.value.sending
   if (activeEndpoint.value.tryEnabled === false) {
@@ -304,15 +229,14 @@ const errorResponseExample = computed(() => isUserApiModule.value
   : { code: activeEndpoint.value.errors[0]?.code ?? 'INTERNAL_ERROR', message: 'Human-readable error message', traceId: 'trc_01J…' })
 
 function endpointCopy(endpoint) {
-  const localized = partnerCopy[locale.value]?.[endpoint.id] ?? bridgeCopy[locale.value]?.[endpoint.id] ?? cardCopy[locale.value]?.[endpoint.id] ?? cryptoCopy[locale.value]?.[endpoint.id] ?? apiCopy[locale.value]?.[endpoint.id]
+  const localized = fiatCopy[locale.value]?.[endpoint.id] ?? cardCopy[locale.value]?.[endpoint.id] ?? cryptoCopy[locale.value]?.[endpoint.id]
   return localized ? { ...endpoint, ...localized } : endpoint
 }
 
 const currencyNotice = computed(() => {
   const notices = {
-    fiat: { en: 'This module supports EUR and GBP payments. Use IBAN for EUR/SEPA beneficiaries; use account number and sort code for GBP payments.', 'zh-CN': '该模块同时支持 EUR 和 GBP 支付。EUR/SEPA 受益人使用 IBAN；GBP 支付使用账号和 Sort Code。', 'zh-TW': '此模組同時支援 EUR 和 GBP 支付。EUR/SEPA 受益人使用 IBAN；GBP 支付使用帳號和 Sort Code。' },
-    partner: { en: 'Partner API supports tenant-scoped USD, EUR, and GBP virtual accounts. TEST and LIVE credentials are isolated; amounts are strings in minor units.', 'zh-CN': '白标 Partner API 支持租户隔离的 USD、EUR、GBP 虚拟账户；TEST 与 LIVE 密钥严格隔离，金额以最小货币单位字符串返回。', 'zh-TW': '白標 Partner API 支援租戶隔離的 USD、EUR、GBP 虛擬帳戶；TEST 與 LIVE 密鑰嚴格隔離，金額以最小貨幣單位字串回傳。' },
-    usd: { en: 'This module covers Bridge USD off-ramp: KYC onboarding, virtual USD accounts (receive wire/ACH), external bank accounts, and USDC→USD transfers. KYC must be active and the base endorsement approved before transfers.', 'zh-CN': '该模块覆盖 Bridge USD 出金全流程：KYC 开户、USD 虚拟账户（接收电汇/ACH）、外部银行账户绑定与 USDC→USD 转账。转账前需完成 KYC 且 base 背书已批准。', 'zh-TW': '此模組涵蓋 Bridge USD 出金全流程：KYC 開戶、USD 虛擬帳戶（接收電匯/ACH）、外部銀行帳戶綁定與 USDC→USD 轉帳。轉帳前需完成 KYC 且 base 背書已批准。' },
+    fiat: { en: 'EUR and GBP use the same fiat API, API Key authentication, and webhook security. The selected currency changes the examples; availability depends on your enabled currencies and payment corridors.', 'zh-CN': 'EUR、GBP 共用同一套法币 API、API Key 鉴权及回调安全规则；切换币种会同步更新示例，实际可用范围以账户授权和通道能力为准。', 'zh-TW': 'EUR、GBP共用同一套法幣API、API Key驗證及回調安全規則；切換幣種會更新範例，可用範圍以帳戶授權和通道能力為準。' },
+    usd: { en: 'USD uses the same fiat API and security as EUR and GBP. USD examples use SWIFT where applicable; availability depends on your enabled currency and payment corridor.', 'zh-CN': 'USD 与 EUR、GBP 共用同一套法币 API 和安全配置；USD 出金示例使用 SWIFT，实际可用范围以账户币种授权和通道能力为准。', 'zh-TW': 'USD與EUR、GBP共用同一套法幣API及安全設定；USD出金範例使用SWIFT，可用範圍以帳戶授權和通道能力為準。' },
     'digital-assets': { en: 'Wallet creation is idempotent: an existing Safeheron account is reused and only missing asset/network addresses are provisioned. Supported assets and networks come from API configuration.', 'zh-CN': '钱包创建采用幂等设计：复用已有 Safeheron 账户，只补建缺失的币种/网络地址；支持的币种和网络以 API 配置为准。', 'zh-TW': '錢包建立採用冪等設計：重用既有 Safeheron 帳戶，只補建缺失的幣種／網路地址；支援的幣種和網路以 API 設定為準。' },
     cards: { en: 'Card availability, fees, funding assets, and wallet support vary by product. Always use the latest values returned by the available-card endpoint.', 'zh-CN': '卡片可用性、费用、充值资产及钱包支持因产品而异，请始终以可开卡片接口返回的最新值为准。', 'zh-TW': '卡片可用性、費用、儲值資產及錢包支援因產品而異，請始終以可開卡片介面回傳的最新值為準。' },
   }
@@ -320,26 +244,15 @@ const currencyNotice = computed(() => {
 })
 
 const moduleOverview = computed(() => {
-  if (selectedModule.value === 'fiat') {
-    return {
-      heroTitle: copy.value.heroTitle,
-      heroIntro: `${copy.value.heroIntro}/v1${copy.value.heroSuffix}`,
-      beforeStartBody: copy.value.beforeStartBody,
-      authTitle: copy.value.accessTokens,
-      authBody: `${copy.value.authIntro} POST /v1/auth/token ${copy.value.authMiddle} clientId ${copy.value.and} clientSecret${copy.value.authEnd}`,
+  if (isFiatModule.value) {
+    const descriptions = {
+      en: { heroTitle: `${selectedFiatCurrency.value} accounts and payments.`, heroIntro: 'One fiat API for account opening, deposits, payouts, transfers, transactions and billing, with API Key and webhook security in the same documentation.', beforeStartBody: 'Create a TEST or LIVE API Key in your console and exchange apiKey + apiSecret for a business token. Security configuration endpoints require a separate member session token.', authTitle: 'API Key and member authentication', authBody: 'Business requests use POST /partner-api/v1/oauth/token, then Authorization: Bearer {accessToken}. Key and webhook settings use the member token from your console login; the two token types are not interchangeable. TEST and LIVE credentials remain isolated.' },
+      'zh-CN': { heroTitle: `${selectedFiatCurrency.value} 法币账户与支付。`, heroIntro: '开户、入金指引、出金、账户划转、交易和账单共用一套法币 API，API Key、Webhook 与回调安全配置统一在这里对接。', beforeStartBody: '在业务台创建 TEST 或 LIVE API Key，用 apiKey 与 apiSecret 换取业务访问 Token。密钥及回调配置接口另用成员登录 Token，接口旁会明确标注。', authTitle: 'API Key 与成员鉴权', authBody: '业务接口先调用 POST /partner-api/v1/oauth/token，再携带 Authorization: Bearer {accessToken}。密钥和 Webhook 配置使用业务台登录后的成员 Token，两类 Token 不能混用；TEST、LIVE 密钥与令牌按环境隔离。' },
+      'zh-TW': { heroTitle: `${selectedFiatCurrency.value} 法幣帳戶與支付。`, heroIntro: '開戶、入金指引、出金、帳戶劃轉、交易及帳單共用一套法幣API，API Key與回調安全統一對接。', beforeStartBody: '在業務台建立TEST或LIVE API Key，使用apiKey及apiSecret換取業務Token；密鑰及回調設定使用成員登入Token。', authTitle: 'API Key與成員驗證', authBody: '業務接口先呼叫POST /partner-api/v1/oauth/token，再攜帶Bearer Token；安全設定使用業務台成員Token，兩者不可混用，TEST及LIVE按環境隔離。' },
     }
+    return descriptions[locale.value] ?? descriptions.en
   }
   const overviews = {
-    partner: {
-      en: { heroTitle: 'Build your white-label fiat experience.', heroIntro: 'Create tenant-scoped customers, open independent virtual accounts, and reconcile transactions and invoices through the versioned Partner API.', beforeStartBody: 'Create a TEST or LIVE API Key in the tenant console. Exchange the key and one-time API Secret for a 3,600-second token. Never embed either credential in browser or mobile code.', authTitle: 'API Key to Bearer token', authBody: 'Call POST /partner-api/v1/oauth/token with apiKey and apiSecret, then send Authorization: Bearer {accessToken}. TEST and LIVE credentials cannot cross environments.' },
-      'zh-CN': { heroTitle: '构建你的白标法币业务。', heroIntro: '通过版本化 Partner API 创建租户隔离的终端客户、开立独立虚拟账户，并查询交易与账单。', beforeStartBody: '先在租户业务台创建 TEST 或 LIVE API Key，再用 Key 与仅展示一次的 API Secret 换取 3,600 秒访问令牌。不要把任何密钥写入浏览器或移动端。', authTitle: 'API Key 换取 Bearer Token', authBody: '调用 POST /partner-api/v1/oauth/token 提交 apiKey 与 apiSecret，再通过 Authorization: Bearer {accessToken} 调用业务接口；TEST 与 LIVE 不可跨环境。' },
-      'zh-TW': { heroTitle: '建構你的白標法幣業務。', heroIntro: '透過版本化 Partner API 建立租戶隔離的終端客戶、開立獨立虛擬帳戶，並查詢交易與帳單。', beforeStartBody: '先在租戶業務台建立 TEST 或 LIVE API Key，再用 Key 與僅顯示一次的 API Secret 換取 3,600 秒存取權杖。不要把任何密鑰寫入瀏覽器或行動端。', authTitle: 'API Key 換取 Bearer Token', authBody: '呼叫 POST /partner-api/v1/oauth/token 提交 apiKey 與 apiSecret，再透過 Authorization: Bearer {accessToken} 呼叫業務介面；TEST 與 LIVE 不可跨環境。' },
-    },
-    usd: {
-      en: { heroTitle: 'USD off-ramp, powered by Bridge.', heroIntro: 'Complete KYC onboarding, receive USD via wire or ACH, bind US bank accounts, and execute USDC→USD transfers with a single integrated API.', beforeStartBody: 'Sign in to YASBe and copy the returned JWT. Begin with the ToS link endpoint, then submit KYC. Once approved, add bank accounts and create transfers.', authTitle: 'Bearer JWT', authBody: 'Bridge endpoints use the JWT returned by the YASBe sign-in flow. Send it as Authorization: Bearer {token} on every request.' },
-      'zh-CN': { heroTitle: '基于 Bridge 的 USD 出金通道。', heroIntro: '完成 KYC 开户、通过电汇或 ACH 接收 USD、绑定美国银行账户，并通过一套集成 API 执行 USDC→USD 转账。', beforeStartBody: '登录 YASBe 获取 JWT；先调用 ToS 链接接口，再提交 KYC；审核通过后即可绑定银行账户并发起转账。', authTitle: 'Bearer JWT', authBody: 'Bridge 接口使用 YASBe 登录流程返回的 JWT，通过 Authorization: Bearer {token} 携带，每次请求均需提供。' },
-      'zh-TW': { heroTitle: '基於 Bridge 的 USD 出金通道。', heroIntro: '完成 KYC 開戶、透過電匯或 ACH 接收 USD、綁定美國銀行帳戶，並透過一套整合 API 執行 USDC→USD 轉帳。', beforeStartBody: '登入 YASBe 取得 JWT；先呼叫 ToS 連結介面，再提交 KYC；審核通過後即可綁定銀行帳戶並發起轉帳。', authTitle: 'Bearer JWT', authBody: 'Bridge 介面使用 YASBe 登入流程回傳的 JWT，透過 Authorization: Bearer {token} 攜帶，每次請求均需提供。' },
-    },
     'digital-assets': {
       en: { heroTitle: 'Create and move digital assets with confidence.', heroIntro: 'Discover supported assets and networks, provision wallets and deposit addresses, read balances and pricing, review transactions, and create withdrawals.', beforeStartBody: 'Sign in to YASBe and copy the returned JWT. The gateway is configured by the deployment environment. Endpoints marked Contract require the matching backend controller implementation.', authTitle: 'Bearer JWT', authBody: 'Crypto endpoints use the JWT returned by the YASBe sign-in flow. Send it with every request as Authorization: Bearer {token}. Never expose the token in public client code.' },
       'zh-CN': { heroTitle: '安全创建和流转数字资产。', heroIntro: '查询支持的币种和网络、创建钱包和充值地址，并完成余额、价格、交易与提现管理。', beforeStartBody: '请先登录 YASBe 获取 JWT；网关地址由部署环境统一配置。标记为“接口契约”的接口仍需后端提供对应 Controller 实现。', authTitle: 'Bearer JWT', authBody: '数币接口使用 YASBe 登录流程返回的 JWT。每次请求都需要携带 Authorization: Bearer {token}，请勿在公开的客户端代码中暴露令牌。' },
@@ -355,11 +268,11 @@ const moduleOverview = computed(() => {
 })
 
 function endpointDetail(endpoint) {
-  return partnerCopy[locale.value]?.[endpoint.id]?.detail ?? endpointDetails[locale.value]?.[endpoint.id] ?? endpointDetails.en[endpoint.id] ?? bridgeCopy[locale.value]?.[endpoint.id]?.detail ?? endpoint.detail
+  return fiatCopy[locale.value]?.[endpoint.id]?.detail ?? endpoint.detail
 }
 
 function fieldDescription(field) {
-  return partnerCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? bridgeCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? cardCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? cryptoCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? apiCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? field.description
+  return fiatCopy[locale.value]?.[activeEndpoint.value.id]?.fields?.[field.name] ?? cardCopy[locale.value]?.[activeEndpoint.value.id]?.fields?.[field.name] ?? cryptoCopy[locale.value]?.[activeEndpoint.value.id]?.fields?.[field.name] ?? field.description
 }
 
 const errorTranslations = {
@@ -393,7 +306,7 @@ function selectModule(moduleId) {
   if (!selectedModuleData.value.available) return
   activeEndpoint.value = endpoints.value[0]
   activeSection.value = 'overview'
-  requestBody.value = JSON.stringify(currencyExample(activeEndpoint.value.example, 'EUR'), null, 2)
+  requestBody.value = JSON.stringify(activeEndpoint.value.example, null, 2)
   parameterValues.value = buildParameterValues(activeEndpoint.value)
   responseText.value = ''
   responseStatus.value = null
@@ -404,28 +317,16 @@ function selectEndpoint(endpoint) {
   clearUpload()
   activeEndpoint.value = endpoint
   activeSection.value = endpoint.id
-  requestBody.value = JSON.stringify(currencyExample(endpoint.example, 'EUR'), null, 2)
+  requestBody.value = JSON.stringify(endpoint.example, null, 2)
   parameterValues.value = buildParameterValues(endpoint)
   responseText.value = ''
   responseStatus.value = null
   requestError.value = ''
 }
 
-function currencyExample(example, currency) {
-  const value = JSON.parse(JSON.stringify(example))
-  if (!value || typeof value !== 'object') return value
-  if ('currency' in value) value.currency = currency
-  if (currency === 'GBP' && value.iban) {
-    delete value.iban
-    value.accountNumber = '12345678'
-    value.sortCode = '123456'
-  }
-  if (currency === 'EUR' && value.accountNumber) {
-    delete value.accountNumber
-    delete value.sortCode
-    value.iban = 'GB84SEOU00994400026127'
-  }
-  return value
+function selectFiatCurrency() {
+  const endpoint = endpoints.value.find(item => item.id === activeEndpoint.value.id) ?? endpoints.value[0]
+  selectEndpoint(endpoint)
 }
 
 const isLangMenuOpen = ref(false)
@@ -460,7 +361,7 @@ async function sendRequest() {
     payload = new FormData()
     payload.append('file', uploadFile.value)
   }
-  if (activeEndpoint.value.requiresAuth && accessToken.value) headers.Authorization = `Bearer ${accessToken.value}`
+  if (activeEndpoint.value.requiresAuth && activeAccessToken.value) headers.Authorization = `Bearer ${activeAccessToken.value}`
   for (const field of interactiveFields.value.filter((item) => item.location === 'Header')) {
     let value = parameterValues.value[field.name]
     if (!value && field.name === 'Idempotency-Key') {
@@ -489,7 +390,17 @@ async function sendRequest() {
     const response = await fetch(`${baseUrl.value.replace(/\/$/, '')}${requestPath}`, { method: activeEndpoint.value.method, headers, body: activeEndpoint.value.multipart ? payload : (payload !== undefined ? JSON.stringify(payload) : undefined) })
     responseStatus.value = response.status
     const contentType = response.headers.get('content-type') ?? ''
-    if (contentType.includes('application/pdf')) {
+    if (response.ok && activeEndpoint.value.responseType === 'file') {
+      const blob = await response.blob()
+      const href = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = href
+      link.download = /filename="?([^";]+)"?/i.exec(response.headers.get('content-disposition') ?? '')?.[1] ?? 'security-download'
+      link.click()
+      setTimeout(() => URL.revokeObjectURL(href), 1000)
+      responseText.value = `Attachment received (${blob.size} bytes)`
+      return
+    } else if (contentType.includes('application/pdf')) {
       const blob = await response.blob()
       responseText.value = `PDF received (${blob.size} bytes)`
       return
@@ -498,7 +409,7 @@ async function sendRequest() {
     try {
       const json = JSON.parse(text)
       responseText.value = JSON.stringify(json, null, 2)
-      if (activeEndpoint.value.id === 'partner-token' && response.ok && json.data?.accessToken) accessToken.value = json.data.accessToken
+      if (activeEndpoint.value.id === 'fiat-token' && response.ok && json.data?.accessToken) fiatAccessToken.value = json.data.accessToken
     } catch { responseText.value = text || `${response.status} ${response.statusText}` }
   } catch (error) {
     requestError.value = copy.value.sendFailed.replace('{message}', error.message)
