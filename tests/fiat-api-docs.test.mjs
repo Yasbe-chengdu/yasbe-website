@@ -20,7 +20,7 @@ test('payment and bank examples match the selected currency without mutating oth
 })
 test('security settings require member tokens and business requests retain API Key authentication', () => {
   for (const endpoint of getFiatEndpoints('EUR')) {
-    assert.equal(endpoint.authType === 'member', endpoint.path.startsWith('/apiTenant/developer/'))
+    assert.equal(endpoint.authType === 'member', endpoint.path.startsWith('/apiTenant/') && endpoint.requiresAuth)
     if (endpoint.authType === 'member') assert.equal(endpoint.requiresAuth, true)
   }
   assert.equal(find('EUR', 'fiat-token').requiresAuth, false)
@@ -46,7 +46,7 @@ test('document storage keys remain unchanged by the product-name consolidation',
 })
 
 test('security examples never silently disable encryption or preselect a customer endpoint', () => {
-  const security = getFiatEndpoints('EUR').filter(e => e.authType === 'member')
+  const security = getFiatEndpoints('EUR').filter(e => e.path.startsWith('/apiTenant/developer/'))
   const encryption = security.find(e => e.path.endsWith('/payload-encryption'))
   assert.equal(encryption.example.enabled, true)
   assert.ok(encryption.example.publicKeyPem)
@@ -55,4 +55,39 @@ test('security examples never silently disable encryption or preselect a custome
     const id = endpoint.fields.find(f => f.name === 'id')
     if (id) assert.equal(id.defaultValue, '')
   }
+})
+
+test('current client account, opening and payment flows are documented with the correct credentials', () => {
+  const endpoints = getFiatEndpoints('EUR')
+  const route = (method, path) => endpoints.find(e => e.method === method && e.path === path)
+  const login = route('POST', '/apiTenant/auth/account/login')
+  assert.equal(login.requiresAuth, false)
+  for (const name of ['email', 'password', 'totpCode']) assert.ok(login.fields.find(f => f.name === name).required)
+  assert.equal(login.fields.find(f => f.name === 'tenantCode'), undefined)
+  assert.ok(route('POST', '/apiTenant/auth/account/select-tenant').fields.find(f => f.name === 'accountToken').required)
+  const switchTenant = route('POST', '/apiTenant/account/switch-tenant')
+  assert.equal(switchTenant.authType, 'member')
+  assert.deepEqual(switchTenant.fields.filter(f => f.location === 'Body').map(f => f.name), ['tenantCode'])
+  for (const path of ['/apiTenant/account/tenants', '/apiTenant/virtual-account-applications', '/apiTenant/account/security/preferences']) assert.ok(route('GET', path))
+  for (const path of ['/apiTenant/virtual-accounts', '/apiTenant/withdrawals', '/apiTenant/deposits/instructions', '/apiTenant/transfers']) {
+    const e = route('POST', path)
+    assert.equal(e.authType, 'member')
+    if (path !== '/apiTenant/virtual-accounts') assert.ok(e.example.totpCode)
+  }
+  const opening = route('POST', '/apiTenant/virtual-accounts')
+  assert.ok(opening.example.openingInformation.passportDocumentPath.startsWith('white-label/opening/'))
+  for (const name of ['kycAddressProofDocumentPath', 'kycBackgroundProofOfFundsDocumentPath']) assert.ok(opening.fields.find(f => f.name === `openingInformation.${name}`).required)
+  const disable = route('POST', '/apiTenant/account/security/totp/disable')
+  assert.equal(disable.tryEnabled, false)
+  assert.equal(disable.responseExample.code, 'LOGIN_2FA_MANDATORY')
+})
+
+test('field types and complete response structures are sourced from the backend', () => {
+  for (const e of getFiatEndpoints('EUR')) {
+    assert.ok(e.fields.every(f => f.type), `${e.method} ${e.path}: field type`)
+    assert.ok(e.responseFields, `${e.path}: response fields`)
+  }
+  const e = find('EUR', 'fiat-create-withdrawal')
+  assert.equal(e.fields.find(f => f.name === 'amountMinor').type, 'integer')
+  for (const name of ['data.failureCode', 'data.returnStatus', 'data.counterpartyName']) assert.ok(e.responseFields.some(f => f.name === name))
 })

@@ -56,6 +56,8 @@
           <p class="api-docs__eyebrow">{{ copy.authentication }}</p>
           <h2>{{ moduleOverview.authTitle }}</h2>
           <p>{{ moduleOverview.authBody }}</p>
+          <ol v-if="isFiatModule"><li v-for="step in fiatWorkflow" :key="step">{{ step }}</li></ol>
+          <p v-if="isFiatModule">{{ nestedFieldNotice }}</p>
         </section>
 
         <section :id="activeEndpoint.id" class="api-docs__endpoint">
@@ -71,23 +73,27 @@
           <h3>{{ copy.requestParameters }}</h3>
           <div class="api-docs__table-wrap">
             <table>
-            <thead><tr><th>{{ copy.field }}</th><th>{{ copy.location }}</th><th>{{ copy.required }}</th><th>{{ copy.description }}</th></tr></thead>
+            <thead><tr><th>{{ copy.field }}</th><th>{{ copy.location }}</th><th>{{ fieldTypeLabel }}</th><th>{{ copy.required }}</th><th>{{ copy.description }}</th></tr></thead>
               <tbody>
-                <tr v-for="field in activeEndpoint.fields" :key="field.name"><td><code>{{ field.name }}</code></td><td>{{ field.location ?? copy.body }}</td><td>{{ field.required ? copy.yes : copy.no }}</td><td>{{ fieldDescription(field) }}</td></tr>
+                <tr v-for="field in activeEndpoint.fields" :key="field.name"><td><code>{{ field.name }}</code></td><td>{{ field.location ?? copy.body }}</td><td>{{ field.type ?? 'string' }}{{ field.format ? ` (${field.format})` : '' }}</td><td>{{ field.required ? copy.yes : copy.no }}</td><td>{{ fieldDescription(field) }}{{ field.enum ? ` (${field.enum.join(', ')})` : '' }}</td></tr>
               </tbody>
             </table>
           </div>
 
           <h3>{{ copy.responses }}</h3>
-          <p>{{ copy.responseIntro }} <code>{{ activeEndpoint.successStatus }}</code>{{ moduleResponseEnd }}</p>
-          <pre class="api-docs__example"><code>{{ JSON.stringify(activeEndpoint.responseExample, null, 2) }}</code></pre>
+          <p>{{ activeEndpoint.successStatus === '403' ? (locale === 'en' ? 'This operation always returns' : '该操作固定返回') : copy.responseIntro }} <code>{{ activeEndpoint.successStatus }}</code>{{ moduleResponseEnd }}</p>
+          <pre v-if="activeEndpoint.responseExample" class="api-docs__example"><code>{{ JSON.stringify(activeEndpoint.responseExample, null, 2) }}</code></pre>
+          <div v-if="activeEndpoint.responseFields?.length" class="api-docs__table-wrap"><table>
+            <thead><tr><th>{{ copy.field }}</th><th>{{ fieldTypeLabel }}</th><th>{{ copy.description }}</th></tr></thead>
+            <tbody><tr v-for="field in activeEndpoint.responseFields" :key="field.name"><td><code>{{ field.name }}</code></td><td>{{ field.type }}{{ field.format ? ` (${field.format})` : '' }}</td><td>{{ field.description }}{{ field.enum ? ` (${field.enum.join(', ')})` : '' }}</td></tr></tbody>
+          </table></div>
 
           <h3>{{ copy.errorCodes }}</h3>
           <div class="api-docs__table-wrap">
             <table>
               <thead><tr><th>{{ copy.code }}</th><th>{{ copy.httpStatus }}</th><th>{{ copy.description }}</th></tr></thead>
               <tbody>
-                <tr v-for="error in activeEndpoint.errors" :key="error.code"><td><code>{{ error.code }}</code></td><td>{{ error.status }}</td><td>{{ errorDescription(error) }}</td></tr>
+                <tr v-for="error in activeEndpoint.errors" :key="`${error.status}-${error.code}`"><td><code>{{ error.code }}</code></td><td>{{ error.status }}</td><td>{{ errorDescription(error) }}</td></tr>
               </tbody>
             </table>
           </div>
@@ -134,6 +140,7 @@ import { localeOptions, setAppLocale } from '../i18n'
 import fiatIcon from '../assets/images/api-fiat-icon.svg'
 import { cardCopy, cardEndpoints } from '../data/apiDocsCards.js'
 import { cryptoCopy, cryptoEndpoints } from '../data/apiDocsCrypto.js'
+import { memberRequestExample, updateFiatDocsSession } from '../utils/fiatDocsSession.js'
 import { fiatCopy, getFiatEndpoints } from '../data/apiDocsFiat.js'
 
 const { locale } = useI18n()
@@ -175,7 +182,8 @@ const activeSection = ref('overview')
 const accessToken = ref('')
 const fiatAccessToken = ref('')
 const memberAccessToken = ref('')
-// 两类Token分别保存，避免把业务API令牌误发给成员安全配置接口。
+const accountAccessToken = ref('')
+// 三类凭证分别保存，账户Token只填入账户接口请求体，成员和API Token分别发送。
 const activeAccessToken = computed({
   get: () => isFiatModule.value ? (activeEndpoint.value.authType === 'member' ? memberAccessToken.value : fiatAccessToken.value) : accessToken.value,
   set: value => {
@@ -187,11 +195,32 @@ const activeAccessToken = computed({
 })
 const bearerTokenLabel = computed(() => !isFiatModule.value ? copy.value.bearerToken
   : activeEndpoint.value.authType === 'member'
-    ? ({ en: 'Member session token (security settings)', 'zh-CN': '成员登录 Token（安全配置）', 'zh-TW': '成員登入Token（安全設定）' }[locale.value] ?? 'Member session token')
+    ? ({ en: 'Member session token (current tenant)', 'zh-CN': '成员登录 Token（当前租户）', 'zh-TW': '成員登入Token（目前租戶）' }[locale.value] ?? 'Member session token')
     : ({ en: 'API Key access token (fiat business)', 'zh-CN': 'API Key 访问 Token（法币业务）', 'zh-TW': 'API Key 存取Token（法幣業務）' }[locale.value] ?? 'API Key access token'))
+const fieldTypeLabel = computed(() => locale.value === 'en' ? 'Type' : '类型')
+const nestedFieldNotice = computed(() => locale.value === 'en' ? 'Nested required fields apply when their parent object is present. Conditional requirements and role checks also apply; follow the field descriptions. Samples contain placeholders and do not guarantee bank approval.' : '嵌套字段的必填标记指父对象存在时的要求，还须满足字段说明中的条件必填及角色授权。示例中的客户、文件key和密钥须替换为真实值；示例不代表通道已审批通过。')
+const fiatWorkflow = computed(() => locale.value === 'en' ? [
+  'First activation: invitation → /apiTenant/auth/activate/totp/setup → scan otpauthUri → /apiTenant/auth/activate with password and totpCode. An existing account uses its existing password and authenticator.',
+  'Sign in: /apiTenant/auth/account/login with email, password and totpCode (plus emailCode if enabled) → accountToken and tenants → /apiTenant/auth/account/select-tenant → member accessToken. No tenant code is required at account login.',
+  'Within the console: GET /apiTenant/account/tenants → POST /apiTenant/account/switch-tenant. Replace the member accessToken and clear data from the previous tenant; no repeat login or 2FA.',
+  'Page operations use /apiTenant/* with member accessToken. Server integrations use /partner-api/v1/* with an API Key token. The document console stores these separately in memory only.',
+  'Create customer → upload identity, address proof and bank statement → apply for account → register a same-name external account → obtain deposit instructions for an offline transfer, request a withdrawal or transfer. Member operation 2FA follows security preferences; login and password recovery always require 2FA.',
+  'Configure keys and webhooks using a member session: TEST/LIVE keys are separate. Callback IP updates replace the entire comma-separated list. Secrets appear once, RSA signing private keys remain on the server; downstream payload decryption private keys remain downstream.',
+  'Lost authenticator: contact YASBe to reset it, then use /auth/login/totp/email-code, /setup and /confirm to rebind. Reset and password changes revoke sessions; direct 2FA disable is forbidden.',
+] : [
+  '首次激活：邀请链接 → /apiTenant/auth/activate/totp/setup → 扫描 otpauthUri → /apiTenant/auth/activate 提交密码与 totpCode。已有统一账户使用原密码和同一个验证器接受新租户邀请。',
+  '登录：/apiTenant/auth/account/login 提交邮箱、密码、totpCode（开启邮箱验证时另传 emailCode）→ accountToken 和租户列表 → /apiTenant/auth/account/select-tenant → 当前租户成员 accessToken；账户登录不需要租户编号。',
+  '系统内切换：GET /apiTenant/account/tenants → POST /apiTenant/account/switch-tenant，使用当前成员 accessToken；成功后替换 Token 并清空旧租户页面缓存，无需重新登录或重复2FA。',
+  '页面操作使用 /apiTenant/* 和成员 accessToken；服务端开放 API 使用 /partner-api/v1/* 和 API Key 换取的 Token。accountToken 只能用于账户会话操作。文档调试台将凭证分别保存在当前页面内存。',
+  '业务顺序：创建客户 → 上传证件、地址证明、银行流水 → 申请开户 → 添加同名外部账户 → 获取入金指引后线下打款，或发起出金、账户划转。页面出入金2FA取决于安全偏好；登录、修改和找回密码始终验证2FA。',
+  '密钥和回调使用成员登录 Token 配置：TEST/LIVE 分开；回调 IP 白名单逗号分隔且每次全量覆盖；Secret 仅展示一次，平台签名私钥不下发；下游只上传内容加密公钥，自己的解密私钥自行保管。',
+  '丢失验证器：由 YASBe 核验后重置，再调用 /auth/login/totp/email-code、/setup、/confirm 补绑。重置及密码变更会撤销会话，必须重新登录；禁止直接解绑2FA。',
+])
 const endpointGroups = computed(() => isFiatModule.value ? [
-  { label: ({ en: 'FIAT BUSINESS', 'zh-CN': '法币业务接口', 'zh-TW': '法幣業務接口' }[locale.value] ?? 'FIAT BUSINESS'), items: endpoints.value.filter(item => item.authType !== 'member') },
-  { label: ({ en: 'KEYS & WEBHOOK SECURITY', 'zh-CN': '密钥与回调安全', 'zh-TW': '密鑰與回調安全' }[locale.value] ?? 'KEYS & WEBHOOK SECURITY'), items: endpoints.value.filter(item => item.authType === 'member') },
+  { label: ({ en: 'FIAT BUSINESS', 'zh-CN': '法币业务接口', 'zh-TW': '法幣業務接口' }[locale.value] ?? 'FIAT BUSINESS'), items: endpoints.value.filter(item => item.path.startsWith('/partner-api/')) },
+  { label: ({ en: 'KEYS & WEBHOOK SECURITY', 'zh-CN': '密钥与回调安全', 'zh-TW': '密鑰與回調安全' }[locale.value] ?? 'KEYS & WEBHOOK SECURITY'), items: endpoints.value.filter(item => item.path.startsWith('/apiTenant/developer/')) },
+  { label: ({ en: 'ACCOUNT & TENANT SESSION', 'zh-CN': '账户登录与租户切换', 'zh-TW': '帳戶登入與租戶切換' }[locale.value] ?? 'ACCOUNT & TENANT SESSION'), items: endpoints.value.filter(item => item.category === 'account') },
+  { label: ({ en: 'CONSOLE OPERATIONS', 'zh-CN': '客户端页面业务', 'zh-TW': '用戶端頁面業務' }[locale.value] ?? 'CONSOLE OPERATIONS'), items: endpoints.value.filter(item => item.category === 'console') },
 ] : [{ label: copy.value.apiReference, items: endpoints.value }])
 const twoFactorToken = ref('')
 const uploadFile = ref(null)
@@ -317,7 +346,7 @@ function selectEndpoint(endpoint) {
   clearUpload()
   activeEndpoint.value = endpoint
   activeSection.value = endpoint.id
-  requestBody.value = JSON.stringify(endpoint.example, null, 2)
+  requestBody.value = JSON.stringify(memberRequestExample(endpoint, accountAccessToken.value), null, 2)
   parameterValues.value = buildParameterValues(endpoint)
   responseText.value = ''
   responseStatus.value = null
@@ -346,22 +375,23 @@ onMounted(() => document.addEventListener('click', handleLangOutsideClick))
 onUnmounted(() => document.removeEventListener('click', handleLangOutsideClick))
 
 async function sendRequest() {
+  const requestEndpoint = activeEndpoint.value
   requestError.value = ''
   responseText.value = ''
   responseStatus.value = null
-  if (activeEndpoint.value.tryEnabled === false) return
+  if (requestEndpoint.tryEnabled === false) return
   if (!baseUrl.value) { requestError.value = copy.value.gatewayRequired; return }
   let payload
   try { payload = hasRequestBody.value ? JSON.parse(requestBody.value) : undefined } catch { requestError.value = copy.value.invalidJson; return }
-  const headers = { Accept: activeEndpoint.value.responseType === 'pdf' ? 'application/pdf' : 'application/json' }
-  if (payload !== undefined && !activeEndpoint.value.multipart) headers['Content-Type'] = 'application/json'
-  if (activeEndpoint.value.multipart) {
+  const headers = { Accept: requestEndpoint.responseType === 'pdf' ? 'application/pdf' : 'application/json' }
+  if (payload !== undefined && !requestEndpoint.multipart) headers['Content-Type'] = 'application/json'
+  if (requestEndpoint.multipart) {
     if (!uploadFile.value || uploadFile.value.size === 0 || uploadFile.value.size > 10 * 1024 * 1024) { requestError.value = 'file: PDF / PNG / JPEG, 1 byte–10MB'; return }
     // 交给浏览器生成 multipart boundary，不能手动设置 Content-Type。
     payload = new FormData()
     payload.append('file', uploadFile.value)
   }
-  if (activeEndpoint.value.requiresAuth && activeAccessToken.value) headers.Authorization = `Bearer ${activeAccessToken.value}`
+  if (requestEndpoint.requiresAuth && activeAccessToken.value) headers.Authorization = `Bearer ${activeAccessToken.value}`
   for (const field of interactiveFields.value.filter((item) => item.location === 'Header')) {
     let value = parameterValues.value[field.name]
     if (!value && field.name === 'Idempotency-Key') {
@@ -371,9 +401,9 @@ async function sendRequest() {
     if (field.required && !value) { requestError.value = `${field.name}: ${copy.value.required}`; return }
     if (value) headers[field.name] = value
   }
-  if (activeEndpoint.value.id === 'crypto-withdraw' && twoFactorToken.value) headers['X-2FA-Token'] = twoFactorToken.value
+  if (requestEndpoint.id === 'crypto-withdraw' && twoFactorToken.value) headers['X-2FA-Token'] = twoFactorToken.value
   if (isUserApiModule.value) headers.Lang = locale.value
-  const [rawPath, rawQuery = ''] = (activeEndpoint.value.tryPath ?? activeEndpoint.value.path).split('?')
+  const [rawPath, rawQuery = ''] = (requestEndpoint.tryPath ?? requestEndpoint.path).split('?')
   let requestPath = rawPath
   const query = new URLSearchParams(rawQuery)
   for (const field of interactiveFields.value.filter((item) => item.location === 'Path' || item.location === 'Query')) {
@@ -387,10 +417,10 @@ async function sendRequest() {
   if (queryString) requestPath += `?${queryString}`
   isSending.value = true
   try {
-    const response = await fetch(`${baseUrl.value.replace(/\/$/, '')}${requestPath}`, { method: activeEndpoint.value.method, headers, body: activeEndpoint.value.multipart ? payload : (payload !== undefined ? JSON.stringify(payload) : undefined) })
+    const response = await fetch(`${baseUrl.value.replace(/\/$/, '')}${requestPath}`, { method: requestEndpoint.method, headers, body: requestEndpoint.multipart ? payload : (payload !== undefined ? JSON.stringify(payload) : undefined) })
     responseStatus.value = response.status
     const contentType = response.headers.get('content-type') ?? ''
-    if (response.ok && activeEndpoint.value.responseType === 'file') {
+    if (response.ok && requestEndpoint.responseType === 'file') {
       const blob = await response.blob()
       const href = URL.createObjectURL(blob)
       const link = document.createElement('a')
@@ -409,7 +439,12 @@ async function sendRequest() {
     try {
       const json = JSON.parse(text)
       responseText.value = JSON.stringify(json, null, 2)
-      if (activeEndpoint.value.id === 'fiat-token' && response.ok && json.data?.accessToken) fiatAccessToken.value = json.data.accessToken
+      if (isFiatModule.value && response.ok) {
+        const updated = updateFiatDocsSession({ apiToken: fiatAccessToken.value, memberToken: memberAccessToken.value, accountToken: accountAccessToken.value }, activeEndpoint.value, json)
+        fiatAccessToken.value = updated.apiToken
+        memberAccessToken.value = updated.memberToken
+        accountAccessToken.value = updated.accountToken
+      }
     } catch { responseText.value = text || `${response.status} ${response.statusText}` }
   } catch (error) {
     requestError.value = copy.value.sendFailed.replace('{message}', error.message)

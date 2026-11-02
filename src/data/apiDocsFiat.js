@@ -1,3 +1,4 @@
+import { fiatContracts, fiatClientEndpoints } from './apiDocsFiatClient.js'
 import { fiatSecurityEndpoints, fiatSecurityCopy } from './apiDocsFiatSecurity.js'
 
 const authField = { name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token returned by the token endpoint.' }
@@ -324,9 +325,13 @@ Object.assign(fiatCopy['zh-CN'], fiatSecurityCopy['zh-CN'])
 
 // 同一套法币业务和安全契约按币种展示，后端路由及鉴权方式保持不变。
 export function getFiatEndpoints(currency = 'EUR') {
-  return [...fiatBusinessEndpoints, ...fiatSecurityEndpoints].map(source => {
+  return [...fiatBusinessEndpoints, ...fiatSecurityEndpoints, ...fiatClientEndpoints].map(source => {
     const endpoint = structuredClone(source)
-    if (endpoint.authType === 'member') return endpoint
+    endpoint.path = endpoint.path.split('?')[0]
+    // 字段定义以客户端契约为准，保留业务说明及可读示例。
+    const contract = fiatContracts[`${endpoint.method} ${endpoint.path}`]
+    if (contract) Object.assign(endpoint, structuredClone(contract))
+    if (endpoint.category === 'account' || endpoint.path.startsWith('/apiTenant/developer/')) return endpoint
     const rewrite = value => {
       if (Array.isArray(value)) return value.map(rewrite)
       if (!value || typeof value !== 'object') return value
@@ -335,13 +340,13 @@ export function getFiatEndpoints(currency = 'EUR') {
     }
     endpoint.example = rewrite(endpoint.example)
     endpoint.responseExample = rewrite(endpoint.responseExample)
-    if (endpoint.id === 'fiat-create-va' && currency === 'USD') delete endpoint.example.ibanCountry
-    if (endpoint.id === 'fiat-create-withdrawal') endpoint.example.paymentType = { EUR: 'SEPA_INSTANT', GBP: 'FASTER_PAYMENTS', USD: 'SWIFT' }[currency]
-    if (endpoint.id === 'fiat-create-transfer') {
+    if (endpoint.path.endsWith('/virtual-accounts') && endpoint.method === 'POST' && currency === 'USD') delete endpoint.example.ibanCountry
+    if (endpoint.path.endsWith('/withdrawals') && endpoint.method === 'POST') endpoint.example.paymentType = { EUR: 'SEPA_INSTANT', GBP: 'FASTER_PAYMENTS', USD: 'SWIFT' }[currency]
+    if (endpoint.path.endsWith('/transfers') && endpoint.method === 'POST') {
       endpoint.example.sourceVaNo = `VA-${currency}-SOURCE`
       endpoint.example.destinationVaNo = `VA-${currency}-DESTINATION`
     }
-    if (endpoint.id === 'fiat-create-external-account' && currency !== 'EUR') {
+    if (endpoint.path.endsWith('/external-accounts') && endpoint.method === 'POST' && currency !== 'EUR') {
       delete endpoint.example.iban
       endpoint.example.accountNumber = currency === 'GBP' ? '12345678' : '123456789012'
       endpoint.example.bankAccountCountry = currency === 'GBP' ? 'GB' : 'US'
