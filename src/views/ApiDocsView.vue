@@ -109,6 +109,7 @@
           {{ field.name }} ({{ field.location }})
           <input v-model.trim="parameterValues[field.name]" type="text" :placeholder="field.required ? copy.required : copy.no" autocomplete="off" />
         </label>
+        <label v-if="activeEndpoint.multipart" class="api-docs__input-label">file (PDF / PNG / JPEG, ≤10MB)<input :key="activeEndpoint.id" ref="uploadInput" type="file" accept=".pdf,.png,.jpg,.jpeg" @change="uploadFile = $event.target.files?.[0] ?? null" /></label>
         <label v-if="hasRequestBody" class="api-docs__input-label">{{ copy.requestBody }}<textarea v-model="requestBody" rows="13" spellcheck="false" :aria-label="copy.requestBody"></textarea></label>
         <p v-if="requestError" class="api-docs__request-error">{{ requestError }}</p>
         <button type="button" class="api-docs__try-button" :disabled="isSending || activeEndpoint.tryEnabled === false" @click="sendRequest"><span>{{ tryButtonLabel }}</span><span aria-hidden="true">→</span></button>
@@ -268,6 +269,8 @@ const activeEndpoint = ref(partnerEndpoints[0])
 const activeSection = ref('overview')
 const accessToken = ref('')
 const twoFactorToken = ref('')
+const uploadFile = ref(null)
+const uploadInput = ref(null)
 const requestBody = ref(JSON.stringify(activeEndpoint.value.example, null, 2))
 const parameterValues = ref(buildParameterValues(activeEndpoint.value))
 const responseText = ref('')
@@ -378,7 +381,14 @@ function buildParameterValues(endpoint) {
     .map((field) => [field.name, field.autoGenerate ? crypto.randomUUID() : (field.defaultValue ?? '')]))
 }
 
+// 切换接口时同时清理文件状态和原生控件，避免将前一次证件误传给其他客户。
+function clearUpload() {
+  uploadFile.value = null
+  if (uploadInput.value) uploadInput.value.value = ''
+}
+
 function selectModule(moduleId) {
+  clearUpload()
   selectedModule.value = moduleId
   if (!selectedModuleData.value.available) return
   activeEndpoint.value = endpoints.value[0]
@@ -391,6 +401,7 @@ function selectModule(moduleId) {
 }
 
 function selectEndpoint(endpoint) {
+  clearUpload()
   activeEndpoint.value = endpoint
   activeSection.value = endpoint.id
   requestBody.value = JSON.stringify(currencyExample(endpoint.example, 'EUR'), null, 2)
@@ -442,7 +453,13 @@ async function sendRequest() {
   let payload
   try { payload = hasRequestBody.value ? JSON.parse(requestBody.value) : undefined } catch { requestError.value = copy.value.invalidJson; return }
   const headers = { Accept: activeEndpoint.value.responseType === 'pdf' ? 'application/pdf' : 'application/json' }
-  if (payload !== undefined) headers['Content-Type'] = 'application/json'
+  if (payload !== undefined && !activeEndpoint.value.multipart) headers['Content-Type'] = 'application/json'
+  if (activeEndpoint.value.multipart) {
+    if (!uploadFile.value || uploadFile.value.size === 0 || uploadFile.value.size > 10 * 1024 * 1024) { requestError.value = 'file: PDF / PNG / JPEG, 1 byte–10MB'; return }
+    // 交给浏览器生成 multipart boundary，不能手动设置 Content-Type。
+    payload = new FormData()
+    payload.append('file', uploadFile.value)
+  }
   if (activeEndpoint.value.requiresAuth && accessToken.value) headers.Authorization = `Bearer ${accessToken.value}`
   for (const field of interactiveFields.value.filter((item) => item.location === 'Header')) {
     let value = parameterValues.value[field.name]
@@ -469,7 +486,7 @@ async function sendRequest() {
   if (queryString) requestPath += `?${queryString}`
   isSending.value = true
   try {
-    const response = await fetch(`${baseUrl.value.replace(/\/$/, '')}${requestPath}`, { method: activeEndpoint.value.method, headers, body: payload !== undefined ? JSON.stringify(payload) : undefined })
+    const response = await fetch(`${baseUrl.value.replace(/\/$/, '')}${requestPath}`, { method: activeEndpoint.value.method, headers, body: activeEndpoint.value.multipart ? payload : (payload !== undefined ? JSON.stringify(payload) : undefined) })
     responseStatus.value = response.status
     const contentType = response.headers.get('content-type') ?? ''
     if (contentType.includes('application/pdf')) {
