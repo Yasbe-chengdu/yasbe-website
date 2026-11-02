@@ -18,14 +18,17 @@ test('payment and bank examples match the selected currency without mutating oth
   assert.equal(find('USD', 'fiat-create-va').example.ibanCountry, undefined)
   assert.ok(find('EUR', 'fiat-create-external-account').example.iban)
 })
-test('public catalog exposes only API Key business routes, never client or admin operations', () => {
+test('public catalog includes business and developer security routes but excludes account and page operations', () => {
   for (const currency of ['EUR', 'GBP', 'USD']) {
     const endpoints = getFiatEndpoints(currency)
-    assert.equal(endpoints.length, 23)
+    assert.equal(endpoints.length, 45)
+    assert.equal(endpoints.filter(e => e.authType === 'member').length, 22)
     for (const endpoint of endpoints) {
-      assert.ok(endpoint.path.startsWith('/partner-api/v1/'))
-      assert.notEqual(endpoint.authType, 'member')
-      assert.ok(!endpoint.fields.some(f => ['accountToken', 'password', 'totpCode'].includes(f.name)))
+      assert.ok(endpoint.path.startsWith('/partner-api/v1/') || endpoint.path.startsWith('/apiTenant/developer/'))
+      assert.equal(endpoint.authType === 'member', endpoint.path.startsWith('/apiTenant/developer/'))
+      assert.ok(!endpoint.fields.some(f => ['accountToken', 'password'].includes(f.name)))
+      if (endpoint.authType !== 'member') assert.ok(!endpoint.fields.some(f => f.name === 'totpCode'))
+      else assert.equal(endpoint.requiresAuth, true)
     }
   }
   assert.equal(find('EUR', 'fiat-token').requiresAuth, false)
@@ -55,12 +58,34 @@ test('public view and contract snapshot exclude client credentials and routes', 
   const { readFileSync } = await import('node:fs')
   for (const file of ['../src/data/apiDocsFiatClient.js', '../src/views/ApiDocsView.vue', '../src/data/apiDocsFiat.js']) {
     const source = readFileSync(new URL(file, import.meta.url), 'utf8')
-    assert.ok(!source.includes('/apiTenant/'), file)
+    assert.ok(!/\/apiTenant\/(?!developer\/)/.test(source), file)
     assert.ok(!source.includes('/apiAdmin/'), file)
-    assert.ok(!source.includes('apiDocsFiatSecurity'), file)
     assert.ok(!source.includes('accountAccessToken'), file)
   }
   const { fiatWebhookGuide } = await import('../src/data/apiDocsFiatWebhooks.js')
   assert.ok(fiatWebhookGuide['zh-CN'].steps.join(' ').includes('X-YASBe-RSA-Signature'))
   assert.ok(fiatWebhookGuide.en.steps.join(' ').includes('raw HTTP request body'))
+})
+
+test('security examples preserve IP replacement, one-time secrets and safe encryption settings', () => {
+  const endpoints = getFiatEndpoints()
+  const route = (method, path) => endpoints.find(e => e.method === method && e.path === path)
+  const replacement = route('PUT', '/apiTenant/developer/webhooks/{id}/ip-allowlist')
+  assert.equal(typeof replacement.example.allowedIps, 'string')
+  assert.equal(replacement.fields.find(f => f.name === 'allowedIps').type, 'string')
+  assert.ok(route('GET', '/apiTenant/developer/webhooks/{id}/ip-allowlist'))
+  const create = route('POST', '/apiTenant/developer/webhooks')
+  assert.ok(Array.isArray(create.example.allowedIps))
+  assert.equal(create.responseExample.data.signatureAlgorithm, 'RSA-SHA256')
+  assert.equal(create.responseExample.data.hmacAlgorithm, 'HMAC-SHA256')
+  const encryption = route('PUT', '/apiTenant/developer/webhooks/{id}/payload-encryption')
+  assert.equal(encryption.example.enabled, true)
+  assert.ok(encryption.example.publicKeyPem)
+  for (const e of endpoints.filter(e => e.authType === 'member')) {
+    assert.ok(!e.fields.some(f => /privatekey/i.test(f.name)))
+    const auth = e.fields.find(f => f.name === 'Authorization')
+    assert.ok(auth.description.includes('成员'))
+    const id = e.fields.find(f => f.name === 'id')
+    if (id) assert.equal(id.defaultValue, '')
+  }
 })

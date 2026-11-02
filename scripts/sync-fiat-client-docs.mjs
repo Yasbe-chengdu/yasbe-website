@@ -22,13 +22,15 @@ function fields(raw, prefix = '', location = 'Body', depth = 0) {
 }
 const contracts = {}
 for (const [path, methods] of Object.entries(doc.paths)) for (const [method, op] of Object.entries(methods)) {
-  // 公开文档只同步正式开放API，禁止把客户端和管理端操作带入浏览器产物。
-  if (!path.startsWith('/partner-api/v1/') || !['get', 'post', 'put', 'patch', 'delete'].includes(method)) continue
+  // 仅同步开放业务API和开发者安全API，不同步登录、账户或页面业务。
+  const business = path.startsWith('/partner-api/v1/')
+  const security = path.startsWith('/apiTenant/developer/')
+  if ((!business && !security) || !['get', 'post', 'put', 'patch', 'delete'].includes(method)) continue
   const content = op.requestBody?.content ?? {}, body = content['application/json'], multipart = content['multipart/form-data']
   const secured = (op.security ?? doc.security ?? []).length > 0
-  const requestFields = secured ? [{ name: 'Authorization', location: 'Header', type: 'string', required: true, description: 'API Key 换取的访问令牌，格式 Bearer <accessToken>。' }] : []
+  const requestFields = secured ? [{ name: 'Authorization', location: 'Header', type: 'string', required: true, description: security ? '成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。' : 'API Key 换取的访问令牌，格式 Bearer <accessToken>。' }] : []
   for (const p of op.parameters ?? []) requestFields.push({ name: p.name, location: { path: 'Path', header: 'Header', query: 'Query' }[p.in], type: resolve(p.schema).type ?? 'string', required: !!p.required, description: p.description ?? resolve(p.schema).description ?? p.name, defaultValue: resolve(p.schema).default ?? '' })
-  requestFields.push(...fields(body?.schema ?? multipart?.schema, '', multipart ? 'Form' : 'Body').filter(field => field.name !== 'totpCode'))
+  requestFields.push(...fields(body?.schema ?? multipart?.schema, '', multipart ? 'Form' : 'Body').filter(field => !business || field.name !== 'totpCode'))
   const responseContent = op.responses?.['200']?.content ?? {}, response = responseContent['application/json']
   const contract = { fields: requestFields, responseFields: fields(response?.schema, '', 'Response'),  }
   contracts[`${method.toUpperCase()} ${path}`] = contract

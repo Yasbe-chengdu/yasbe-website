@@ -75,6 +75,7 @@
           <h2>{{ endpointCopy(activeEndpoint).title }}</h2>
           <p>{{ endpointCopy(activeEndpoint).description }}</p>
           <p class="api-docs__endpoint-note">{{ endpointDetail(activeEndpoint) }}</p>
+          <p v-if="isFiatModule && activeEndpoint.authType === 'member'" class="api-docs__notice">{{ securityRequirements }}</p>
 
           <h3>{{ copy.requestParameters }}</h3>
           <div class="api-docs__table-wrap">
@@ -187,17 +188,21 @@ const activeEndpoint = ref(endpoints.value[0])
 const activeSection = ref('overview')
 const accessToken = ref('')
 const fiatAccessToken = ref('')
-// 法币开放API只接收API Key换取的Token，与其他产品凭证分别保存。
+const memberAccessToken = ref('')
+// 成员安全管理Token和API Key业务Token分别保存在内存，避免交叉发送。
 const activeAccessToken = computed({
-  get: () => isFiatModule.value ? fiatAccessToken.value : accessToken.value,
+  get: () => isFiatModule.value ? (activeEndpoint.value.authType === 'member' ? memberAccessToken.value : fiatAccessToken.value) : accessToken.value,
   set: value => {
     const token = value.trim().replace(/^Bearer\s+/i, '')
     if (!isFiatModule.value) accessToken.value = token
+    else if (activeEndpoint.value.authType === 'member') memberAccessToken.value = token
     else fiatAccessToken.value = token
   },
 })
 const bearerTokenLabel = computed(() => !isFiatModule.value ? copy.value.bearerToken
-  : ({ en: 'API Key access token', 'zh-CN': 'API Key 访问 Token', 'zh-TW': 'API Key 存取Token' }[locale.value] ?? 'API Key access token'))
+  : activeEndpoint.value.authType === 'member'
+    ? ({ en: 'Member token (TENANT_ADMIN / TENANT_DEVELOPER)', 'zh-CN': '成员 Token（管理员／开发者）', 'zh-TW': '成員Token（管理員／開發者）' }[locale.value] ?? 'Member token')
+    : ({ en: 'API Key access token', 'zh-CN': 'API Key 访问 Token', 'zh-TW': 'API Key 存取Token' }[locale.value] ?? 'API Key access token'))
 const fieldTypeLabel = computed(() => locale.value === 'en' ? 'Type' : '类型')
 const nestedFieldNotice = computed(() => locale.value === 'en' ? 'Nested required fields apply when their parent object is present. Conditional requirements and role checks also apply; follow the field descriptions. Samples contain placeholders and do not guarantee bank approval.' : '嵌套字段的必填标记指父对象存在时的要求，还须满足字段说明中的条件必填及角色授权。示例中的客户、文件key和密钥须替换为真实值；示例不代表通道已审批通过。')
 const webhookGuide = computed(() => fiatWebhookGuide[locale.value] ?? fiatWebhookGuide['zh-CN'])
@@ -205,16 +210,22 @@ const fiatWorkflow = computed(() => locale.value === 'en' ? [
   'Create a TEST or LIVE API Key in the tenant console and exchange apiKey + apiSecret for an access token. Send Authorization: Bearer {accessToken} with business requests. TEST and LIVE credentials are isolated.',
   'Create customer → upload identity files, address proof and bank statement → apply for an account → add a same-name external bank account → get offline deposit instructions, submit a withdrawal or transfer.',
   'Use the same Idempotency-Key when retrying the same account application or payment. Query transactions or consume webhooks for final status.',
-  'Configure webhook endpoints, callback IP allowlists and credentials in the tenant console. Download the one-time secret and public verification key there; keep your own payload decryption private key downstream.',
+  'Configure webhook endpoints, callback IP allowlists and credentials in the tenant console or through Security Management APIs using a separate member token. Download the one-time secret and public verification key there; keep your own payload decryption private key downstream.',
   'Invoices describe billing between the authenticated tenant and YASBe and require invoices:read. They are not the end-customer billing API.',
 ] : [
   '在租户业务台创建 TEST 或 LIVE API Key，使用 apiKey 与 apiSecret 换取访问 Token；业务请求携带 Authorization: Bearer {accessToken}。测试与生产凭证分开使用。',
   '业务顺序：创建客户 → 上传证件、地址证明、银行流水 → 申请开户 → 添加同名外部账户 → 获取线下打款指引，或发起出金、账户划转。',
   '同一开户申请或付款重试使用相同 Idempotency-Key；最终结果通过交易查询或 Webhook 获取。',
-  'Webhook 地址、回调 IP 白名单与密钥在租户业务台配置；在那里获取仅展示一次的 Secret 和验签公钥。用于内容解密的下游私钥自行保管。',
+  'Webhook 地址、回调 IP 白名单与密钥可在租户业务台配置，或使用成员Token调用安全管理API；在那里获取仅展示一次的 Secret 和验签公钥。用于内容解密的下游私钥自行保管。',
   '账单描述当前租户与 YASBe 的结算费用，要求 invoices:read 权限，不是终端客户的账单接口。',
 ])
-const endpointGroups = computed(() => [{ label: copy.value.apiReference, items: endpoints.value }])
+const endpointGroups = computed(() => isFiatModule.value ? [
+  { label: locale.value === 'en' ? 'BUSINESS API' : '法币业务 API', items: endpoints.value.filter(e => e.authType !== 'member') },
+  { label: locale.value === 'en' ? 'SECURITY MANAGEMENT' : '安全管理 API', items: endpoints.value.filter(e => e.authType === 'member') },
+] : [{ label: copy.value.apiReference, items: endpoints.value }])
+const securityRequirements = computed(() => locale.value === 'en'
+  ? 'Security management requires a member login token with TENANT_ADMIN or TENANT_DEVELOPER role, not an API Key token. LIVE API Key creation, rotation and revocation require account TOTP; TEST API Key and webhook changes follow member security preferences. Secrets appear once. Download public keys only; signing private keys remain server-side. Configure a callback IP allowlist before delivery.'
+  : '安全管理接口使用业务台的成员登录Token，仅TENANT_ADMIN管理员或TENANT_DEVELOPER开发者可操作，不能使用API Key业务Token。LIVE API Key创建、轮换、吊销强制账户2FA；TEST API Key及Webhook变更按成员安全偏好校验totpCode。Secret仅展示一次，只提供公钥下载，签名私钥保留在服务端。回调前必须配置目标IP白名单。')
 const twoFactorToken = ref('')
 const uploadFile = ref(null)
 const uploadInput = ref(null)
