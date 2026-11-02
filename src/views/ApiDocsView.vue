@@ -440,7 +440,7 @@ async function sendRequest() {
       const json = JSON.parse(text)
       responseText.value = JSON.stringify(json, null, 2)
       if (isFiatModule.value && response.ok) {
-        const updated = updateFiatDocsSession({ apiToken: fiatAccessToken.value, memberToken: memberAccessToken.value, accountToken: accountAccessToken.value }, activeEndpoint.value, json)
+        const updated = updateFiatDocsSession({ apiToken: fiatAccessToken.value, memberToken: memberAccessToken.value, accountToken: accountAccessToken.value }, requestEndpoint, json)
         fiatAccessToken.value = updated.apiToken
         memberAccessToken.value = updated.memberToken
         accountAccessToken.value = updated.accountToken
