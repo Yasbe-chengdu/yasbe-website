@@ -21,7 +21,7 @@ test('payment and bank examples match the selected currency without mutating oth
 test('public catalog includes business and developer security routes but excludes account and page operations', () => {
   for (const currency of ['EUR', 'GBP', 'USD']) {
     const endpoints = getFiatEndpoints(currency)
-    assert.equal(endpoints.length, 45)
+    assert.equal(endpoints.length, 46)
     assert.equal(endpoints.filter(e => e.authType === 'member').length, 22)
     for (const endpoint of endpoints) {
       assert.ok(endpoint.path.startsWith('/partner-api/v1/') || endpoint.path.startsWith('/apiTenant/developer/'))
@@ -87,5 +87,30 @@ test('security examples preserve IP replacement, one-time secrets and safe encry
     assert.ok(auth.description.includes('成员'))
     const id = e.fields.find(f => f.name === 'id')
     if (id) assert.equal(id.defaultValue, '')
+  }
+})
+
+test('opening countries expose versioned residence policy and keep role administration private', () => {
+  const endpoint = find('EUR', 'fiat-opening-countries')
+  assert.equal(endpoint.path, '/partner-api/v1/opening/countries')
+  assert.equal(endpoint.responseExample.data.purpose, 'RESIDENCE')
+  assert.equal(endpoint.responseExample.data.listSource, 'YASBE_EXISTING_LINKED_CLIENT_POLICY')
+  assert.ok(endpoint.responseFields.some(f => f.name === 'data.countries[].countryCode' && f.type === 'string'))
+  assert.ok(endpoint.responseFields.some(f => f.name === 'data.policyVersion'))
+  assert.ok(!getFiatEndpoints().some(e => e.path.includes('/account/roles')))
+})
+
+// 新开户契约只收集身份和文件资料，官网不得再要求已取消的背景表单。
+test('opening contract only requests identity, country, address and proof documents', () => {
+  const removed = ['requiredProducts', 'employmentCurrentEmployer', 'employmentDesignation', 'employmentIndustry', 'employmentOccupationDescription', 'politicalIsPep', 'politicalPepCategory', 'annualIncomeRange', 'sourceOfFunds', 'expectedMonthlyPaymentAmount', 'expectedMonthlyReceivedAmount', 'kycBackgroundExpectedMonthlyTransactionCount', 'kycBackgroundFundsSourceSameAsWealth', 'kycBackgroundWealthSources']
+  for (const currency of ['EUR', 'GBP', 'USD']) {
+    const e = find(currency, 'fiat-create-va')
+    for (const name of removed) {
+      assert.ok(!e.fields.some(f => f.name === `openingInformation.${name}`), name)
+      assert.equal(e.example.openingInformation[name], undefined, name)
+    }
+    for (const name of ['firstName', 'lastName', 'residenceCountry', 'documentType', 'passportNumber', 'kycAddressProofDocumentPath', 'kycBackgroundProofOfFundsDocumentPath']) {
+      assert.equal(e.fields.find(f => f.name === `openingInformation.${name}`).required, true, name)
+    }
   }
 })

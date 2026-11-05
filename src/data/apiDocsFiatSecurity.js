@@ -56,9 +56,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -153,9 +153,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -240,9 +240,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -311,9 +311,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -382,9 +382,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -515,9 +515,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -632,9 +632,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -754,9 +754,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -825,9 +825,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -888,9 +888,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -954,9 +954,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -1032,9 +1032,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -1141,9 +1141,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -1209,9 +1209,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -1266,9 +1266,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -1331,9 +1331,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -1398,9 +1398,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -1470,9 +1470,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -1541,9 +1541,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -1593,9 +1593,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -1658,9 +1658,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -1737,9 +1737,9 @@ export const fiatSecurityEndpoints = [
         "description": "Token无效、过期，或使用了错误类型的Token。"
       },
       {
-        "code": "ROLE_FORBIDDEN",
+        "code": "PERMISSION_FORBIDDEN",
         "status": 403,
-        "description": "当前成员角色无权管理此配置。"
+        "description": "当前成员缺少此操作所需权限。"
       },
       {
         "code": "INVALID_2FA_CODE",
@@ -1754,7 +1754,7 @@ export const fiatSecurityCopy = {
     "fiat-security-get-api-keys": {
       "label": "查询 API Key",
       "title": "查询 API Key",
-      "description": "查询 API Key",
+      "description": "成员需具备操作权限：api_keys:read。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。"
@@ -1763,7 +1763,7 @@ export const fiatSecurityCopy = {
     "fiat-security-post-api-keys": {
       "label": "创建 API Key",
       "title": "创建 API Key",
-      "description": "创建 API Key",
+      "description": "成员需具备操作权限：api_keys:manage。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1777,7 +1777,7 @@ export const fiatSecurityCopy = {
     "fiat-security-post-api-keys-id-rotate": {
       "label": "轮换 API Key",
       "title": "轮换 API Key",
-      "description": "轮换 API Key",
+      "description": "成员需具备操作权限：api_keys:manage。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1790,7 +1790,7 @@ export const fiatSecurityCopy = {
     "fiat-security-post-api-keys-id-revoke": {
       "label": "吊销 API Key",
       "title": "吊销 API Key",
-      "description": "吊销 API Key",
+      "description": "成员需具备操作权限：api_keys:manage。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1802,7 +1802,7 @@ export const fiatSecurityCopy = {
     "fiat-security-get-webhooks": {
       "label": "查询 Webhook 端点",
       "title": "查询 Webhook 端点",
-      "description": "查询 Webhook 端点",
+      "description": "成员需具备操作权限：webhooks:read。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。"
@@ -1811,7 +1811,7 @@ export const fiatSecurityCopy = {
     "fiat-security-post-webhooks": {
       "label": "创建 Webhook 端点",
       "title": "创建 Webhook 端点",
-      "description": "HMAC Secret 仅展示一次；RSA 公钥可下载，平台私钥永不返回。",
+      "description": "成员需具备操作权限：webhooks:manage。HMAC Secret 仅展示一次；RSA 公钥可下载，平台私钥永不返回。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1829,7 +1829,7 @@ export const fiatSecurityCopy = {
     "fiat-security-post-webhooks-download": {
       "label": "创建 Webhook 并下载一次性密钥包",
       "title": "创建 Webhook 并下载一次性密钥包",
-      "description": "创建 Webhook 并下载一次性密钥包",
+      "description": "成员需具备操作权限：webhooks:manage。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1848,7 +1848,7 @@ export const fiatSecurityCopy = {
     "fiat-security-put-webhooks-id": {
       "label": "修改 Webhook 端点",
       "title": "修改 Webhook 端点",
-      "description": "修改 Webhook 端点",
+      "description": "成员需具备操作权限：webhooks:manage。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1867,7 +1867,7 @@ export const fiatSecurityCopy = {
     "fiat-security-patch-webhooks-id-status": {
       "label": "暂停或恢复 Webhook 端点",
       "title": "暂停或恢复 Webhook 端点",
-      "description": "暂停或恢复 Webhook 端点",
+      "description": "成员需具备操作权限：webhooks:manage。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1879,7 +1879,7 @@ export const fiatSecurityCopy = {
     "fiat-security-post-webhooks-id-verify": {
       "label": "发起 Webhook 验证投递",
       "title": "发起 Webhook 验证投递",
-      "description": "发起 Webhook 验证投递",
+      "description": "成员需具备操作权限：webhooks:manage。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1890,7 +1890,7 @@ export const fiatSecurityCopy = {
     "fiat-security-post-webhooks-id-rotate-secret": {
       "label": "轮换 Webhook HMAC Secret",
       "title": "轮换 Webhook HMAC Secret",
-      "description": "轮换 Webhook HMAC Secret",
+      "description": "成员需具备操作权限：webhooks:manage。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1901,7 +1901,7 @@ export const fiatSecurityCopy = {
     "fiat-security-put-webhooks-id-payload-encryption": {
       "label": "配置 Webhook 正文加密",
       "title": "配置 Webhook 正文加密",
-      "description": "配置 Webhook 正文加密",
+      "description": "成员需具备操作权限：webhooks:manage。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1914,7 +1914,7 @@ export const fiatSecurityCopy = {
     "fiat-security-get-webhook-deliveries": {
       "label": "分页查询 Webhook 投递日志",
       "title": "分页查询 Webhook 投递日志",
-      "description": "分页查询 Webhook 投递日志",
+      "description": "成员需具备操作权限：webhook_deliveries:read。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1926,7 +1926,7 @@ export const fiatSecurityCopy = {
     "fiat-security-get-webhook-deliveries-id-attempts": {
       "label": "查询 Webhook 全部投递尝试",
       "title": "查询 Webhook 全部投递尝试",
-      "description": "查询 Webhook 全部投递尝试",
+      "description": "成员需具备操作权限：webhook_deliveries:read。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1936,7 +1936,7 @@ export const fiatSecurityCopy = {
     "fiat-security-post-webhook-deliveries-id-retry": {
       "label": "手动重投失败的 Webhook",
       "title": "手动重投失败的 Webhook",
-      "description": "手动重投失败的 Webhook",
+      "description": "成员需具备操作权限：webhook_deliveries:retry。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1946,7 +1946,7 @@ export const fiatSecurityCopy = {
     "fiat-security-get-public-keys-environment": {
       "label": "查询 Webhook RSA 验签公钥",
       "title": "查询 Webhook RSA 验签公钥",
-      "description": "查询 Webhook RSA 验签公钥",
+      "description": "成员需具备操作权限：webhook_keys:read。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1956,7 +1956,7 @@ export const fiatSecurityCopy = {
     "fiat-security-get-public-keys-environment-history": {
       "label": "查询 Webhook RSA 验签公钥历史",
       "title": "查询 Webhook RSA 验签公钥历史",
-      "description": "查询 Webhook RSA 验签公钥历史",
+      "description": "成员需具备操作权限：webhook_keys:read。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1966,7 +1966,7 @@ export const fiatSecurityCopy = {
     "fiat-security-get-public-keys-environment-by-id-keyId": {
       "label": "按 Key ID 查询 Webhook RSA 验签公钥",
       "title": "按 Key ID 查询 Webhook RSA 验签公钥",
-      "description": "按 Key ID 查询 Webhook RSA 验签公钥",
+      "description": "成员需具备操作权限：webhook_keys:read。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1977,7 +1977,7 @@ export const fiatSecurityCopy = {
     "fiat-security-post-public-keys-environment-rotate": {
       "label": "轮换 Webhook RSA 签名密钥",
       "title": "轮换 Webhook RSA 签名密钥",
-      "description": "轮换 Webhook RSA 签名密钥",
+      "description": "成员需具备操作权限：webhook_keys:rotate。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1988,7 +1988,7 @@ export const fiatSecurityCopy = {
     "fiat-security-get-public-keys-environment-download": {
       "label": "下载 Webhook RSA 验签公钥 PEM",
       "title": "下载 Webhook RSA 验签公钥 PEM",
-      "description": "下载 Webhook RSA 验签公钥 PEM",
+      "description": "成员需具备操作权限：webhook_keys:read。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -1998,7 +1998,7 @@ export const fiatSecurityCopy = {
     "fiat-security-get-webhooks-id-ip-allowlist": {
       "label": "单独查询回调IP白名单",
       "title": "单独查询回调IP白名单",
-      "description": "使用租户登录Token，须TENANT_ADMIN或TENANT_DEVELOPER角色。按租户和环境隔离。查询指定端点的白名单配置。",
+      "description": "成员需具备操作权限：webhooks:read。使用租户登录Token，须具备对应操作权限（支持已授权的自定义角色）。按租户和环境隔离。查询指定端点的白名单配置。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",
@@ -2008,7 +2008,7 @@ export const fiatSecurityCopy = {
     "fiat-security-put-webhooks-id-ip-allowlist": {
       "label": "单独配置回调IP白名单",
       "title": "单独配置回调IP白名单",
-      "description": "使用租户登录Token，须TENANT_ADMIN或TENANT_DEVELOPER角色。按租户和环境隔离。allowedIps为英文逗号分隔字符串；整组替换，仅更新白名单，保留其他端点配置。非暂停端点自动重新验证，暂停端点保持暂停。",
+      "description": "成员需具备操作权限：webhooks:manage。使用租户登录Token，须具备对应操作权限（支持已授权的自定义角色）。按租户和环境隔离。allowedIps为英文逗号分隔字符串；整组替换，仅更新白名单，保留其他端点配置。非暂停端点自动重新验证，暂停端点保持暂停。",
       "detail": "安全配置使用成员登录Token，不能使用API Key业务Token；Secret只展示一次，私钥不下发。回调IP须替换成自己的服务器公网IP。",
       "fields": {
         "Authorization": "租户成员登录后的 Bearer Token；不能使用 API Key 换取的业务 Token。",

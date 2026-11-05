@@ -201,7 +201,7 @@ const activeAccessToken = computed({
 })
 const bearerTokenLabel = computed(() => !isFiatModule.value ? copy.value.bearerToken
   : activeEndpoint.value.authType === 'member'
-    ? ({ en: 'Member token (TENANT_ADMIN / TENANT_DEVELOPER)', 'zh-CN': '成员 Token（管理员／开发者）', 'zh-TW': '成員Token（管理員／開發者）' }[locale.value] ?? 'Member token')
+    ? ({ en: 'Member token with the required operation permission', 'zh-CN': '成员 Token（需对应操作权限）', 'zh-TW': '成員Token（需對應操作權限）' }[locale.value] ?? 'Member token')
     : ({ en: 'API Key access token', 'zh-CN': 'API Key 访问 Token', 'zh-TW': 'API Key 存取Token' }[locale.value] ?? 'API Key access token'))
 const fieldTypeLabel = computed(() => locale.value === 'en' ? 'Type' : '类型')
 const nestedFieldNotice = computed(() => locale.value === 'en' ? 'Nested required fields apply when their parent object is present. Conditional requirements and role checks also apply; follow the field descriptions. Samples contain placeholders and do not guarantee bank approval.' : '嵌套字段的必填标记指父对象存在时的要求，还须满足字段说明中的条件必填及角色授权。示例中的客户、文件key和密钥须替换为真实值；示例不代表通道已审批通过。')
@@ -224,8 +224,8 @@ const endpointGroups = computed(() => isFiatModule.value ? [
   { label: locale.value === 'en' ? 'SECURITY MANAGEMENT' : '安全管理 API', items: endpoints.value.filter(e => e.authType === 'member') },
 ] : [{ label: copy.value.apiReference, items: endpoints.value }])
 const securityRequirements = computed(() => locale.value === 'en'
-  ? 'Security management requires a member login token with TENANT_ADMIN or TENANT_DEVELOPER role, not an API Key token. LIVE API Key creation, rotation and revocation require account TOTP; TEST API Key and webhook changes follow member security preferences. Secrets appear once. Download public keys only; signing private keys remain server-side. Configure a callback IP allowlist before delivery.'
-  : '安全管理接口使用业务台的成员登录Token，仅TENANT_ADMIN管理员或TENANT_DEVELOPER开发者可操作，不能使用API Key业务Token。LIVE API Key创建、轮换、吊销强制账户2FA；TEST API Key及Webhook变更按成员安全偏好校验totpCode。Secret仅展示一次，只提供公钥下载，签名私钥保留在服务端。回调前必须配置目标IP白名单。')
+  ? 'Security management requires a member login token with the corresponding operation permission (built-in admin/developer or an authorized custom role), not an API Key token. LIVE API Key creation, rotation and revocation require account TOTP; TEST API Key and webhook changes follow member security preferences. Secrets appear once. Download public keys only; signing private keys remain server-side. Configure a callback IP allowlist before delivery.'
+  : '安全管理接口使用业务台的成员登录Token，需具备对应操作权限，支持内置管理员／开发者及已授权的自定义角色，不能使用API Key业务Token。LIVE API Key创建、轮换、吊销强制账户2FA；TEST API Key及Webhook变更按成员安全偏好校验totpCode。Secret仅展示一次，只提供公钥下载，签名私钥保留在服务端。回调前必须配置目标IP白名单。')
 const twoFactorToken = ref('')
 const uploadFile = ref(null)
 const uploadInput = ref(null)

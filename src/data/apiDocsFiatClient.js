@@ -7,7 +7,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       }
     ],
     "responseFields": [
@@ -137,7 +137,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "name",
@@ -269,7 +269,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "id",
@@ -391,7 +391,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "id",
@@ -464,7 +464,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       }
     ],
     "responseFields": [
@@ -606,7 +606,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "name",
@@ -822,7 +822,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "format",
@@ -910,7 +910,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "id",
@@ -1037,7 +1037,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "id",
@@ -1114,7 +1114,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "id",
@@ -1180,7 +1180,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "id",
@@ -1258,7 +1258,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "id",
@@ -1338,7 +1338,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "pageNum",
@@ -1653,7 +1653,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "id",
@@ -1770,7 +1770,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "id",
@@ -1829,7 +1829,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "environment",
@@ -1936,7 +1936,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "environment",
@@ -2043,7 +2043,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "environment",
@@ -2158,7 +2158,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "environment",
@@ -2272,7 +2272,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "environment",
@@ -3108,7 +3108,7 @@ export const fiatContracts = {
         "location": "Body",
         "type": "object",
         "required": true,
-        "description": "与YASBe对齐的个人开户资料，证件按类型必填，地址证明及银行流水必填；文件使用上传接口返回的私有key"
+        "description": "个人开户资料：国家、用户身份、地址、证件、地址证明和资金证明；不收集产品、就业或交易预期资料"
       },
       {
         "name": "openingInformation.firstName",
@@ -3250,104 +3250,6 @@ export const fiatContracts = {
         "type": "string",
         "required": true,
         "description": "银行流水或资金来源证明文件key，必填"
-      },
-      {
-        "name": "openingInformation.employmentCurrentEmployer",
-        "location": "Body",
-        "type": "string",
-        "required": true,
-        "description": "当前雇主，无雇主时填写实际情况说明"
-      },
-      {
-        "name": "openingInformation.employmentDesignation",
-        "location": "Body",
-        "type": "string",
-        "required": true,
-        "description": "职位或身份说明"
-      },
-      {
-        "name": "openingInformation.employmentIndustry",
-        "location": "Body",
-        "type": "string",
-        "required": true,
-        "description": "就业行业"
-      },
-      {
-        "name": "openingInformation.employmentOccupationDescription",
-        "location": "Body",
-        "type": "string",
-        "required": true,
-        "description": "职业描述"
-      },
-      {
-        "name": "openingInformation.politicalIsPep",
-        "location": "Body",
-        "type": "boolean",
-        "required": true,
-        "description": "是否政治公众人物，必填"
-      },
-      {
-        "name": "openingInformation.politicalPepCategory",
-        "location": "Body",
-        "type": "string",
-        "required": false,
-        "description": "政治公众人物类别，politicalIsPep为true时必填"
-      },
-      {
-        "name": "openingInformation.annualIncomeRange",
-        "location": "Body",
-        "type": "string",
-        "required": true,
-        "description": "年收入范围，与YASBe开户资料一致"
-      },
-      {
-        "name": "openingInformation.sourceOfFunds",
-        "location": "Body",
-        "type": "string",
-        "required": true,
-        "description": "资金来源类型或说明"
-      },
-      {
-        "name": "openingInformation.requiredProducts",
-        "location": "Body",
-        "type": "array<string>",
-        "required": true,
-        "description": "申请使用的产品列表"
-      },
-      {
-        "name": "openingInformation.expectedMonthlyPaymentAmount",
-        "location": "Body",
-        "type": "string",
-        "required": true,
-        "description": "预计每月付款金额或范围"
-      },
-      {
-        "name": "openingInformation.kycBackgroundExpectedMonthlyTransactionCount",
-        "location": "Body",
-        "type": "string",
-        "required": true,
-        "description": "预计每月交易笔数或范围"
-      },
-      {
-        "name": "openingInformation.expectedMonthlyReceivedAmount",
-        "location": "Body",
-        "type": "string",
-        "required": true,
-        "description": "预计每月收款金额或范围"
-      },
-      {
-        "name": "openingInformation.kycBackgroundFundsSourceSameAsWealth",
-        "location": "Body",
-        "type": "boolean",
-        "required": true,
-        "description": "资金来源是否与财富来源相同，必填"
-      },
-      {
-        "name": "openingInformation.kycBackgroundWealthSources",
-        "location": "Body",
-        "type": "string",
-        "required": false,
-        "description": "财富来源说明，资金与财富来源不同时必填"
       },
       {
         "name": "termsVersion",
@@ -7201,7 +7103,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "id",
@@ -7290,7 +7192,7 @@ export const fiatContracts = {
         "location": "Header",
         "type": "string",
         "required": true,
-        "description": "成员登录Token，格式 Bearer <accessToken>；仅TENANT_ADMIN或TENANT_DEVELOPER可操作，不能使用API Key业务Token。"
+        "description": "成员登录Token，格式 Bearer <accessToken>；需具备对应操作权限（内置管理员、开发者或已授权的自定义角色），不能使用API Key业务Token。"
       },
       {
         "name": "id",
@@ -7477,6 +7379,117 @@ export const fiatContracts = {
         "format": "int64",
         "required": false,
         "description": "文件大小，字节"
+      }
+    ]
+  },
+  "GET /partner-api/v1/opening/countries": {
+    "fields": [
+      {
+        "name": "Authorization",
+        "location": "Header",
+        "type": "string",
+        "required": true,
+        "description": "API Key 换取的访问令牌，格式 Bearer <accessToken>。"
+      }
+    ],
+    "responseFields": [
+      {
+        "name": "success",
+        "location": "Response",
+        "type": "boolean",
+        "required": false,
+        "description": "请求是否成功"
+      },
+      {
+        "name": "code",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "业务状态码"
+      },
+      {
+        "name": "message",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "响应消息"
+      },
+      {
+        "name": "data",
+        "location": "Response",
+        "type": "object",
+        "required": false,
+        "description": "当前YASBe开户国家准入选项及依据"
+      },
+      {
+        "name": "data.policyVersion",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "名单版本"
+      },
+      {
+        "name": "data.listSource",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "名单依据，固定YASBE_EXISTING_LINKED_CLIENT_POLICY，非上游实时查询"
+      },
+      {
+        "name": "data.purpose",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "适用字段，RESIDENCE表示居住国家，不应当作国籍或出生地限制"
+      },
+      {
+        "name": "data.notice",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "准入说明，允许提交不等于保证开户成功"
+      },
+      {
+        "name": "data.countries",
+        "location": "Response",
+        "type": "array<object>",
+        "required": false,
+        "description": "按现有YASBe通道准入名单过滤的可申请居住国家"
+      },
+      {
+        "name": "data.countries[].countryCode",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "ISO 3166-1 alpha-2国家代码"
+      },
+      {
+        "name": "data.countries[].countryNameEn",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "英文国家名称"
+      },
+      {
+        "name": "data.countries[].countryNameZh",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "简体中文国家名称"
+      },
+      {
+        "name": "data.countries[].countryNameTw",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "繁体中文国家名称"
+      },
+      {
+        "name": "traceId",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "请求链路追踪 ID"
       }
     ]
   }
