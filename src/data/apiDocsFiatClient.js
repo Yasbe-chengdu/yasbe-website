@@ -3097,13 +3097,6 @@ export const fiatContracts = {
         ]
       },
       {
-        "name": "ibanCountry",
-        "location": "Body",
-        "type": "string",
-        "required": false,
-        "description": "期望 IBAN 国家二字码"
-      },
-      {
         "name": "openingInformation",
         "location": "Body",
         "type": "object",
@@ -3151,7 +3144,7 @@ export const fiatContracts = {
         "location": "Body",
         "type": "string",
         "required": true,
-        "description": "居住国家，两位国家代码"
+        "description": "居住地址所属国家，两位ISO国家代码；用于OpenPayd地址和CAP明确允许地区校验"
       },
       {
         "name": "openingInformation.address",
@@ -3182,25 +3175,11 @@ export const fiatContracts = {
         "description": "邮编"
       },
       {
-        "name": "openingInformation.countryOfBirth",
-        "location": "Body",
-        "type": "string",
-        "required": true,
-        "description": "出生国家，两位国家代码"
-      },
-      {
         "name": "openingInformation.nationality",
         "location": "Body",
         "type": "string",
         "required": true,
-        "description": "国籍，两位国家代码"
-      },
-      {
-        "name": "openingInformation.taxResidency",
-        "location": "Body",
-        "type": "string",
-        "required": true,
-        "description": "税务居住国，两位国家代码"
+        "description": "国籍，两位ISO国家代码；可与居住国家不同，不受居住国家列表过滤"
       },
       {
         "name": "openingInformation.documentType",
@@ -7433,7 +7412,7 @@ export const fiatContracts = {
         "location": "Response",
         "type": "string",
         "required": false,
-        "description": "名单依据，固定YASBE_EXISTING_LINKED_CLIENT_POLICY，非上游实时查询"
+        "description": "名单依据，固定OPENPAYD_CAP_2_3_PERMITTED_JURISDICTIONS，非上游实时查询"
       },
       {
         "name": "data.purpose",
@@ -7454,7 +7433,7 @@ export const fiatContracts = {
         "location": "Response",
         "type": "array<object>",
         "required": false,
-        "description": "按现有YASBe通道准入名单过滤的可申请居住国家"
+        "description": "仅CAP明确允许的开户居住国家，受限待批和禁止地区不返回"
       },
       {
         "name": "data.countries[].countryCode",
@@ -7479,6 +7458,82 @@ export const fiatContracts = {
       },
       {
         "name": "data.countries[].countryNameTw",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "繁体中文国家名称"
+      },
+      {
+        "name": "traceId",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "请求链路追踪 ID"
+      }
+    ]
+  },
+  "GET /partner-api/v1/opening/supported-countries": {
+    "fields": [
+      {
+        "name": "Authorization",
+        "location": "Header",
+        "type": "string",
+        "required": true,
+        "description": "API Key 换取的访问令牌，格式 Bearer <accessToken>。"
+      }
+    ],
+    "responseFields": [
+      {
+        "name": "success",
+        "location": "Response",
+        "type": "boolean",
+        "required": false,
+        "description": "请求是否成功"
+      },
+      {
+        "name": "code",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "业务状态码"
+      },
+      {
+        "name": "message",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "响应消息"
+      },
+      {
+        "name": "data",
+        "location": "Response",
+        "type": "array<object>",
+        "required": false,
+        "description": "明确支持开户的居住国家数组"
+      },
+      {
+        "name": "data[].countryCode",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "ISO 3166-1 alpha-2国家代码"
+      },
+      {
+        "name": "data[].countryNameEn",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "英文国家名称"
+      },
+      {
+        "name": "data[].countryNameZh",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "简体中文国家名称"
+      },
+      {
+        "name": "data[].countryNameTw",
         "location": "Response",
         "type": "string",
         "required": false,

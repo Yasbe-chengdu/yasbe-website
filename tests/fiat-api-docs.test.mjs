@@ -21,7 +21,7 @@ test('payment and bank examples match the selected currency without mutating oth
 test('public catalog includes business and developer security routes but excludes account and page operations', () => {
   for (const currency of ['EUR', 'GBP', 'USD']) {
     const endpoints = getFiatEndpoints(currency)
-    assert.equal(endpoints.length, 46)
+    assert.equal(endpoints.length, 47)
     assert.equal(endpoints.filter(e => e.authType === 'member').length, 22)
     for (const endpoint of endpoints) {
       assert.ok(endpoint.path.startsWith('/partner-api/v1/') || endpoint.path.startsWith('/apiTenant/developer/'))
@@ -94,7 +94,7 @@ test('opening countries expose versioned residence policy and keep role administ
   const endpoint = find('EUR', 'fiat-opening-countries')
   assert.equal(endpoint.path, '/partner-api/v1/opening/countries')
   assert.equal(endpoint.responseExample.data.purpose, 'RESIDENCE')
-  assert.equal(endpoint.responseExample.data.listSource, 'YASBE_EXISTING_LINKED_CLIENT_POLICY')
+  assert.equal(endpoint.responseExample.data.listSource, 'OPENPAYD_CAP_2_3_PERMITTED_JURISDICTIONS')
   assert.ok(endpoint.responseFields.some(f => f.name === 'data.countries[].countryCode' && f.type === 'string'))
   assert.ok(endpoint.responseFields.some(f => f.name === 'data.policyVersion'))
   assert.ok(!getFiatEndpoints().some(e => e.path.includes('/account/roles')))
@@ -113,4 +113,30 @@ test('opening contract only requests identity, country, address and proof docume
       assert.equal(e.fields.find(f => f.name === `openingInformation.${name}`).required, true, name)
     }
   }
+})
+
+// 两种国家含义不同，前端不能用国籍代填居住国家，也不再展示历史国家参数。
+test('opening country inputs only contain nationality and residence', () => {
+  for (const currency of ['EUR', 'GBP', 'USD']) {
+    const e = find(currency, 'fiat-create-va')
+    for (const name of ['openingInformation.nationality', 'openingInformation.residenceCountry']) {
+      assert.equal(e.fields.find(f => f.name === name)?.required, true, name)
+    }
+    for (const name of ['openingInformation.countryOfBirth', 'openingInformation.taxResidency', 'ibanCountry']) {
+      assert.ok(!e.fields.some(f => f.name === name), name)
+    }
+    assert.equal(e.example.ibanCountry, undefined)
+    assert.equal(e.example.openingInformation.countryOfBirth, undefined)
+    assert.equal(e.example.openingInformation.taxResidency, undefined)
+  }
+})
+
+test('supported opening countries use a direct array and never claim bank-country support', () => {
+  const e = find('EUR', 'fiat-supported-opening-countries')
+  assert.equal(e.path, '/partner-api/v1/opening/supported-countries')
+  assert.ok(Array.isArray(e.responseExample.data))
+  assert.ok(e.responseFields.some(f => f.name === 'data[].countryCode'))
+  assert.ok(e.description.includes('CAP'))
+  assert.ok(e.detail.includes('external bank account countries'))
+  assert.equal(find('EUR', 'fiat-create-va').example.openingInformation.residenceCountry, 'GB')
 })
