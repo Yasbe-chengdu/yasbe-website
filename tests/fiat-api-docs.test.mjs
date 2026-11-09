@@ -51,6 +51,11 @@ test('field types and complete response structures are sourced from the backend'
   const e = find('EUR', 'fiat-create-withdrawal')
   assert.equal(e.fields.find(f => f.name === 'amountMinor').type, 'integer')
   for (const name of ['data.failureCode', 'data.returnStatus', 'data.counterpartyName']) assert.ok(e.responseFields.some(f => f.name === name))
+  const detail = find('EUR', 'fiat-transaction-detail')
+  assert.equal(detail.responseFields.find(f => f.name === 'data.payerIban').type, 'string')
+  assert.ok(detail.responseExample.data.payerIban)
+  assert.equal(find('USD', 'fiat-transaction-detail').responseExample.data.payerIban, null)
+  assert.ok(!find('EUR', 'fiat-transactions').responseFields.some(f => f.name.endsWith('.payerIban')))
 })
 
 // 打包模块和界面源码也不能依赖客户端契约，避免只隐藏菜单而仍公开内部操作。

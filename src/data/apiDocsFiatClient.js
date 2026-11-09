@@ -6233,6 +6233,13 @@ export const fiatContracts = {
         "description": "银行流水对手方户名"
       },
       {
+        "name": "data.payerIban",
+        "location": "Response",
+        "type": "string",
+        "required": false,
+        "description": "OpenPayd 入金实际付款人的完整 IBAN，渠道未提供完整号码时为 null"
+      },
+      {
         "name": "data.nameMatchStatus",
         "location": "Response",
         "type": "string",

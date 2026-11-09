@@ -236,9 +236,9 @@ export const fiatBusinessEndpoints = [
   {
     id: 'fiat-transaction-detail', label: 'Get transaction', method: 'GET', path: '/partner-api/v1/transactions/{transactionNo}',
     title: 'Get a transaction and fee snapshot', description: 'Return one tenant transaction together with the immutable fee snapshot generated for it.',
-    detail: 'Pricing percentages are frozen at processing time. No upstream provider or channel field is returned.', requiresAuth: true, successStatus: '200',
+    detail: 'For a bank deposit, payerIban contains the actual payer’s complete IBAN when OpenPayd supplies it. The field is null if the IBAN is absent, masked, or invalid, or if the transaction is not an external deposit.', requiresAuth: true, successStatus: '200',
     fields: [authField, { name: 'transactionNo', location: 'Path', required: true, defaultValue: 'TX-01J...', description: 'YASBe transaction number.' }], example: {},
-    responseExample: { success: true, code: 'OK', message: 'success', data: { transactionNo: 'TX-01J…', direction: 'DEPOSIT', currency: 'USD', principalMinor: '100000', status: 'SUCCESS', feeNo: 'FEE-01J…', feeCurrency: 'USD', feeMinor: '300', percentageRate: '0.00300000', fixedFeeMinor: '0' }, traceId: '01J…' },
+    responseExample: { success: true, code: 'OK', message: 'success', data: { transactionNo: 'TX-01J…', direction: 'DEPOSIT', currency: 'EUR', principalMinor: '100000', status: 'SUCCESS', payerIban: 'DE89370400440532013000', feeNo: 'FEE-01J…', feeCurrency: 'EUR', feeMinor: '300', percentageRate: '0.00300000', fixedFeeMinor: '0' }, traceId: '01J…' },
     errors: [{ code: 'TRANSACTION_NOT_FOUND', status: 404, description: 'The transaction does not exist in this tenant.' }, ...authErrors],
   },
   {
@@ -308,7 +308,7 @@ export const fiatCopy = {
     'fiat-create-withdrawal': { label: '发起出金', title: '发起 OpenPayd 法币出金', description: '冻结客户本金并提交真实 Sweep Payout，最终状态通过交易查询或 Webhook 获取。', fields: {} },
     'fiat-create-transfer': { label: '账户之间划转', title: '租户虚拟账户真实划转', description: '源、目标账户必须属于本租户、币种一致且均已开通；通过 OpenPayd 银行轨道完成，不做本地伪记账。', fields: {} },
     'fiat-transactions': { label: '查询交易流水', title: '分页查询法币交易', description: '返回本租户的入金与出金及归一状态。', fields: {} },
-    'fiat-transaction-detail': { label: '交易详情', title: '查询交易与费用快照', description: '返回单笔交易及处理时冻结的费用快照。', fields: {} },
+    'fiat-transaction-detail': { label: '交易详情', title: '查询交易与费用快照', description: '返回单笔交易及费用快照。渠道提供完整付款人 IBAN 时，入金详情返回 payerIban。号码缺失、脱敏或无效时返回 null。', fields: {} },
     'fiat-invoices': { label: '查询账单', title: '分页查询月度账单', description: '按自然月和费用币种查询本租户账单。', fields: {} },
     'fiat-invoice-detail': { label: '账单详情', title: '查询月度账单详情', description: '返回账单金额及收款核销状态。', fields: {} },
     'fiat-invoice-pdf': { label: '下载账单 PDF', title: '下载已出账账单 PDF', description: '下载 YASBe 生成并保存在 MinIO 的账单 PDF。', fields: {} },
@@ -334,7 +334,7 @@ export const fiatCopy = {
     'fiat-create-withdrawal': { label: '發起出金', title: '發起 OpenPayd 法幣出金', description: '凍結客戶本金並提交真實 Sweep Payout，最終狀態透過交易查詢或 Webhook 取得。', fields: {} },
     'fiat-create-transfer': { label: '帳戶之間劃轉', title: '租戶虛擬帳戶真實劃轉', description: '來源、目標帳戶必須屬於本租戶、幣別一致且均已開通；透過 OpenPayd 銀行軌道完成，不做本地偽記帳。', fields: {} },
     'fiat-transactions': { label: '查詢交易流水', title: '分頁查詢法幣交易', description: '回傳本租戶的入金與出金及歸一狀態。', fields: {} },
-    'fiat-transaction-detail': { label: '交易詳情', title: '查詢交易與費用快照', description: '回傳單筆交易及處理時凍結的費用快照。', fields: {} },
+    'fiat-transaction-detail': { label: '交易詳情', title: '查詢交易與費用快照', description: '回傳單筆交易及費用快照。通道提供完整付款人 IBAN 時，入金詳情回傳 payerIban。號碼缺失、遮罩或無效時回傳 null。', fields: {} },
     'fiat-invoices': { label: '查詢帳單', title: '分頁查詢月度帳單', description: '依自然月和費用幣別查詢本租戶帳單。', fields: {} },
     'fiat-invoice-detail': { label: '帳單詳情', title: '查詢月度帳單詳情', description: '回傳帳單金額及收款核銷狀態。', fields: {} },
     'fiat-invoice-pdf': { label: '下載帳單 PDF', title: '下載已出帳帳單 PDF', description: '下載 YASBe 生成並保存在 MinIO 的帳單 PDF。', fields: {} },
@@ -365,6 +365,7 @@ export function getFiatEndpoints(currency = 'EUR') {
     }
     endpoint.example = rewrite(endpoint.example)
     endpoint.responseExample = rewrite(endpoint.responseExample)
+    if (endpoint.id === 'fiat-transaction-detail' && currency !== 'EUR') endpoint.responseExample.data.payerIban = null
     if (endpoint.path.endsWith('/withdrawals') && endpoint.method === 'POST') endpoint.example.paymentType = { EUR: 'SEPA_INSTANT', GBP: 'FASTER_PAYMENTS', USD: 'SWIFT' }[currency]
     if (endpoint.path.endsWith('/transfers') && endpoint.method === 'POST') {
       endpoint.example.sourceVaNo = `VA-${currency}-SOURCE`
