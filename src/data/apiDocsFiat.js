@@ -1,4 +1,5 @@
 import { fiatContracts } from './apiDocsFiatClient.js'
+import { virtualAccountClosureEndpoint, virtualAccountClosureCopy } from './apiDocsVirtualAccountClosure.js'
 import { fiatSecurityEndpoints, fiatSecurityCopy } from './apiDocsFiatSecurity.js'
 
 const authField = { name: 'Authorization', location: 'Header', required: true, description: 'Bearer access token returned by the token endpoint.' }
@@ -173,6 +174,7 @@ export const fiatBusinessEndpoints = [
     requiresAuth: true, successStatus: '200', fields: [authField, ...pageFields], example: {},
     responseExample: { success: true, code: 'OK', message: 'success', data: { pageNum: 1, pageSize: 10, total: 1, pages: 1, list: [{ vaNo: 'VA-01J…', applicationNo: 'VAA-01J…', externalCustomerId: 'cus_001', currency: 'USD', status: 'OPENED', holderName: 'Alex Chen', bankAccountNumber: '123456789', bankRoutingNumber: '021000021', iban: null, bic: null, sortCode: null }] }, traceId: '01J…' }, errors: authErrors,
   },
+  virtualAccountClosureEndpoint,
   {
     id: 'fiat-create-external-account', label: 'Add external account', method: 'POST', path: '/partner-api/v1/external-accounts',
     title: 'Add and verify a same-name external bank account', description: 'Register the bank account used as the verified source for deposit instructions and destination for withdrawals.',
@@ -344,6 +346,9 @@ export const fiatCopy = {
 }
 
 
+for (const [locale, copy] of Object.entries(virtualAccountClosureCopy)) {
+  fiatCopy[locale][virtualAccountClosureEndpoint.id] = copy
+}
 Object.assign(fiatCopy['zh-CN'], fiatSecurityCopy['zh-CN'])
 
 // 同一套法币业务和安全契约按币种展示，后端路由及鉴权方式保持不变。

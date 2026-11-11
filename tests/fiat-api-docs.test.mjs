@@ -21,7 +21,7 @@ test('payment and bank examples match the selected currency without mutating oth
 test('public catalog includes business and developer security routes but excludes account and page operations', () => {
   for (const currency of ['EUR', 'GBP', 'USD']) {
     const endpoints = getFiatEndpoints(currency)
-    assert.equal(endpoints.length, 47)
+    assert.equal(endpoints.length, 48)
     assert.equal(endpoints.filter(e => e.authType === 'member').length, 22)
     for (const endpoint of endpoints) {
       assert.ok(endpoint.path.startsWith('/partner-api/v1/') || endpoint.path.startsWith('/apiTenant/developer/'))
@@ -144,4 +144,16 @@ test('supported opening countries use a direct array and never claim bank-countr
   assert.ok(e.description.includes('CAP'))
   assert.ok(e.detail.includes('external bank account countries'))
   assert.equal(find('EUR', 'fiat-create-va').example.openingInformation.residenceCountry, 'GB')
+})
+
+test('virtual-account closure documents the test environment and lifecycle callbacks for every fiat currency', () => {
+  for (const currency of ['EUR', 'GBP', 'USD']) {
+    const endpoint = find(currency, 'fiat-close-va')
+    assert.equal(endpoint.method, 'POST')
+    assert.equal(endpoint.path, '/partner-api/v1/virtual-accounts/{vaNo}/close')
+    assert.equal(endpoint.responseExample.data.currency, currency)
+    assert.deepEqual(endpoint.example, {})
+    for (const value of ['virtual_accounts:close', 'https://api.beeznis.com']) assert.ok(endpoint.description.includes(value))
+    for (const event of ['virtual_account.closing', 'virtual_account.closed']) assert.ok(endpoint.detail.includes(event))
+  }
 })
