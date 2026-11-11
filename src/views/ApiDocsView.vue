@@ -62,6 +62,9 @@
           <h2>{{ endpointCopy(activeEndpoint).title }}</h2>
           <p>{{ endpointCopy(activeEndpoint).description }}</p>
           <p class="api-docs__endpoint-note">{{ endpointDetail(activeEndpoint) }}</p>
+          <p v-if="isClosureReference">
+            <a href="https://beeznis.com/api">{{ ({ en: 'Open the test API documentation', 'zh-CN': '打开测试 API 文档', 'zh-TW': '開啟測試 API 文件' }[locale] ?? 'Open the test API documentation') }}</a>
+          </p>
 
           <h3>{{ copy.requestParameters }}</h3>
           <div class="api-docs__table-wrap">
@@ -130,6 +133,7 @@ import { cardCopy, cardEndpoints } from '../data/apiDocsCards.js'
 import { cryptoCopy, cryptoEndpoints } from '../data/apiDocsCrypto.js'
 import { bridgeCopy, bridgeEndpoints } from '../data/apiDocsBridge.js'
 import { partnerCopy, partnerEndpoints } from '../data/apiDocsPartner.js'
+import { virtualAccountClosureCopy, virtualAccountClosureEndpoint, virtualAccountClosureTestBaseUrl } from '../data/apiDocsVirtualAccountClosure.js'
 
 const { locale } = useI18n()
 const languageCopy = {
@@ -256,15 +260,27 @@ const fiatEndpoints = [
   { id: 'webhook-public-key-pem', label: 'Download webhook public key PEM', method: 'GET', path: '/apiTenant/developer/public-keys/{environment}/download', title: 'Download the verification key as PEM', description: 'Returns a non-cacheable PEM attachment. The YASBe private signing key is never downloadable.', requiresAuth: true, successStatus: '200', fields: [{ name: 'environment', location: 'Path', required: true, description: 'TEST or LIVE.' }], example: {}, responseExample: '-----BEGIN PUBLIC KEY-----\\n…\\n-----END PUBLIC KEY-----', errors: [{ code: 'ENVIRONMENT_MISMATCH', status: 403, description: 'The requested key environment does not match this deployment.' }] },
 ]
 
-const endpoints = computed(() => ({ partner: partnerEndpoints, cards: cardEndpoints, 'digital-assets': cryptoEndpoints, usd: bridgeEndpoints }[selectedModule.value] ?? fiatEndpoints))
+const closureReference = { ...virtualAccountClosureEndpoint, tryEnabled: false }
+const endpoints = computed(() => ({
+  partner: partnerEndpoints,
+  cards: cardEndpoints,
+  'digital-assets': cryptoEndpoints,
+  fiat: [...fiatEndpoints, closureReference],
+  usd: [...bridgeEndpoints, {
+    ...closureReference,
+    responseExample: { ...closureReference.responseExample, data: { ...closureReference.responseExample.data, currency: 'USD' } },
+  }],
+}[selectedModule.value] ?? fiatEndpoints))
 
 const partnerBaseUrl = typeof window !== 'undefined' && (window.location.hostname === 'beeznis.com' || window.location.hostname.endsWith('.beeznis.com'))
   ? 'https://api.beeznis.com'
   : (import.meta.env.VITE_PARTNER_API_BASE_URL ?? '')
-const baseUrl = computed(() => selectedModule.value === 'partner'
-  ? partnerBaseUrl
-  : (import.meta.env.VITE_PLATFORM_API_BASE_URL ?? ''))
 const activeEndpoint = ref(partnerEndpoints[0])
+const isClosureReference = computed(() => activeEndpoint.value.id === virtualAccountClosureEndpoint.id)
+const baseUrl = computed(() => {
+  if (isClosureReference.value) return virtualAccountClosureTestBaseUrl
+  return selectedModule.value === 'partner' ? partnerBaseUrl : (import.meta.env.VITE_PLATFORM_API_BASE_URL ?? '')
+})
 const activeSection = ref('overview')
 const accessToken = ref('')
 const twoFactorToken = ref('')
@@ -280,10 +296,11 @@ const hasRequestBody = computed(() => activeEndpoint.value.fields.some((field) =
 const twoFactorLabel = computed(() => ({ en: 'X-2FA-Token (when enabled)', 'zh-CN': 'X-2FA-Token（已启用 2FA 时）', 'zh-TW': 'X-2FA-Token（已啟用 2FA 時）' }[locale.value] ?? 'X-2FA-Token'))
 const twoFactorPlaceholder = computed(() => ({ en: 'Paste the short-lived 2FA token', 'zh-CN': '粘贴短期 2FA Token', 'zh-TW': '貼上短期 2FA Token' }[locale.value] ?? 'Paste 2FA token'))
 const contractLabel = computed(() => ({ en: 'CONTRACT', 'zh-CN': '接口契约', 'zh-TW': '介面契約' }[locale.value] ?? 'CONTRACT'))
-const isUserApiModule = computed(() => selectedModule.value === 'partner' || selectedModule.value === 'digital-assets' || selectedModule.value === 'cards' || selectedModule.value === 'usd')
+const isUserApiModule = computed(() => isClosureReference.value || selectedModule.value === 'partner' || selectedModule.value === 'digital-assets' || selectedModule.value === 'cards' || selectedModule.value === 'usd')
 const tryButtonLabel = computed(() => {
   if (isSending.value) return copy.value.sending
   if (activeEndpoint.value.tryEnabled === false) {
+    if (isClosureReference.value) return ({ en: 'Available on the test website', 'zh-CN': '请在测试官网调试', 'zh-TW': '請在測試官網測試' }[locale.value] ?? 'Available on the test website')
     if (activeEndpoint.value.contractOnly) return ({ en: 'Backend implementation required', 'zh-CN': '等待后端实现', 'zh-TW': '等待後端實作' }[locale.value] ?? 'Backend implementation required')
     if (activeEndpoint.value.id === 'card-kyc-documents') return ({ en: 'Multipart only', 'zh-CN': '仅支持 Multipart', 'zh-TW': '僅支援 Multipart' }[locale.value] ?? 'Multipart only')
     return ({ en: 'Live execution disabled', 'zh-CN': '已禁用在线执行', 'zh-TW': '已停用線上執行' }[locale.value] ?? 'Live execution disabled')
@@ -301,6 +318,7 @@ const errorResponseExample = computed(() => isUserApiModule.value
   : { code: activeEndpoint.value.errors[0]?.code ?? 'INTERNAL_ERROR', message: 'Human-readable error message', traceId: 'trc_01J…' })
 
 function endpointCopy(endpoint) {
+  if (endpoint.id === virtualAccountClosureEndpoint.id) return { ...endpoint, ...virtualAccountClosureCopy[locale.value] }
   const localized = partnerCopy[locale.value]?.[endpoint.id] ?? bridgeCopy[locale.value]?.[endpoint.id] ?? cardCopy[locale.value]?.[endpoint.id] ?? cryptoCopy[locale.value]?.[endpoint.id] ?? apiCopy[locale.value]?.[endpoint.id]
   return localized ? { ...endpoint, ...localized } : endpoint
 }
@@ -352,10 +370,12 @@ const moduleOverview = computed(() => {
 })
 
 function endpointDetail(endpoint) {
+  if (endpoint.id === virtualAccountClosureEndpoint.id) return endpointCopy(endpoint).detail
   return partnerCopy[locale.value]?.[endpoint.id]?.detail ?? endpointDetails[locale.value]?.[endpoint.id] ?? endpointDetails.en[endpoint.id] ?? bridgeCopy[locale.value]?.[endpoint.id]?.detail ?? endpoint.detail
 }
 
 function fieldDescription(field) {
+  if (isClosureReference.value) return endpointCopy(activeEndpoint.value).fields?.[field.name] ?? field.description
   return partnerCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? bridgeCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? cardCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? cryptoCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? apiCopy[locale.value]?.[activeEndpoint.value.id]?.fields[field.name] ?? field.description
 }
 
